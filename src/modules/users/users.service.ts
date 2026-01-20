@@ -13,7 +13,6 @@ const updateProfile = async (userId: string, payload: any) => {
 };
 
 /// Get all users list
-
 const getAllUsers = async () => {
   const users = await UserModel.find({ role: USER_ROLE.USER }).select("id name email phone role status");
   if (!users) {

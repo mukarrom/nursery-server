@@ -79,13 +79,13 @@ const UserSchema = new Schema<TUser, IUserModel>(
   { timestamps: true }
 );
 
-// UserSchema.statics.isUserExists = async function (id: string) {
-//   return await this.findById(id).select("+password");
-// };
+UserSchema.statics.isUserExists = async function (id: string) {
+  return await this.findById(id).select("+password");
+};
 
-// UserSchema.statics.isUserByEmail = async function (email: string) {
-//   return await this.findOne({ email }).select("+password");
-// };
+UserSchema.statics.isUserByEmail = async function (email: string) {
+  return await this.findOne({ email }).select("+password");
+};
 
 /// return user data without password and other sensitive information
 UserSchema.methods.toJSON = function () {
