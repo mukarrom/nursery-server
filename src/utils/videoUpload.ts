@@ -39,7 +39,7 @@ export const uploadVideo = async (
         return new Promise((resolve, reject) => {
             const uploadStream = cloudinary.uploader.upload_stream(
                 {
-                    folder: folder ? `nitto-vojon/${folder}` : "nitto-vojon/videos",
+                    folder: folder ? `nursery-app/${folder}` : "nursery-app/videos",
                     resource_type: "video",
                     chunk_size: 6000000, // 6MB chunks for better large video handling
                     eager: [

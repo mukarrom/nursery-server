@@ -1,8 +1,11 @@
 node_modules
 .env
+.env.local
 .github
 dist
 documentations
 coverage
 .DS_Store
 npm-debug.log
+.vercel
+*.log
