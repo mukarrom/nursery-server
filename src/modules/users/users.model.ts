@@ -11,7 +11,7 @@ export interface IUserModel extends Model<TUser> {
   ): boolean;
 }
 
-const UserSchema = new Schema<TUser>(
+const UserSchema = new Schema<TUser, IUserModel>(
   {
     name: {
       type: String,
@@ -79,12 +79,26 @@ const UserSchema = new Schema<TUser>(
   { timestamps: true }
 );
 
-UserSchema.statics.isUserExists = async function (id: string) {
-  return await this.findById(id).select("+password");
-};
+// UserSchema.statics.isUserExists = async function (id: string) {
+//   return await this.findById(id).select("+password");
+// };
 
-UserSchema.statics.isUserByEmail = async function (email: string) {
-  return await this.findOne({ email }).select("+password");
+// UserSchema.statics.isUserByEmail = async function (email: string) {
+//   return await this.findOne({ email }).select("+password");
+// };
+
+/// return user data without password and other sensitive information
+UserSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.password;
+  delete obj.accessToken;
+  delete obj.refreshToken;
+  delete obj.emailVerificationToken;
+  delete obj.emailVerificationTokenExpires;
+  delete obj.passwordResetToken;
+  delete obj.passwordResetTokenExpires;
+  delete obj.isDeleted;
+  return obj;
 };
 
 UserSchema.statics.isJWTIssuedBeforePasswordChanged = function (
