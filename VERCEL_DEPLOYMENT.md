@@ -1,7 +1,8 @@
 # Vercel Deployment Guide
 
 ## Prerequisites
-- ✅ Vercel account (sign up at https://vercel.com)
+
+- ✅ Vercel account (sign up at <https://vercel.com>)
 - ✅ Vercel CLI installed globally
 - ✅ Environment variables ready
 
@@ -21,13 +22,14 @@ Follow the prompts to authenticate with your Vercel account.
 
 ## Step 3: Deploy to Vercel
 
-### First-time deployment:
+### First-time deployment
 
 ```bash
 vercel
 ```
 
 When prompted:
+
 - **Set up and deploy?** → Yes
 - **Which scope?** → Select your account/team
 - **Link to existing project?** → No
@@ -37,7 +39,7 @@ When prompted:
 
 This will create a preview deployment.
 
-### Deploy to Production:
+### Deploy to Production
 
 ```bash
 vercel --prod
@@ -93,7 +95,7 @@ vercel env add NODE_ENV
 
 ### Option B: Using Vercel Dashboard
 
-1. Go to https://vercel.com/dashboard
+1. Go to <https://vercel.com/dashboard>
 2. Select your project
 3. Go to **Settings** → **Environment Variables**
 4. Add each variable with the appropriate values
@@ -110,11 +112,13 @@ vercel --prod
 ## Step 6: Verify Deployment
 
 Your API will be available at:
+
 ```
 https://your-project-name.vercel.app
 ```
 
 Test your endpoints:
+
 ```
 https://your-project-name.vercel.app/api/v1/auth/sign-up
 https://your-project-name.vercel.app/api/v1/products
@@ -169,6 +173,7 @@ vercel dashboard
 ### Connect to GitHub for Auto-Deploy
 
 1. Push your code to GitHub:
+
    ```bash
    git push origin dev
    git checkout main
@@ -190,20 +195,24 @@ Now every push to `main` will trigger a production deployment, and pushes to `de
 ## Troubleshooting
 
 ### Build Fails
+
 - Check Vercel logs: `vercel logs`
 - Ensure all dependencies are in `dependencies` (not `devDependencies`)
 - Verify `vercel-build` script runs locally: `npm run vercel-build`
 
 ### Runtime Errors
+
 - Check environment variables are set correctly
 - Verify MongoDB connection string includes network access from anywhere (0.0.0.0/0)
 - Check function timeout limits (Vercel has a 10s limit on Hobby plan)
 
 ### CORS Issues
+
 - Update CORS origin in your Express app to include Vercel domain
 - Check `src/app.ts` CORS configuration
 
 ### MongoDB Connection Issues
+
 - Whitelist `0.0.0.0/0` in MongoDB Atlas Network Access
 - Or add Vercel's IP ranges
 - Ensure connection string is correct
@@ -218,7 +227,7 @@ Now every push to `main` will trigger a production deployment, and pushes to `de
 
 ## Cost Considerations
 
-- **Hobby Plan** (Free): 
+- **Hobby Plan** (Free):
   - 100 GB bandwidth/month
   - Serverless function execution: 100 GB-Hrs
   - 10 second max function duration
@@ -239,9 +248,9 @@ Now every push to `main` will trigger a production deployment, and pushes to `de
 
 ## Support
 
-- Vercel Docs: https://vercel.com/docs
-- Vercel Community: https://github.com/vercel/vercel/discussions
-- Vercel Support: https://vercel.com/support
+- Vercel Docs: <https://vercel.com/docs>
+- Vercel Community: <https://github.com/vercel/vercel/discussions>
+- Vercel Support: <https://vercel.com/support>
 
 ---
 

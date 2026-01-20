@@ -12,7 +12,12 @@ app.use(cors());
 
 // Redirect root URL to nittovojon.com
 app.get("/", (req, res) => {
-  res.redirect(301, "https://nittovojon.com");
+  // res.redirect(301, "https://nittovojon.com");
+  res.json({
+    statusCode: 200,
+    success: true,
+    message: "Welcome to nursery server app"
+  });
 });
 
 // Serve static files
