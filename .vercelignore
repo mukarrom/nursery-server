@@ -1,0 +1,16 @@
+node_modules
+.env
+.env.local
+.github
+documentations
+coverage
+.DS_Store
+npm-debug.log
+*.log
+README.md
+API_DOCUMENTATION.md
+POSTMAN_SETUP.md
+FILES_CREATED.md
+IMPLEMENTATION_SUMMARY.md
+diagram.mml
+ERD
