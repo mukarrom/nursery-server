@@ -37,7 +37,7 @@ export const uploadImage = async (
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         {
-          folder: folder ? `nitto-vojon/${folder}` : "nitto-vojon",
+          folder: folder ? `nursery-app/${folder}` : "nursery-app",
           resource_type: "auto",
         },
         (error, result) => {
@@ -65,8 +65,7 @@ export const uploadImage = async (
     });
   } catch (error) {
     throw new Error(
-      `Failed to upload image: ${
-        error instanceof Error ? error.message : String(error)
+      `Failed to upload image: ${error instanceof Error ? error.message : String(error)
       }`
     );
   }
