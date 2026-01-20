@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { wishlistController } from "./wishlist.controller";
 import auth from "../../middlewares/auth";
 import validateRequest from "../../middlewares/validateRequest";
+import { wishlistController } from "./wishlist.controller";
 import { wishlistValidation } from "./wishlist.validation";
 
 const wishlistRouter = Router();
@@ -11,10 +11,10 @@ wishlistRouter.get("/", auth(), wishlistController.getWishlist);
 
 // Add to wishlist
 wishlistRouter.post(
-  "/add",
-  auth(),
-  validateRequest(wishlistValidation.addToWishlistZodSchema),
-  wishlistController.addToWishlist
+    "/add",
+    auth(),
+    validateRequest(wishlistValidation.addToWishlistZodSchema),
+    wishlistController.addToWishlist
 );
 
 // Check if product in wishlist

@@ -1,17 +1,17 @@
 import { Router } from "express";
-import { reviewController } from "./review.controller";
 import auth from "../../middlewares/auth";
 import validateRequest from "../../middlewares/validateRequest";
+import { reviewController } from "./review.controller";
 import { reviewValidation } from "./review.validation";
 
 const reviewRouter = Router();
 
 // Create review
 reviewRouter.post(
-  "/",
-  auth(),
-  validateRequest(reviewValidation.createReviewZodSchema),
-  reviewController.createReview
+    "/",
+    auth(),
+    validateRequest(reviewValidation.createReviewZodSchema),
+    reviewController.createReview
 );
 
 // Get reviews by product

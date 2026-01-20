@@ -1,17 +1,17 @@
 import { Router } from "express";
-import { addressController } from "./address.controller";
 import auth from "../../middlewares/auth";
 import validateRequest from "../../middlewares/validateRequest";
+import { addressController } from "./address.controller";
 import { addressValidation } from "./address.validation";
 
 const addressRouter = Router();
 
 // Create address
 addressRouter.post(
-  "/",
-  auth(),
-  validateRequest(addressValidation.createAddressZodSchema),
-  addressController.createAddress
+    "/",
+    auth(),
+    validateRequest(addressValidation.createAddressZodSchema),
+    addressController.createAddress
 );
 
 // Get all addresses
@@ -22,10 +22,10 @@ addressRouter.get("/:addressId", auth(), addressController.getAddress);
 
 // Update address
 addressRouter.patch(
-  "/:addressId",
-  auth(),
-  validateRequest(addressValidation.updateAddressZodSchema),
-  addressController.updateAddress
+    "/:addressId",
+    auth(),
+    validateRequest(addressValidation.updateAddressZodSchema),
+    addressController.updateAddress
 );
 
 // Set default address

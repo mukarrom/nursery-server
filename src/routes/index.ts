@@ -1,16 +1,16 @@
 import { Router } from "express";
+import addressRouter from "../modules/address/address.route";
 import { authRoute } from "../modules/auth/auth.route";
 import { carouselRoutes } from "../modules/carousel/carousel.route";
-import { categoryRoutes } from "../modules/category/category.route";
-import { flashSaleRoutes } from "../modules/flash-sale/flash-sale.route";
-import { productRoutes } from "../modules/products/products.route";
-import { testRoutes } from "../modules/tests/tests.route";
 import cartRouter from "../modules/cart/cart.route";
-import orderRouter from "../modules/order/order.route";
-import reviewRouter from "../modules/review/review.route";
-import wishlistRouter from "../modules/wishlist/wishlist.route";
-import addressRouter from "../modules/address/address.route";
+import { categoryRoutes } from "../modules/category/category.route";
 import couponRouter from "../modules/coupon/coupon.route";
+import { flashSaleRoutes } from "../modules/flash-sale/flash-sale.route";
+import orderRouter from "../modules/order/order.route";
+import { productRoutes } from "../modules/products/products.route";
+import reviewRouter from "../modules/review/review.route";
+import { testRoutes } from "../modules/tests/tests.route";
+import wishlistRouter from "../modules/wishlist/wishlist.route";
 
 const router = Router();
 interface IModuleRoutes {

@@ -1,13 +1,13 @@
 export type TCart = {
-  userId: string;
-  items: {
-    productId: string;
-    quantity: number;
-    price: number;
+    userId: string;
+    items: {
+        productId: string;
+        quantity: number;
+        price: number;
+        total: number;
+    }[];
+    subtotal: number;
     total: number;
-  }[];
-  subtotal: number;
-  total: number;
-  createdAt: Date;
-  updatedAt: Date;
+    createdAt: Date;
+    updatedAt: Date;
 };

@@ -1,44 +1,44 @@
-import { model, Schema, Types } from "mongoose";
+import { model, Schema } from "mongoose";
 import { TAddress } from "./address.interface";
 
 const AddressSchema = new Schema<TAddress>(
-  {
-    userId: {
-      type: String,
-      required: true,
+    {
+        userId: {
+            type: String,
+            required: true,
+        },
+        street: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        city: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        postalCode: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        country: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        phoneNumber: String,
+        label: {
+            type: String,
+            enum: ["home", "office", "other"],
+            default: "other",
+        },
+        isDefault: {
+            type: Boolean,
+            default: false,
+        },
     },
-    street: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    city: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    postalCode: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    country: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    phoneNumber: String,
-    label: {
-      type: String,
-      enum: ["home", "office", "other"],
-      default: "other",
-    },
-    isDefault: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  { timestamps: true }
+    { timestamps: true }
 );
 
 export const AddressModel = model<TAddress>("address", AddressSchema);
