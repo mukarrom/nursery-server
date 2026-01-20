@@ -136,7 +136,11 @@ const loginService = async (payload: TLogin) => {
     { new: true }
   );
 
-  return updatedUser;
+  return {
+    user: updatedUser,
+    accessToken: jwtAccessToken,
+    refreshToken: jwtRefreshToken,
+  };
 };
 
 // ------------- logout service -------------------

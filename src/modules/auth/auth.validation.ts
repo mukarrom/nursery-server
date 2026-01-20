@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { USER_ROLE } from "../../constants/status.constants";
 
 export type TLogin = {
   email: string;
@@ -34,7 +35,7 @@ const signUpZodSchema = z.object({
       .max(255)
       .optional(),
     role: z
-      .enum(["USER", "ADMIN", "SUPER_ADMIN"], {
+      .enum(Object.values(USER_ROLE) as [string, ...string[]], {
         invalid_type_error: "Role must be a valid role",
       })
       .optional(),

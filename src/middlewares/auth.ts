@@ -12,15 +12,15 @@ import "../types/express";
 
 const auth = (...requiredRoles: TUserRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization;
+    const bearerToken = req.headers.authorization?.split(" ")[1];
 
     // if the token is not sent from the client
-    if (!token) {
+    if (!bearerToken) {
       throw new AppError(status.UNAUTHORIZED, "You are not authorized!");
     }
 
     // check if the token is valid
-    const decoded = verifyAccessToken(token) as JwtPayload;
+    const decoded = verifyAccessToken(bearerToken) as JwtPayload;
 
     const { id, role } = decoded;
 

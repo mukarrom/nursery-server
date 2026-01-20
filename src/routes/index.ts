@@ -10,6 +10,7 @@ import orderRouter from "../modules/order/order.route";
 import { productRoutes } from "../modules/products/products.route";
 import reviewRouter from "../modules/review/review.route";
 import { testRoutes } from "../modules/tests/tests.route";
+import { userRoute } from "../modules/users/users.route";
 import wishlistRouter from "../modules/wishlist/wishlist.route";
 
 const router = Router();
@@ -23,6 +24,10 @@ const moduleRoutes: IModuleRoutes[] = [
   {
     path: "/auth",
     route: authRoute,
+  },
+  {
+    path: "/users",
+    route: userRoute,
   },
   {
     path: "/categories",
