@@ -8,10 +8,14 @@ import {
     getReviewsByProductService,
     getReviewsByUserService,
     publishReviewService,
+    reviewServices,
     unpublishReviewService,
 } from "./review.service";
 
-export const createReview = catchAsync(async (req: Request, res: Response) => {
+/**
+ * Create Review Controller
+ */
+export const createReviewController = catchAsync(async (req: Request, res: Response) => {
     const userId = req.user?.id;
     const { productId, rating, reviewText } = req.body;
 
@@ -25,8 +29,31 @@ export const createReview = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
-export const publishReview = catchAsync(async (req: Request, res: Response) => {
+/**
+ * update Review Controller
+ */
+const updateReviewController = catchAsync(async (req: Request, res: Response) => {
     const { reviewId } = req.params as { reviewId: string };
+    const userId = req.user?.id;
+    const { rating, reviewText } = req.body;
+    const review = await reviewServices.updateReviewService(
+        reviewId,
+        userId,
+        { rating, reviewText }
+    );
+    sendResponse(res, {
+        success: true,
+        statusCode: 200,
+        message: "Review updated successfully",
+        data: review,
+    });
+});
+
+/**
+ * Publish Review Controller
+ */
+export const publishReviewController = catchAsync(async (req: Request, res: Response) => {
+    const { reviewId } = req.params;
 
     const review = await publishReviewService(reviewId as string);
 
@@ -38,7 +65,7 @@ export const publishReview = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
-export const unpublishReview = catchAsync(async (req: Request, res: Response) => {
+export const unpublishReviewController = catchAsync(async (req: Request, res: Response) => {
     const { reviewId } = req.params as { reviewId: string };
 
     const review = await unpublishReviewService(reviewId as string);
@@ -51,7 +78,7 @@ export const unpublishReview = catchAsync(async (req: Request, res: Response) =>
     });
 });
 
-export const getReviewsByProduct = catchAsync(async (req: Request, res: Response) => {
+export const getReviewsByProductController = catchAsync(async (req: Request, res: Response) => {
     const { productId } = req.params as { productId: string };
 
     const reviews = await getReviewsByProductService(productId as string);
@@ -64,7 +91,7 @@ export const getReviewsByProduct = catchAsync(async (req: Request, res: Response
     });
 });
 
-export const getReviewsByUser = catchAsync(async (req: Request, res: Response) => {
+export const getReviewsByUserController = catchAsync(async (req: Request, res: Response) => {
     const userId = req.user?.id;
 
     const reviews = await getReviewsByUserService(userId);
@@ -77,7 +104,7 @@ export const getReviewsByUser = catchAsync(async (req: Request, res: Response) =
     });
 });
 
-export const addHelpfulReview = catchAsync(async (req: Request, res: Response) => {
+export const addHelpfulReviewController = catchAsync(async (req: Request, res: Response) => {
     const { reviewId } = req.params as { reviewId: string };
 
     const review = await addHelpfulReviewService(reviewId as string);
@@ -90,7 +117,7 @@ export const addHelpfulReview = catchAsync(async (req: Request, res: Response) =
     });
 });
 
-export const deleteReview = catchAsync(async (req: Request, res: Response) => {
+export const deleteReviewController = catchAsync(async (req: Request, res: Response) => {
     const { reviewId } = req.params as { reviewId: string };
 
     const review = await deleteReviewService(reviewId as string);
@@ -104,11 +131,12 @@ export const deleteReview = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const reviewController = {
-    createReview,
-    publishReview,
-    unpublishReview,
-    getReviewsByProduct,
-    getReviewsByUser,
-    addHelpfulReview,
-    deleteReview,
+    createReviewController,
+    updateReviewController,
+    publishReviewController,
+    unpublishReviewController,
+    getReviewsByProductController,
+    getReviewsByUserController,
+    addHelpfulReviewController,
+    deleteReviewController,
 };

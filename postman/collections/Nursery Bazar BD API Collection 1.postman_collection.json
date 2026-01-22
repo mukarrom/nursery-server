@@ -4055,11 +4055,13 @@
               "query": [
                 {
                   "key": "page",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "c5e238e5-3768-4457-91a4-cccb5198bfc4"
                 },
                 {
                   "key": "limit",
-                  "value": "10"
+                  "value": "10",
+                  "uuid": "467b4bbc-2358-422d-9eed-600e679d2588"
                 }
               ]
             }
@@ -4155,7 +4157,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"code\": \"SAVE20\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 20,\n  \"validFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n  \"maxUses\": 100,\n  \"minOrderAmount\": 500,\n  \"isActive\": true,\n  \"description\": \"Save 20% on all orders above 500 BDT\"\n}",
+              "raw": "{\n  \"code\": \"EID2026\",\n  \"discountType\": \"fixed\", // \"percentage\" | \"fixed\"\n  \"discountValue\": 20,\n  \"validFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n  \"maxUses\": 100,\n  \"minOrderAmount\": 500,\n  \"isActive\": true,\n  \"description\": \"Save 20% on all orders above 500 BDT\"\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -4173,7 +4175,75 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "cc6b909f-ccbc-4ea1-aff5-a940b08c5a68",
+              "name": "Create Coupon (Admin)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"EID2026\",\n  \"discountType\": \"fixed\", // \"percentage\" | \"fixed\"\n  \"discountValue\": 20,\n  \"validFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n  \"maxUses\": 100,\n  \"minOrderAmount\": 500,\n  \"isActive\": true,\n  \"description\": \"Save 20% on all orders above 500 BDT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "Required: code, discountType (enum: ['percentage', 'fixed']), discountValue, validFrom (ISO datetime), validUntil (ISO datetime)\nOptional: maxUses, minOrderAmount, isActive (default true), description"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/coupons",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "coupons"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "442"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ba-K7ANwc6GaxjgtO8WTjK96exKJgA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 11:12:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T11:12:21.377Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Coupon created successfully\",\n    \"data\": {\n        \"code\": \"EID2026\",\n        \"discountType\": \"fixed\",\n        \"discountValue\": 20,\n        \"validFrom\": \"2026-01-01T00:00:00.000Z\",\n        \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n        \"maxUses\": 100,\n        \"currentUses\": 0,\n        \"minOrderAmount\": 500,\n        \"isActive\": true,\n        \"description\": \"Save 20% on all orders above 500 BDT\",\n        \"_id\": \"6972060fefec12ecce1dd08b\",\n        \"createdAt\": \"2026-01-22T11:12:15.989Z\",\n        \"updatedAt\": \"2026-01-22T11:12:15.989Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Coupon (Admin)",
@@ -4216,12 +4286,87 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "coupon_id"
+                  "value": "6970d419949656d26f552f2f"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "08bd0d67-6922-431e-8265-df9c86f0bed4",
+              "name": "Update Coupon (Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"isActive\": false,\n  \"maxUses\": 50\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "All fields optional"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/coupons/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6970d419949656d26f552f2f"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "436"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1b4-Ox1ujnEwZ9zNkCzQKqQ2Ob/TDkE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 11:21:13 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T11:21:17.022Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Coupon updated successfully\",\n    \"data\": {\n        \"_id\": \"6970d419949656d26f552f2f\",\n        \"code\": \"SAVE2026\",\n        \"discountType\": \"percentage\",\n        \"discountValue\": 20,\n        \"validFrom\": \"2024-01-21T00:00:00.000Z\",\n        \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n        \"maxUses\": 50,\n        \"currentUses\": 0,\n        \"minOrderAmount\": 5000,\n        \"isActive\": false,\n        \"description\": \"20% off on all products\",\n        \"createdAt\": \"2026-01-21T13:26:49.626Z\",\n        \"updatedAt\": \"2026-01-22T11:21:13.390Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Delete Coupon (Admin)",
@@ -4254,12 +4399,77 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "coupon_id"
+                  "value": "6970918d631f39728423209a"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "4ea28ffc-79f2-48d2-805d-ed1588393b6f",
+              "name": "Delete Coupon (Admin)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/coupons/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "coupons",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6970918d631f39728423209a"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "434"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1b2-BhAtu4S1CDN3aZSdKFOa7UHD/b0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 11:19:29 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T11:19:33.282Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Coupon deleted successfully\",\n    \"data\": {\n        \"_id\": \"6970918d631f39728423209a\",\n        \"code\": \"SAVE20\",\n        \"discountType\": \"percentage\",\n        \"discountValue\": 20,\n        \"validFrom\": \"2024-01-20T00:00:00.000Z\",\n        \"validUntil\": \"2024-12-31T23:59:59.000Z\",\n        \"maxUses\": 100,\n        \"currentUses\": 0,\n        \"minOrderAmount\": 5000,\n        \"isActive\": true,\n        \"description\": \"20% off on all products\",\n        \"createdAt\": \"2026-01-21T08:42:53.719Z\",\n        \"updatedAt\": \"2026-01-21T08:42:53.719Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Apply Coupon",
@@ -4282,7 +4492,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"code\": \"SAVE20\",\n  \"orderTotal\": 1000\n}",
+              "raw": "{\n  \"code\": \"EID2026\",\n  \"orderTotal\": 1000\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -4301,7 +4511,75 @@
             },
             "description": "Validate and calculate discount for a coupon code"
           },
-          "response": []
+          "response": [
+            {
+              "id": "7b33bb76-4f52-40db-8c5d-bd1402f70378",
+              "name": "Apply Coupon",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"EID2026\",\n  \"orderTotal\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/coupons/apply",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "coupons",
+                    "apply"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "442"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ba-XVz2+6BvH4piu/5gmKoBLS3Whn0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 11:13:06 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T11:13:40.102Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Coupon applied successfully\",\n    \"data\": {\n        \"_id\": \"6972060fefec12ecce1dd08b\",\n        \"code\": \"EID2026\",\n        \"discountType\": \"fixed\",\n        \"discountValue\": 20,\n        \"validFrom\": \"2026-01-01T00:00:00.000Z\",\n        \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n        \"maxUses\": 100,\n        \"currentUses\": 1,\n        \"minOrderAmount\": 500,\n        \"isActive\": true,\n        \"description\": \"Save 20% on all orders above 500 BDT\",\n        \"createdAt\": \"2026-01-22T11:12:15.989Z\",\n        \"updatedAt\": \"2026-01-22T11:13:06.055Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         }
       ],
       "id": "677d1b8b-d1f4-4190-8bd6-9ad254f4f24f",
@@ -4311,7 +4589,110 @@
       "name": "Reviews",
       "item": [
         {
-          "name": "Get Product Reviews",
+          "name": "Get My Reviews",
+          "id": "cf0c9da3-0abe-4d74-8da1-366fbf6daa23",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/my?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "my"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "uuid": "c082e3ec-1d2c-46ce-8113-aafe7a9d9a83"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "uuid": "0d58eeed-28fa-4e28-b853-ba6e29434c43"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ed3a9c0e-0a79-465f-8eed-372d4f88c24e",
+              "name": "Get My Reviews",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/reviews/my?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reviews",
+                    "my"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "664"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"298-+5+i/PwJ4xPD6Jn9UFffL78On8A\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 12:38:56 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T12:39:04.640Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Reviews retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"697213eff49b9a93a51c32d7\",\n            \"userId\": \"6971da34ef6d881934c75780\",\n            \"productId\": {\n                \"_id\": \"6970f3d9a4e644714427b3c9\",\n                \"name\": \"text 2\"\n            },\n            \"rating\": 5,\n            \"reviewText\": \"Excellent product! Highly recommended.\",\n            \"isPublished\": true,\n            \"helpfulCount\": 0,\n            \"createdAt\": \"2026-01-22T12:11:27.550Z\",\n            \"updatedAt\": \"2026-01-22T12:35:04.696Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"69720889efec12ecce1dd09c\",\n            \"userId\": \"6971da34ef6d881934c75780\",\n            \"productId\": {\n                \"_id\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\"\n            },\n            \"rating\": 5,\n            \"isPublished\": true,\n            \"helpfulCount\": 0,\n            \"createdAt\": \"2026-01-22T11:22:49.109Z\",\n            \"updatedAt\": \"2026-01-22T11:22:49.109Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Reviews by productId",
           "id": "bdb59dad-f572-43c9-a138-da071efe7558",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
@@ -4332,22 +4713,102 @@
               "query": [
                 {
                   "key": "page",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "c082e3ec-1d2c-46ce-8113-aafe7a9d9a83"
                 },
                 {
                   "key": "limit",
-                  "value": "10"
+                  "value": "10",
+                  "uuid": "0d58eeed-28fa-4e28-b853-ba6e29434c43"
                 }
               ],
               "variable": [
                 {
                   "key": "productId",
-                  "value": "product_id"
+                  "value": "6971e9f7065be8b54b7ff90e"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "25f2fb59-427c-42cd-85b0-b0e940217df4",
+              "name": "Get Reviews by productId",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/reviews/product/:productId?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reviews",
+                    "product",
+                    ":productId"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "uuid": "c082e3ec-1d2c-46ce-8113-aafe7a9d9a83"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10",
+                      "uuid": "0d58eeed-28fa-4e28-b853-ba6e29434c43"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "productId",
+                      "value": "6971e9f7065be8b54b7ff90e"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "311"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"137-F40Rrs2kwXT6WWHsyl4RC9+OIQk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 12:37:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T12:37:33.886Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Reviews retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"69720889efec12ecce1dd09c\",\n            \"userId\": \"6971da34ef6d881934c75780\",\n            \"productId\": \"6971e9f7065be8b54b7ff90e\",\n            \"rating\": 5,\n            \"isPublished\": true,\n            \"helpfulCount\": 0,\n            \"createdAt\": \"2026-01-22T11:22:49.109Z\",\n            \"updatedAt\": \"2026-01-22T11:22:49.109Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "Create Review",
@@ -4370,7 +4831,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"productId\": \"product_id_here\",\n  \"rating\": 5,\n  \"comment\": \"Excellent product! Highly recommended.\"\n}",
+              "raw": "{\n  \"productId\": \"6970f3d9a4e644714427b3c9\",\n  \"rating\": 5,\n  \"reviewText\": \"Excellent product! Highly recommended.\"\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -4388,7 +4849,259 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "c94402c0-f24f-4ddb-8390-f4fc6b61c762",
+              "name": "Create Review",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"6971e9f7065be8b54b7ff90e\",\n  \"rating\": 5,\n  \"comment\": \"Excellent product! Highly recommended.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "Required: productId, rating (1-5)\nOptional: comment"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reviews",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reviews"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "307"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"133-p0OT7HLHjPbwzKSkJc+mqx1MFbw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 11:22:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T11:22:52.616Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Review created successfully\",\n    \"data\": {\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productId\": \"6971e9f7065be8b54b7ff90e\",\n        \"rating\": 5,\n        \"isPublished\": false,\n        \"helpfulCount\": 0,\n        \"_id\": \"69720889efec12ecce1dd09c\",\n        \"createdAt\": \"2026-01-22T11:22:49.109Z\",\n        \"updatedAt\": \"2026-01-22T11:22:49.109Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "publish",
+          "id": "67650b67-f176-4a67-9678-61f8567ef113",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/:reviewId/publish",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                ":reviewId",
+                "publish"
+              ],
+              "variable": [
+                {
+                  "key": "reviewId",
+                  "value": "697213eff49b9a93a51c32d7"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b96dfbc1-fd09-464d-af75-f5e8a2f13b25",
+              "name": "publish",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/reviews/:reviewId/publish",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reviews",
+                    ":reviewId",
+                    "publish"
+                  ],
+                  "variable": [
+                    {
+                      "key": "reviewId",
+                      "value": "697213eff49b9a93a51c32d7"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "362"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"16a-skTwJ+Xa6B+X2A7CKY6HvZBineg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 12:35:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T12:35:22.701Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Review published successfully\",\n    \"data\": {\n        \"_id\": \"697213eff49b9a93a51c32d7\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productId\": \"6970f3d9a4e644714427b3c9\",\n        \"rating\": 5,\n        \"reviewText\": \"Excellent product! Highly recommended.\",\n        \"isPublished\": true,\n        \"helpfulCount\": 0,\n        \"createdAt\": \"2026-01-22T12:11:27.550Z\",\n        \"updatedAt\": \"2026-01-22T12:35:04.696Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Unpublish",
+          "id": "5bea74d0-81c0-442e-b84b-a97bb8b2fdb9",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/:reviewId/unpublish",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                ":reviewId",
+                "unpublish"
+              ],
+              "variable": [
+                {
+                  "key": "reviewId",
+                  "value": "697213eff49b9a93a51c32d7"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "738ab60e-53ba-4880-b33f-54282e02bc6c",
+              "name": "publish",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/reviews/:reviewId/publish",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reviews",
+                    ":reviewId",
+                    "publish"
+                  ],
+                  "variable": [
+                    {
+                      "key": "reviewId",
+                      "value": "697213eff49b9a93a51c32d7"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "362"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"16a-skTwJ+Xa6B+X2A7CKY6HvZBineg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 12:35:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T12:35:22.701Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Review published successfully\",\n    \"data\": {\n        \"_id\": \"697213eff49b9a93a51c32d7\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productId\": \"6970f3d9a4e644714427b3c9\",\n        \"rating\": 5,\n        \"reviewText\": \"Excellent product! Highly recommended.\",\n        \"isPublished\": true,\n        \"helpfulCount\": 0,\n        \"createdAt\": \"2026-01-22T12:11:27.550Z\",\n        \"updatedAt\": \"2026-01-22T12:35:04.696Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Review",
@@ -4411,7 +5124,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"rating\": 4,\n  \"comment\": \"Good product but delivery was slow\"\n}",
+              "raw": "{\n  \"rating\": 4,\n  \"reviewText\": \"Good product but delivery was slow\"\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -4420,23 +5133,192 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/reviews/:id",
+              "raw": "{{baseUrl}}/reviews/update/:reviewId",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "reviews",
-                ":id"
+                "update",
+                ":reviewId"
               ],
               "variable": [
                 {
-                  "key": "id",
-                  "value": "review_id"
+                  "key": "reviewId",
+                  "value": "69720889efec12ecce1dd09c"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "51988bf5-4fd8-46f5-9b31-352c8ffc1ecb",
+              "name": "Update Review",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rating\": 4,\n  \"reviewText\": \"Good product but delivery was slow\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "All fields optional"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reviews/update/:reviewId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reviews",
+                    "update",
+                    ":reviewId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "reviewId",
+                      "value": "69720889efec12ecce1dd09c"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "356"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"164-NFEXxF9WTlK6VVJJTExLqLMpBKI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 12:57:43 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T12:57:52.179Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Review updated successfully\",\n    \"data\": {\n        \"_id\": \"69720889efec12ecce1dd09c\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productId\": \"6971e9f7065be8b54b7ff90e\",\n        \"rating\": 4,\n        \"isPublished\": true,\n        \"helpfulCount\": 0,\n        \"createdAt\": \"2026-01-22T11:22:49.109Z\",\n        \"updatedAt\": \"2026-01-22T12:57:43.254Z\",\n        \"__v\": 0,\n        \"reviewText\": \"Good product but delivery was slow\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "mark helpful",
+          "id": "5b0e61b2-dc9e-4d42-88e8-e03850560947",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/:reviewId/helpful",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                ":reviewId",
+                "helpful"
+              ],
+              "variable": [
+                {
+                  "key": "reviewId",
+                  "value": "697213eff49b9a93a51c32d7"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "092884b5-8b72-4304-825c-50e0e78fed56",
+              "name": "add helpful",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/reviews/:reviewId/helpful",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reviews",
+                    ":reviewId",
+                    "helpful"
+                  ],
+                  "variable": [
+                    {
+                      "key": "reviewId",
+                      "value": "697213eff49b9a93a51c32d7"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "357"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"165-r6t47wvI+7yX3BMjkslwSp7jj6g\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 12:40:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T12:40:52.263Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Review marked as helpful\",\n    \"data\": {\n        \"_id\": \"697213eff49b9a93a51c32d7\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productId\": \"6970f3d9a4e644714427b3c9\",\n        \"rating\": 5,\n        \"reviewText\": \"Excellent product! Highly recommended.\",\n        \"isPublished\": true,\n        \"helpfulCount\": 1,\n        \"createdAt\": \"2026-01-22T12:11:27.550Z\",\n        \"updatedAt\": \"2026-01-22T12:40:49.527Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Delete Review",
@@ -4503,16 +5385,76 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/wishlists",
+              "raw": "{{baseUrl}}/wishlists/my",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "wishlists"
+                "wishlists",
+                "my"
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "63188b80-b4c0-4503-bf30-eec2ee63f3d7",
+              "name": "Get My Wishlist",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/wishlists/my",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wishlists",
+                    "my"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "266"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"10a-+TXohfl6rs+kRsS3TBSeNqPBZ1Q\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 16:09:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T16:09:22.613Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Wishlist retrieved successfully\",\n    \"data\": {\n        \"_id\": \"69724b989b4d56b79f3053f3\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productIds\": [\n            \"6971e9f7065be8b54b7ff90e\"\n        ],\n        \"createdAt\": \"2026-01-22T16:08:56.834Z\",\n        \"updatedAt\": \"2026-01-22T16:08:56.834Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Add to Wishlist",
@@ -4535,7 +5477,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"productId\": \"product_id_here\"\n}",
+              "raw": "{\n  \"productId\": \"6970f3d9a4e644714427b3c9\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -4543,16 +5485,85 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/wishlists",
+              "raw": "{{baseUrl}}/wishlists/add",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "wishlists"
+                "wishlists",
+                "add"
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "3df07bde-7d4b-4e22-b425-f568b396e667",
+              "name": "Add to Wishlist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"6971e9f7065be8b54b7ff90e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/wishlists/add",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wishlists",
+                    "add"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "273"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"111-uO0CGseu0VbdaHC8oOS17V7Egd4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 16:08:56 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T16:09:03.024Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product added to wishlist successfully\",\n    \"data\": {\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productIds\": [\n            \"6971e9f7065be8b54b7ff90e\"\n        ],\n        \"_id\": \"69724b989b4d56b79f3053f3\",\n        \"createdAt\": \"2026-01-22T16:08:56.834Z\",\n        \"updatedAt\": \"2026-01-22T16:08:56.834Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Remove from Wishlist",
@@ -4585,12 +5596,166 @@
               "variable": [
                 {
                   "key": "productId",
-                  "value": "product_id"
+                  "value": "6970f3d9a4e644714427b3c9"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "c446767d-2cc8-40d2-a773-2582d838aa61",
+              "name": "Remove from Wishlist",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/wishlists/:productId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wishlists",
+                    ":productId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "productId",
+                      "value": "6970f3d9a4e644714427b3c9"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "277"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"115-U5Gf0v0D7gfZnMrreKx1aMjfMIA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 16:14:52 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T16:14:56.408Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product removed from wishlist successfully\",\n    \"data\": {\n        \"_id\": \"69724b989b4d56b79f3053f3\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productIds\": [\n            \"6971e9f7065be8b54b7ff90e\"\n        ],\n        \"createdAt\": \"2026-01-22T16:08:56.834Z\",\n        \"updatedAt\": \"2026-01-22T16:14:52.807Z\",\n        \"__v\": 2\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Clear WishList",
+          "id": "162732b5-7bd8-447c-850b-3727e911641f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/wishlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wishlists"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "de0723ae-4cfa-449d-b105-0ce044f6606e",
+              "name": "Clear wishlist",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/wishlists",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wishlists"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "238"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"ee-rHaXOuWTwsywx9/5mF2v7iKCa5c\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 16:16:18 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T16:16:25.997Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Wishlist cleared successfully\",\n    \"data\": {\n        \"_id\": \"69724b989b4d56b79f3053f3\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productIds\": [],\n        \"createdAt\": \"2026-01-22T16:08:56.834Z\",\n        \"updatedAt\": \"2026-01-22T16:16:18.540Z\",\n        \"__v\": 4\n    }\n}"
+            }
+          ]
         }
       ],
       "id": "ca57d7d0-d0ec-44b0-9f74-d81024dcee13",
@@ -4618,7 +5783,65 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "0674581f-f128-4b49-8ac6-7c67476eb9df",
+              "name": "Get All Carousels",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/carousels",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "carousels"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1415"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"587-wh9nFkGikIWNc+X0cvzbewg8Whk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 16:17:50 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T16:18:02.688Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Carousels retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"696f1a0e194242b12d48da79\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768888846/nitto-vojon/carousels/n7bqhpxlvu1vatix5adk.jpg\",\n            \"title\": \"Summer Collection\",\n            \"description\": \"Fresh products for summer\",\n            \"isActive\": true,\n            \"order\": 1,\n            \"createdAt\": \"2026-01-20T06:00:46.974Z\",\n            \"updatedAt\": \"2026-01-20T06:00:46.974Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6970cc2c642f3d5d77d4899b\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768999979/nursery-app/carousels/op5s1g7xrgpljxavqejo.png\",\n            \"title\": \"Summer Collection\",\n            \"description\": \"Fresh products for summer\",\n            \"isActive\": false,\n            \"order\": 2,\n            \"createdAt\": \"2026-01-21T12:53:00.166Z\",\n            \"updatedAt\": \"2026-01-22T03:23:02.558Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971aae5a83859021b294361\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769056996/nursery-app/carousels/thsiywdapxpag749mxnl.png\",\n            \"title\": \"Summer Collection\",\n            \"description\": \"Fresh products for summer\",\n            \"isActive\": true,\n            \"order\": 2,\n            \"createdAt\": \"2026-01-22T04:43:17.238Z\",\n            \"updatedAt\": \"2026-01-22T04:43:17.238Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971ac6fa83859021b294364\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769057391/nursery-app/carousels/ioh8xhnq7kqxieio72vi.png\",\n            \"title\": \"Summer Collection\",\n            \"description\": \"Fresh products for summer\",\n            \"isActive\": true,\n            \"order\": 3,\n            \"createdAt\": \"2026-01-22T04:49:51.952Z\",\n            \"updatedAt\": \"2026-01-22T04:49:51.952Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "Create Carousel (Admin)",
@@ -4644,13 +5867,13 @@
               "formdata": [
                 {
                   "key": "title",
-                  "value": "Summer Sale",
+                  "value": "Flash Sale Offer",
                   "description": "Required",
                   "type": "text"
                 },
                 {
                   "key": "description",
-                  "value": "Get up to 50% off on all plants",
+                  "value": "Get up to 70% off on Flash Sales",
                   "description": "Optional",
                   "type": "text"
                 },
@@ -4658,25 +5881,23 @@
                   "key": "image",
                   "description": "Required, image file",
                   "type": "file",
-                  "src": []
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134091964169590556.jpg"
+                  ]
                 },
                 {
-                  "key": "link",
-                  "value": "/products?category=sale",
-                  "description": "Optional",
-                  "type": "text"
-                },
-                {
-                  "key": "displayOrder",
+                  "key": "order",
                   "value": "1",
                   "description": "Optional, default 0",
-                  "type": "text"
+                  "type": "text",
+                  "disabled": true
                 },
                 {
                   "key": "isActive",
                   "value": "true",
                   "description": "Optional, default true",
-                  "type": "text"
+                  "type": "text",
+                  "disabled": true
                 }
               ]
             },
@@ -4690,7 +5911,104 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "a7783b0b-95f1-47a4-ada1-63e5b5091f1b",
+              "name": "Create Carousel (Admin)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "Flash Sale Offer",
+                      "description": "Required",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Get up to 70% off on Flash Sales",
+                      "description": "Optional",
+                      "type": "text"
+                    },
+                    {
+                      "key": "image",
+                      "description": "Required, image file",
+                      "type": "file",
+                      "src": [
+                        "/C:/Users/mukar/OneDrive/Pictures/134091964169590556.jpg"
+                      ]
+                    },
+                    {
+                      "key": "order",
+                      "value": "1",
+                      "description": "Optional, default 0",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isActive",
+                      "value": "true",
+                      "description": "Optional, default true",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/carousels",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "carousels"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "407"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"197-CoDlbaVgVST1BdDZBGGCFz3dXww\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 16:38:44 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T16:38:53.060Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Carousel created successfully\",\n    \"data\": {\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769099924/nursery-app/carousels/f6lo7ti2cvv3uanbupjn.jpg\",\n        \"title\": \"Flash Sale Offer\",\n        \"description\": \"Get up to 70% off on Flash Sales\",\n        \"isActive\": true,\n        \"order\": 0,\n        \"_id\": \"69725294e16c7ec3c5e426f7\",\n        \"createdAt\": \"2026-01-22T16:38:44.370Z\",\n        \"updatedAt\": \"2026-01-22T16:38:44.370Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Carousel (Admin)",
@@ -4736,14 +6054,7 @@
                   "disabled": true
                 },
                 {
-                  "key": "link",
-                  "value": "",
-                  "description": "Optional",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "displayOrder",
+                  "key": "order",
                   "value": "",
                   "description": "Optional",
                   "type": "text",
@@ -4840,7 +6151,65 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "425f2aeb-c3e1-4eb5-a04c-f6f3067617d2",
+              "name": "Get All Flash Sales",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/flash-sales",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flash-sales"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1585"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"631-MxUJ/rlMHxgydRLWi7DE+xucBkk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 16:40:13 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T16:40:16.558Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Flash sales retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6970738712a82c9a12b1164e\",\n            \"title\": \"Summer Clearance\",\n            \"description\": \"Get up to 50% off on summer products\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768977287/nursery-app/flash-sales/kfpvq6u3t4xejgm5ynyg.png\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 50,\n            \"startDate\": \"2026-01-20T00:00:00.000Z\",\n            \"endDate\": \"2026-01-31T23:59:59.000Z\",\n            \"isActive\": true,\n            \"productIds\": [],\n            \"featured\": true,\n            \"order\": 1,\n            \"createdAt\": \"2026-01-21T06:34:47.993Z\",\n            \"updatedAt\": \"2026-01-21T06:34:47.993Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971b4ad89323e4b68555ec6\",\n            \"title\": \"Summer Clearance 2\",\n            \"description\": \"Get up to 50% off on summer products\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769059500/nursery-app/flash-sales/fbswarmi3dqqch8nryos.png\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 50,\n            \"startDate\": \"2026-01-20T00:00:00.000Z\",\n            \"endDate\": \"2026-01-31T23:59:59.000Z\",\n            \"isActive\": true,\n            \"productIds\": [],\n            \"featured\": true,\n            \"order\": 2,\n            \"createdAt\": \"2026-01-22T05:25:01.458Z\",\n            \"updatedAt\": \"2026-01-22T05:25:01.458Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971b4bc89323e4b68555ec8\",\n            \"title\": \"Summer Clearance 3\",\n            \"description\": \"Get up to 50% off on summer products\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769059515/nursery-app/flash-sales/hs8ahzl5tw3sddlwfjdy.png\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 50,\n            \"startDate\": \"2026-01-20T00:00:00.000Z\",\n            \"endDate\": \"2026-01-31T23:59:59.000Z\",\n            \"isActive\": true,\n            \"productIds\": [],\n            \"featured\": true,\n            \"order\": 3,\n            \"createdAt\": \"2026-01-22T05:25:16.018Z\",\n            \"updatedAt\": \"2026-01-22T05:25:16.018Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "Get Active Flash Sales",
@@ -4863,7 +6232,66 @@
             },
             "description": "Get currently active flash sales"
           },
-          "response": []
+          "response": [
+            {
+              "id": "82c9e638-f0f1-4ee4-9a1e-52dfdff94a6e",
+              "name": "Get Active Flash Sales",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/flash-sales/active",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flash-sales",
+                    "active"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1592"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"638-k/TVtC/A/PFyRkthBvng0n2Ql3E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 16:40:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T16:40:41.899Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Active flash sales retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6970738712a82c9a12b1164e\",\n            \"title\": \"Summer Clearance\",\n            \"description\": \"Get up to 50% off on summer products\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768977287/nursery-app/flash-sales/kfpvq6u3t4xejgm5ynyg.png\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 50,\n            \"startDate\": \"2026-01-20T00:00:00.000Z\",\n            \"endDate\": \"2026-01-31T23:59:59.000Z\",\n            \"isActive\": true,\n            \"productIds\": [],\n            \"featured\": true,\n            \"order\": 1,\n            \"createdAt\": \"2026-01-21T06:34:47.993Z\",\n            \"updatedAt\": \"2026-01-21T06:34:47.993Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971b4ad89323e4b68555ec6\",\n            \"title\": \"Summer Clearance 2\",\n            \"description\": \"Get up to 50% off on summer products\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769059500/nursery-app/flash-sales/fbswarmi3dqqch8nryos.png\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 50,\n            \"startDate\": \"2026-01-20T00:00:00.000Z\",\n            \"endDate\": \"2026-01-31T23:59:59.000Z\",\n            \"isActive\": true,\n            \"productIds\": [],\n            \"featured\": true,\n            \"order\": 2,\n            \"createdAt\": \"2026-01-22T05:25:01.458Z\",\n            \"updatedAt\": \"2026-01-22T05:25:01.458Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971b4bc89323e4b68555ec8\",\n            \"title\": \"Summer Clearance 3\",\n            \"description\": \"Get up to 50% off on summer products\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769059515/nursery-app/flash-sales/hs8ahzl5tw3sddlwfjdy.png\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 50,\n            \"startDate\": \"2026-01-20T00:00:00.000Z\",\n            \"endDate\": \"2026-01-31T23:59:59.000Z\",\n            \"isActive\": true,\n            \"productIds\": [],\n            \"featured\": true,\n            \"order\": 3,\n            \"createdAt\": \"2026-01-22T05:25:16.018Z\",\n            \"updatedAt\": \"2026-01-22T05:25:16.018Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "Create Flash Sale (Admin)",
@@ -4885,8 +6313,95 @@
             "method": "POST",
             "header": [],
             "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"Weekend Flash Sale\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discount\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-01-26T23:59:59.000Z\",\n  \"productIds\": [\"product_id_1\", \"product_id_2\"],\n  \"isActive\": true\n}",
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "21dd2703-51a1-4016-9015-bb731843349b",
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
+                  ]
+                },
+                {
+                  "key": "data",
+                  "value": "{\n  \"title\": \"Weekend Flash Sale\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-01-26T23:59:59.000Z\",\n  \"isActive\": true,\n  \"productIds\": [\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"],\n  \"featured\": true,\n  \"order\": 1\n}",
+                  "type": "text",
+                  "uuid": "73fb3b20-9ab2-4a3c-b6fe-de169d9326f5"
+                },
+                {
+                  "key": "discountType",
+                  "value": "percentage",
+                  "description": "Either 'percentage' or 'fixed'",
+                  "type": "text",
+                  "uuid": "7031572d-3356-423b-b364-5a21dce09f9d",
+                  "disabled": true
+                },
+                {
+                  "key": "title",
+                  "value": "Weekend Flash Sale",
+                  "type": "text",
+                  "uuid": "9bda9df6-fbc7-48c1-88a2-6c5590d4f6dc",
+                  "disabled": true
+                },
+                {
+                  "key": "description",
+                  "value": "Limited time offer on selected items",
+                  "type": "text",
+                  "uuid": "d9680f24-063e-43a3-9a5f-fa7c60309d4c",
+                  "disabled": true
+                },
+                {
+                  "key": "discountValue",
+                  "value": "30",
+                  "type": "text",
+                  "uuid": "04f7dd20-e0ff-419d-ad1e-532acc182b14",
+                  "disabled": true
+                },
+                {
+                  "key": "startDate",
+                  "value": "2026-01-25T00:00:00.000Z",
+                  "type": "text",
+                  "uuid": "cf80b204-4b02-4970-823a-45f90a9de67c",
+                  "disabled": true
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-01-31T23:59:59.000Z",
+                  "type": "text",
+                  "uuid": "7a271f41-e269-40fb-83e3-56097b8d704e",
+                  "disabled": true
+                },
+                {
+                  "key": "isActive",
+                  "value": "true",
+                  "description": "default true",
+                  "type": "text",
+                  "uuid": "fed40b6b-7231-467e-9d77-8437019bec6b",
+                  "disabled": true
+                },
+                {
+                  "key": "productIds",
+                  "value": "[\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"]",
+                  "type": "text",
+                  "uuid": "c6b6c026-be02-4186-a02e-2eb3e3422e80",
+                  "disabled": true
+                },
+                {
+                  "key": "featured",
+                  "value": "true",
+                  "type": "text",
+                  "uuid": "ce7d99a3-d802-477a-9250-34e65dadd54f",
+                  "disabled": true
+                },
+                {
+                  "key": "order",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "84278cf1-6f0b-4d4f-9ff0-9e90afe465b6",
+                  "disabled": true
+                }
+              ],
               "options": {
                 "raw": {
                   "language": "json",
@@ -4904,11 +6419,166 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "5edf3c3f-63b6-4693-a1b1-443158af4fd9",
+              "name": "Create Flash Sale (Admin)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "uuid": "21dd2703-51a1-4016-9015-bb731843349b",
+                      "src": [
+                        "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
+                      ]
+                    },
+                    {
+                      "key": "title",
+                      "value": "Weekend Flash Sale",
+                      "type": "text",
+                      "uuid": "9bda9df6-fbc7-48c1-88a2-6c5590d4f6dc",
+                      "disabled": true
+                    },
+                    {
+                      "key": "description",
+                      "value": "Limited time offer on selected items",
+                      "type": "text",
+                      "uuid": "d9680f24-063e-43a3-9a5f-fa7c60309d4c",
+                      "disabled": true
+                    },
+                    {
+                      "key": "discountType",
+                      "value": "percentage",
+                      "description": "Either 'percentage' or 'fixed'",
+                      "type": "text",
+                      "uuid": "7031572d-3356-423b-b364-5a21dce09f9d",
+                      "disabled": true
+                    },
+                    {
+                      "key": "discountValue",
+                      "value": "30",
+                      "type": "text",
+                      "uuid": "04f7dd20-e0ff-419d-ad1e-532acc182b14",
+                      "disabled": true
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2026-01-25T00:00:00.000Z",
+                      "type": "text",
+                      "uuid": "cf80b204-4b02-4970-823a-45f90a9de67c",
+                      "disabled": true
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2026-01-31T23:59:59.000Z",
+                      "type": "text",
+                      "uuid": "7a271f41-e269-40fb-83e3-56097b8d704e",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isActive",
+                      "value": "true",
+                      "description": "default true",
+                      "type": "text",
+                      "uuid": "fed40b6b-7231-467e-9d77-8437019bec6b",
+                      "disabled": true
+                    },
+                    {
+                      "key": "productIds",
+                      "value": "[\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"]",
+                      "type": "text",
+                      "uuid": "c6b6c026-be02-4186-a02e-2eb3e3422e80",
+                      "disabled": true
+                    },
+                    {
+                      "key": "featured",
+                      "value": "true",
+                      "type": "text",
+                      "uuid": "ce7d99a3-d802-477a-9250-34e65dadd54f",
+                      "disabled": true
+                    },
+                    {
+                      "key": "order",
+                      "value": "1",
+                      "type": "text",
+                      "uuid": "84278cf1-6f0b-4d4f-9ff0-9e90afe465b6",
+                      "disabled": true
+                    },
+                    {
+                      "key": "data",
+                      "value": "{\n  \"title\": \"Weekend Flash Sale\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-01-26T23:59:59.000Z\",\n  \"isActive\": true,\n  \"productIds\": [\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"],\n  \"featured\": true,\n  \"order\": 1\n}",
+                      "type": "text",
+                      "uuid": "73fb3b20-9ab2-4a3c-b6fe-de169d9326f5"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "Required: name, discount, startDate (ISO), endDate (ISO)\nOptional: description, productIds (array), isActive (default true)"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/flash-sales",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flash-sales"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "652"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"28c-5QbGAok0rqjlQ25dL0gDdWGU9/A\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 17:17:18 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T17:17:30.323Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Flash sale created successfully\",\n    \"data\": {\n        \"title\": \"Weekend Flash Sale\",\n        \"description\": \"Limited time offer on selected items\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769102238/nursery-app/flash-sales/gkb6gppgwon6x8gr82th.jpg\",\n        \"discountType\": \"percentage\",\n        \"discountValue\": 30,\n        \"startDate\": \"2026-01-25T00:00:00.000Z\",\n        \"endDate\": \"2026-01-26T23:59:59.000Z\",\n        \"isActive\": true,\n        \"productIds\": [\n            \"6971e9f7065be8b54b7ff90e\",\n            \"6970f3d9a4e644714427b3c9\",\n            \"697089436e04221e6a2cd70c\"\n        ],\n        \"featured\": true,\n        \"order\": 1,\n        \"_id\": \"69725b9e4b07007b65a7eb2f\",\n        \"createdAt\": \"2026-01-22T17:17:18.413Z\",\n        \"updatedAt\": \"2026-01-22T17:17:18.413Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Flash Sale (Admin)",
-          "id": "93239de4-c0c6-472a-964a-cf59a2056bc5",
+          "id": "843c48bc-5c9b-451d-9b3c-78d1b122293e",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -4926,12 +6596,100 @@
             "method": "PATCH",
             "header": [],
             "body": {
-              "mode": "raw",
-              "raw": "{\n  \"discount\": 40,\n  \"isActive\": false\n}",
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "21dd2703-51a1-4016-9015-bb731843349b",
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
+                  ],
+                  "disabled": true
+                },
+                {
+                  "key": "data",
+                  "value": "{\n  \"title\": \"Weekend Flash Sale Updated\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-01-26T23:59:59.000Z\",\n  \"isActive\": true,\n  \"productIds\": [\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"],\n  \"featured\": true,\n  \"order\": 1\n}",
+                  "type": "text",
+                  "uuid": "73fb3b20-9ab2-4a3c-b6fe-de169d9326f5"
+                },
+                {
+                  "key": "discountType",
+                  "value": "percentage",
+                  "description": "Either 'percentage' or 'fixed'",
+                  "type": "text",
+                  "uuid": "7031572d-3356-423b-b364-5a21dce09f9d",
+                  "disabled": true
+                },
+                {
+                  "key": "title",
+                  "value": "Weekend Flash Sale",
+                  "type": "text",
+                  "uuid": "9bda9df6-fbc7-48c1-88a2-6c5590d4f6dc",
+                  "disabled": true
+                },
+                {
+                  "key": "description",
+                  "value": "Limited time offer on selected items",
+                  "type": "text",
+                  "uuid": "d9680f24-063e-43a3-9a5f-fa7c60309d4c",
+                  "disabled": true
+                },
+                {
+                  "key": "discountValue",
+                  "value": "30",
+                  "type": "text",
+                  "uuid": "04f7dd20-e0ff-419d-ad1e-532acc182b14",
+                  "disabled": true
+                },
+                {
+                  "key": "startDate",
+                  "value": "2026-01-25T00:00:00.000Z",
+                  "type": "text",
+                  "uuid": "cf80b204-4b02-4970-823a-45f90a9de67c",
+                  "disabled": true
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-01-31T23:59:59.000Z",
+                  "type": "text",
+                  "uuid": "7a271f41-e269-40fb-83e3-56097b8d704e",
+                  "disabled": true
+                },
+                {
+                  "key": "isActive",
+                  "value": "true",
+                  "description": "default true",
+                  "type": "text",
+                  "uuid": "fed40b6b-7231-467e-9d77-8437019bec6b",
+                  "disabled": true
+                },
+                {
+                  "key": "productIds",
+                  "value": "[\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"]",
+                  "type": "text",
+                  "uuid": "c6b6c026-be02-4186-a02e-2eb3e3422e80",
+                  "disabled": true
+                },
+                {
+                  "key": "featured",
+                  "value": "true",
+                  "type": "text",
+                  "uuid": "ce7d99a3-d802-477a-9250-34e65dadd54f",
+                  "disabled": true
+                },
+                {
+                  "key": "order",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "84278cf1-6f0b-4d4f-9ff0-9e90afe465b6",
+                  "disabled": true
+                }
+              ],
               "options": {
                 "raw": {
                   "language": "json",
-                  "description": "All fields optional"
+                  "description": "Required: name, discount, startDate (ISO), endDate (ISO)\nOptional: description, productIds (array), isActive (default true)"
                 }
               }
             },
@@ -4947,12 +6705,177 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "flash_sale_id"
+                  "value": "69725b9e4b07007b65a7eb2f",
+                  "uuid": "db3aef5b-347d-4772-89f4-0fffb7c5b476"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "19dd9f51-71c8-43e2-afa1-6adac726dbf8",
+              "name": "Update Flash Sale (Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "uuid": "21dd2703-51a1-4016-9015-bb731843349b",
+                      "src": [
+                        "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
+                      ],
+                      "disabled": true
+                    },
+                    {
+                      "key": "data",
+                      "value": "{\n  \"title\": \"Weekend Flash Sale Updated\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-01-26T23:59:59.000Z\",\n  \"isActive\": true,\n  \"productIds\": [\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"],\n  \"featured\": true,\n  \"order\": 1\n}",
+                      "type": "text",
+                      "uuid": "73fb3b20-9ab2-4a3c-b6fe-de169d9326f5"
+                    },
+                    {
+                      "key": "discountType",
+                      "value": "percentage",
+                      "description": "Either 'percentage' or 'fixed'",
+                      "type": "text",
+                      "uuid": "7031572d-3356-423b-b364-5a21dce09f9d",
+                      "disabled": true
+                    },
+                    {
+                      "key": "title",
+                      "value": "Weekend Flash Sale",
+                      "type": "text",
+                      "uuid": "9bda9df6-fbc7-48c1-88a2-6c5590d4f6dc",
+                      "disabled": true
+                    },
+                    {
+                      "key": "description",
+                      "value": "Limited time offer on selected items",
+                      "type": "text",
+                      "uuid": "d9680f24-063e-43a3-9a5f-fa7c60309d4c",
+                      "disabled": true
+                    },
+                    {
+                      "key": "discountValue",
+                      "value": "30",
+                      "type": "text",
+                      "uuid": "04f7dd20-e0ff-419d-ad1e-532acc182b14",
+                      "disabled": true
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2026-01-25T00:00:00.000Z",
+                      "type": "text",
+                      "uuid": "cf80b204-4b02-4970-823a-45f90a9de67c",
+                      "disabled": true
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2026-01-31T23:59:59.000Z",
+                      "type": "text",
+                      "uuid": "7a271f41-e269-40fb-83e3-56097b8d704e",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isActive",
+                      "value": "true",
+                      "description": "default true",
+                      "type": "text",
+                      "uuid": "fed40b6b-7231-467e-9d77-8437019bec6b",
+                      "disabled": true
+                    },
+                    {
+                      "key": "productIds",
+                      "value": "[\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"]",
+                      "type": "text",
+                      "uuid": "c6b6c026-be02-4186-a02e-2eb3e3422e80",
+                      "disabled": true
+                    },
+                    {
+                      "key": "featured",
+                      "value": "true",
+                      "type": "text",
+                      "uuid": "ce7d99a3-d802-477a-9250-34e65dadd54f",
+                      "disabled": true
+                    },
+                    {
+                      "key": "order",
+                      "value": "1",
+                      "type": "text",
+                      "uuid": "84278cf1-6f0b-4d4f-9ff0-9e90afe465b6",
+                      "disabled": true
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "Required: name, discount, startDate (ISO), endDate (ISO)\nOptional: description, productIds (array), isActive (default true)"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/flash-sales/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flash-sales",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "69725b9e4b07007b65a7eb2f",
+                      "uuid": "db3aef5b-347d-4772-89f4-0fffb7c5b476"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2331"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"91b-HYMGhvcShQkpmkvzOB9ehlc8i0Y\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 17:25:23 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T17:25:39.665Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Flash sale updated successfully\",\n    \"data\": {\n        \"_id\": \"69725b9e4b07007b65a7eb2f\",\n        \"title\": \"Weekend Flash Sale Updated\",\n        \"description\": \"Limited time offer on selected items\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769102238/nursery-app/flash-sales/gkb6gppgwon6x8gr82th.jpg\",\n        \"discountType\": \"percentage\",\n        \"discountValue\": 30,\n        \"startDate\": \"2026-01-25T00:00:00.000Z\",\n        \"endDate\": \"2026-01-26T23:59:59.000Z\",\n        \"isActive\": true,\n        \"productIds\": [\n            {\n                \"_id\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"sku\": \"ROSE-RED-001\",\n                \"description\": \"Beautiful red rose plant for your garden\",\n                \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n                \"images\": [\n                    \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n                    \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n                ],\n                \"price\": 299.99,\n                \"discount\": 10,\n                \"quantity\": 200,\n                \"isAvailable\": true,\n                \"isFeatured\": true,\n                \"brand\": \"Garden Pro\",\n                \"categoryId\": \"6971e657884d772cac55fac1\",\n                \"tags\": [\n                    \"rose,flower,outdoor\"\n                ],\n                \"ratingAverage\": 4,\n                \"ratingCount\": 1,\n                \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n                \"updatedAt\": \"2026-01-22T12:57:43.473Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"6970f3d9a4e644714427b3c9\",\n                \"name\": \"text 2\",\n                \"sku\": \"TEX-6087\",\n                \"description\": \"dfghjkl;\",\n                \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769010137/nursery-app/products/dcb8fyiccdku4ux0znfg.jpg\",\n                \"images\": [],\n                \"price\": 700,\n                \"discount\": 0,\n                \"quantity\": 7,\n                \"isAvailable\": true,\n                \"isFeatured\": false,\n                \"brand\": \"\",\n                \"categoryId\": \"69705784bf9b0106be2286eb\",\n                \"tags\": [\n                    \"dfg\"\n                ],\n                \"ratingAverage\": 5,\n                \"ratingCount\": 1,\n                \"createdAt\": \"2026-01-21T15:42:17.516Z\",\n                \"updatedAt\": \"2026-01-22T12:35:04.866Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"697089436e04221e6a2cd70c\",\n                \"name\": \"new titles\",\n                \"sku\": \"NEW-8803\",\n                \"description\": \"dfghj\",\n                \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768982864/nursery-app/products/w8hjzivi0rgamf7t65nc.png\",\n                \"images\": [],\n                \"price\": 200,\n                \"discount\": 0,\n                \"quantity\": 5,\n                \"isAvailable\": true,\n                \"isFeatured\": false,\n                \"brand\": \"\",\n                \"categoryId\": \"696f87843e6403a201a81f48\",\n                \"tags\": [\n                    \"iklo;\"\n                ],\n                \"ratingAverage\": 0,\n                \"ratingCount\": 0,\n                \"createdAt\": \"2026-01-21T08:07:31.344Z\",\n                \"updatedAt\": \"2026-01-21T08:07:44.972Z\",\n                \"__v\": 0\n            }\n        ],\n        \"featured\": true,\n        \"order\": 1,\n        \"createdAt\": \"2026-01-22T17:17:18.413Z\",\n        \"updatedAt\": \"2026-01-22T17:25:23.445Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Delete Flash Sale (Admin)",
@@ -5019,7 +6942,65 @@
             },
             "description": "Get all active contact methods for users to contact admin"
           },
-          "response": []
+          "response": [
+            {
+              "id": "b2b7eb99-a9bb-4cd3-8f06-98da6e765764",
+              "name": "Get Active Contacts (Public)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contacts"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "301"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"12d-iLSNmv6OJRyWb1xPC4PdvSyigYc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 17:27:52 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T17:27:56.000Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Contact methods retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6971e32fc9f705eed9db1061\",\n            \"label\": \"Souppt\",\n            \"contactType\": \"WhatsApp\",\n            \"contactValue\": \"01902313222\",\n            \"isActive\": true,\n            \"displayOrder\": 0,\n            \"createdAt\": \"2026-01-22T08:43:27.352Z\",\n            \"updatedAt\": \"2026-01-22T08:43:27.352Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "Get All Contacts (Admin)",
@@ -5052,10 +7033,70 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "831eebdc-e458-4548-80e7-e8432bf77631",
+              "name": "Get All Contacts (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/admin/all",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contacts",
+                    "admin",
+                    "all"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "524"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"20c-FZkXdCCjrOKwsggVcrJ9TxgWfzI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 17:28:13 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T17:28:38.219Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Contacts retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6971dff6c63e42c305e16835\",\n            \"label\": \"Support\",\n            \"contactType\": \"WhatsApp\",\n            \"contactValue\": \"+8801712345678\",\n            \"isActive\": false,\n            \"displayOrder\": 0,\n            \"createdAt\": \"2026-01-22T08:29:42.363Z\",\n            \"updatedAt\": \"2026-01-22T08:42:32.786Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971e32fc9f705eed9db1061\",\n            \"label\": \"Souppt\",\n            \"contactType\": \"WhatsApp\",\n            \"contactValue\": \"01902313222\",\n            \"isActive\": true,\n            \"displayOrder\": 0,\n            \"createdAt\": \"2026-01-22T08:43:27.352Z\",\n            \"updatedAt\": \"2026-01-22T08:43:27.352Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
         },
         {
-          "name": "Get Contact by ID (Admin)",
+          "name": "Get Contact by ID",
           "id": "3edeba69-624c-44ee-8f63-e09c7cbda7c8",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
@@ -5085,12 +7126,77 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "contact_id"
+                  "value": "6971dff6c63e42c305e16835"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "bf7ad72f-6377-45bc-8a59-29471441a9f8",
+              "name": "Get Contact by ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contacts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6971dff6c63e42c305e16835"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "296"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"128-XkwbLZzpZvoZ5yw4GdlelmPf+BA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 17:30:03 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T17:30:09.821Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Contact retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6971dff6c63e42c305e16835\",\n        \"label\": \"Support\",\n        \"contactType\": \"WhatsApp\",\n        \"contactValue\": \"+8801712345678\",\n        \"isActive\": false,\n        \"displayOrder\": 0,\n        \"createdAt\": \"2026-01-22T08:29:42.363Z\",\n        \"updatedAt\": \"2026-01-22T08:42:32.786Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Create Contact (Admin)",
@@ -5131,7 +7237,75 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "c6f0e320-9267-4520-aa2c-a665e5eea2a7",
+              "name": "Create Contact (Admin)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"Customer Support WhatsApp\",\n  \"contactType\": \"WhatsApp\",\n  \"contactValue\": \"+8801712345678\",\n  \"isActive\": true,\n  \"displayOrder\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "Required: label, contactType (enum: ['WhatsApp', 'Imo', 'Viber', 'Telegram', 'Phone', 'Email']), contactValue\nOptional: isActive (default true), displayOrder (default 0)"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/contacts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contacts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "311"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"137-l/9t3yDRp64qeB089mGgIbIPk5s\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 17:32:57 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T17:33:03.591Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Contact created successfully\",\n    \"data\": {\n        \"label\": \"Customer Support WhatsApp\",\n        \"contactType\": \"WhatsApp\",\n        \"contactValue\": \"+8801712345678\",\n        \"isActive\": true,\n        \"displayOrder\": 1,\n        \"_id\": \"69725f49f056c3ca6466cbfd\",\n        \"createdAt\": \"2026-01-22T17:32:57.298Z\",\n        \"updatedAt\": \"2026-01-22T17:32:57.298Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Contact (Admin)",
@@ -5154,7 +7328,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"isActive\": false,\n  \"displayOrder\": 5\n}",
+              "raw": "{\n  \"label\": \"Customer Support Telegram\",\n  \"contactType\": \"Telegram\"\n//   \"contactValue\": \"+8801712345678\",\n//   \"isActive\": true,\n//   \"displayOrder\": 1\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -5174,12 +7348,87 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "contact_id"
+                  "value": "6971e32fc9f705eed9db1061"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "da12cfed-6a53-4b37-b426-45e1b4a6e535",
+              "name": "Update Contact (Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"Customer Support Telegram\",\n  \"contactType\": \"Telegram\"\n//   \"contactValue\": \"+8801712345678\",\n//   \"isActive\": true,\n//   \"displayOrder\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "All fields optional"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/contacts/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contacts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6971e32fc9f705eed9db1061"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "308"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"134-h8+BG6M5Po8h1PRpF1lNnxwgZa8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 17:34:45 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T17:34:57.056Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Contact updated successfully\",\n    \"data\": {\n        \"_id\": \"6971e32fc9f705eed9db1061\",\n        \"label\": \"Customer Support Telegram\",\n        \"contactType\": \"Telegram\",\n        \"contactValue\": \"01902313222\",\n        \"isActive\": true,\n        \"displayOrder\": 0,\n        \"createdAt\": \"2026-01-22T08:43:27.352Z\",\n        \"updatedAt\": \"2026-01-22T17:34:45.244Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Delete Contact (Admin)",
@@ -5246,7 +7495,65 @@
             },
             "description": "Public endpoint - get all active payment methods"
           },
-          "response": []
+          "response": [
+            {
+              "id": "9e53c44a-3694-4571-b1e0-134293ccf1db",
+              "name": "Get All Payment Methods",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/payment-methods",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payment-methods"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "916"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"394-lsnxYxC+3LudSYj1jMzlvLeqfM8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 17:55:48 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T17:57:05.046Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Active payment methods retrieved successfully\",\n    \"data\": [\n        {\n            \"accountType\": \"Personal\",\n            \"_id\": \"6971c5c829b01be81427f214\",\n            \"methodName\": \"bKash\",\n            \"accountNumber\": \"01902313222\",\n            \"isActive\": true,\n            \"displayOrder\": 0,\n            \"createdAt\": \"2026-01-22T06:38:00.957Z\",\n            \"updatedAt\": \"2026-01-22T06:38:00.957Z\",\n            \"__v\": 0\n        },\n        {\n            \"accountType\": \"Personal\",\n            \"_id\": \"6971c9c87c1e2de632a46eb2\",\n            \"methodName\": \"Nogod\",\n            \"accountNumber\": \"01722662422\",\n            \"isActive\": true,\n            \"displayOrder\": 0,\n            \"createdAt\": \"2026-01-22T06:55:04.669Z\",\n            \"updatedAt\": \"2026-01-22T06:55:04.669Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6972647289a956355769f88c\",\n            \"methodName\": \"bKash\",\n            \"description\": \"Mobile payment via bKash\",\n            \"accountNumber\": \"01712345678\",\n            \"accountName\": \"Nursery Bazar BD\",\n            \"accountType\": \"Personal\",\n            \"instructions\": \"Send money to this number and submit transaction ID\",\n            \"isActive\": true,\n            \"displayOrder\": 1,\n            \"createdAt\": \"2026-01-22T17:54:58.229Z\",\n            \"updatedAt\": \"2026-01-22T17:54:58.229Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "Get Payment Method by ID",
@@ -5269,12 +7576,77 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "payment_method_id"
+                  "value": "6972647289a956355769f88c"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "9536421b-7224-4718-b2a3-b846c327e888",
+              "name": "Get Payment Method by ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/payment-methods/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payment-methods",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6972647289a956355769f88c"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "446"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1be-LxUmvvrmjF533dcD+5C9jmW+8ho\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 17:57:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T17:57:37.364Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Payment method retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6972647289a956355769f88c\",\n        \"methodName\": \"bKash\",\n        \"description\": \"Mobile payment via bKash\",\n        \"accountNumber\": \"01712345678\",\n        \"accountName\": \"Nursery Bazar BD\",\n        \"accountType\": \"Personal\",\n        \"instructions\": \"Send money to this number and submit transaction ID\",\n        \"isActive\": true,\n        \"displayOrder\": 1,\n        \"createdAt\": \"2026-01-22T17:54:58.229Z\",\n        \"updatedAt\": \"2026-01-22T17:54:58.229Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Create Payment Method (Admin)",
@@ -5297,7 +7669,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"methodName\": \"bKash\",\n  \"description\": \"Mobile payment via bKash\",\n  \"accountNumber\": \"01712345678\",\n  \"accountName\": \"Nursery Bazar BD\",\n  \"instructions\": \"Send money to this number and submit transaction ID\",\n  \"displayOrder\": 1,\n  \"isActive\": true\n}",
+              "raw": "{\n  \"methodName\": \"bKash\",\n  \"description\": \"Mobile payment via bKash\",\n  \"accountNumber\": \"01712345678\",\n  \"accountName\": \"Nursery Bazar BD\",\n  \"accountType\": \"Personal\", // Personal, Agent, Business, etc.\n  \"instructions\": \"Send money to this number and submit transaction ID\",\n  \"displayOrder\": 1,\n  \"isActive\": true\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -5315,7 +7687,75 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "e38c2e47-9d97-4fbc-9a92-c2138b1ac17c",
+              "name": "Create Payment Method (Admin)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"methodName\": \"bKash\",\n  \"description\": \"Mobile payment via bKash\",\n  \"accountNumber\": \"01712345678\",\n  \"accountName\": \"Nursery Bazar BD\",\n  \"accountType\": \"Personal\", // Personal, Agent, Business, etc.\n  \"instructions\": \"Send money to this number and submit transaction ID\",\n  \"displayOrder\": 1,\n  \"isActive\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "Required: methodName, accountNumber\nOptional: description, accountName, instructions, displayOrder (default 0), isActive (default true)"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/payment-methods",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payment-methods"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "444"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1bc-yfW9TW9iJYy+vFGRq5gMyQVGrB8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 17:54:58 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T17:55:34.617Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Payment method created successfully\",\n    \"data\": {\n        \"methodName\": \"bKash\",\n        \"description\": \"Mobile payment via bKash\",\n        \"accountNumber\": \"01712345678\",\n        \"accountName\": \"Nursery Bazar BD\",\n        \"accountType\": \"Personal\",\n        \"instructions\": \"Send money to this number and submit transaction ID\",\n        \"isActive\": true,\n        \"displayOrder\": 1,\n        \"_id\": \"6972647289a956355769f88c\",\n        \"createdAt\": \"2026-01-22T17:54:58.229Z\",\n        \"updatedAt\": \"2026-01-22T17:54:58.229Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Payment Method (Admin)",
@@ -5338,7 +7778,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"isActive\": false,\n  \"displayOrder\": 3\n}",
+              "raw": "{\n  \"methodName\": \"bKash\",\n  \"description\": \"Mobile payment via bKash\",\n  \"accountNumber\": \"01712345678\",\n  \"accountName\": \"Nursery Bazar BD\",\n  \"accountType\": \"Personal\", // Personal, Agent, Business, etc.\n  \"instructions\": \"Send money to this number and submit transaction ID\",\n  \"displayOrder\": 0,\n  \"isActive\": true\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -5358,12 +7798,87 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "payment_method_id"
+                  "value": "6972647289a956355769f88c"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "f5aa1513-77e4-4207-a097-3f8c9421f65c",
+              "name": "Update Payment Method (Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"methodName\": \"bKash\",\n  \"description\": \"Mobile payment via bKash\",\n  \"accountNumber\": \"01712345678\",\n  \"accountName\": \"Nursery Bazar BD\",\n  \"accountType\": \"Personal\", // Personal, Agent, Business, etc.\n  \"instructions\": \"Send money to this number and submit transaction ID\",\n  \"displayOrder\": 0,\n  \"isActive\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "All fields optional"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/payment-methods/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payment-methods",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6972647289a956355769f88c"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "444"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1bc-DGFaLo4XO7eF3izT85M5ULXI0LY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 17:58:36 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T17:58:46.926Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Payment method updated successfully\",\n    \"data\": {\n        \"_id\": \"6972647289a956355769f88c\",\n        \"methodName\": \"bKash\",\n        \"description\": \"Mobile payment via bKash\",\n        \"accountNumber\": \"01712345678\",\n        \"accountName\": \"Nursery Bazar BD\",\n        \"accountType\": \"Personal\",\n        \"instructions\": \"Send money to this number and submit transaction ID\",\n        \"isActive\": true,\n        \"displayOrder\": 0,\n        \"createdAt\": \"2026-01-22T17:54:58.229Z\",\n        \"updatedAt\": \"2026-01-22T17:58:36.253Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Delete Payment Method (Admin)",
@@ -5431,7 +7946,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"orderId\": \"order_id_here\",\n  \"paymentMethodId\": \"payment_method_id\",\n  \"userProvidedTransactionId\": \"TXN123456789\"\n}",
+              "raw": "{\n  \"orderId\": \"ORD-1769078431339-4a02aulm\",\n  \"paymentMethodId\": \"6972647289a956355769f88c\",\n  \"userProvidedTransactionId\": \"TXN123456789\"\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -5450,7 +7965,75 @@
             },
             "description": "User submits transaction after completing manual payment"
           },
-          "response": []
+          "response": [
+            {
+              "id": "9d9f846b-a164-43a7-86ac-827a5312bc54",
+              "name": "Create Transaction (User)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderId\": \"ORD-1769078431339-4a02aulm\",\n  \"paymentMethodId\": \"6972647289a956355769f88c\",\n  \"userProvidedTransactionId\": \"TXN123456789\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "All fields required. Submit after manual payment."
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transactions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "476"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1dc-TaxM6I8d4LpTEXMCDGGviNoFL+4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 18:10:28 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T18:11:13.977Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Transaction created successfully. Waiting for admin verification.\",\n    \"data\": {\n        \"transactionId\": \"TXN-1769105428336-2QYTL\",\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"paymentMethodId\": \"6972647289a956355769f88c\",\n        \"amount\": 1674.9475,\n        \"transactionStatus\": \"pending\",\n        \"userProvidedTransactionId\": \"TXN123456789\",\n        \"_id\": \"697268145290d19b13891466\",\n        \"createdAt\": \"2026-01-22T18:10:28.336Z\",\n        \"updatedAt\": \"2026-01-22T18:10:28.336Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Get My Transactions",
@@ -5472,28 +8055,100 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/transactions/history/user?page=1&limit=10",
+              "raw": "{{baseUrl}}/transactions/history/my?page=1&limit=10",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "transactions",
                 "history",
-                "user"
+                "my"
               ],
               "query": [
                 {
                   "key": "page",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "29f8c93a-a4a6-4dcc-98f4-9b9a9be89df0"
                 },
                 {
                   "key": "limit",
-                  "value": "10"
+                  "value": "10",
+                  "uuid": "f998e89a-5d37-48bd-983e-cfd3fc8d3d89"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "cea184e1-6713-4d17-b98b-813225253f9e",
+              "name": "Get My Transactions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions/history/my?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    "history",
+                    "my"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "804"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"324-yio6XHqPAqeWHgyiBXYs/AdaEF0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 18:32:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T18:32:39.193Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"User transaction history retrieved successfully\",\n    \"data\": {\n        \"data\": [\n            {\n                \"_id\": \"697268145290d19b13891466\",\n                \"transactionId\": \"TXN-1769105428336-2QYTL\",\n                \"orderId\": \"ORD-1769078431339-4a02aulm\",\n                \"userId\": \"6971da34ef6d881934c75780\",\n                \"paymentMethodId\": {\n                    \"_id\": \"6972647289a956355769f88c\",\n                    \"methodName\": \"bKash\",\n                    \"description\": \"Mobile payment via bKash\",\n                    \"accountNumber\": \"01712345678\"\n                },\n                \"amount\": 1674.9475,\n                \"transactionStatus\": \"pending\",\n                \"userProvidedTransactionId\": \"TXN123456789\",\n                \"createdAt\": \"2026-01-22T18:10:28.336Z\",\n                \"updatedAt\": \"2026-01-22T18:10:28.336Z\",\n                \"order\": {\n                    \"_id\": \"6971fe9fe3630b4aa400139f\",\n                    \"orderId\": \"ORD-1769078431339-4a02aulm\",\n                    \"orderStatus\": \"shipped\",\n                    \"total\": 1674.9475\n                },\n                \"id\": \"697268145290d19b13891466\"\n            }\n        ],\n        \"pagination\": {\n            \"totalDocuments\": 1,\n            \"totalPages\": 1,\n            \"currentPage\": \"1\",\n            \"limitPerPage\": \"10\"\n        }\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Get All Transactions (Admin)",
@@ -5515,7 +8170,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/transactions/history/all?page=1&limit=10&transactionStatus=pending",
+              "raw": "{{baseUrl}}/transactions/history/all?page=1&limit=10",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -5527,21 +8182,102 @@
               "query": [
                 {
                   "key": "page",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "d44efab4-5c18-4141-8e21-99bdf807987e"
                 },
                 {
                   "key": "limit",
-                  "value": "10"
+                  "value": "10",
+                  "uuid": "3111c9bc-37bc-4972-b97b-9af722101020"
                 },
                 {
                   "key": "transactionStatus",
                   "value": "pending",
-                  "description": "Filter: pending, completed, failed, cancelled"
+                  "description": "Filter: pending, completed, failed, cancelled",
+                  "uuid": "edcc5ae8-aa08-4a35-9688-95f2e37c16df",
+                  "disabled": true
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "0f083669-eae5-4c58-94e8-3d5b1173c88a",
+              "name": "Get All Transactions (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions/history/all?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    "history",
+                    "all"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "transactionStatus",
+                      "value": "pending",
+                      "description": "Filter: pending, completed, failed, cancelled",
+                      "uuid": "edcc5ae8-aa08-4a35-9688-95f2e37c16df",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "828"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"33c-eOTpxOU8kW1SWJNB4CKY/xokOSE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 18:39:25 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T18:39:44.924Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"All transaction history retrieved successfully\",\n    \"data\": {\n        \"data\": [\n            {\n                \"_id\": \"697268145290d19b13891466\",\n                \"transactionId\": \"TXN-1769105428336-2QYTL\",\n                \"orderId\": \"ORD-1769078431339-4a02aulm\",\n                \"userId\": {\n                    \"_id\": \"6971da34ef6d881934c75780\",\n                    \"name\": \"John Updated\",\n                    \"email\": \"admin-nursery@yopmail.com\"\n                },\n                \"paymentMethodId\": {\n                    \"_id\": \"6972647289a956355769f88c\",\n                    \"methodName\": \"bKash\",\n                    \"accountNumber\": \"01712345678\"\n                },\n                \"amount\": 1674.9475,\n                \"transactionStatus\": \"pending\",\n                \"userProvidedTransactionId\": \"TXN123456789\",\n                \"createdAt\": \"2026-01-22T18:10:28.336Z\",\n                \"updatedAt\": \"2026-01-22T18:10:28.336Z\",\n                \"order\": {\n                    \"_id\": \"6971fe9fe3630b4aa400139f\",\n                    \"orderId\": \"ORD-1769078431339-4a02aulm\",\n                    \"orderStatus\": \"shipped\",\n                    \"total\": 1674.9475\n                },\n                \"id\": \"697268145290d19b13891466\"\n            }\n        ],\n        \"pagination\": {\n            \"totalDocuments\": 1,\n            \"totalPages\": 1,\n            \"currentPage\": \"1\",\n            \"limitPerPage\": \"10\"\n        }\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Transaction Status (Admin)",
@@ -5585,13 +8321,89 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "transaction_id"
+                  "value": "697268145290d19b13891466"
                 }
               ]
             },
             "description": "Admin verifies and updates transaction status. This also updates order payment status."
           },
-          "response": []
+          "response": [
+            {
+              "id": "aaefaa1d-79de-4a6b-8ee7-84162a315412",
+              "name": "Update Transaction Status (Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionStatus\": \"completed\",\n  \"adminNotes\": \"Payment verified and confirmed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "Required: transactionStatus (enum: ['pending', 'completed', 'failed', 'cancelled'])\nOptional: adminNotes"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transactions/:id/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    ":id",
+                    "status"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "697268145290d19b13891466"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "530"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"212-EJWEMp+GLXQ397DO7FdiAyAHWL0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 18:40:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T18:41:00.838Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Transaction status updated successfully\",\n    \"data\": {\n        \"_id\": \"697268145290d19b13891466\",\n        \"transactionId\": \"TXN-1769105428336-2QYTL\",\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"paymentMethodId\": \"6972647289a956355769f88c\",\n        \"amount\": 1674.9475,\n        \"transactionStatus\": \"completed\",\n        \"userProvidedTransactionId\": \"TXN123456789\",\n        \"createdAt\": \"2026-01-22T18:10:28.336Z\",\n        \"updatedAt\": \"2026-01-22T18:40:53.365Z\",\n        \"__v\": 0,\n        \"adminNotes\": \"Payment verified and confirmed\",\n        \"id\": \"697268145290d19b13891466\"\n    }\n}"
+            }
+          ]
         }
       ],
       "id": "4b7d2951-3f03-4964-8950-cdfcc41b91f0",
@@ -5641,7 +8453,7 @@
     {
       "listen": "prerequest",
       "script": {
-        "id": "cf9d42f7-59f2-4946-8a2d-111ea11b09c3",
+        "id": "89568e15-e0f9-4b1b-9c3f-5abe8bfe3423",
         "type": "text/javascript",
         "requests": {},
         "exec": [
@@ -5653,7 +8465,7 @@
     {
       "listen": "test",
       "script": {
-        "id": "19fb31b8-3514-4442-883d-36401e538941",
+        "id": "46ba3753-03bf-4316-b75f-9404ff251d46",
         "type": "text/javascript",
         "requests": {},
         "exec": [
@@ -5672,19 +8484,19 @@
   ],
   "variable": [
     {
-      "id": "39d0d1e9-1df2-4a2d-884a-4a7c083f2967",
+      "id": "f908133e-9abb-4b9b-89ff-987832b5c056",
       "key": "baseUrl",
       "value": "http://localhost:5000/api/v1"
     },
     {
-      "id": "affd77c5-a0ee-4aad-9e89-77d9ba09ca3c",
+      "id": "43c227f4-3408-4d2c-94c4-2fff490e4177",
       "key": "token",
-      "value": ""
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA3ODU0OCwiZXhwIjoxNzY5MTY0OTQ4fQ.jbePrYXN0xmIbXizuhz8h8i-f8iICKkh1auntRtNBKs"
     },
     {
-      "id": "981ab7d9-9487-4550-9ee3-5e1326fc5c46",
+      "id": "a79382de-0adf-43c9-904f-86ead9cc68f8",
       "key": "baseUrl",
-      "value": ""
+      "value": "https://nursery-server-phi.vercel.app/api/v1"
     }
   ]
 }

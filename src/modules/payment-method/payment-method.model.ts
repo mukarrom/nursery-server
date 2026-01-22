@@ -6,7 +6,6 @@ const PaymentMethodSchema = new Schema<TPaymentMethod>(
         methodName: {
             type: String,
             required: true,
-            unique: true,
             trim: true,
             example: "bKash",
         },
@@ -15,6 +14,19 @@ const PaymentMethodSchema = new Schema<TPaymentMethod>(
             trim: true,
         },
         accountNumber: {
+            type: String,
+            trim: true,
+        },
+        accountName: {
+            type: String,
+            trim: true,
+        },
+        accountType: {
+            type: String,
+            enum: ["Personal", "Agent"],
+            default: "Personal",
+        },
+        instructions: {
             type: String,
             trim: true,
         },

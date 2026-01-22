@@ -12,7 +12,7 @@ const paymentMethodRouter = Router();
  */
 paymentMethodRouter.post(
     "/",
-    auth(USER_ROLE.ADMIN),
+    auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     validateRequest(paymentMethodValidation.createPaymentMethodZodSchema),
     paymentMethodController.createPaymentMethodController
 );

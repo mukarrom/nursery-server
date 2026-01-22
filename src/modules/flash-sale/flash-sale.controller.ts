@@ -7,6 +7,12 @@ import sendResponse from "../../utils/sendResponse";
 import { TFlashSale } from "./flash-sale.interface";
 import { flashSaleService } from "./flash-sale.service";
 
+/**
+ * @description Create a new flash sale
+ * @param req - The request object
+ * @param res - The response object
+ * @returns The created flash sale
+ */
 const createFlashSaleController = catchAsync(async (req, res) => {
     if (!req.file) {
         throw new Error("imageFile is required");
@@ -35,6 +41,12 @@ const createFlashSaleController = catchAsync(async (req, res) => {
     });
 });
 
+/**
+ * @description Get a flash sale by ID
+ * @param req - The request object
+ * @param res - The response object
+ * @returns The flash sale with the specified ID
+ */
 const getFlashSaleByIdController = catchAsync(
     async (req: Request, res: Response) => {
         const { id } = req.params as { id: string };
@@ -49,6 +61,12 @@ const getFlashSaleByIdController = catchAsync(
     }
 );
 
+/**
+ * @description Get all flash sales
+ * @param req - The request object
+ * @param res - The response object
+ * @returns All flash sales
+ */
 const getAllFlashSalesController = catchAsync(
     async (req: Request, res: Response) => {
         const result = await flashSaleService.getAllFlashSalesService();
@@ -62,6 +80,12 @@ const getAllFlashSalesController = catchAsync(
     }
 );
 
+/**
+ * @description Get all active flash sales
+ * @param req - The request object
+ * @param res - The response object
+ * @returns All active flash sales
+ */
 const getActiveFlashSalesController = catchAsync(
     async (req: Request, res: Response) => {
         const result = await flashSaleService.getActiveFlashSalesService();
@@ -75,6 +99,12 @@ const getActiveFlashSalesController = catchAsync(
     }
 );
 
+/**
+ * @description Get all featured flash sales
+ * @param req - The request object
+ * @param res - The response object
+ * @returns All featured flash sales
+ */
 const getFeaturedFlashSalesController = catchAsync(
     async (req: Request, res: Response) => {
         const result = await flashSaleService.getFeaturedFlashSalesService();
@@ -88,6 +118,12 @@ const getFeaturedFlashSalesController = catchAsync(
     }
 );
 
+/**
+ * @description Update a flash sale by ID
+ * @param req - The request object
+ * @param res - The response object
+ * @returns The updated flash sale
+ */
 const updateFlashSaleController = catchAsync(
     async (req: Request, res: Response) => {
         const { id } = req.params as { id: string };
@@ -121,6 +157,12 @@ const updateFlashSaleController = catchAsync(
     }
 );
 
+/**
+ * @description Delete a flash sale by ID
+ * @param req - The request object
+ * @param res - The response object
+ * @returns The deleted flash sale
+ */
 const deleteFlashSaleController = catchAsync(
     async (req: Request, res: Response) => {
         const { id } = req.params as { id: string };

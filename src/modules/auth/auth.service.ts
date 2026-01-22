@@ -50,7 +50,7 @@ const signUpService = async (payload: TSignUp) => {
   try {
     session.startTransaction();
 
-    // Hash password
+    // Hash password and generate OTP
     const hashedPassword = await hashPassword(payload.password);
 
     console.log("Processing signup for:", payload.email);

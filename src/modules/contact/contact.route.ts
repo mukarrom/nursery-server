@@ -23,7 +23,7 @@ router.get(
 
 router.get(
     "/:id",
-    auth(USER_ROLE.ADMIN),
+    auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     contactController.getContactByIdController
 );
 
@@ -43,6 +43,7 @@ router.delete(
 // Public route - get active contacts
 router.get(
     "/",
+    auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     contactController.getActiveContactsController
 );
 

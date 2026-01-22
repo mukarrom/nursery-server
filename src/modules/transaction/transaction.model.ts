@@ -12,12 +12,11 @@ const TransactionSchema = new Schema<TTransaction>(
         orderId: {
             type: String,
             required: true,
-            ref: "order",
         },
         userId: {
             type: String,
             required: true,
-            ref: "user",
+            ref: "User",
         },
         paymentMethodId: {
             type: String,
@@ -52,6 +51,17 @@ TransactionSchema.index({ orderId: 1 });
 TransactionSchema.index({ userId: 1 });
 TransactionSchema.index({ transactionStatus: 1 });
 TransactionSchema.index({ createdAt: -1 });
+
+// Virtual populate to link orders by their public orderId instead of Mongo _id
+TransactionSchema.virtual("order", {
+    ref: "order",
+    localField: "orderId",
+    foreignField: "orderId",
+    justOne: true,
+});
+
+TransactionSchema.set("toJSON", { virtuals: true });
+TransactionSchema.set("toObject", { virtuals: true });
 
 // Post hook to handle E11000 duplicate key errors
 TransactionSchema.post("save", function (error: any, doc: any, next: any) {

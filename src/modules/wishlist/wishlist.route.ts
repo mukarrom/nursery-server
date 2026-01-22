@@ -7,7 +7,7 @@ import { wishlistValidation } from "./wishlist.validation";
 const wishlistRouter = Router();
 
 // Get wishlist
-wishlistRouter.get("/", auth(), wishlistController.getWishlist);
+wishlistRouter.get("/my", auth(), wishlistController.getWishlist);
 
 // Add to wishlist
 wishlistRouter.post(

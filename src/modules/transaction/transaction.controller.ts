@@ -4,8 +4,11 @@ import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import { transactionService } from "./transaction.service";
 
+/**
+ * Create a new transaction
+ */
 const createTransactionController = catchAsync(async (req: Request, res: Response) => {
-    const userId = req.user.userId;
+    const userId = req.user.id;
     const { orderId, paymentMethodId, userProvidedTransactionId } = req.body;
 
     const result = await transactionService.createTransactionService(userId, {
@@ -22,13 +25,15 @@ const createTransactionController = catchAsync(async (req: Request, res: Respons
     });
 });
 
-const getUserTransactionHistoryController = catchAsync(
+/**
+ * Get my transaction history
+ */
+const getMyTransactionHistoryController = catchAsync(
     async (req: Request, res: Response) => {
-        const userId = req.user.userId;
-        const page = parseInt(req.query.page as string) || 1;
-        const limit = parseInt(req.query.limit as string) || 10;
+        const userId = req.user.id;
+        const query = req.query;
 
-        const result = await transactionService.getUserTransactionHistoryService(userId, page, limit);
+        const result = await transactionService.getMyTransactionHistoryService(userId, query);
 
         sendResponse(res, {
             statusCode: httpStatus.OK,
@@ -41,10 +46,9 @@ const getUserTransactionHistoryController = catchAsync(
 
 const getAllTransactionHistoryController = catchAsync(
     async (req: Request, res: Response) => {
-        const page = parseInt(req.query.page as string) || 1;
-        const limit = parseInt(req.query.limit as string) || 10;
+        const query = req.query;
 
-        const result = await transactionService.getAllTransactionHistoryService(page, limit);
+        const result = await transactionService.getAllTransactionHistoryService(query);
 
         sendResponse(res, {
             statusCode: httpStatus.OK,
@@ -98,7 +102,7 @@ const getTransactionByOrderIdController = catchAsync(async (req: Request, res: R
 
 export const transactionController = {
     createTransactionController,
-    getUserTransactionHistoryController,
+    getMyTransactionHistoryController,
     getAllTransactionHistoryController,
     getTransactionByIdController,
     updateTransactionStatusController,

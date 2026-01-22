@@ -1,4 +1,6 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from 'express';
+import { USER_ROLE } from "../../constants/status.constants";
+import auth from "../../middlewares/auth";
 import validateRequest from "../../middlewares/validateRequest";
 import { upload } from "../../utils/multer";
 import { flashSaleController } from "./flash-sale.controller";
@@ -6,42 +8,101 @@ import { flashSaleValidation } from "./flash-sale.validation";
 
 const router = express.Router();
 
+/**
+ * @description Create a new flash sale
+ * @param req - The request object
+ * @param res - The response object
+ * @returns The created flash sale
+ */
 router.post(
     "/",
-    upload.single("imageFile"),
+    auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
+    upload.single("image"),
+    // parse form data into json middleware
+    (req: Request, res: Response, next: NextFunction) => {
+        req.body = JSON.parse(req.body.data)
+        next()
+    },
     validateRequest(flashSaleValidation.createFlashSaleZodSchema),
     flashSaleController.createFlashSaleController
 );
 
+/**
+ * @description Update a flash sale by ID
+ * @param req - The request object
+ * @param res - The response object
+ * @returns The updated flash sale
+ */
 router.patch(
     "/:id",
-    upload.single("imageFile"),
+    auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
+    upload.single("image"),
+    // parse form data into json middleware
+    (req: Request, res: Response, next: NextFunction) => {
+        req.body = JSON.parse(req.body.data)
+        next()
+    },
     validateRequest(flashSaleValidation.updateFlashSaleZodSchema),
     flashSaleController.updateFlashSaleController
 );
 
+/**
+ * @description Delete a flash sale by ID
+ * @param req - The request object
+ * @param res - The response object
+ * @returns The deleted flash sale
+ */
 router.delete(
     "/:id",
+    auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     flashSaleController.deleteFlashSaleController
 );
 
+/**
+ * @description Get all featured flash sales
+ * @param req - The request object
+ * @param res - The response object
+ * @returns All featured flash sales
+ */
 router.get(
     "/featured",
+    auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     flashSaleController.getFeaturedFlashSalesController
 );
 
+/**
+ * @description Get all active flash sales
+ * @param req - The request object
+ * @param res - The response object
+ * @returns All active flash sales
+ */
 router.get(
     "/active",
+    auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     flashSaleController.getActiveFlashSalesController
 );
 
+/**
+ * @description Get a flash sale by ID
+ * @param req - The request object
+ * @param res - The response object
+ * @returns The flash sale with the specified ID
+ */
 router.get(
     "/:id",
+    auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     flashSaleController.getFlashSaleByIdController
 );
 
+/**
+ * @description Get all flash sales
+ * @param req - The request object
+ * @param res - The response object
+ * @returns All flash sales
+ */
 router.get(
     "/",
+    auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     flashSaleController.getAllFlashSalesController
 );
 

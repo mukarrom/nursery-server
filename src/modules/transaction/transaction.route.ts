@@ -12,18 +12,18 @@ const transactionRouter = Router();
  */
 transactionRouter.post(
     "/",
-    auth(USER_ROLE.USER),
+    auth(USER_ROLE.USER, USER_ROLE.ADMIN),
     validateRequest(transactionValidation.createTransactionZodSchema),
     transactionController.createTransactionController
 );
 
 /**
- * Get user transaction history (By User)
+ * Get my transaction history
  */
 transactionRouter.get(
-    "/history/user",
-    auth(USER_ROLE.USER),
-    transactionController.getUserTransactionHistoryController
+    "/history/my",
+    auth(USER_ROLE.USER, USER_ROLE.ADMIN),
+    transactionController.getMyTransactionHistoryController
 );
 
 /**
@@ -31,7 +31,7 @@ transactionRouter.get(
  */
 transactionRouter.get(
     "/history/all",
-    auth(USER_ROLE.ADMIN),
+    auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     transactionController.getAllTransactionHistoryController
 );
 
@@ -49,7 +49,7 @@ transactionRouter.get(
  */
 transactionRouter.get(
     "/:id",
-    auth(USER_ROLE.ADMIN),
+    auth(USER_ROLE.ADMIN, USER_ROLE.USER, USER_ROLE.SUPER_ADMIN),
     transactionController.getTransactionByIdController
 );
 
@@ -58,7 +58,7 @@ transactionRouter.get(
  */
 transactionRouter.patch(
     "/:id/status",
-    auth(USER_ROLE.ADMIN),
+    auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     validateRequest(transactionValidation.updateTransactionStatusZodSchema),
     transactionController.updateTransactionStatusController
 );

@@ -1,3 +1,4 @@
+import QueryBuilder from "../../builder/QueryBuilder";
 import AppError from "../../errors/AppError";
 import { OrderModel } from "../order/order.model";
 import { PaymentMethodModel } from "../payment-method/payment-method.model";
@@ -14,6 +15,8 @@ export const createTransactionService = async (
 ) => {
     // Verify order exists and belongs to user
     const order = await OrderModel.findOne({ orderId: data.orderId, userId });
+    // console.log("data.orderId", data.orderId);
+    // console.log("userId", userId);
     if (!order) {
         throw new AppError(404, "Order not found or does not belong to this user");
     }
@@ -68,56 +71,60 @@ export const getTransactionByIdService = async (transactionId: string) => {
     return result;
 };
 
-export const getUserTransactionHistoryService = async (userId: string, page = 1, limit = 10) => {
-    const skip = (page - 1) * limit;
-
-    const [data, total] = await Promise.all([
-        TransactionModel.find({ userId })
-            .populate("paymentMethodId", "methodName accountNumber")
-            .populate("orderId", "orderId total orderStatus")
-            .sort({ createdAt: -1 })
-            .skip(skip)
-            .limit(limit)
-            .lean(),
-        TransactionModel.countDocuments({ userId }),
-    ]);
+export const getMyTransactionHistoryService = async (userId: string, query: Record<string, unknown>) => {
+    const transactionsQuery = new QueryBuilder(TransactionModel.find({ userId }).populate("paymentMethodId", "methodName accountNumber description").populate({ path: "order", select: "orderId total orderStatus" }), query)
+        .search(["transactionId", "orderId", "methodName", "accountNumber", "userProvidedTransactionId", "amount", "transactionStatus", "adminNotes"])
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+    const transactions = await transactionsQuery.modelQuery;
+    const meta = await transactionsQuery.countTotal();
 
     return {
-        data,
-        pagination: {
-            currentPage: page,
-            totalPages: Math.ceil(total / limit),
-            totalRecords: total,
-            limit,
-        },
+        data: transactions,
+        pagination: meta,
     };
 };
 
-export const getAllTransactionHistoryService = async (page = 1, limit = 10) => {
-    const skip = (page - 1) * limit;
-
-    const [data, total] = await Promise.all([
-        TransactionModel.find()
-            .populate("userId", "name email")
-            .populate("paymentMethodId", "methodName accountNumber")
-            .populate("orderId", "orderId total orderStatus")
-            .sort({ createdAt: -1 })
-            .skip(skip)
-            .limit(limit)
-            .lean(),
-        TransactionModel.countDocuments(),
-    ]);
+export const getAllTransactionHistoryService = async (query: Record<string, unknown>) => {
+    const transactionsQuery = new QueryBuilder(TransactionModel.find().populate("userId", "name email").populate("paymentMethodId", "methodName accountNumber").populate({ path: "order", select: "orderId total orderStatus" }), query)
+        .search(["transactionId", "orderId", "methodName", "accountNumber", "userProvidedTransactionId", "amount", "transactionStatus", "adminNotes"])
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+    const transactions = await transactionsQuery.modelQuery;
+    const meta = await transactionsQuery.countTotal();
 
     return {
-        data,
-        pagination: {
-            currentPage: page,
-            totalPages: Math.ceil(total / limit),
-            totalRecords: total,
-            limit,
-        },
+        data: transactions,
+        pagination: meta,
     };
 };
+
+// export const getTransactionByOrderIdService = async (orderId: string) => {
+//     const result = await TransactionModel.findOne({ orderId })
+//         .populate("paymentMethodId", "methodName accountNumber description")
+//             .populate("paymentMethodId", "methodName accountNumber")
+//             .populate({ path: "order", select: "orderId total orderStatus" })
+//             .sort({ createdAt: -1 })
+//             .skip(skip)
+//             .limit(limit)
+//             .lean(),
+//         TransactionModel.countDocuments(),
+//     ]);
+
+//     return {
+//         data,
+//         pagination: {
+//             currentPage: page,
+//             totalPages: Math.ceil(total / limit),
+//             totalRecords: total,
+//             limit,
+//         },
+//     };
+// };
 
 export const updateTransactionStatusService = async (
     transactionId: string,
@@ -160,6 +167,7 @@ export const updateTransactionStatusService = async (
 export const getTransactionByOrderIdService = async (orderId: string) => {
     const result = await TransactionModel.findOne({ orderId })
         .populate("paymentMethodId", "methodName accountNumber description")
+        .populate({ path: "order", select: "orderId total orderStatus" })
         .lean();
 
     if (!result) {
@@ -171,7 +179,7 @@ export const getTransactionByOrderIdService = async (orderId: string) => {
 export const transactionService = {
     createTransactionService,
     getTransactionByIdService,
-    getUserTransactionHistoryService,
+    getMyTransactionHistoryService,
     getAllTransactionHistoryService,
     updateTransactionStatusService,
     getTransactionByOrderIdService,
