@@ -268,7 +268,7 @@
                     ]
                 },
                 {
-                    "name": "Forgot Password",
+                    "name": "Request Password Reset",
                     "request": {
                         "method": "POST",
                         "header": [],
@@ -282,13 +282,13 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/auth/forgot-password",
+                            "raw": "{{baseUrl}}/auth/request-password-reset",
                             "host": [
                                 "{{baseUrl}}"
                             ],
                             "path": [
                                 "auth",
-                                "forgot-password"
+                                "request-password-reset"
                             ]
                         }
                     },
@@ -326,7 +326,7 @@
                         "header": [],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"password\": \"newPassword456\"}}",
+                            "raw": "{\"email\": \"john@example.com\", \"token\": \"reset_token_from_email\", \"newPassword\": \"newPassword456\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -334,20 +334,13 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/auth/reset-password/:token",
+                            "raw": "{{baseUrl}}/auth/reset-password",
                             "host": [
                                 "{{baseUrl}}"
                             ],
                             "path": [
                                 "auth",
-                                "reset-password",
-                                ":token"
-                            ],
-                            "variable": [
-                                {
-                                    "key": "token",
-                                    "value": "reset_token"
-                                }
+                                "reset-password"
                             ]
                         }
                     },
@@ -394,7 +387,7 @@
                         "header": [],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"currentPassword\": \"password123\", \"newPassword\": \"newPassword456\"}",
+                            "raw": "{\"oldPassword\": \"password123\", \"newPassword\": \"newPassword456\"}",
                             "options": {
                                 "raw": {
                                     "language": "json"

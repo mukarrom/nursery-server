@@ -48,21 +48,7 @@ const signInController = catchAsync(async (req, res) => {
   });
 });
 
-/**
- * Controller to resend verification email.
- * @param req - The request object containing user email.
- * @param res - The response object to send the result.
- */
-const resendOtpForUnverifiedEmailController = catchAsync(async (req, res) => {
-  const { email } = req.body;
-  const result = await authServices.resendOtpForUnverifiedEmailService(email);
-  sendResponse(res, {
-    statusCode: status.OK,
-    success: true,
-    message: "Verification email sent successfully",
-    data: result,
-  });
-});
+
 
 
 
@@ -71,36 +57,36 @@ const resendOtpForUnverifiedEmailController = catchAsync(async (req, res) => {
  * @param req - The request object containing user ID and access token.
  * @param res - The response object to send the result.
  */
-const signOutController = catchAsync(async (req, res) => {
-  const userId = req.params.id as string;
-  const accessToken = req.headers.authorization || "";
-  const result = await authServices.signOutService(userId, accessToken);
+// const signOutController = catchAsync(async (req, res) => {
+//   const userId = req.params.id as string;
+//   const accessToken = req.headers.authorization || "";
+//   const result = await authServices.signOutService(userId, accessToken);
 
-  sendResponse(res, {
-    statusCode: status.NO_CONTENT,
-    success: true,
-    message: "Logout successful",
-    data: result,
-  });
-});
+//   sendResponse(res, {
+//     statusCode: status.NO_CONTENT,
+//     success: true,
+//     message: "Logout successful",
+//     data: result,
+//   });
+// });
 
 /**
  * Controller to refresh the token of the current logged-in user.
  * @param req - The request object containing user ID and refresh token.
  * @param res - The response object to send the result.
  */
-const refreshTokenController = catchAsync(async (req, res) => {
-  const userId = req.params.id as string;
-  const refreshToken = req.body.token;
-  const result = await authServices.refreshTokenService(userId, refreshToken);
+// const refreshTokenController = catchAsync(async (req, res) => {
+//   const userId = req.params.id as string;
+//   const refreshToken = req.body.token;
+//   const result = await authServices.refreshTokenService(userId, refreshToken);
 
-  sendResponse(res, {
-    statusCode: status.OK,
-    success: true,
-    message: "Token refreshed successfully",
-    data: result,
-  });
-});
+//   sendResponse(res, {
+//     statusCode: status.OK,
+//     success: true,
+//     message: "Token refreshed successfully",
+//     data: result,
+//   });
+// });
 
 /**
  * Controller to verify the user's email.
@@ -108,9 +94,9 @@ const refreshTokenController = catchAsync(async (req, res) => {
  * @param res - The response object to send the result.
  */
 const verifyEmailController = catchAsync(async (req, res) => {
-  const { email, token } = req.body;
+  const { email, otp } = req.body;
 
-  await authServices.verifyEmailService(email, token);
+  await authServices.verifyEmailService(email, otp);
 
   sendResponse(res, {
     statusCode: status.OK,
@@ -125,7 +111,7 @@ const verifyEmailController = catchAsync(async (req, res) => {
  * @param req - The request object containing the user's email.
  * @param res - The response object to send the result.
  */
-const sendOtpController = catchAsync(async (req, res) => {
+const resendOtpController = catchAsync(async (req, res) => {
   const email = req.body.email;
   await authServices.resendOtpService(email);
   sendResponse(res, {
@@ -278,15 +264,12 @@ const resetPassword = catchAsync(async (req: Request, res: Response) => {
 export const authController = {
   signUpController,
   signInController,
-  signOutController,
-  refreshTokenController,
   verifyEmailController,
+  resendOtpController,
   verifyEmailLinkController,
   resendVerificationController,
   verifyAccessTokenController,
   changePasswordController,
-  sendOtpController,
   requestPasswordReset,
   resetPassword,
-  // sendMailController,
 };

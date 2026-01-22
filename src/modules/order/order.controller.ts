@@ -91,9 +91,9 @@ export const getAllOrders = catchAsync(async (req: Request, res: Response) => {
  */
 export const updateOrderStatus = catchAsync(async (req: Request, res: Response) => {
     const { orderId } = req.params as { orderId: string };
-    const { orderStatus } = req.body;
+    const { status } = req.body;
 
-    const order = await updateOrderStatusService(orderId as string, orderStatus);
+    const order = await updateOrderStatusService(orderId as string, status as string);
 
     sendResponse(res, {
         success: true,

@@ -5,8 +5,29 @@ import { uploadImage } from "../../utils/imageUpload";
 import sendResponse from "../../utils/sendResponse";
 import { userService } from "./users.service";
 
+/**
+ * Controller to get user profile.
+ * @param req - The request object containing user ID.
+ * @param res - The response object to send the result.
+ */
+const getProfile = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.user;
+  const result = await userService.getProfile(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User profile fetched successfully",
+    data: result,
+  });
+});
+
+/**
+ * Controller to update user profile.
+ * @param req - The request object containing user ID and profile data.
+ * @param res - The response object to send the result.
+ */
 const updateProfile = catchAsync(async (req: Request, res: Response) => {
-  const { userId } = req.user;
+  const { id } = req.user;
   const body = req.body;
 
   // Handle profile picture upload
@@ -15,7 +36,7 @@ const updateProfile = catchAsync(async (req: Request, res: Response) => {
     body.profilePicture = url;
   }
 
-  const result = await userService.updateProfile(userId, body);
+  const result = await userService.updateProfile(id, body);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -56,4 +77,5 @@ export const userController = {
   updateProfile,
   getAllUsers,
   updateStatus,
+  getProfile,
 };

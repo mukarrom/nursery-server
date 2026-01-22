@@ -8,22 +8,44 @@ import { TProduct } from "./products.interface";
 import { productService } from "./products.service";
 
 const createProductController = catchAsync(async (req, res) => {
-    if (!req.file) {
-        throw new Error("imageFile is required");
+    const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+
+    if (!files || (!files.image && !files.images)) {
+        throw new Error("At least one image is required");
     }
 
-    if (!(req.file.buffer instanceof Buffer)) {
-        throw new Error("Invalid file format");
+    let mainImageUrl = "";
+    const additionalImageUrls: string[] = [];
+
+    // Upload main image
+    if (files.image && files.image[0]) {
+        const uploadResult = await uploadImage(
+            files.image[0].buffer,
+            FOLDER_NAMES.PRODUCT
+        );
+        mainImageUrl = uploadResult.url;
     }
 
-    const uploadResult = await uploadImage(
-        req.file.buffer,
-        FOLDER_NAMES.PRODUCT
-    );
+    // Upload additional images
+    if (files.images) {
+        for (const file of files.images) {
+            const uploadResult = await uploadImage(
+                file.buffer,
+                FOLDER_NAMES.PRODUCT
+            );
+            additionalImageUrls.push(uploadResult.url);
+        }
+    }
+
+    // If no main image but has additional images, use first additional image as main
+    if (!mainImageUrl && additionalImageUrls.length > 0) {
+        mainImageUrl = additionalImageUrls.shift()!;
+    }
 
     const productData = {
         ...req.body,
-        image: uploadResult.url,
+        image: mainImageUrl,
+        ...(additionalImageUrls.length > 0 && { images: additionalImageUrls }),
     } as TProduct;
 
     const result = await productService.createProductService(productData);
@@ -68,7 +90,10 @@ const updateProductController = catchAsync(
         const { id } = req.params as { id: string };
         const { name, description, price, isAvailable, discount, quantity, isFeatured, sku, brand, categoryId, tags } = req.body;
 
-        const updateData: Partial<TProduct> & { file?: Express.Multer.File } = {
+        const updateData: Partial<TProduct> & {
+            file?: Express.Multer.File;
+            files?: { [fieldname: string]: Express.Multer.File[] };
+        } = {
             ...(name && { name }),
             ...(description && { description }),
             ...(price !== undefined && { price: Number(price) }),
@@ -82,8 +107,9 @@ const updateProductController = catchAsync(
             ...(tags && { tags: Array.isArray(tags) ? tags : [tags] }),
         };
 
-        if (req.file) {
-            updateData.file = req.file;
+        const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+        if (files) {
+            updateData.files = files;
         }
 
         const result = await productService.updateProductService(id, updateData);

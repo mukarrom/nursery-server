@@ -54,7 +54,7 @@ router.post(
  * @returns {TokenResponse.model} 200 - New access token generated
  * @returns {ErrorResponse.model} 401 - Invalid refresh token
  */
-router.get("/refresh-token/:id", authController.refreshTokenController);
+// router.get("/refresh-token/:id", authController.refreshTokenController);
 
 /**
  * @route DELETE /auth/logout
@@ -63,7 +63,7 @@ router.get("/refresh-token/:id", authController.refreshTokenController);
  * @returns {object} 200 - Logout successful
  * @returns {ErrorResponse.model} 401 - Unauthorized
  */
-router.delete("/logout", authController.signOutController);
+// router.delete("/logout", authController.signOutController);
 
 /**
  * @route GET /auth/verify-email
@@ -100,7 +100,7 @@ router.post(
  * @returns {ErrorResponse.model} 400 - Invalid email or already verified
  */
 router.post(
-  "/resend-verification",
+  "/resend-otp",
   validateRequest(resendVerificationValidationSchema),
   authController.resendVerificationController
 );

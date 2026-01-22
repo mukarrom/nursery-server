@@ -12,7 +12,7 @@ const orderRouter = Router();
  */
 orderRouter.post(
     "/",
-    auth(USER_ROLE.USER),
+    auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     validateRequest(orderValidation.createOrderZodSchema),
     orderController.createOrder
 );
@@ -20,21 +20,23 @@ orderRouter.post(
 /**
  * Get user orders (By User)
  */
-orderRouter.get("/", auth(USER_ROLE.USER), orderController.getOrders);
+orderRouter.get("/my", auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN), orderController.getOrders);
 
 /**
  * Get all orders (By Admin)
  */
-orderRouter.get("/all", auth(USER_ROLE.ADMIN), orderController.getAllOrders);
+orderRouter.get("/all", auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN), orderController.getAllOrders);
 
 /**
  * Get specific order (By User and Admin)
  */
-orderRouter.get("/:orderId", auth(USER_ROLE.USER, USER_ROLE.ADMIN), orderController.getOrder);
+orderRouter.get("/:orderId", auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN), orderController.getOrder);
 
 /**
  * Update order status (By Admin)
  */
-orderRouter.patch("/:orderId/status", auth(USER_ROLE.ADMIN), orderController.updateOrderStatus);
+orderRouter.patch("/:orderId/status", auth(USER_ROLE.ADMIN),
+    validateRequest(orderValidation.updateOrderStatusValidationSchema),
+    orderController.updateOrderStatus);
 
 export default orderRouter;

@@ -65,7 +65,12 @@ export const emailVerificationValidationSchema = z.object({
         invalid_type_error: "Email must be valid email address",
       })
       .email("Invalid email address"),
-    token: z.string().min(6, "Verification code must be 6 digits").max(6),
+    otp: z.string(
+      {
+        required_error: "OTP is required",
+        invalid_type_error: "OTP must be valid OTP",
+      }
+    ).min(6, "OTP must be 6 digits").max(6),
   }),
 });
 

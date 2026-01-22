@@ -172,6 +172,7 @@ export const getAllOrdersService = async (query: Record<string, unknown>) => {
  * @returns Order
  */
 export const updateOrderStatusService = async (orderId: string, status: string) => {
+    console.log(`Updating order ${orderId} to status ${status}`);
     const validStatuses = ["pending", "processing", "shipped", "delivered", "cancelled"];
     if (!validStatuses.includes(status)) {
         throw new AppError(400, "Invalid status");

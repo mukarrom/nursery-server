@@ -13,14 +13,26 @@ export const createCartZodSchema = z.object({
     body: cartBodySchema,
 });
 
-export const updateCartZodSchema = z.object({
+// Add item (body carries productId and quantity)
+export const addCartItemZodSchema = z.object({
     body: z.object({
         productId: z.string().regex(/^[0-9a-f]{24}$/i, "Invalid product ID"),
-        quantity: z.coerce.number().min(1),
+        quantity: z.coerce.number().min(1, "Quantity must be at least 1"),
+    }),
+});
+
+// Update quantity (productId comes from params, quantity from body)
+export const updateCartItemZodSchema = z.object({
+    params: z.object({
+        productId: z.string().regex(/^[0-9a-f]{24}$/i, "Invalid product ID"),
+    }),
+    body: z.object({
+        quantity: z.coerce.number().min(1, "Quantity must be at least 1"),
     }),
 });
 
 export const cartValidation = {
     createCartZodSchema,
-    updateCartZodSchema,
+    addCartItemZodSchema,
+    updateCartItemZodSchema,
 };

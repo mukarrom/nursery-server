@@ -142,6 +142,158 @@ final cartResponse = await http.get(
 
 ## Module Endpoints
 
+## Auth Module (`/auth`)
+
+### POST `/auth/sign-up`
+
+Register a new user account
+
+- **Auth**: Not required
+- **Content-Type**: `multipart/form-data` (for profile picture upload)
+- **Body**:
+
+  ```json
+  {
+    "name": "John Doe",
+    "email": "user@example.com",
+    "password": "password123",
+    "phone": "01712345678",
+    "profilePicture": "file (optional)"
+  }
+  ```
+
+- **Response**: User object (without password)
+- **Note**: Sends OTP to email for verification (expires in 5 minutes)
+
+### POST `/auth/login`
+
+Login with email and password
+
+- **Auth**: Not required
+- **Body**:
+
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "password123"
+  }
+  ```
+
+- **Response**:
+
+  ```json
+  {
+    "user": { /* user object */ },
+    "accessToken": "jwt_token",
+    "refreshToken": "jwt_refresh_token"
+  }
+  ```
+
+- **Note**: Email must be verified to login
+
+### POST `/auth/verify-email`
+
+Verify email address using OTP
+
+- **Auth**: Not required
+- **Body**:
+
+  ```json
+  {
+    "email": "user@example.com",
+    "otp": "123456"
+  }
+  ```
+
+- **Response**: Success message
+
+### GET `/auth/verify-email`
+
+Verify email via link (sent in email)
+
+- **Auth**: Not required
+- **Query Params**:
+  - `token`: Verification OTP
+  - `email`: User email
+- **Response**: Redirects to verification result page
+
+### POST `/auth/resend-otp`
+
+Resend email verification OTP
+
+- **Auth**: Not required
+- **Body**:
+
+  ```json
+  {
+    "email": "user@example.com"
+  }
+  ```
+
+- **Response**: Success message
+- **Note**: Only works for unverified emails
+
+### POST `/auth/request-password-reset`
+
+Request password reset (Forgot Password)
+
+- **Auth**: Not required
+- **Body**:
+
+  ```json
+  {
+    "email": "user@example.com"
+  }
+  ```
+
+- **Response**: Success message
+- **Note**: Sends reset token to email (valid for 24 hours)
+
+### GET `/auth/reset-password`
+
+Redirect to password reset page
+
+- **Auth**: Not required
+- **Query Params**:
+  - `token`: Reset token
+  - `email`: User email
+- **Response**: Redirects to reset password HTML page
+
+### POST `/auth/reset-password`
+
+Reset password using token
+
+- **Auth**: Not required
+- **Body**:
+
+  ```json
+  {
+    "email": "user@example.com",
+    "token": "reset_token",
+    "newPassword": "newpassword123"
+  }
+  ```
+
+- **Response**: Success message
+
+### POST `/auth/change-password`
+
+Change password for authenticated user
+
+- **Auth**: Required (USER or ADMIN)
+- **Body**:
+
+  ```json
+  {
+    "oldPassword": "currentPassword123",
+    "newPassword": "newPassword123"
+  }
+  ```
+
+- **Response**: Success message
+
+---
+
 ## Cart Module (`/carts`)
 
 ### GET `/carts`

@@ -23,13 +23,13 @@
               "formdata": [
                 {
                   "key": "name",
-                  "value": "Admin",
+                  "value": "User",
                   "description": "Required, min 3 chars",
                   "type": "text"
                 },
                 {
                   "key": "email",
-                  "value": "admin@yopmail.com",
+                  "value": "user-nursery@yopmail.com",
                   "description": "Optional, valid email",
                   "type": "text"
                 },
@@ -57,7 +57,8 @@
                   "key": "role",
                   "value": "admin",
                   "description": "Optional, enum: ['user', 'admin']",
-                  "type": "text"
+                  "type": "text",
+                  "disabled": true
                 }
               ]
             },
@@ -188,7 +189,7 @@
                   "if (pm.response.code === 200) {",
                   "    var jsonData = pm.response.json();",
                   "    if (jsonData.data && jsonData.data.accessToken) {",
-                  "        pm.environment.set('token', jsonData.data.accessToken);",
+                  "        pm.collectionVariables.set('token', jsonData.data.accessToken);",
                   "        console.log('Token saved to environment');",
                   "    }",
                   "}"
@@ -220,7 +221,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"admin@yopmail.com\",\n  \"password\": \"12345678\"\n}",
+              "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\",\n  \"password\": \"12345678\"\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -308,6 +309,74 @@
               "cookie": [],
               "responseTime": "2026-01-22T05:47:19.663Z",
               "body": "{\n    \"success\": false,\n    \"message\": \"Your email is not verified\",\n    \"errorSources\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Your email is not verified\"\n        }\n    ],\n    \"err\": {\n        \"statusCode\": 403\n    },\n    \"stack\": \"Error: Your email is not verified\\n    at Object.loginService (D:\\\\Projects\\\\nursary-shop-server\\\\src\\\\modules\\\\auth\\\\auth.service.ts:121:11)\\n    at async D:\\\\Projects\\\\nursary-shop-server\\\\src\\\\modules\\\\auth\\\\auth.controller.ts:41:18\"\n}"
+            },
+            {
+              "id": "4f4edfa6-8aa5-43ab-ab7d-03c2039465c9",
+              "name": "Login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\",\n  \"password\": \"12345678\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "Both fields required"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "837"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"345-q298fTX2iY+tkV2TIn9IjOWmbjE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 08:11:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T08:11:12.709Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Signin completed successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"6971da34ef6d881934c75780\",\n            \"name\": \"Admin\",\n            \"phone\": \"01501234567\",\n            \"email\": \"admin-nursery@yopmail.com\",\n            \"role\": \"admin\",\n            \"isEmailVerified\": true,\n            \"status\": \"active\",\n            \"createdAt\": \"2026-01-22T08:05:08.664Z\",\n            \"updatedAt\": \"2026-01-22T08:11:01.566Z\",\n            \"__v\": 0\n        },\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA2OTQ2MSwiZXhwIjoxNzY5MTU1ODYxfQ.DlogOlI04uZ6zOs2C1J5zmHBqUTr8rZVyq-czd42LY8\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA2OTQ2MSwiZXhwIjoxNzY5Njc0MjYxfQ.X-Ulr0FK9tyB4lPQN8hLWMRT52yr9G0xQMw8j0VJYAw\"\n    }\n}"
             }
           ]
         },
@@ -322,7 +391,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"john@example.com\",\n  \"otp\": \"123456\"\n}",
+              "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\",\n  \"otp\": \"745009\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -340,7 +409,75 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "cb748062-39ef-4f09-b24a-1e6d22df4e41",
+              "name": "Verify Email",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\",\n  \"otp\": \"745009\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/verify-email",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "verify-email"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "68"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"44-+0PHkNNOXv7Kbk825gVlu4QNlQA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 08:08:03 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T08:08:06.701Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Email verified successfully\",\n    \"data\": null\n}"
+            }
+          ]
         },
         {
           "name": "Resend OTP",
@@ -353,7 +490,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"john@example.com\"\n}",
+              "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -371,11 +508,79 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "f9060404-1f6c-4134-9a7a-454075a304fe",
+              "name": "Resend OTP",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/resend-otp",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "resend-otp"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "159"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"9f-mQu29GAW4QDwYQO6ZcFDzEX4yBQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 08:07:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T08:07:50.764Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Verification email sent successfully\",\n    \"data\": {\n        \"message\": \"Verification email sent successfully\",\n        \"email\": \"admin-nursery@yopmail.com\"\n    }\n}"
+            }
+          ]
         },
         {
-          "name": "Forgot Password",
-          "id": "65c94e13-5165-4139-a6b9-00c4c6c9c10f",
+          "name": "Forgot Password?",
+          "id": "aa0b8c7b-3ed9-442d-bbee-d0ba5ad7bb42",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -384,7 +589,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"john@example.com\"\n}",
+              "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -392,17 +597,85 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/auth/forgot-password",
+              "raw": "{{baseUrl}}/auth/request-password-reset",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "auth",
-                "forgot-password"
+                "request-password-reset"
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "f54d7fe5-cbeb-4736-a47a-028d2ece872f",
+              "name": "Forgot Password?",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/request-password-reset",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "request-password-reset"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "105"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"69-3jTMN5UTIxEVUUysvGJAYfdty6E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 08:46:15 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T08:50:04.307Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"If an account exists with this email, a reset link has been sent\",\n    \"data\": null\n}"
+            }
+          ]
         },
         {
           "name": "Reset Password",
@@ -513,7 +786,66 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "4dca2c0e-11de-4f84-8694-7b7f50a55d9d",
+              "name": "Get Profile",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/profile",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "profile"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "210"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"d2-8Rf0UpOk/A10qnfiZHPXQ/grF6w\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 09:30:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T09:30:37.932Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"User profile fetched successfully\",\n    \"data\": {\n        \"_id\": \"6971da34ef6d881934c75780\",\n        \"name\": \"Admin\",\n        \"phone\": \"01501234567\",\n        \"email\": \"admin-nursery@yopmail.com\",\n        \"role\": \"admin\",\n        \"status\": \"active\"\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Profile",
@@ -541,19 +873,23 @@
                   "key": "name",
                   "value": "John Updated",
                   "description": "Optional",
-                  "type": "text"
+                  "type": "text",
+                  "disabled": true
                 },
                 {
                   "key": "phone",
                   "value": "01712345678",
                   "description": "Optional, 11 digits",
-                  "type": "text"
+                  "type": "text",
+                  "disabled": true
                 },
                 {
                   "key": "profilePicture",
                   "description": "Optional, image file",
                   "type": "file",
-                  "src": []
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134079918977529516.jpg"
+                  ]
                 }
               ]
             },
@@ -568,7 +904,90 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "24644633-b597-4778-808c-31b11f494b00",
+              "name": "Update Profile",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "John Updated",
+                      "description": "Optional",
+                      "type": "text"
+                    },
+                    {
+                      "key": "phone",
+                      "value": "01712345678",
+                      "description": "Optional, 11 digits",
+                      "type": "text"
+                    },
+                    {
+                      "key": "profilePicture",
+                      "description": "Optional, image file",
+                      "type": "file",
+                      "src": [],
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/update",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "update"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "368"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"170-iiaPhD00yEYrpNPVTNnAx5DenkQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 09:53:52 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T09:54:30.868Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Profile updated successfully\",\n    \"data\": {\n        \"_id\": \"6971da34ef6d881934c75780\",\n        \"name\": \"John Updated\",\n        \"phone\": \"01712345678\",\n        \"email\": \"admin-nursery@yopmail.com\",\n        \"role\": \"admin\",\n        \"isEmailVerified\": true,\n        \"status\": \"active\",\n        \"createdAt\": \"2026-01-22T08:05:08.664Z\",\n        \"updatedAt\": \"2026-01-22T09:53:51.994Z\",\n        \"__v\": 0,\n        \"passwordChangedAt\": \"2026-01-22T08:47:45.753Z\"\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Get All Users (Admin)",
@@ -590,34 +1009,119 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/users?page=1&limit=10&searchTerm=john",
+              "raw": "{{baseUrl}}/users/all-users?page=1&limit=10",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "users"
+                "users",
+                "all-users"
               ],
               "query": [
                 {
                   "key": "page",
                   "value": "1",
-                  "description": "Page number"
+                  "description": "Page number",
+                  "uuid": "fb88ad3a-11aa-4d78-b8dc-b1e20dec05ea"
                 },
                 {
                   "key": "limit",
                   "value": "10",
-                  "description": "Items per page"
+                  "description": "Items per page",
+                  "uuid": "92620bc6-1c75-40ec-a2a6-1dda36c02549"
                 },
                 {
                   "key": "searchTerm",
                   "value": "john",
-                  "description": "Search by name or email"
+                  "description": "Search by name or email",
+                  "uuid": "aca53c49-f03a-4281-8326-30752f8634db",
+                  "disabled": true
                 }
               ]
             },
             "description": "Admin only. Get all users with pagination and search."
           },
-          "response": []
+          "response": [
+            {
+              "id": "c6163569-ef9d-4f7b-b29b-8509f4877f0f",
+              "name": "Get All Users (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/users/all-users?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "all-users"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "description": "Page number",
+                      "uuid": "fb88ad3a-11aa-4d78-b8dc-b1e20dec05ea"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10",
+                      "description": "Items per page",
+                      "uuid": "92620bc6-1c75-40ec-a2a6-1dda36c02549"
+                    },
+                    {
+                      "key": "searchTerm",
+                      "value": "john",
+                      "description": "Search by name or email",
+                      "uuid": "aca53c49-f03a-4281-8326-30752f8634db",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "882"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"372-MhdHIwAfnGbR8NcnyKPdPlOvhzU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 09:52:08 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T09:52:58.299Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Users list fetched successfully\",\n    \"meta\": {\n        \"totalDocuments\": 6,\n        \"totalPages\": 1,\n        \"currentPage\": \"1\",\n        \"limitPerPage\": \"10\"\n    },\n    \"data\": [\n        {\n            \"_id\": \"6971e531e18110807ed5410e\",\n            \"name\": \"Admin\",\n            \"phone\": \"01501234567\",\n            \"email\": \"user-nursery@yopmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\"\n        },\n        {\n            \"_id\": \"6971a42966af5fb86378a698\",\n            \"name\": \"jakir\",\n            \"email\": \"jakir@gmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\"\n        },\n        {\n            \"_id\": \"696f963ddde1caf722889d75\",\n            \"name\": \"MD Jakir Hossain\",\n            \"email\": \"jakirhossain03222@gmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\"\n        },\n        {\n            \"_id\": \"696f9483c694bf092355b8ba\",\n            \"name\": \"New User 6\",\n            \"email\": \"newuser6@yopmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\"\n        },\n        {\n            \"_id\": \"696f86283e6403a201a81f41\",\n            \"name\": \"New User 2\",\n            \"email\": \"newuser2@yopmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\"\n        },\n        {\n            \"_id\": \"696eff120e62cbc1dcc083dd\",\n            \"name\": \"New User 1\",\n            \"email\": \"newuser1@yopmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\"\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "Update User Role (Admin)",
@@ -685,7 +1189,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/categories?page=1&limit=10&searchTerm=plant",
+              "raw": "{{baseUrl}}/categories?page=1&limit=10",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -695,20 +1199,100 @@
               "query": [
                 {
                   "key": "page",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "fb6270c2-b592-4dd2-bf56-04ba24a0c60b"
                 },
                 {
                   "key": "limit",
-                  "value": "10"
+                  "value": "10",
+                  "uuid": "5593fcca-378f-4997-9ae6-fdfddbcdf355"
                 },
                 {
                   "key": "searchTerm",
-                  "value": "plant"
+                  "value": "plant",
+                  "uuid": "34969d48-4cf0-4240-98e7-17e0d5256582",
+                  "disabled": true
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "6c318182-7356-462f-b8f4-a5bfaf6084e4",
+              "name": "Get All Categories",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/categories?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "uuid": "fb6270c2-b592-4dd2-bf56-04ba24a0c60b"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10",
+                      "uuid": "5593fcca-378f-4997-9ae6-fdfddbcdf355"
+                    },
+                    {
+                      "key": "searchTerm",
+                      "value": "plant",
+                      "uuid": "34969d48-4cf0-4240-98e7-17e0d5256582",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1916"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"77c-lxwnhUqWkGdst+IddyFsym0mTjA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 08:57:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T08:58:02.070Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Categories retrieved successfully\",\n    \"meta\": {\n        \"totalDocuments\": 6,\n        \"totalPages\": 1,\n        \"currentPage\": \"1\",\n        \"limitPerPage\": \"10\"\n    },\n    \"data\": [\n        {\n            \"_id\": \"6971e657884d772cac55fac1\",\n            \"title\": \"Indoor Plants\",\n            \"description\": \"Plants suitable for indoor environments\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769072215/nursery-app/categories/xfstnapvhtwqfologtt9.jpg\",\n            \"createdAt\": \"2026-01-22T08:56:55.920Z\",\n            \"updatedAt\": \"2026-01-22T08:56:55.920Z\"\n        },\n        {\n            \"_id\": \"6970f40fa4e644714427b3cd\",\n            \"title\": \"category 3\",\n            \"description\": \"asdfghjklwerftgyh\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769010190/nursery-app/categories/fbgf1gji8ceozhjhi6dv.jpg\",\n            \"createdAt\": \"2026-01-21T15:43:11.361Z\",\n            \"updatedAt\": \"2026-01-21T15:43:11.361Z\"\n        },\n        {\n            \"_id\": \"69705377fa01a82e7c77ec82\",\n            \"title\": \"test categories\",\n            \"description\": \"Fresh seasonal fruits 1\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768969078/nursery-app/categories/qzzo73jqq4yjat7xbg2j.png\",\n            \"createdAt\": \"2026-01-21T04:17:59.040Z\",\n            \"updatedAt\": \"2026-01-21T04:17:59.040Z\"\n        },\n        {\n            \"_id\": \"697050d3c27af38d6fb5ca11\",\n            \"title\": \"Tests 3\",\n            \"description\": \"Fresh seasonal fruits\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768968402/nursery-app/categories/ibva82ekahmskdgirsri.jpg\",\n            \"createdAt\": \"2026-01-21T04:06:43.982Z\",\n            \"updatedAt\": \"2026-01-21T04:06:43.982Z\"\n        },\n        {\n            \"_id\": \"696f87843e6403a201a81f48\",\n            \"title\": \"Tests\",\n            \"description\": \"Fresh seasonal fruits\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768916866/nursery-app/categories/klgwfhsb7rzgt0qptvu8.jpg\",\n            \"createdAt\": \"2026-01-20T13:47:48.995Z\",\n            \"updatedAt\": \"2026-01-20T13:47:48.995Z\"\n        },\n        {\n            \"_id\": \"696f047f45b3d13ba9a13bc7\",\n            \"title\": \"Fruits\",\n            \"description\": \"Fresh seasonal fruits\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768883337/nitto-vojon/categories/zogfjv3zmlpvby4xhtgj.jpg\",\n            \"createdAt\": \"2026-01-20T04:28:47.335Z\",\n            \"updatedAt\": \"2026-01-20T04:28:47.335Z\"\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "Get Category by ID",
@@ -731,12 +1315,77 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "category_id"
+                  "value": "6971e657884d772cac55fac1"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "d369ddf9-ca5f-4f22-a675-0c5c052e4d75",
+              "name": "Get Category by ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/categories/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6971e657884d772cac55fac1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "388"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"184-vpcKcoFtBFkNe/3slh/8f2uMMgs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 08:59:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T08:59:24.710Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Category retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6971e657884d772cac55fac1\",\n        \"title\": \"Indoor Plants\",\n        \"description\": \"Plants suitable for indoor environments\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769072215/nursery-app/categories/xfstnapvhtwqfologtt9.jpg\",\n        \"createdAt\": \"2026-01-22T08:56:55.920Z\",\n        \"updatedAt\": \"2026-01-22T08:56:55.920Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Create Category (Admin)",
@@ -761,7 +1410,7 @@
               "mode": "formdata",
               "formdata": [
                 {
-                  "key": "name",
+                  "key": "title",
                   "value": "Indoor Plants",
                   "description": "Required",
                   "type": "text"
@@ -776,7 +1425,9 @@
                   "key": "image",
                   "description": "Optional, image file",
                   "type": "file",
-                  "src": []
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134064739131616693.jpg"
+                  ]
                 },
                 {
                   "key": "isActive",
@@ -796,7 +1447,96 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "2678a705-3a26-4703-9d20-6505a8c0579c",
+              "name": "Create Category (Admin)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "Indoor Plants",
+                      "description": "Required",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Plants suitable for indoor environments",
+                      "description": "Optional",
+                      "type": "text"
+                    },
+                    {
+                      "key": "image",
+                      "description": "Optional, image file",
+                      "type": "file",
+                      "src": [
+                        "/C:/Users/mukar/OneDrive/Pictures/134064739131616693.jpg"
+                      ]
+                    },
+                    {
+                      "key": "isActive",
+                      "value": "true",
+                      "description": "Optional, default true",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "386"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"182-PxIkiN0Qynb9Sfy3zQA8lTSuog0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 08:56:56 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T08:57:04.465Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Category created successfully\",\n    \"data\": {\n        \"title\": \"Indoor Plants\",\n        \"description\": \"Plants suitable for indoor environments\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769072215/nursery-app/categories/xfstnapvhtwqfologtt9.jpg\",\n        \"_id\": \"6971e657884d772cac55fac1\",\n        \"createdAt\": \"2026-01-22T08:56:55.920Z\",\n        \"updatedAt\": \"2026-01-22T08:56:55.920Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Category (Admin)",
@@ -824,7 +1564,8 @@
                   "key": "name",
                   "value": "Updated Category Name",
                   "description": "Optional",
-                  "type": "text"
+                  "type": "text",
+                  "disabled": true
                 },
                 {
                   "key": "description",
@@ -836,13 +1577,15 @@
                   "key": "image",
                   "description": "Optional, image file",
                   "type": "file",
-                  "src": []
+                  "src": [],
+                  "disabled": true
                 },
                 {
                   "key": "isActive",
                   "value": "false",
                   "description": "Optional",
-                  "type": "text"
+                  "type": "text",
+                  "disabled": true
                 }
               ]
             },
@@ -858,12 +1601,109 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "category_id"
+                  "value": "6971e657884d772cac55fac1"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "fac21b11-634b-4f18-b812-d7a895d97ff2",
+              "name": "Update Category (Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Updated Category Name",
+                      "description": "Optional",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "description",
+                      "value": "Updated description",
+                      "description": "Optional",
+                      "type": "text"
+                    },
+                    {
+                      "key": "image",
+                      "description": "Optional, image file",
+                      "type": "file",
+                      "src": [],
+                      "disabled": true
+                    },
+                    {
+                      "key": "isActive",
+                      "value": "false",
+                      "description": "Optional",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/categories/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6971e657884d772cac55fac1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "366"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"16e-S4Erw+I+nwE/kE8TE3K7Xdehb1c\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 09:03:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T09:03:24.051Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Category updated successfully\",\n    \"data\": {\n        \"_id\": \"6971e657884d772cac55fac1\",\n        \"title\": \"Indoor Plants\",\n        \"description\": \"Updated description\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769072215/nursery-app/categories/xfstnapvhtwqfologtt9.jpg\",\n        \"createdAt\": \"2026-01-22T08:56:55.920Z\",\n        \"updatedAt\": \"2026-01-22T09:03:17.030Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Delete Category (Admin)",
@@ -896,12 +1736,77 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "category_id"
+                  "value": "6971e657884d772cac55fac1"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "b629b49d-97f0-4e99-adbf-f59728323063",
+              "name": "Delete Category (Admin)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/categories/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6971e657884d772cac55fac1"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "769"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"301-7xS91gY18AsOcMqdaIIzFCZ5Y8E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 09:13:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T09:13:13.407Z",
+              "body": "{\n    \"success\": false,\n    \"message\": \"Cannot delete category. 1 product(s) are associated with this category. Please reassign or delete the products first.\",\n    \"errorSources\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Cannot delete category. 1 product(s) are associated with this category. Please reassign or delete the products first.\"\n        }\n    ],\n    \"err\": {\n        \"statusCode\": 400\n    },\n    \"stack\": \"Error: Cannot delete category. 1 product(s) are associated with this category. Please reassign or delete the products first.\\n    at Object.deleteCategoryService (D:\\\\Projects\\\\nursary-shop-server\\\\src\\\\modules\\\\category\\\\category.service.ts:108:19)\\n    at processTicksAndRejections (node:internal/process/task_queues:103:5)\\n    at async D:\\\\Projects\\\\nursary-shop-server\\\\src\\\\modules\\\\category\\\\category.controller.ts:94:24\"\n}"
+            }
+          ]
         }
       ],
       "id": "50bfae9b-f675-45ac-93a1-dc5f3805de17",
@@ -920,7 +1825,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/products?page=1&limit=10&searchTerm=rose&categoryId=cat_id&minPrice=10&maxPrice=100&isAvailable=true&isFeatured=true&sort=-price",
+              "raw": "{{baseUrl}}/products?page=1&limit=10",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -930,46 +1835,173 @@
               "query": [
                 {
                   "key": "page",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "942f3350-2e9d-4613-bc2d-1ebb09660504"
                 },
                 {
                   "key": "limit",
-                  "value": "10"
+                  "value": "10",
+                  "uuid": "9b2411f7-df42-4828-b431-1f1d3f72ca05"
                 },
                 {
                   "key": "searchTerm",
-                  "value": "rose"
+                  "value": "rose",
+                  "uuid": "7050719f-0280-4669-807e-e0287a93a886",
+                  "disabled": true
                 },
                 {
                   "key": "categoryId",
-                  "value": "cat_id"
+                  "value": "cat_id",
+                  "uuid": "e254ef2c-5e8b-4ae3-9b5c-e9902860ba37",
+                  "disabled": true
                 },
                 {
                   "key": "minPrice",
-                  "value": "10"
+                  "value": "10",
+                  "uuid": "b13a0cf7-bdf7-4702-be0e-231b9434fb9b",
+                  "disabled": true
                 },
                 {
                   "key": "maxPrice",
-                  "value": "100"
+                  "value": "100",
+                  "uuid": "9735b852-e6b1-4c74-a6b6-996e74c62006",
+                  "disabled": true
                 },
                 {
                   "key": "isAvailable",
-                  "value": "true"
+                  "value": "true",
+                  "uuid": "c7a42527-a94d-42b0-967b-e344ef3c5cbb",
+                  "disabled": true
                 },
                 {
                   "key": "isFeatured",
-                  "value": "true"
+                  "value": "true",
+                  "uuid": "2cb6852e-f608-409a-86f5-ace0d2e28102",
+                  "disabled": true
                 },
                 {
                   "key": "sort",
                   "value": "-price",
-                  "description": "Sort by price desc. Use 'price' for asc"
+                  "description": "Sort by price desc. Use 'price' for asc",
+                  "uuid": "6b9659f9-6dae-4423-a5a4-08ed9ed1c4d9",
+                  "disabled": true
                 }
               ]
             },
             "description": "All query params optional. Supports filtering, sorting, pagination."
           },
-          "response": []
+          "response": [
+            {
+              "id": "baa4e830-90f6-4f23-80b3-6d03c4c84876",
+              "name": "Get All Products",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "searchTerm",
+                      "value": "rose",
+                      "uuid": "7050719f-0280-4669-807e-e0287a93a886",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categoryId",
+                      "value": "cat_id",
+                      "uuid": "e254ef2c-5e8b-4ae3-9b5c-e9902860ba37",
+                      "disabled": true
+                    },
+                    {
+                      "key": "minPrice",
+                      "value": "10",
+                      "uuid": "b13a0cf7-bdf7-4702-be0e-231b9434fb9b",
+                      "disabled": true
+                    },
+                    {
+                      "key": "maxPrice",
+                      "value": "100",
+                      "uuid": "9735b852-e6b1-4c74-a6b6-996e74c62006",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isAvailable",
+                      "value": "true",
+                      "uuid": "c7a42527-a94d-42b0-967b-e344ef3c5cbb",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isFeatured",
+                      "value": "true",
+                      "uuid": "2cb6852e-f608-409a-86f5-ace0d2e28102",
+                      "disabled": true
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-price",
+                      "description": "Sort by price desc. Use 'price' for asc",
+                      "uuid": "6b9659f9-6dae-4423-a5a4-08ed9ed1c4d9",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2900"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"b54-K+hH6/RzZ+dE48pjw7kbnuU64S4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 10:01:13 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T10:01:18.075Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Products retrieved successfully\",\n    \"meta\": {\n        \"totalDocuments\": 5,\n        \"totalPages\": 1,\n        \"currentPage\": \"1\",\n        \"limitPerPage\": \"10\"\n    },\n    \"data\": [\n        {\n            \"_id\": \"6971e9f7065be8b54b7ff90e\",\n            \"name\": \"Red Rose Plant\",\n            \"sku\": \"ROSE-RED-001\",\n            \"description\": \"Beautiful red rose plant for your garden\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n            \"images\": [\n                \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n                \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n            ],\n            \"price\": 299.99,\n            \"discount\": 10,\n            \"quantity\": 50,\n            \"isAvailable\": true,\n            \"isFeatured\": true,\n            \"brand\": \"Garden Pro\",\n            \"categoryId\": \"6971e657884d772cac55fac1\",\n            \"tags\": [\n                \"rose,flower,outdoor\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n            \"updatedAt\": \"2026-01-22T09:12:23.149Z\"\n        },\n        {\n            \"_id\": \"6970f3d9a4e644714427b3c9\",\n            \"name\": \"text 2\",\n            \"sku\": \"TEX-6087\",\n            \"description\": \"dfghjkl;\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769010137/nursery-app/products/dcb8fyiccdku4ux0znfg.jpg\",\n            \"images\": [],\n            \"price\": 700,\n            \"discount\": 0,\n            \"quantity\": 7,\n            \"isAvailable\": true,\n            \"isFeatured\": false,\n            \"brand\": \"\",\n            \"categoryId\": \"69705784bf9b0106be2286eb\",\n            \"tags\": [\n                \"dfg\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-21T15:42:17.516Z\",\n            \"updatedAt\": \"2026-01-21T15:45:32.655Z\"\n        },\n        {\n            \"_id\": \"697089436e04221e6a2cd70c\",\n            \"name\": \"new titles\",\n            \"sku\": \"NEW-8803\",\n            \"description\": \"dfghj\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768982864/nursery-app/products/w8hjzivi0rgamf7t65nc.png\",\n            \"images\": [],\n            \"price\": 200,\n            \"discount\": 0,\n            \"quantity\": 5,\n            \"isAvailable\": true,\n            \"isFeatured\": false,\n            \"brand\": \"\",\n            \"categoryId\": \"696f87843e6403a201a81f48\",\n            \"tags\": [\n                \"iklo;\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-21T08:07:31.344Z\",\n            \"updatedAt\": \"2026-01-21T08:07:44.972Z\"\n        },\n        {\n            \"_id\": \"6970560ebf9b0106be2286e6\",\n            \"name\": \"Banana\",\n            \"sku\": \"APL-002\",\n            \"description\": \"Fresh red apple\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768969742/nursery-app/products/g9amt5ssce7rdcr9kwmd.jpg\",\n            \"images\": [],\n            \"price\": 1.99,\n            \"discount\": 10,\n            \"quantity\": 100,\n            \"isAvailable\": true,\n            \"isFeatured\": false,\n            \"brand\": \"NatureFresh\",\n            \"categoryId\": \"696f047f45b3d13ba9a13bc7\",\n            \"tags\": [\n                \"fruit,apple,fresh\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-21T04:29:02.759Z\",\n            \"updatedAt\": \"2026-01-21T04:29:02.759Z\"\n        },\n        {\n            \"_id\": \"696f09a3780f29a590c11184\",\n            \"name\": \"Apple\",\n            \"sku\": \"APL-001\",\n            \"description\": \"Fresh red apple\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768884654/nitto-vojon/products/pxeehrvh4zeqtz2cdkfw.jpg\",\n            \"images\": [],\n            \"price\": 1.99,\n            \"discount\": 10,\n            \"quantity\": 100,\n            \"isAvailable\": true,\n            \"isFeatured\": false,\n            \"brand\": \"NatureFresh\",\n            \"categoryId\": \"696f047f45b3d13ba9a13bc7\",\n            \"tags\": [\n                \"fruit,apple,fresh\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-20T04:50:43.841Z\",\n            \"updatedAt\": \"2026-01-20T04:50:43.841Z\"\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "Get Product by ID",
@@ -992,12 +2024,77 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "product_id"
+                  "value": "6971e9f7065be8b54b7ff90e"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "6d9c2fcd-6d8c-488c-b154-78bb0440623c",
+              "name": "Get Product by ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6971e9f7065be8b54b7ff90e"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "844"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"34c-VhUqsJJDdFpdBmFvs+t+NJLkbKw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 10:13:43 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T10:13:46.267Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6971e9f7065be8b54b7ff90e\",\n        \"name\": \"Red Rose Plant\",\n        \"sku\": \"ROSE-RED-001\",\n        \"description\": \"Beautiful red rose plant for your garden\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n        \"images\": [\n            \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n            \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n        ],\n        \"price\": 299.99,\n        \"discount\": 10,\n        \"quantity\": 50,\n        \"isAvailable\": true,\n        \"isFeatured\": true,\n        \"brand\": \"Garden Pro\",\n        \"categoryId\": \"6971e657884d772cac55fac1\",\n        \"tags\": [\n            \"rose,flower,outdoor\"\n        ],\n        \"ratingAverage\": 0,\n        \"ratingCount\": 0,\n        \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n        \"updatedAt\": \"2026-01-22T09:12:23.149Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Create Product (Admin)",
@@ -1077,7 +2174,7 @@
                 },
                 {
                   "key": "categoryId",
-                  "value": "category_id_here",
+                  "value": "6971e657884d772cac55fac1",
                   "description": "Optional",
                   "type": "text"
                 },
@@ -1091,7 +2188,11 @@
                   "key": "images",
                   "description": "Optional, multiple image files",
                   "type": "file",
-                  "src": []
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg",
+                    "/C:/Users/mukar/OneDrive/Pictures/134079918977529516.jpg",
+                    "/C:/Users/mukar/OneDrive/Pictures/134091964169590556.jpg"
+                  ]
                 }
               ]
             },
@@ -1105,7 +2206,146 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "9403d8fe-3939-477c-87c0-27e504804e4b",
+              "name": "Create Product (Admin)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Red Rose Plant",
+                      "description": "Required",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Beautiful red rose plant for your garden",
+                      "description": "Optional",
+                      "type": "text"
+                    },
+                    {
+                      "key": "price",
+                      "value": "299.99",
+                      "description": "Required",
+                      "type": "text"
+                    },
+                    {
+                      "key": "discount",
+                      "value": "10",
+                      "description": "Optional, 0-100",
+                      "type": "text"
+                    },
+                    {
+                      "key": "quantity",
+                      "value": "50",
+                      "description": "Optional",
+                      "type": "text"
+                    },
+                    {
+                      "key": "isAvailable",
+                      "value": "true",
+                      "description": "Optional, default true",
+                      "type": "text"
+                    },
+                    {
+                      "key": "isFeatured",
+                      "value": "true",
+                      "description": "Optional",
+                      "type": "text"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "ROSE-RED-001",
+                      "description": "Optional",
+                      "type": "text"
+                    },
+                    {
+                      "key": "brand",
+                      "value": "Garden Pro",
+                      "description": "Optional",
+                      "type": "text"
+                    },
+                    {
+                      "key": "categoryId",
+                      "value": "6971e657884d772cac55fac1",
+                      "description": "Optional",
+                      "type": "text"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "rose,flower,outdoor",
+                      "description": "Optional, comma-separated values",
+                      "type": "text"
+                    },
+                    {
+                      "key": "images",
+                      "description": "Optional, multiple image files",
+                      "type": "file",
+                      "src": [
+                        "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg",
+                        "/C:/Users/mukar/OneDrive/Pictures/134079918977529516.jpg",
+                        "/C:/Users/mukar/OneDrive/Pictures/134091964169590556.jpg"
+                      ]
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/products",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "products"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "842"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"34a-6vAQIX6zO3F1dtsXmE+gF549L5Q\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 09:12:23 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T09:12:46.746Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product created successfully\",\n    \"data\": {\n        \"name\": \"Red Rose Plant\",\n        \"sku\": \"ROSE-RED-001\",\n        \"description\": \"Beautiful red rose plant for your garden\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n        \"images\": [\n            \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n            \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n        ],\n        \"price\": 299.99,\n        \"discount\": 10,\n        \"quantity\": 50,\n        \"isAvailable\": true,\n        \"isFeatured\": true,\n        \"brand\": \"Garden Pro\",\n        \"categoryId\": \"6971e657884d772cac55fac1\",\n        \"tags\": [\n            \"rose,flower,outdoor\"\n        ],\n        \"ratingAverage\": 0,\n        \"ratingCount\": 0,\n        \"_id\": \"6971e9f7065be8b54b7ff90e\",\n        \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n        \"updatedAt\": \"2026-01-22T09:12:23.149Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Product (Admin)",
@@ -1147,7 +2387,8 @@
                   "key": "price",
                   "value": "249.99",
                   "description": "Optional",
-                  "type": "text"
+                  "type": "text",
+                  "disabled": true
                 },
                 {
                   "key": "discount",
@@ -1158,7 +2399,7 @@
                 },
                 {
                   "key": "quantity",
-                  "value": "30",
+                  "value": "200",
                   "description": "Optional",
                   "type": "text"
                 },
@@ -1166,7 +2407,8 @@
                   "key": "isAvailable",
                   "value": "false",
                   "description": "Optional",
-                  "type": "text"
+                  "type": "text",
+                  "disabled": true
                 },
                 {
                   "key": "isFeatured",
@@ -1224,12 +2466,165 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "product_id"
+                  "value": "6971e9f7065be8b54b7ff90e"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "efbeaa32-75ac-40f6-82b5-7cbd45a36d21",
+              "name": "Update Product (Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "",
+                      "description": "Optional",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "description",
+                      "value": "",
+                      "description": "Optional",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "price",
+                      "value": "249.99",
+                      "description": "Optional",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "discount",
+                      "value": "",
+                      "description": "Optional, 0-100",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "quantity",
+                      "value": "200",
+                      "description": "Optional",
+                      "type": "text"
+                    },
+                    {
+                      "key": "isAvailable",
+                      "value": "false",
+                      "description": "Optional",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isFeatured",
+                      "value": "",
+                      "description": "Optional",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "sku",
+                      "value": "",
+                      "description": "Optional",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "brand",
+                      "value": "",
+                      "description": "Optional",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categoryId",
+                      "value": "",
+                      "description": "Optional",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "tags",
+                      "value": "",
+                      "description": "Optional, comma-separated",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "images",
+                      "description": "Optional, multiple image files",
+                      "type": "file",
+                      "src": [],
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/products/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6971e9f7065be8b54b7ff90e"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "843"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"34b-cqlYpr40reonlM3XuJLqGtwwn58\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 10:14:33 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T10:14:39.245Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product updated successfully\",\n    \"data\": {\n        \"_id\": \"6971e9f7065be8b54b7ff90e\",\n        \"name\": \"Red Rose Plant\",\n        \"sku\": \"ROSE-RED-001\",\n        \"description\": \"Beautiful red rose plant for your garden\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n        \"images\": [\n            \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n            \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n        ],\n        \"price\": 299.99,\n        \"discount\": 10,\n        \"quantity\": 200,\n        \"isAvailable\": true,\n        \"isFeatured\": true,\n        \"brand\": \"Garden Pro\",\n        \"categoryId\": \"6971e657884d772cac55fac1\",\n        \"tags\": [\n            \"rose,flower,outdoor\"\n        ],\n        \"ratingAverage\": 0,\n        \"ratingCount\": 0,\n        \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n        \"updatedAt\": \"2026-01-22T10:14:33.158Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Delete Product (Admin)",
@@ -1305,7 +2700,65 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "6b1bf22d-2ac3-4dde-99a5-11bb9af9d90c",
+              "name": "Get My Cart",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/carts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "carts"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1132"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"46c-OnfllJt6XdpefjxKPy2DXJ8KtpM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 10:18:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T10:19:10.822Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Cart retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6971ea6b065be8b54b7ff917\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": {\n                    \"_id\": \"6971e9f7065be8b54b7ff90e\",\n                    \"name\": \"Red Rose Plant\",\n                    \"sku\": \"ROSE-RED-001\",\n                    \"description\": \"Beautiful red rose plant for your garden\",\n                    \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n                    \"images\": [\n                        \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n                        \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n                    ],\n                    \"price\": 299.99,\n                    \"discount\": 10,\n                    \"quantity\": 200,\n                    \"isAvailable\": true,\n                    \"isFeatured\": true,\n                    \"brand\": \"Garden Pro\",\n                    \"categoryId\": \"6971e657884d772cac55fac1\",\n                    \"tags\": [\n                        \"rose,flower,outdoor\"\n                    ],\n                    \"ratingAverage\": 0,\n                    \"ratingCount\": 0,\n                    \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n                    \"updatedAt\": \"2026-01-22T10:14:33.158Z\",\n                    \"__v\": 0\n                },\n                \"quantity\": 2,\n                \"price\": 299.99,\n                \"total\": 599.98,\n                \"_id\": \"6971ea6b065be8b54b7ff919\"\n            }\n        ],\n        \"subtotal\": 599.98,\n        \"total\": 599.98,\n        \"createdAt\": \"2026-01-22T09:14:19.635Z\",\n        \"updatedAt\": \"2026-01-22T09:14:19.733Z\",\n        \"__v\": 1\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Add to Cart",
@@ -1328,7 +2781,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"productId\": \"product_id_here\",\n  \"quantity\": 2\n}",
+              "raw": "{\n  \"productId\": \"6971e9f7065be8b54b7ff90e\",\n  \"quantity\": 2\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -1347,7 +2800,76 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "278a2b09-7c1e-4c49-8610-58646fe30fcb",
+              "name": "Add to Cart",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"6971e9f7065be8b54b7ff90e\",\n  \"quantity\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "Both fields required"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/carts/add",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "carts",
+                    "add"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1135"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"46f-Oz2NrWtwcmixtRExkc+H8nc9cWY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 09:14:19 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T09:21:14.859Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Item added to cart successfully\",\n    \"data\": {\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": {\n                    \"_id\": \"6971e9f7065be8b54b7ff90e\",\n                    \"name\": \"Red Rose Plant\",\n                    \"sku\": \"ROSE-RED-001\",\n                    \"description\": \"Beautiful red rose plant for your garden\",\n                    \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n                    \"images\": [\n                        \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n                        \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n                    ],\n                    \"price\": 299.99,\n                    \"discount\": 10,\n                    \"quantity\": 50,\n                    \"isAvailable\": true,\n                    \"isFeatured\": true,\n                    \"brand\": \"Garden Pro\",\n                    \"categoryId\": \"6971e657884d772cac55fac1\",\n                    \"tags\": [\n                        \"rose,flower,outdoor\"\n                    ],\n                    \"ratingAverage\": 0,\n                    \"ratingCount\": 0,\n                    \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n                    \"updatedAt\": \"2026-01-22T09:12:23.149Z\",\n                    \"__v\": 0\n                },\n                \"quantity\": 2,\n                \"price\": 299.99,\n                \"total\": 599.98,\n                \"_id\": \"6971ea6b065be8b54b7ff919\"\n            }\n        ],\n        \"subtotal\": 599.98,\n        \"total\": 599.98,\n        \"_id\": \"6971ea6b065be8b54b7ff917\",\n        \"createdAt\": \"2026-01-22T09:14:19.635Z\",\n        \"updatedAt\": \"2026-01-22T09:14:19.733Z\",\n        \"__v\": 1\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Cart Item Quantity",
@@ -1389,12 +2911,86 @@
               "variable": [
                 {
                   "key": "productId",
-                  "value": "product_id"
+                  "value": "6971e9f7065be8b54b7ff90e"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "4d11ce73-0d2d-44f5-95bf-db126c0dac09",
+              "name": "Update Cart Item Quantity",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/carts/:productId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "carts",
+                    ":productId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "productId",
+                      "value": "6971e9f7065be8b54b7ff90e"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1133"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"46d-yseQlpaxf06AdCRGqrhxPBdp7MA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 10:34:42 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T10:34:44.503Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Cart updated successfully\",\n    \"data\": {\n        \"_id\": \"6971ea6b065be8b54b7ff917\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": {\n                    \"_id\": \"6971e9f7065be8b54b7ff90e\",\n                    \"name\": \"Red Rose Plant\",\n                    \"sku\": \"ROSE-RED-001\",\n                    \"description\": \"Beautiful red rose plant for your garden\",\n                    \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n                    \"images\": [\n                        \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n                        \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n                    ],\n                    \"price\": 299.99,\n                    \"discount\": 10,\n                    \"quantity\": 200,\n                    \"isAvailable\": true,\n                    \"isFeatured\": true,\n                    \"brand\": \"Garden Pro\",\n                    \"categoryId\": \"6971e657884d772cac55fac1\",\n                    \"tags\": [\n                        \"rose,flower,outdoor\"\n                    ],\n                    \"ratingAverage\": 0,\n                    \"ratingCount\": 0,\n                    \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n                    \"updatedAt\": \"2026-01-22T10:14:33.158Z\",\n                    \"__v\": 0\n                },\n                \"quantity\": 5,\n                \"price\": 299.99,\n                \"total\": 1499.95,\n                \"_id\": \"6971ea6b065be8b54b7ff919\"\n            }\n        ],\n        \"subtotal\": 1499.95,\n        \"total\": 1499.95,\n        \"createdAt\": \"2026-01-22T09:14:19.635Z\",\n        \"updatedAt\": \"2026-01-22T10:34:42.076Z\",\n        \"__v\": 1\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Remove from Cart",
@@ -1493,7 +3089,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"shippingAddressId\": \"address_id_here\",\n  \"selectedProductIds\": [\"product_id_1\", \"product_id_2\"],\n  \"billingAddressId\": \"billing_address_id\",\n  \"paymentMethod\": \"cash\",\n  \"discountCode\": \"SAVE10\",\n  \"notes\": \"Please deliver between 9 AM - 5 PM\"\n}",
+              "raw": "{\n  \"shippingAddressId\": \"6971fdb500e98364ca3a36be\",\n  \"selectedProductIds\": [\"6971e9f7065be8b54b7ff90e\"],\n//   \"billingAddressId\": \"billing_address_id\",\n  \"paymentMethod\": \"cash\",\n//   \"discountCode\": \"SAVE10\",\n  \"notes\": \"Please deliver between 9 AM - 5 PM\"\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -1512,7 +3108,75 @@
             },
             "description": "Create order with selected products from cart. Unselected products remain in cart."
           },
-          "response": []
+          "response": [
+            {
+              "id": "d3c7371f-de35-4726-9aa7-d8311c68d0ac",
+              "name": "Create Order",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shippingAddressId\": \"6971fdb500e98364ca3a36be\",\n  \"selectedProductIds\": [\"6971e9f7065be8b54b7ff90e\"],\n//   \"billingAddressId\": \"billing_address_id\",\n  \"paymentMethod\": \"cash\",\n//   \"discountCode\": \"SAVE10\",\n  \"notes\": \"Please deliver between 9 AM - 5 PM\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "Required: shippingAddressId, selectedProductIds (array, min 1)\nOptional: billingAddressId, paymentMethod, discountCode, notes\nNote: Only selected products from cart will be ordered"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "797"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"31d-Jbkjhs8bl98S1nr+LjCQ9IAqw2Y\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 10:40:31 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T10:40:49.509Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Order created successfully\",\n    \"data\": {\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"price\": 299.99,\n                \"quantity\": 5,\n                \"total\": 1499.95,\n                \"_id\": \"6971fe9fe3630b4aa40013a0\"\n            }\n        ],\n        \"shippingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"billingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"orderStatus\": \"pending\",\n        \"paymentStatus\": \"pending\",\n        \"paymentMethod\": \"cash\",\n        \"subtotal\": 1499.95,\n        \"tax\": 74.9975,\n        \"shippingCost\": 100,\n        \"total\": 1674.9475,\n        \"discountAmount\": 0,\n        \"_id\": \"6971fe9fe3630b4aa400139f\",\n        \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n        \"updatedAt\": \"2026-01-22T10:40:31.353Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Get My Orders",
@@ -1534,27 +3198,102 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/orders/user?page=1&limit=10",
+              "raw": "{{baseUrl}}/orders/my?page=1&limit=10",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "orders",
-                "user"
+                "my"
               ],
               "query": [
                 {
                   "key": "page",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "b16ddd58-3035-4b73-96e5-dad6823a0e0d"
                 },
                 {
                   "key": "limit",
-                  "value": "10"
+                  "value": "10",
+                  "uuid": "09e8efdf-19aa-4024-ad36-c5d81ecc74be"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "d451076f-bcd7-4ac4-889b-0aae07937338",
+              "name": "Get My Orders",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/my-orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    "my-orders"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "uuid": "b16ddd58-3035-4b73-96e5-dad6823a0e0d",
+                      "disabled": true
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10",
+                      "uuid": "09e8efdf-19aa-4024-ad36-c5d81ecc74be",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "884"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"374-hPPxpXxsWP49RFZxXvokAxsUI44\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 10:52:31 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T10:52:50.949Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Orders retrieved successfully\",\n    \"data\": {\n        \"orders\": [\n            {\n                \"shippingAddress\": {\n                    \"street\": \"123 Main Street, Apt 4B\",\n                    \"city\": \"Dhaka\",\n                    \"postalCode\": \"1212\",\n                    \"country\": \"Bangladesh\"\n                },\n                \"billingAddress\": {\n                    \"street\": \"123 Main Street, Apt 4B\",\n                    \"city\": \"Dhaka\",\n                    \"postalCode\": \"1212\",\n                    \"country\": \"Bangladesh\"\n                },\n                \"_id\": \"6971fe9fe3630b4aa400139f\",\n                \"orderId\": \"ORD-1769078431339-4a02aulm\",\n                \"userId\": \"6971da34ef6d881934c75780\",\n                \"items\": [\n                    {\n                        \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                        \"name\": \"Red Rose Plant\",\n                        \"price\": 299.99,\n                        \"quantity\": 5,\n                        \"total\": 1499.95,\n                        \"_id\": \"6971fe9fe3630b4aa40013a0\"\n                    }\n                ],\n                \"orderStatus\": \"pending\",\n                \"paymentStatus\": \"pending\",\n                \"paymentMethod\": \"cash\",\n                \"subtotal\": 1499.95,\n                \"tax\": 74.9975,\n                \"shippingCost\": 100,\n                \"total\": 1674.9475,\n                \"discountAmount\": 0,\n                \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n                \"updatedAt\": \"2026-01-22T10:40:31.353Z\"\n            }\n        ],\n        \"meta\": {\n            \"totalDocuments\": 1,\n            \"totalPages\": 1,\n            \"currentPage\": 1,\n            \"limitPerPage\": 1000\n        }\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Get Order by ID",
@@ -1587,12 +3326,77 @@
               "variable": [
                 {
                   "key": "orderId",
-                  "value": "order_id"
+                  "value": "ORD-1769078431339-4a02aulm"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "ded7103b-dc14-4ff4-b3c1-4167b3ef90ac",
+              "name": "Get Order by ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/:orderId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "orderId",
+                      "value": "ORD-1769078431339-4a02aulm"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "799"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"31f-OPlcnD3KDyAQtwP+Zap1hP3hcaE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 10:55:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T10:55:41.926Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Order retrieved successfully\",\n    \"data\": {\n        \"shippingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"billingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"_id\": \"6971fe9fe3630b4aa400139f\",\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"price\": 299.99,\n                \"quantity\": 5,\n                \"total\": 1499.95,\n                \"_id\": \"6971fe9fe3630b4aa40013a0\"\n            }\n        ],\n        \"orderStatus\": \"pending\",\n        \"paymentStatus\": \"pending\",\n        \"paymentMethod\": \"cash\",\n        \"subtotal\": 1499.95,\n        \"tax\": 74.9975,\n        \"shippingCost\": 100,\n        \"total\": 1674.9475,\n        \"discountAmount\": 0,\n        \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n        \"updatedAt\": \"2026-01-22T10:40:31.353Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Get All Orders (Admin)",
@@ -1614,31 +3418,114 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/orders?page=1&limit=10&orderStatus=pending",
+              "raw": "{{baseUrl}}/orders/all?page=1&limit=10",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "orders"
+                "orders",
+                "all"
               ],
               "query": [
                 {
                   "key": "page",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "b5565f34-635f-4d7c-9ba5-e2d757acdd26"
                 },
                 {
                   "key": "limit",
-                  "value": "10"
+                  "value": "10",
+                  "uuid": "5bd80a0c-dfcd-45e8-b0c0-aced24895538"
                 },
                 {
                   "key": "orderStatus",
                   "value": "pending",
-                  "description": "Filter by status: pending, processing, shipped, delivered, cancelled"
+                  "description": "Filter by status: pending, processing, shipped, delivered, cancelled",
+                  "uuid": "0c5990fc-53e1-46ba-8f2b-e2a5976c49d5",
+                  "disabled": true
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "8b0cb8ea-b94b-4909-b288-9d674ec42577",
+              "name": "Get All Orders (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/all?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    "all"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "uuid": "b5565f34-635f-4d7c-9ba5-e2d757acdd26"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10",
+                      "uuid": "5bd80a0c-dfcd-45e8-b0c0-aced24895538"
+                    },
+                    {
+                      "key": "orderStatus",
+                      "value": "pending",
+                      "description": "Filter by status: pending, processing, shipped, delivered, cancelled",
+                      "uuid": "0c5990fc-53e1-46ba-8f2b-e2a5976c49d5",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2257"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"8d1-GJd7XJemZ4dgY4iFe9Q7HCbb8wU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 10:48:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T10:48:45.187Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Orders retrieved successfully\",\n    \"data\": {\n        \"orders\": [\n            {\n                \"shippingAddress\": {\n                    \"street\": \"123 Main Street, Apt 4B\",\n                    \"city\": \"Dhaka\",\n                    \"postalCode\": \"1212\",\n                    \"country\": \"Bangladesh\"\n                },\n                \"billingAddress\": {\n                    \"street\": \"123 Main Street, Apt 4B\",\n                    \"city\": \"Dhaka\",\n                    \"postalCode\": \"1212\",\n                    \"country\": \"Bangladesh\"\n                },\n                \"_id\": \"6971fe9fe3630b4aa400139f\",\n                \"orderId\": \"ORD-1769078431339-4a02aulm\",\n                \"userId\": \"6971da34ef6d881934c75780\",\n                \"items\": [\n                    {\n                        \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                        \"name\": \"Red Rose Plant\",\n                        \"price\": 299.99,\n                        \"quantity\": 5,\n                        \"total\": 1499.95,\n                        \"_id\": \"6971fe9fe3630b4aa40013a0\"\n                    }\n                ],\n                \"orderStatus\": \"pending\",\n                \"paymentStatus\": \"pending\",\n                \"paymentMethod\": \"cash\",\n                \"subtotal\": 1499.95,\n                \"tax\": 74.9975,\n                \"shippingCost\": 100,\n                \"total\": 1674.9475,\n                \"discountAmount\": 0,\n                \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n                \"updatedAt\": \"2026-01-22T10:40:31.353Z\"\n            },\n            {\n                \"shippingAddress\": {\n                    \"street\": \"123 Main Street\",\n                    \"city\": \"New York\",\n                    \"postalCode\": \"10001\",\n                    \"country\": \"USA\"\n                },\n                \"billingAddress\": {\n                    \"street\": \"123 Main Street\",\n                    \"city\": \"New York\",\n                    \"postalCode\": \"10001\",\n                    \"country\": \"USA\"\n                },\n                \"_id\": \"6970cfcda4facc491f6d3622\",\n                \"orderId\": \"ORD-1769000909468-38a6tsko\",\n                \"userId\": \"696f963ddde1caf722889d75\",\n                \"items\": [\n                    {\n                        \"productId\": \"696f09a3780f29a590c11184\",\n                        \"name\": \"Apple\",\n                        \"price\": 1.99,\n                        \"quantity\": 4,\n                        \"total\": 7.96,\n                        \"_id\": \"6970cfcda4facc491f6d3623\"\n                    }\n                ],\n                \"orderStatus\": \"pending\",\n                \"paymentStatus\": \"pending\",\n                \"paymentMethod\": \"cash\",\n                \"subtotal\": 7.96,\n                \"tax\": 0.398,\n                \"shippingCost\": 100,\n                \"total\": 108.358,\n                \"discountAmount\": 0,\n                \"createdAt\": \"2026-01-21T13:08:29.478Z\",\n                \"updatedAt\": \"2026-01-21T13:08:29.478Z\"\n            },\n            {\n                \"shippingAddress\": {\n                    \"street\": \"123 Main Street\",\n                    \"city\": \"New York\",\n                    \"postalCode\": \"10001\",\n                    \"country\": \"USA\"\n                },\n                \"billingAddress\": {\n                    \"street\": \"123 Main Street\",\n                    \"city\": \"New York\",\n                    \"postalCode\": \"10001\",\n                    \"country\": \"USA\"\n                },\n                \"_id\": \"697096d7158f71f05c39c648\",\n                \"orderId\": \"ORD-1768986327814-funzn3sf\",\n                \"userId\": \"696eff120e62cbc1dcc083dd\",\n                \"items\": [\n                    {\n                        \"productId\": \"696f09a3780f29a590c11184\",\n                        \"name\": \"Apple\",\n                        \"price\": 1.99,\n                        \"quantity\": 2,\n                        \"total\": 3.98,\n                        \"_id\": \"697096d7158f71f05c39c649\"\n                    }\n                ],\n                \"orderStatus\": \"processing\",\n                \"paymentStatus\": \"pending\",\n                \"paymentMethod\": \"cash\",\n                \"subtotal\": 3.98,\n                \"tax\": 0.199,\n                \"shippingCost\": 100,\n                \"total\": 104.179,\n                \"discountAmount\": 0,\n                \"createdAt\": \"2026-01-21T09:05:27.820Z\",\n                \"updatedAt\": \"2026-01-22T03:13:07.357Z\"\n            }\n        ],\n        \"meta\": {\n            \"totalDocuments\": 3,\n            \"totalPages\": 1,\n            \"currentPage\": \"1\",\n            \"limitPerPage\": \"10\"\n        }\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Order Status (Admin)",
@@ -1682,12 +3569,88 @@
               "variable": [
                 {
                   "key": "orderId",
-                  "value": "order_id"
+                  "value": "ORD-1769078431339-4a02aulm"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "bd722446-e7d3-49f7-8569-c1b265f61e13",
+              "name": "Update Order Status (Admin)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"shipped\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "status: enum ['pending', 'processing', 'shipped', 'delivered', 'cancelled']"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders/:orderId/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "status"
+                  ],
+                  "variable": [
+                    {
+                      "key": "orderId",
+                      "value": "ORD-1769078431339-4a02aulm"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "804"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"324-/OmMsNK9bvHQTuLo/HwJwYEIJpM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 11:06:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T11:07:01.958Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Order status updated successfully\",\n    \"data\": {\n        \"shippingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"billingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"_id\": \"6971fe9fe3630b4aa400139f\",\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"price\": 299.99,\n                \"quantity\": 5,\n                \"total\": 1499.95,\n                \"_id\": \"6971fe9fe3630b4aa40013a0\"\n            }\n        ],\n        \"orderStatus\": \"shipped\",\n        \"paymentStatus\": \"pending\",\n        \"paymentMethod\": \"cash\",\n        \"subtotal\": 1499.95,\n        \"tax\": 74.9975,\n        \"shippingCost\": 100,\n        \"total\": 1674.9475,\n        \"discountAmount\": 0,\n        \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n        \"updatedAt\": \"2026-01-22T11:06:41.258Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         }
       ],
       "id": "59860f5d-ab57-4097-9169-f9dc044bfc7f",
@@ -1725,7 +3688,65 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "6b3d8ed7-2e43-4e93-8314-140fc9fd76b7",
+              "name": "Get My Addresses",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/addresses",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "addresses"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "381"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"17d-d+4hP40+yz2q2spnj2aO3db4xRs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 10:36:50 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T10:36:52.098Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Addresses retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6971fdb500e98364ca3a36be\",\n            \"userId\": \"6971da34ef6d881934c75780\",\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\",\n            \"phoneNumber\": \"01712345678\",\n            \"label\": \"other\",\n            \"isDefault\": true,\n            \"createdAt\": \"2026-01-22T10:36:37.017Z\",\n            \"updatedAt\": \"2026-01-22T10:36:37.017Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "Create Address",
@@ -1766,7 +3787,75 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "3892dc62-ef4a-4079-9f7c-c21f327a3b3c",
+              "name": "Create Address",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"street\": \"123 Main Street, Apt 4B\",\n  \"city\": \"Dhaka\",\n  \"postalCode\": \"1212\",\n  \"country\": \"Bangladesh\",\n  \"phoneNumber\": \"01712345678\",\n  \"isDefault\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "Required: street, city, postalCode, country\nOptional: phoneNumber, isDefault (default false)"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/addresses",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "addresses"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "375"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"177-R/RSGCyi2WQVGhyhGBZs7thVzkM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 10:36:37 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T10:36:38.772Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Address created successfully\",\n    \"data\": {\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"street\": \"123 Main Street, Apt 4B\",\n        \"city\": \"Dhaka\",\n        \"postalCode\": \"1212\",\n        \"country\": \"Bangladesh\",\n        \"phoneNumber\": \"01712345678\",\n        \"label\": \"other\",\n        \"isDefault\": true,\n        \"_id\": \"6971fdb500e98364ca3a36be\",\n        \"createdAt\": \"2026-01-22T10:36:37.017Z\",\n        \"updatedAt\": \"2026-01-22T10:36:37.017Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Address",
@@ -1809,12 +3898,87 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "address_id"
+                  "value": "6971fdb500e98364ca3a36be"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "43f5b5ee-a8db-4342-a0db-c67363073fbf",
+              "name": "Update Address",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"street\": \"456 New Street\",\n  \"isDefault\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "All fields optional"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/addresses/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "addresses",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "6971fdb500e98364ca3a36be"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "367"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"16f-8Shg7fyUhd8QxnYE9BfuFUxEpDI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 11:09:03 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T11:09:08.381Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Address updated successfully\",\n    \"data\": {\n        \"_id\": \"6971fdb500e98364ca3a36be\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"street\": \"456 New Street\",\n        \"city\": \"Dhaka\",\n        \"postalCode\": \"1212\",\n        \"country\": \"Bangladesh\",\n        \"phoneNumber\": \"01712345678\",\n        \"label\": \"other\",\n        \"isDefault\": false,\n        \"createdAt\": \"2026-01-22T10:36:37.017Z\",\n        \"updatedAt\": \"2026-01-22T11:09:02.911Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Delete Address",
@@ -1900,7 +4064,75 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "id": "b504497e-deb7-4499-b26c-844afdfbe24c",
+              "name": "Get All Coupons (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/coupons?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "coupons"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1166"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"48e-dI+Ae43kLpW1bUETrVaWSgA/I5g\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 11:09:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T11:10:00.549Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Coupons retrieved successfully\",\n    \"meta\": {\n        \"totalDocuments\": 3,\n        \"totalPages\": 1,\n        \"currentPage\": \"1\",\n        \"limitPerPage\": \"10\"\n    },\n    \"data\": [\n        {\n            \"_id\": \"6971edc3e4fa9c59410f8ddd\",\n            \"code\": \"SAVE2010\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 20,\n            \"validFrom\": \"2026-01-01T00:00:00.000Z\",\n            \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n            \"currentUses\": 0,\n            \"isActive\": true,\n            \"createdAt\": \"2026-01-22T09:28:35.049Z\",\n            \"updatedAt\": \"2026-01-22T09:28:35.049Z\"\n        },\n        {\n            \"_id\": \"6970d419949656d26f552f2f\",\n            \"code\": \"SAVE2026\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 20,\n            \"validFrom\": \"2024-01-21T00:00:00.000Z\",\n            \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n            \"maxUses\": 100,\n            \"currentUses\": 0,\n            \"minOrderAmount\": 5000,\n            \"isActive\": true,\n            \"description\": \"20% off on all products\",\n            \"createdAt\": \"2026-01-21T13:26:49.626Z\",\n            \"updatedAt\": \"2026-01-21T13:26:49.626Z\"\n        },\n        {\n            \"_id\": \"6970918d631f39728423209a\",\n            \"code\": \"SAVE20\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 20,\n            \"validFrom\": \"2024-01-20T00:00:00.000Z\",\n            \"validUntil\": \"2024-12-31T23:59:59.000Z\",\n            \"maxUses\": 100,\n            \"currentUses\": 0,\n            \"minOrderAmount\": 5000,\n            \"isActive\": true,\n            \"description\": \"20% off on all products\",\n            \"createdAt\": \"2026-01-21T08:42:53.719Z\",\n            \"updatedAt\": \"2026-01-21T08:42:53.719Z\"\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "Create Coupon (Admin)",
@@ -3395,22 +5627,35 @@
       "description": "API health check and testing"
     }
   ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
   "event": [
     {
       "listen": "prerequest",
       "script": {
+        "id": "cf9d42f7-59f2-4946-8a2d-111ea11b09c3",
         "type": "text/javascript",
+        "requests": {},
         "exec": [
           "// Pre-request script runs before each request",
           "console.log('Request to: ' + pm.request.url.toString());"
-        ],
-        "id": "ad527a2b-5481-425c-a693-e33c771f7bb9"
+        ]
       }
     },
     {
       "listen": "test",
       "script": {
+        "id": "19fb31b8-3514-4442-883d-36401e538941",
         "type": "text/javascript",
+        "requests": {},
         "exec": [
           "// Test script runs after each request",
           "pm.test('Response time is less than 5s', function () {",
@@ -3421,23 +5666,25 @@
           "    var jsonData = pm.response.json();",
           "    pm.expect(jsonData).to.have.property('success');",
           "});"
-        ],
-        "id": "6f69630d-9e23-4a3a-9622-97fdd579d062"
+        ]
       }
     }
   ],
   "variable": [
     {
-      "id": "dd126182-fbf9-4260-a2ba-d6e2e0374290",
+      "id": "39d0d1e9-1df2-4a2d-884a-4a7c083f2967",
       "key": "baseUrl",
-      "value": "http://localhost:5000/api/v1",
-      "type": "default"
+      "value": "http://localhost:5000/api/v1"
     },
     {
-      "id": "f25ff0ed-558e-4c03-9c48-b4c2d802a0c5",
+      "id": "affd77c5-a0ee-4aad-9e89-77d9ba09ca3c",
       "key": "token",
-      "value": "",
-      "type": "default"
+      "value": ""
+    },
+    {
+      "id": "981ab7d9-9487-4550-9ee3-5e1326fc5c46",
+      "key": "baseUrl",
+      "value": ""
     }
   ]
 }

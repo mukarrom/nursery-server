@@ -9,7 +9,7 @@ import { categoryService } from "./category.service";
 
 const createCategoryController = catchAsync(async (req, res) => {
     if (!req.file) {
-        throw new Error("imageFile is required");
+        throw new Error("image is required");
     }
 
     if (!(req.file.buffer instanceof Buffer)) {

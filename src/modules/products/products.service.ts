@@ -37,7 +37,10 @@ const getAllProductsService = async (query: Record<string, unknown>) => {
 
 const updateProductService = async (
     id: string,
-    productData: Partial<TProduct> & { file?: Express.Multer.File }
+    productData: Partial<TProduct> & {
+        file?: Express.Multer.File;
+        files?: { [fieldname: string]: Express.Multer.File[] };
+    }
 ) => {
     const session = await ProductModel.startSession();
     session.startTransaction();
@@ -50,27 +53,60 @@ const updateProductService = async (
         }
 
         let imageUrl = existingProduct.image;
+        let imagesUrls = existingProduct.images || [];
 
-        if (productData.file) {
-            if (existingProduct.image) {
-                try {
-                    await deleteImage(existingProduct.image);
-                } catch (error) {
-                    console.error("Failed to delete old product image:", error);
+        // Handle multiple file uploads
+        if (productData.files) {
+            const files = productData.files;
+
+            // Handle main image update
+            if (files.image && files.image[0]) {
+                if (existingProduct.image) {
+                    try {
+                        await deleteImage(existingProduct.image);
+                    } catch (error) {
+                        console.error("Failed to delete old product image:", error);
+                    }
                 }
+
+                const uploadResult = await uploadImage(
+                    files.image[0].buffer,
+                    FOLDER_NAMES.PRODUCT
+                );
+                imageUrl = uploadResult.url;
             }
 
-            const uploadResult = await uploadImage(
-                productData.file.buffer,
-                FOLDER_NAMES.PRODUCT
-            );
-            imageUrl = uploadResult.url;
-            delete productData.file;
+            // Handle additional images
+            if (files.images) {
+                // Delete old additional images if any
+                if (existingProduct.images && existingProduct.images.length > 0) {
+                    for (const oldImage of existingProduct.images) {
+                        try {
+                            await deleteImage(oldImage);
+                        } catch (error) {
+                            console.error("Failed to delete old additional image:", error);
+                        }
+                    }
+                }
+
+                // Upload new additional images
+                const newImagesUrls: string[] = [];
+                for (const file of files.images) {
+                    const uploadResult = await uploadImage(
+                        file.buffer,
+                        FOLDER_NAMES.PRODUCT
+                    );
+                    newImagesUrls.push(uploadResult.url);
+                }
+                imagesUrls = newImagesUrls;
+            }
+
+            delete productData.files;
         }
 
         const updatedProduct = await ProductModel.findByIdAndUpdate(
             id,
-            { ...productData, image: imageUrl },
+            { ...productData, image: imageUrl, images: imagesUrls },
             { new: true, session }
         );
 

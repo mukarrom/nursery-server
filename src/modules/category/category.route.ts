@@ -8,14 +8,14 @@ const router = express.Router();
 
 router.post(
     "/",
-    upload.single("imageFile"),
+    upload.single("image"),
     validateRequest(categoryValidation.createCategoryZodSchema),
     categoryController.createCategoryController
 );
 
 router.patch(
     "/:id",
-    upload.single("imageFile"),
+    upload.single("image"),
     validateRequest(categoryValidation.updateCategoryZodSchema),
     categoryController.updateCategoryController
 );
