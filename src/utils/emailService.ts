@@ -82,7 +82,7 @@ const generateEmailTemplate = ({
             </div>
             <div class="content">
                 <p>Hello ${username},</p>
-                <p>Thank you for registering with Nursary Shop App. Please use the following verification code to complete your registration:</p>
+                <p>Thank you for registering with Nursery Bazar BD. Please use the following verification code to complete your registration:</p>
                 <div class="otp-code">
                     ${otp}
                 </div>
@@ -97,7 +97,7 @@ const generateEmailTemplate = ({
                 <p>If you didn't request this verification, please ignore this email.</p>
             </div>
             <div class="footer">
-                <p>© ${new Date().getFullYear()} Nursary Shop App. All rights reserved.</p>
+                <p>© ${new Date().getFullYear()} Nursery Bazar BD. All rights reserved.</p>
                 <div class="social-links">
                     <a href="#" class="social-link">Facebook</a>
                     <a href="#" class="social-link">Twitter</a>
@@ -129,9 +129,9 @@ export const sendEmail = async ({
     });
 
     await transporter.sendMail({
-      from: `"Nursary Shop App" <${config.smtpUserName}>`,
+      from: `"Nursery Bazar BD" <${config.smtpUserName}>`,
       to: email,
-      subject: "Verify Your Email - Nursary Shop",
+      subject: "Verify Your Email - Nursery Bazar BD",
       text: `Your verification code is: ${token}`,
       html: htmlContent,
     });

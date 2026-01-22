@@ -34,6 +34,9 @@ const signUpZodSchema = z.object({
       .min(6, "Password must be at least 6 characters")
       .max(255)
       .optional(),
+    profilePicture: z
+      .string()
+      .optional(),
     role: z
       .enum(Object.values(USER_ROLE) as [string, ...string[]], {
         invalid_type_error: "Role must be a valid role",

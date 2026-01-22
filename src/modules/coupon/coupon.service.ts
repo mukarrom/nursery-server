@@ -1,3 +1,4 @@
+import QueryBuilder from "../../builder/QueryBuilder";
 import AppError from "../../errors/AppError";
 import { CouponModel } from "./coupon.model";
 
@@ -69,10 +70,16 @@ export const applyCouponService = async (code: string) => {
     return coupon;
 };
 
-export const getAllCouponsService = async (isActive?: boolean) => {
-    const query = isActive !== undefined ? { isActive } : {};
-    const coupons = await CouponModel.find(query).sort({ createdAt: -1 });
-    return coupons;
+export const getAllCouponsService = async (query: Record<string, unknown>) => {
+    const couponQuery = new QueryBuilder(CouponModel.find({}), query)
+        .search(["code", "description"])
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+    const coupons = await couponQuery.modelQuery;
+    const meta = await couponQuery.countTotal();
+    return { coupons, meta };
 };
 
 export const updateCouponService = async (couponId: string, updateData: any) => {

@@ -11,6 +11,7 @@ export interface IUserModel extends Model<TUser> {
   ): boolean;
 }
 
+
 const UserSchema = new Schema<TUser, IUserModel>(
   {
     name: {
@@ -75,6 +76,10 @@ const UserSchema = new Schema<TUser, IUserModel>(
     refreshToken: {
       type: String,
     },
+    // isLoggedIn: {
+    //   type: Boolean,
+    //   default: false,
+    // },
   },
   { timestamps: true }
 );

@@ -143,6 +143,46 @@ const loginService = async (payload: TLogin) => {
   };
 };
 
+/**
+ * resend OTP for unveryfied email
+ * @param email 
+ * @returns 
+ */
+const resendOtpForUnverifiedEmailService = async (email: string) => {
+  const user = await UserModel.findOne({ email });
+
+  if (!user) {
+    throw new AppError(status.NOT_FOUND, "This user is not found");
+  }
+
+  if (user.isEmailVerified) {
+    throw new AppError(status.FORBIDDEN, "Your email is already verified");
+  }
+
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  const otpExpires = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
+
+  // send OTP to user
+  const verificationLink = `${config.clientUrl}/auth/verify-email?token=${otp}&email=${email}`;
+  await sendEmail({
+    email,
+    token: otp,
+    username: user.name,
+    verificationLink,
+  });
+
+  const updatedUser = await UserModel.findByIdAndUpdate(
+    (user as any)._id,
+    {
+      emailVerificationToken: otp,
+      emailVerificationTokenExpires: otpExpires,
+    },
+    { new: true }
+  );
+
+  return updatedUser;
+};
+
 // ------------- logout service -------------------
 const signOutService = async (userId: string, token: string) => {
   const decoded = verifyAccessToken(token) as JwtPayload;
@@ -373,6 +413,7 @@ const resetPasswordService = async (
 export const authServices = {
   signUpService,
   loginService,
+  resendOtpForUnverifiedEmailService,
   signOutService,
   refreshTokenService,
   verifyEmailService,

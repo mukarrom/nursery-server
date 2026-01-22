@@ -63,6 +63,7 @@ const OrderSchema = new Schema<TOrder>(
             default: "pending",
         },
         paymentMethod: String,
+        transactionId: String,
         subtotal: {
             type: Number,
             required: true,

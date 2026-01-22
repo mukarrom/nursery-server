@@ -51,13 +51,14 @@ const getProductByIdController = catchAsync(
 
 const getAllProductsController = catchAsync(
     async (req: Request, res: Response) => {
-        const result = await productService.getAllProductsService();
+        const result = await productService.getAllProductsService(req.query);
 
         sendResponse(res, {
             statusCode: httpStatus.OK,
             success: true,
             message: "Products retrieved successfully",
-            data: result,
+            data: result.products,
+            meta: result.meta,
         });
     }
 );

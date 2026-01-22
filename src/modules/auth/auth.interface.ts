@@ -10,3 +10,14 @@ export type TLogin = {
   email: string;
   password: string;
 };
+
+export type TAuth = {
+  isLoggedIn: boolean;
+  loggedInAt: Date;
+  loggedOutAt: Date;
+  passwordChangedAt?: Date;
+  emailVerificationToken?: string;
+  emailVerificationTokenExpires?: Date;
+  passwordResetToken?: string;
+  passwordResetTokenExpires?: Date;
+};

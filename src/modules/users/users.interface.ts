@@ -21,4 +21,5 @@ export type TUser = {
   passwordResetTokenExpires?: Date;
   accessToken?: string;
   refreshToken?: string;
+  // isLoggedIn?: boolean;
 };

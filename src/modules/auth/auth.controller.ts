@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import status from "http-status";
 import AppError from "../../errors/AppError";
 import catchAsync from "../../utils/catchAsync";
+import { uploadImage } from "../../utils/imageUpload";
 import sendResponse from "../../utils/sendResponse";
 import { authServices } from "./auth.service";
 
@@ -12,6 +13,13 @@ import { authServices } from "./auth.service";
  */
 const signUpController = catchAsync(async (req, res) => {
   const body = req.body;
+
+  // Handle profile picture upload
+  if (req.file) {
+    const { url } = await uploadImage(req.file.buffer, "profile-pictures");
+    body.profilePicture = url;
+  }
+
   const result = await authServices.signUpService(body);
 
   sendResponse(res, {
@@ -39,6 +47,24 @@ const signInController = catchAsync(async (req, res) => {
     data: result,
   });
 });
+
+/**
+ * Controller to resend verification email.
+ * @param req - The request object containing user email.
+ * @param res - The response object to send the result.
+ */
+const resendOtpForUnverifiedEmailController = catchAsync(async (req, res) => {
+  const { email } = req.body;
+  const result = await authServices.resendOtpForUnverifiedEmailService(email);
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: "Verification email sent successfully",
+    data: result,
+  });
+});
+
+
 
 /**
  * Controller to log out the current logged-in user.

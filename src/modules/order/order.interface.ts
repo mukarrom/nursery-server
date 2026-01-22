@@ -23,6 +23,7 @@ export type TOrder = {
     orderStatus: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
     paymentStatus: "pending" | "completed" | "failed";
     paymentMethod?: string;
+    transactionId?: string;
     subtotal: number;
     tax: number;
     shippingCost: number;

@@ -1,0 +1,3443 @@
+{
+  "info": {
+    "_postman_id": "c053727c-19fd-48fa-95e1-6c1892e5b6bd",
+    "name": "Nursery Bazar BD API Collection",
+    "description": "Complete API collection for Nursery Bazar BD e-commerce platform with all endpoints, optional fields, and enums documented.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Sign Up",
+          "id": "6025417a-ee90-4721-9d5b-045e2847243c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Admin",
+                  "description": "Required, min 3 chars",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "admin@yopmail.com",
+                  "description": "Optional, valid email",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "12345678",
+                  "description": "Optional, min 6 chars",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "01501234567",
+                  "description": "Optional, 11 digits",
+                  "type": "text"
+                },
+                {
+                  "key": "profilePicture",
+                  "description": "Optional, image file",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
+                  ]
+                },
+                {
+                  "key": "role",
+                  "value": "admin",
+                  "description": "Optional, enum: ['user', 'admin']",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/sign-up",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "sign-up"
+              ]
+            },
+            "description": "Register a new user. Role defaults to 'user' if not specified."
+          },
+          "response": [
+            {
+              "id": "c081f248-61d7-43d4-bce1-466e44fbbc45",
+              "name": "Sign Up",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Admin",
+                      "description": "Required, min 3 chars",
+                      "type": "text"
+                    },
+                    {
+                      "key": "email",
+                      "value": "admin@yopmail.com",
+                      "description": "Optional, valid email",
+                      "type": "text"
+                    },
+                    {
+                      "key": "password",
+                      "value": "12345678",
+                      "description": "Optional, min 6 chars",
+                      "type": "text"
+                    },
+                    {
+                      "key": "phone",
+                      "value": "01501234567",
+                      "description": "Optional, 11 digits",
+                      "type": "text"
+                    },
+                    {
+                      "key": "profilePicture",
+                      "description": "Optional, image file",
+                      "type": "file",
+                      "src": [
+                        "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
+                      ]
+                    },
+                    {
+                      "key": "role",
+                      "value": "admin",
+                      "description": "Optional, enum: ['user', 'admin']",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/sign-up",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "sign-up"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "391"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"187-hcKRCtmFcPpV2PIRaXGNbbn6TB4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 05:01:33 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T05:03:16.729Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Signup completed successfully. An OTP has been sent to your email address and will expire in 5 minutes\",\n    \"data\": {\n        \"name\": \"Admin\",\n        \"phone\": \"01501234567\",\n        \"email\": \"admin@yopmail.com\",\n        \"role\": \"admin\",\n        \"isEmailVerified\": false,\n        \"status\": \"active\",\n        \"isDeleted\": false,\n        \"_id\": \"6971af2abcca1a5dcf215966\",\n        \"createdAt\": \"2026-01-22T05:01:30.111Z\",\n        \"updatedAt\": \"2026-01-22T05:01:30.111Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f4af4deb-f92d-4160-bca1-7b2b7bc143c6",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data && jsonData.data.accessToken) {",
+                  "        pm.environment.set('token', jsonData.data.accessToken);",
+                  "        console.log('Token saved to environment');",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "83c3ca09-ea24-45e0-9228-e3ef13d5f717",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "7b71d86c-ed09-46ed-bbe0-e5601d43e8b5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@yopmail.com\",\n  \"password\": \"12345678\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Both fields required"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Login with email and password. Returns access token."
+          },
+          "response": [
+            {
+              "id": "86c4c098-bc29-4e17-8fc7-267e1cb296e8",
+              "name": "email not verified",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin@yopmail.com\",\n  \"password\": \"12345678\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json",
+                      "description": "Both fields required"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "395"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"18b-va73w4864D4MoWR41CDLFZyTs1I\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 05:46:39 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T05:47:19.663Z",
+              "body": "{\n    \"success\": false,\n    \"message\": \"Your email is not verified\",\n    \"errorSources\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Your email is not verified\"\n        }\n    ],\n    \"err\": {\n        \"statusCode\": 403\n    },\n    \"stack\": \"Error: Your email is not verified\\n    at Object.loginService (D:\\\\Projects\\\\nursary-shop-server\\\\src\\\\modules\\\\auth\\\\auth.service.ts:121:11)\\n    at async D:\\\\Projects\\\\nursary-shop-server\\\\src\\\\modules\\\\auth\\\\auth.controller.ts:41:18\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Verify Email",
+          "id": "fa66a0af-bc5d-4ed2-a4c5-3ce603edfebf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"otp\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/verify-email",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "verify-email"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Resend OTP",
+          "id": "a0fc3a35-3fd2-4614-a044-4122553cc180",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/resend-otp",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "resend-otp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password",
+          "id": "65c94e13-5165-4139-a6b9-00c4c6c9c10f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/forgot-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "forgot-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "id": "57cdaadd-6027-4507-b4d1-1db75414da69",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"reset-token-here\",\n  \"newPassword\": \"newPassword123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/reset-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "reset-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password",
+          "id": "12da70d5-b67a-4592-9e9c-ccb6297c7d52",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newPassword456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/change-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "change-password"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "a6769885-9118-41f0-a0cd-c9b3eb26ff3b",
+      "description": "User authentication and registration endpoints"
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get Profile",
+          "id": "c803d06d-4980-4f62-9dc7-8f7267b4c265",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Profile",
+          "id": "376dd2c0-18ea-4560-8789-5f4c344dbc09",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "John Updated",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "01712345678",
+                  "description": "Optional, 11 digits",
+                  "type": "text"
+                },
+                {
+                  "key": "profilePicture",
+                  "description": "Optional, image file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/update",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Users (Admin)",
+          "id": "fcd0f53c-b14f-4b2c-a1a8-a7d227b1687e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users?page=1&limit=10&searchTerm=john",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Items per page"
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "john",
+                  "description": "Search by name or email"
+                }
+              ]
+            },
+            "description": "Admin only. Get all users with pagination and search."
+          },
+          "response": []
+        },
+        {
+          "name": "Update User Role (Admin)",
+          "id": "c932b662-3256-4108-846a-7234b84ee255",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"admin\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "role: enum ['user', 'admin']"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/:userId/role",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                ":userId",
+                "role"
+              ],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "user_id_here"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "4e7dba05-c860-49d9-af97-18261e3452b9",
+      "description": "User profile management"
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "id": "372fc813-0c2e-49c6-928f-cb223419ca9d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories?page=1&limit=10&searchTerm=plant",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "plant"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Category by ID",
+          "id": "96483251-412f-4ba1-a8ea-2f78b4af4180",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "category_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Category (Admin)",
+          "id": "327d1310-6a71-4e80-b44a-1389238ed008",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Indoor Plants",
+                  "description": "Required",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Plants suitable for indoor environments",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "description": "Optional, image file",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "isActive",
+                  "value": "true",
+                  "description": "Optional, default true",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Category (Admin)",
+          "id": "bf4264c2-a853-4af4-8458-1dd9db95460b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Updated Category Name",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Updated description",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "description": "Optional, image file",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "isActive",
+                  "value": "false",
+                  "description": "Optional",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/categories/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "category_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Category (Admin)",
+          "id": "4efcb50b-4e04-4a25-baf2-c7552b0986b2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "category_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "50bfae9b-f675-45ac-93a1-dc5f3805de17",
+      "description": "Product category management"
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "id": "95d792da-9d5c-4911-8f87-a0059b75db7b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products?page=1&limit=10&searchTerm=rose&categoryId=cat_id&minPrice=10&maxPrice=100&isAvailable=true&isFeatured=true&sort=-price",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "rose"
+                },
+                {
+                  "key": "categoryId",
+                  "value": "cat_id"
+                },
+                {
+                  "key": "minPrice",
+                  "value": "10"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "100"
+                },
+                {
+                  "key": "isAvailable",
+                  "value": "true"
+                },
+                {
+                  "key": "isFeatured",
+                  "value": "true"
+                },
+                {
+                  "key": "sort",
+                  "value": "-price",
+                  "description": "Sort by price desc. Use 'price' for asc"
+                }
+              ]
+            },
+            "description": "All query params optional. Supports filtering, sorting, pagination."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product by ID",
+          "id": "a3e558df-934c-498e-9c0d-e4af929085c4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "product_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Product (Admin)",
+          "id": "ddca568f-36e8-4627-a545-253f90468cfa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Red Rose Plant",
+                  "description": "Required",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Beautiful red rose plant for your garden",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "299.99",
+                  "description": "Required",
+                  "type": "text"
+                },
+                {
+                  "key": "discount",
+                  "value": "10",
+                  "description": "Optional, 0-100",
+                  "type": "text"
+                },
+                {
+                  "key": "quantity",
+                  "value": "50",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "isAvailable",
+                  "value": "true",
+                  "description": "Optional, default true",
+                  "type": "text"
+                },
+                {
+                  "key": "isFeatured",
+                  "value": "true",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "sku",
+                  "value": "ROSE-RED-001",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "brand",
+                  "value": "Garden Pro",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "categoryId",
+                  "value": "category_id_here",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "tags",
+                  "value": "rose,flower,outdoor",
+                  "description": "Optional, comma-separated values",
+                  "type": "text"
+                },
+                {
+                  "key": "images",
+                  "description": "Optional, multiple image files",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product (Admin)",
+          "id": "20f1e5de-0df1-4601-b6c6-1f52c8ea9136",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "description",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "price",
+                  "value": "249.99",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "discount",
+                  "value": "",
+                  "description": "Optional, 0-100",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "quantity",
+                  "value": "30",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "isAvailable",
+                  "value": "false",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "isFeatured",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "sku",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "brand",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "categoryId",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "tags",
+                  "value": "",
+                  "description": "Optional, comma-separated",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "images",
+                  "description": "Optional, multiple image files",
+                  "type": "file",
+                  "src": [],
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/products/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "product_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Product (Admin)",
+          "id": "009624c9-3e8f-4a00-b0ad-e8baee6a2b34",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "product_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "fb906ef1-b54d-43cb-8f90-df1f9554e110",
+      "description": "Product catalog management"
+    },
+    {
+      "name": "Cart",
+      "item": [
+        {
+          "name": "Get My Cart",
+          "id": "ef91356b-8241-49f9-8718-3cf7d6abb75a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add to Cart",
+          "id": "705238ea-3e18-469b-9c22-6a25216f4af2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"product_id_here\",\n  \"quantity\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Both fields required"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carts/add",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Cart Item Quantity",
+          "id": "80cdc3dd-ba4b-4538-b011-4accde367b37",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carts/:productId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts",
+                ":productId"
+              ],
+              "variable": [
+                {
+                  "key": "productId",
+                  "value": "product_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove from Cart",
+          "id": "6bf78b34-5407-4490-b110-d9cf138bd3c0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carts/:productId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts",
+                ":productId"
+              ],
+              "variable": [
+                {
+                  "key": "productId",
+                  "value": "product_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Clear Cart",
+          "id": "b335b8f3-c424-4608-881d-d77186cb1ce8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "f0c4b83e-2ef1-40c6-99d6-09094f872052",
+      "description": "Shopping cart management"
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Create Order",
+          "id": "d39c88e1-f792-42ad-9903-ba82558dcfbb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shippingAddressId\": \"address_id_here\",\n  \"selectedProductIds\": [\"product_id_1\", \"product_id_2\"],\n  \"billingAddressId\": \"billing_address_id\",\n  \"paymentMethod\": \"cash\",\n  \"discountCode\": \"SAVE10\",\n  \"notes\": \"Please deliver between 9 AM - 5 PM\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: shippingAddressId, selectedProductIds (array, min 1)\nOptional: billingAddressId, paymentMethod, discountCode, notes\nNote: Only selected products from cart will be ordered"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            },
+            "description": "Create order with selected products from cart. Unselected products remain in cart."
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Orders",
+          "id": "ce973bc5-924a-4951-8a7b-1a5e922310cb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/user?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "user"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order by ID",
+          "id": "4ab35a04-9906-4f73-9463-e0672c122f5f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/:orderId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "variable": [
+                {
+                  "key": "orderId",
+                  "value": "order_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Orders (Admin)",
+          "id": "76c22594-3460-4686-8ccc-d717b3312530",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders?page=1&limit=10&orderStatus=pending",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "orderStatus",
+                  "value": "pending",
+                  "description": "Filter by status: pending, processing, shipped, delivered, cancelled"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Order Status (Admin)",
+          "id": "5ccd8122-9dd5-44db-bbd0-33fbe51f87eb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"shipped\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "status: enum ['pending', 'processing', 'shipped', 'delivered', 'cancelled']"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders/:orderId/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                ":orderId",
+                "status"
+              ],
+              "variable": [
+                {
+                  "key": "orderId",
+                  "value": "order_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "59860f5d-ab57-4097-9169-f9dc044bfc7f",
+      "description": "Order management and checkout"
+    },
+    {
+      "name": "Addresses",
+      "item": [
+        {
+          "name": "Get My Addresses",
+          "id": "5d64a202-58fb-44ba-8d0f-32813f99a70e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/addresses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "addresses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Address",
+          "id": "aebf87dd-98fc-4214-9337-4c9707e14381",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"street\": \"123 Main Street, Apt 4B\",\n  \"city\": \"Dhaka\",\n  \"postalCode\": \"1212\",\n  \"country\": \"Bangladesh\",\n  \"phoneNumber\": \"01712345678\",\n  \"isDefault\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: street, city, postalCode, country\nOptional: phoneNumber, isDefault (default false)"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/addresses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "addresses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Address",
+          "id": "fd6aab82-4744-4c23-a91b-916e36118153",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"street\": \"456 New Street\",\n  \"isDefault\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields optional"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/addresses/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "addresses",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "address_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Address",
+          "id": "16821f11-148e-42fc-8050-12509c87a6f4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/addresses/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "addresses",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "address_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "137c59b2-191e-4ff0-b017-7388fc2f134c",
+      "description": "Delivery address management"
+    },
+    {
+      "name": "Coupons",
+      "item": [
+        {
+          "name": "Get All Coupons (Admin)",
+          "id": "a6409c70-10db-480d-a8a4-1e1fd5223d6b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/coupons?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coupons"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Coupon (Admin)",
+          "id": "fb9cc266-a5c0-42d7-8d95-f2704e598c13",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"SAVE20\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 20,\n  \"validFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n  \"maxUses\": 100,\n  \"minOrderAmount\": 500,\n  \"isActive\": true,\n  \"description\": \"Save 20% on all orders above 500 BDT\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: code, discountType (enum: ['percentage', 'fixed']), discountValue, validFrom (ISO datetime), validUntil (ISO datetime)\nOptional: maxUses, minOrderAmount, isActive (default true), description"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/coupons",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coupons"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Coupon (Admin)",
+          "id": "3744d009-42d8-41af-a039-eef8dac9fd71",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isActive\": false,\n  \"maxUses\": 50\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields optional"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/coupons/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coupons",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "coupon_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Coupon (Admin)",
+          "id": "412fe4fc-d14d-4d58-b6c9-b09f4455a01d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/coupons/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coupons",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "coupon_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Apply Coupon",
+          "id": "569f3693-b9a5-4cfb-8dbf-534fd6d7c970",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"SAVE20\",\n  \"orderTotal\": 1000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/coupons/apply",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coupons",
+                "apply"
+              ]
+            },
+            "description": "Validate and calculate discount for a coupon code"
+          },
+          "response": []
+        }
+      ],
+      "id": "677d1b8b-d1f4-4190-8bd6-9ad254f4f24f",
+      "description": "Discount coupon management"
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Get Product Reviews",
+          "id": "bdb59dad-f572-43c9-a138-da071efe7558",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/product/:productId?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "product",
+                ":productId"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "productId",
+                  "value": "product_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Review",
+          "id": "62d1f2f4-e092-477e-9077-81a8395c9cb1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"product_id_here\",\n  \"rating\": 5,\n  \"comment\": \"Excellent product! Highly recommended.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: productId, rating (1-5)\nOptional: comment"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Review",
+          "id": "b7b20489-a60c-407d-be2c-3960555dda35",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 4,\n  \"comment\": \"Good product but delivery was slow\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields optional"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reviews/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "review_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Review",
+          "id": "6cf164eb-c229-4b96-80b6-5fed50574eb1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "review_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "ee828dea-8f39-4684-8195-065ccab2e97d",
+      "description": "Product review management"
+    },
+    {
+      "name": "Wishlist",
+      "item": [
+        {
+          "name": "Get My Wishlist",
+          "id": "d86828ab-323e-4ddc-a4e8-c52734adf7e6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/wishlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wishlists"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add to Wishlist",
+          "id": "d7bd09da-24c2-45d8-83d1-92561a4cbe3c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"product_id_here\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/wishlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wishlists"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove from Wishlist",
+          "id": "fc75e135-beee-4d1d-b0f5-83a89379be0d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/wishlists/:productId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wishlists",
+                ":productId"
+              ],
+              "variable": [
+                {
+                  "key": "productId",
+                  "value": "product_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "ca57d7d0-d0ec-44b0-9f74-d81024dcee13",
+      "description": "User wishlist management"
+    },
+    {
+      "name": "Carousels",
+      "item": [
+        {
+          "name": "Get All Carousels",
+          "id": "4dd938c6-6307-4d13-b9d2-65deca3959ac",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carousels",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carousels"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Carousel (Admin)",
+          "id": "8128ed61-a5ad-4a1a-920b-b69a780c3314",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Summer Sale",
+                  "description": "Required",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Get up to 50% off on all plants",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "description": "Required, image file",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "link",
+                  "value": "/products?category=sale",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "displayOrder",
+                  "value": "1",
+                  "description": "Optional, default 0",
+                  "type": "text"
+                },
+                {
+                  "key": "isActive",
+                  "value": "true",
+                  "description": "Optional, default true",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carousels",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carousels"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Carousel (Admin)",
+          "id": "b92d9c95-a623-4d68-bd64-97963e46f2b0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "description",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "image",
+                  "description": "Optional, image file",
+                  "type": "file",
+                  "src": [],
+                  "disabled": true
+                },
+                {
+                  "key": "link",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "displayOrder",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "isActive",
+                  "value": "false",
+                  "description": "Optional",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carousels/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carousels",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "carousel_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Carousel (Admin)",
+          "id": "92f5c9e3-33fd-4447-94a0-3f85a5519e41",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carousels/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carousels",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "carousel_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "0f9f2a5a-b326-43d4-b7b2-b8f1a0fa8a43",
+      "description": "Homepage carousel/banner management"
+    },
+    {
+      "name": "Flash Sales",
+      "item": [
+        {
+          "name": "Get All Flash Sales",
+          "id": "23e4a89a-509b-4728-9911-b6be36e75fa5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/flash-sales",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flash-sales"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Active Flash Sales",
+          "id": "c01ca7ca-2851-4229-94b4-a78e9c2e5f54",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/flash-sales/active",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flash-sales",
+                "active"
+              ]
+            },
+            "description": "Get currently active flash sales"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Flash Sale (Admin)",
+          "id": "78b7e375-745a-434b-963e-ac9a3539153b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Weekend Flash Sale\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discount\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-01-26T23:59:59.000Z\",\n  \"productIds\": [\"product_id_1\", \"product_id_2\"],\n  \"isActive\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: name, discount, startDate (ISO), endDate (ISO)\nOptional: description, productIds (array), isActive (default true)"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/flash-sales",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flash-sales"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Flash Sale (Admin)",
+          "id": "93239de4-c0c6-472a-964a-cf59a2056bc5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"discount\": 40,\n  \"isActive\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields optional"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/flash-sales/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flash-sales",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "flash_sale_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Flash Sale (Admin)",
+          "id": "5dd9f0c2-2aa9-4bb3-badc-26b9f129f2cc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/flash-sales/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flash-sales",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "flash_sale_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "9d64b4d7-7509-460e-be50-85bb601b68ff",
+      "description": "Limited-time flash sale management"
+    },
+    {
+      "name": "Contacts",
+      "item": [
+        {
+          "name": "Get Active Contacts (Public)",
+          "id": "29d42c10-c8cd-43c0-bf29-a5a5e54d14d4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/contacts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts"
+              ]
+            },
+            "description": "Get all active contact methods for users to contact admin"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Contacts (Admin)",
+          "id": "928e304c-c8c9-4dd6-9a8d-ff9b2e3faa5b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/contacts/admin/all",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts",
+                "admin",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Contact by ID (Admin)",
+          "id": "3edeba69-624c-44ee-8f63-e09c7cbda7c8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/contacts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "contact_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Contact (Admin)",
+          "id": "4f688120-e04e-4bd1-b94d-781a2332cbf4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"Customer Support WhatsApp\",\n  \"contactType\": \"WhatsApp\",\n  \"contactValue\": \"+8801712345678\",\n  \"isActive\": true,\n  \"displayOrder\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: label, contactType (enum: ['WhatsApp', 'Imo', 'Viber', 'Telegram', 'Phone', 'Email']), contactValue\nOptional: isActive (default true), displayOrder (default 0)"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contacts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Contact (Admin)",
+          "id": "bc6a4523-23ab-436a-ae12-a59784f52f5c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isActive\": false,\n  \"displayOrder\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields optional"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contacts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "contact_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Contact (Admin)",
+          "id": "47e824c8-4092-4a92-8963-5714f3f97fd3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/contacts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "contact_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "64e9e841-73fc-47b1-8ea9-e1aaaed29986",
+      "description": "Admin contact information management"
+    },
+    {
+      "name": "Payment Methods",
+      "item": [
+        {
+          "name": "Get All Payment Methods",
+          "id": "4e981395-190b-418a-8849-5b29632424da",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payment-methods",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment-methods"
+              ]
+            },
+            "description": "Public endpoint - get all active payment methods"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Payment Method by ID",
+          "id": "892c6c3b-5748-4ea1-8106-e319e7889245",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payment-methods/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment-methods",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "payment_method_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Payment Method (Admin)",
+          "id": "83ff7b4a-9ddf-4d95-a9a7-e222cb78e2cb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"methodName\": \"bKash\",\n  \"description\": \"Mobile payment via bKash\",\n  \"accountNumber\": \"01712345678\",\n  \"accountName\": \"Nursery Bazar BD\",\n  \"instructions\": \"Send money to this number and submit transaction ID\",\n  \"displayOrder\": 1,\n  \"isActive\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: methodName, accountNumber\nOptional: description, accountName, instructions, displayOrder (default 0), isActive (default true)"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payment-methods",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment-methods"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Payment Method (Admin)",
+          "id": "d78b0450-904c-423f-a157-cf0e25cab123",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isActive\": false,\n  \"displayOrder\": 3\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields optional"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payment-methods/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment-methods",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "payment_method_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Payment Method (Admin)",
+          "id": "9babde13-62bc-439e-bf52-209f5f83bbeb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payment-methods/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment-methods",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "payment_method_id"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "d89ad017-1da0-4cc7-8007-0c608c51c0b7",
+      "description": "Payment method configuration"
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "Create Transaction (User)",
+          "id": "1737cad9-c8d9-47c2-9816-5df98c9a2967",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"order_id_here\",\n  \"paymentMethodId\": \"payment_method_id\",\n  \"userProvidedTransactionId\": \"TXN123456789\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields required. Submit after manual payment."
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ]
+            },
+            "description": "User submits transaction after completing manual payment"
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Transactions",
+          "id": "4f2be2b5-1e68-4e94-9e62-d363b75fd458",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/transactions/history/user?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions",
+                "history",
+                "user"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Transactions (Admin)",
+          "id": "c58c81c5-c03b-4817-a16b-c83c7d5bd374",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/transactions/history/all?page=1&limit=10&transactionStatus=pending",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions",
+                "history",
+                "all"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "transactionStatus",
+                  "value": "pending",
+                  "description": "Filter: pending, completed, failed, cancelled"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Transaction Status (Admin)",
+          "id": "9e1276f8-5e8e-4c11-b6c4-25a51f35f26e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionStatus\": \"completed\",\n  \"adminNotes\": \"Payment verified and confirmed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: transactionStatus (enum: ['pending', 'completed', 'failed', 'cancelled'])\nOptional: adminNotes"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transactions/:id/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions",
+                ":id",
+                "status"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "transaction_id"
+                }
+              ]
+            },
+            "description": "Admin verifies and updates transaction status. This also updates order payment status."
+          },
+          "response": []
+        }
+      ],
+      "id": "4b7d2951-3f03-4964-8950-cdfcc41b91f0",
+      "description": "Payment transaction management"
+    },
+    {
+      "name": "Tests",
+      "item": [
+        {
+          "name": "Health Check",
+          "id": "a4c16156-cc0b-4bf6-8c98-57b089e5ca15",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tests",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tests"
+              ]
+            },
+            "description": "Check if API is running"
+          },
+          "response": []
+        }
+      ],
+      "id": "440e1f5e-2eb9-44bb-9f87-83fda758d616",
+      "description": "API health check and testing"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Pre-request script runs before each request",
+          "console.log('Request to: ' + pm.request.url.toString());"
+        ],
+        "id": "ad527a2b-5481-425c-a693-e33c771f7bb9"
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Test script runs after each request",
+          "pm.test('Response time is less than 5s', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+          "});",
+          "",
+          "pm.test('Response has success field', function () {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData).to.have.property('success');",
+          "});"
+        ],
+        "id": "6f69630d-9e23-4a3a-9622-97fdd579d062"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "dd126182-fbf9-4260-a2ba-d6e2e0374290",
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api/v1",
+      "type": "default"
+    },
+    {
+      "id": "f25ff0ed-558e-4c03-9c48-b4c2d802a0c5",
+      "key": "token",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

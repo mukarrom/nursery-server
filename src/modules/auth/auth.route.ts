@@ -7,12 +7,12 @@ import { Router } from "express";
 import { USER_ROLE } from "../../constants/status.constants";
 import auth from "../../middlewares/auth";
 import validateRequest from "../../middlewares/validateRequest";
+import { upload } from "../../utils/multer";
 import { authController } from "./auth.controller";
 import {
   AuthValidations,
-  emailLinkVerificationValidationSchema,
   emailVerificationValidationSchema,
-  resendVerificationValidationSchema,
+  resendVerificationValidationSchema
 } from "./auth.validation";
 
 const router = Router();
@@ -27,6 +27,7 @@ const router = Router();
  */
 router.post(
   "/sign-up",
+  upload.single("profilePicture"),
   validateRequest(AuthValidations.signUpZodSchema),
   authController.signUpController
 );

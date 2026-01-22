@@ -4,12 +4,15 @@ import { authRoute } from "../modules/auth/auth.route";
 import { carouselRoutes } from "../modules/carousel/carousel.route";
 import cartRouter from "../modules/cart/cart.route";
 import { categoryRoutes } from "../modules/category/category.route";
+import { contactRouter } from "../modules/contact/contact.route";
 import couponRouter from "../modules/coupon/coupon.route";
 import { flashSaleRoutes } from "../modules/flash-sale/flash-sale.route";
 import orderRouter from "../modules/order/order.route";
+import paymentMethodRouter from "../modules/payment-method/payment-method.route";
 import { productRoutes } from "../modules/products/products.route";
 import reviewRouter from "../modules/review/review.route";
 import { testRoutes } from "../modules/tests/tests.route";
+import transactionRouter from "../modules/transaction/transaction.route";
 import { userRoute } from "../modules/users/users.route";
 import wishlistRouter from "../modules/wishlist/wishlist.route";
 
@@ -68,6 +71,18 @@ const moduleRoutes: IModuleRoutes[] = [
   {
     path: "/coupons",
     route: couponRouter,
+  },
+  {
+    path: "/contacts",
+    route: contactRouter,
+  },
+  {
+    path: "/payment-methods",
+    route: paymentMethodRouter,
+  },
+  {
+    path: "/transactions",
+    route: transactionRouter,
   },
 ];
 

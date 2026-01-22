@@ -1,3 +1,4 @@
+import QueryBuilder from "../../builder/QueryBuilder";
 import { FOLDER_NAMES } from "../../constants/folder.constants";
 import { deleteImage, uploadImage } from "../../utils/imageUpload";
 import { TCategory } from "./category.interface";
@@ -22,8 +23,16 @@ const getCategoryByIdService = async (id: string) => {
     return await CategoryModel.findById(id);
 };
 
-const getAllCategoriesService = async () => {
-    return await CategoryModel.find({});
+const getAllCategoriesService = async (query: Record<string, unknown>) => {
+    const categoryQuery = new QueryBuilder(CategoryModel.find({}), query)
+        .search(["name", "description"])
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+    const categories = await categoryQuery.modelQuery;
+    const meta = await categoryQuery.countTotal();
+    return { categories, meta };
 };
 
 const updateCategoryService = async (

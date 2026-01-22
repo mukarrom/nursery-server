@@ -1,3 +1,4 @@
+import QueryBuilder from "../../builder/QueryBuilder";
 import { FOLDER_NAMES } from "../../constants/folder.constants";
 import { deleteImage, uploadImage } from "../../utils/imageUpload";
 import { TProduct } from "./products.interface";
@@ -22,8 +23,16 @@ const getProductByIdService = async (id: string) => {
     return await ProductModel.findById(id);
 };
 
-const getAllProductsService = async () => {
-    return await ProductModel.find({});
+const getAllProductsService = async (query: Record<string, unknown>) => {
+    const productQuery = new QueryBuilder(ProductModel.find({}), query)
+        .search(["name", "description", "brand", "sku"])
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+    const products = await productQuery.modelQuery;
+    const meta = await productQuery.countTotal();
+    return { products, meta };
 };
 
 const updateProductService = async (
