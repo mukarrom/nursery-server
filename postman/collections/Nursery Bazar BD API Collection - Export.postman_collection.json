@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "c053727c-19fd-48fa-95e1-6c1892e5b6bd",
-    "name": "Nursery Bazar BD API Collection - Export",
+    "name": "Nursery Bazar BD API Collection",
     "description": "Complete API collection for Nursery Bazar BD e-commerce platform with all endpoints, optional fields, and enums documented.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -2663,6 +2663,203 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Get Products by category",
+          "id": "799ba4a1-53fe-4599-a134-3bbb981e5577",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products/category/:categoryId?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "category",
+                ":categoryId"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "uuid": "942f3350-2e9d-4613-bc2d-1ebb09660504"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "uuid": "9b2411f7-df42-4828-b431-1f1d3f72ca05"
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "rose",
+                  "uuid": "7050719f-0280-4669-807e-e0287a93a886",
+                  "disabled": true
+                },
+                {
+                  "key": "categoryId",
+                  "value": "cat_id",
+                  "uuid": "e254ef2c-5e8b-4ae3-9b5c-e9902860ba37",
+                  "disabled": true
+                },
+                {
+                  "key": "minPrice",
+                  "value": "10",
+                  "uuid": "b13a0cf7-bdf7-4702-be0e-231b9434fb9b",
+                  "disabled": true
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "100",
+                  "uuid": "9735b852-e6b1-4c74-a6b6-996e74c62006",
+                  "disabled": true
+                },
+                {
+                  "key": "isAvailable",
+                  "value": "true",
+                  "uuid": "c7a42527-a94d-42b0-967b-e344ef3c5cbb",
+                  "disabled": true
+                },
+                {
+                  "key": "isFeatured",
+                  "value": "true",
+                  "uuid": "2cb6852e-f608-409a-86f5-ace0d2e28102",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "-price",
+                  "description": "Sort by price desc. Use 'price' for asc",
+                  "uuid": "6b9659f9-6dae-4423-a5a4-08ed9ed1c4d9",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "categoryId",
+                  "value": "69705784bf9b0106be2286eb",
+                  "uuid": "7396fa6e-af36-4e5b-bb87-b63acce22050"
+                }
+              ]
+            },
+            "description": "All query params optional. Supports filtering, sorting, pagination."
+          },
+          "response": [
+            {
+              "id": "f74b9368-42f8-45ca-8a98-8556f698a539",
+              "name": "Get All Products",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "searchTerm",
+                      "value": "rose",
+                      "uuid": "7050719f-0280-4669-807e-e0287a93a886",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categoryId",
+                      "value": "cat_id",
+                      "uuid": "e254ef2c-5e8b-4ae3-9b5c-e9902860ba37",
+                      "disabled": true
+                    },
+                    {
+                      "key": "minPrice",
+                      "value": "10",
+                      "uuid": "b13a0cf7-bdf7-4702-be0e-231b9434fb9b",
+                      "disabled": true
+                    },
+                    {
+                      "key": "maxPrice",
+                      "value": "100",
+                      "uuid": "9735b852-e6b1-4c74-a6b6-996e74c62006",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isAvailable",
+                      "value": "true",
+                      "uuid": "c7a42527-a94d-42b0-967b-e344ef3c5cbb",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isFeatured",
+                      "value": "true",
+                      "uuid": "2cb6852e-f608-409a-86f5-ace0d2e28102",
+                      "disabled": true
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-price",
+                      "description": "Sort by price desc. Use 'price' for asc",
+                      "uuid": "6b9659f9-6dae-4423-a5a4-08ed9ed1c4d9",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2900"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"b54-K+hH6/RzZ+dE48pjw7kbnuU64S4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 10:01:13 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-22T10:01:18.075Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Products retrieved successfully\",\n    \"meta\": {\n        \"totalDocuments\": 5,\n        \"totalPages\": 1,\n        \"currentPage\": \"1\",\n        \"limitPerPage\": \"10\"\n    },\n    \"data\": [\n        {\n            \"_id\": \"6971e9f7065be8b54b7ff90e\",\n            \"name\": \"Red Rose Plant\",\n            \"sku\": \"ROSE-RED-001\",\n            \"description\": \"Beautiful red rose plant for your garden\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n            \"images\": [\n                \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n                \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n            ],\n            \"price\": 299.99,\n            \"discount\": 10,\n            \"quantity\": 50,\n            \"isAvailable\": true,\n            \"isFeatured\": true,\n            \"brand\": \"Garden Pro\",\n            \"categoryId\": \"6971e657884d772cac55fac1\",\n            \"tags\": [\n                \"rose,flower,outdoor\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n            \"updatedAt\": \"2026-01-22T09:12:23.149Z\"\n        },\n        {\n            \"_id\": \"6970f3d9a4e644714427b3c9\",\n            \"name\": \"text 2\",\n            \"sku\": \"TEX-6087\",\n            \"description\": \"dfghjkl;\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769010137/nursery-app/products/dcb8fyiccdku4ux0znfg.jpg\",\n            \"images\": [],\n            \"price\": 700,\n            \"discount\": 0,\n            \"quantity\": 7,\n            \"isAvailable\": true,\n            \"isFeatured\": false,\n            \"brand\": \"\",\n            \"categoryId\": \"69705784bf9b0106be2286eb\",\n            \"tags\": [\n                \"dfg\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-21T15:42:17.516Z\",\n            \"updatedAt\": \"2026-01-21T15:45:32.655Z\"\n        },\n        {\n            \"_id\": \"697089436e04221e6a2cd70c\",\n            \"name\": \"new titles\",\n            \"sku\": \"NEW-8803\",\n            \"description\": \"dfghj\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768982864/nursery-app/products/w8hjzivi0rgamf7t65nc.png\",\n            \"images\": [],\n            \"price\": 200,\n            \"discount\": 0,\n            \"quantity\": 5,\n            \"isAvailable\": true,\n            \"isFeatured\": false,\n            \"brand\": \"\",\n            \"categoryId\": \"696f87843e6403a201a81f48\",\n            \"tags\": [\n                \"iklo;\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-21T08:07:31.344Z\",\n            \"updatedAt\": \"2026-01-21T08:07:44.972Z\"\n        },\n        {\n            \"_id\": \"6970560ebf9b0106be2286e6\",\n            \"name\": \"Banana\",\n            \"sku\": \"APL-002\",\n            \"description\": \"Fresh red apple\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768969742/nursery-app/products/g9amt5ssce7rdcr9kwmd.jpg\",\n            \"images\": [],\n            \"price\": 1.99,\n            \"discount\": 10,\n            \"quantity\": 100,\n            \"isAvailable\": true,\n            \"isFeatured\": false,\n            \"brand\": \"NatureFresh\",\n            \"categoryId\": \"696f047f45b3d13ba9a13bc7\",\n            \"tags\": [\n                \"fruit,apple,fresh\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-21T04:29:02.759Z\",\n            \"updatedAt\": \"2026-01-21T04:29:02.759Z\"\n        },\n        {\n            \"_id\": \"696f09a3780f29a590c11184\",\n            \"name\": \"Apple\",\n            \"sku\": \"APL-001\",\n            \"description\": \"Fresh red apple\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768884654/nitto-vojon/products/pxeehrvh4zeqtz2cdkfw.jpg\",\n            \"images\": [],\n            \"price\": 1.99,\n            \"discount\": 10,\n            \"quantity\": 100,\n            \"isAvailable\": true,\n            \"isFeatured\": false,\n            \"brand\": \"NatureFresh\",\n            \"categoryId\": \"696f047f45b3d13ba9a13bc7\",\n            \"tags\": [\n                \"fruit,apple,fresh\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-20T04:50:43.841Z\",\n            \"updatedAt\": \"2026-01-20T04:50:43.841Z\"\n        }\n    ]\n}"
+            }
+          ]
         }
       ],
       "id": "fb906ef1-b54d-43cb-8f90-df1f9554e110",
@@ -6705,8 +6902,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "69725b9e4b07007b65a7eb2f",
-                  "uuid": "db3aef5b-347d-4772-89f4-0fffb7c5b476"
+                  "value": "69725b9e4b07007b65a7eb2f"
                 }
               ]
             }
@@ -6828,8 +7024,7 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": "69725b9e4b07007b65a7eb2f",
-                      "uuid": "db3aef5b-347d-4772-89f4-0fffb7c5b476"
+                      "value": "69725b9e4b07007b65a7eb2f"
                     }
                   ]
                 }
@@ -8484,19 +8679,9 @@
   ],
   "variable": [
     {
-      "id": "f908133e-9abb-4b9b-89ff-987832b5c056",
-      "key": "baseUrl",
-      "value": "http://localhost:5000/api/v1"
-    },
-    {
-      "id": "43c227f4-3408-4d2c-94c4-2fff490e4177",
+      "id": "8b398252-2f70-4e7e-bc35-8a4d6b42f529",
       "key": "token",
       "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA3ODU0OCwiZXhwIjoxNzY5MTY0OTQ4fQ.jbePrYXN0xmIbXizuhz8h8i-f8iICKkh1auntRtNBKs"
-    },
-    {
-      "id": "a79382de-0adf-43c9-904f-86ead9cc68f8",
-      "key": "baseUrl",
-      "value": "https://nursery-server-phi.vercel.app/api/v1"
     }
   ]
 }

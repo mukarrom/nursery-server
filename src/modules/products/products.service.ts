@@ -4,6 +4,11 @@ import { deleteImage, uploadImage } from "../../utils/imageUpload";
 import { TProduct } from "./products.interface";
 import { ProductModel } from "./products.model";
 
+/**
+ * Create a new product
+ * @param productData - The product data to create
+ * @returns The created product
+ */
 const createProductService = async (productData: TProduct) => {
     const result = await ProductModel.create(productData);
 
@@ -19,10 +24,20 @@ const createProductService = async (productData: TProduct) => {
     return result;
 };
 
+/**
+ * Get a product by ID
+ * @param id - The ID of the product to retrieve
+ * @returns The product with the specified ID
+ */
 const getProductByIdService = async (id: string) => {
     return await ProductModel.findById(id);
 };
 
+/**
+ * Get all products
+ * @param query - The query parameters to filter, sort, and paginate the results
+ * @returns An object containing the products and pagination metadata
+ */
 const getAllProductsService = async (query: Record<string, unknown>) => {
     const productQuery = new QueryBuilder(ProductModel.find({}), query)
         .search(["name", "description", "brand", "sku"])
@@ -35,6 +50,29 @@ const getAllProductsService = async (query: Record<string, unknown>) => {
     return { products, meta };
 };
 
+/**
+ * Get all products by category id
+ * @param categoryId - The ID of the category to retrieve products from
+ * @returns An object containing the products and pagination metadata
+ */
+const getAllProductsByCategoryIdService = async (categoryId: string) => {
+    const productQuery = new QueryBuilder(ProductModel.find({ categoryId }), {})
+        .search(["name", "description", "brand", "sku"])
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+    const products = await productQuery.modelQuery;
+    const meta = await productQuery.countTotal();
+    return { products, meta };
+};
+
+/**
+ * Update a product by ID
+ * @param id - The ID of the product to update
+ * @param productData - The product data to update
+ * @returns The updated product
+ */
 const updateProductService = async (
     id: string,
     productData: Partial<TProduct> & {
@@ -121,6 +159,11 @@ const updateProductService = async (
     }
 };
 
+/**
+ * Delete a product by ID
+ * @param id - The ID of the product to delete
+ * @returns The deleted product
+ */
 const deleteProductService = async (id: string) => {
     const session = await ProductModel.startSession();
     session.startTransaction();
@@ -156,6 +199,7 @@ export const productService = {
     createProductService,
     getProductByIdService,
     getAllProductsService,
+    getAllProductsByCategoryIdService,
     updateProductService,
     deleteProductService,
 };

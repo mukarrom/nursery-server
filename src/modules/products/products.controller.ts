@@ -7,6 +7,11 @@ import sendResponse from "../../utils/sendResponse";
 import { TProduct } from "./products.interface";
 import { productService } from "./products.service";
 
+/**
+ * Create a new product
+ * @param req - The request object
+ * @param res - The response object
+ */
 const createProductController = catchAsync(async (req, res) => {
     const files = req.files as { [fieldname: string]: Express.Multer.File[] };
 
@@ -57,6 +62,11 @@ const createProductController = catchAsync(async (req, res) => {
     });
 });
 
+/**
+ * Get a product by ID
+ * @param req - The request object
+ * @param res - The response object
+ */
 const getProductByIdController = catchAsync(
     async (req: Request, res: Response) => {
         const { id } = req.params as { id: string };
@@ -71,6 +81,11 @@ const getProductByIdController = catchAsync(
     }
 );
 
+/**
+ * Get all products
+ * @param req - The request object
+ * @param res - The response object
+ */
 const getAllProductsController = catchAsync(
     async (req: Request, res: Response) => {
         const result = await productService.getAllProductsService(req.query);
@@ -85,6 +100,31 @@ const getAllProductsController = catchAsync(
     }
 );
 
+/**
+ * Get all products by category id
+ * @param req - The request object
+ * @param res - The response object
+ */
+const getAllProductsByCategoryIdController = catchAsync(
+    async (req: Request, res: Response) => {
+        const { categoryId } = req.params;
+        const result = await productService.getAllProductsByCategoryIdService(categoryId as string);
+
+        sendResponse(res, {
+            statusCode: httpStatus.OK,
+            success: true,
+            message: "Products retrieved successfully",
+            data: result.products,
+            meta: result.meta,
+        });
+    }
+);
+
+/**
+ * Update a product by ID
+ * @param req - The request object
+ * @param res - The response object
+ */
 const updateProductController = catchAsync(
     async (req: Request, res: Response) => {
         const { id } = req.params as { id: string };
@@ -123,6 +163,11 @@ const updateProductController = catchAsync(
     }
 );
 
+/**
+ * Delete a product by ID
+ * @param req - The request object
+ * @param res - The response object
+ */
 const deleteProductController = catchAsync(
     async (req: Request, res: Response) => {
         const { id } = req.params as { id: string };
@@ -141,6 +186,7 @@ export const productController = {
     createProductController,
     getProductByIdController,
     getAllProductsController,
+    getAllProductsByCategoryIdController,
     updateProductController,
     deleteProductController,
 };

@@ -221,7 +221,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\",\n  \"password\": \"12345678\"\n}",
+              "raw": "// {\n//   \"email\": \"admin-nursery@yopmail.com\",\n//   \"password\": \"12345678\"\n// }\n{\n  \"email\": \"user@yopmail.com\",\n  \"password\": \"12345678\"\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -6133,7 +6133,7 @@
       "name": "Flash Sales",
       "item": [
         {
-          "name": "Get All Flash Sales",
+          "name": "Get All Flash Sales (admin)",
           "id": "23e4a89a-509b-4728-9911-b6be36e75fa5",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
@@ -6221,13 +6221,25 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/flash-sales/active",
+              "raw": "{{baseUrl}}/flash-sales/active?limit=100&page=1",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "flash-sales",
                 "active"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "100",
+                  "uuid": "eede6278-84b7-4eab-aa8b-818b947a81bc"
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "uuid": "61121f81-8708-4f00-8d0d-68425903c24a"
+                }
               ]
             },
             "description": "Get currently active flash sales"
@@ -6705,8 +6717,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "69725b9e4b07007b65a7eb2f",
-                  "uuid": "db3aef5b-347d-4772-89f4-0fffb7c5b476"
+                  "value": "69725b9e4b07007b65a7eb2f"
                 }
               ]
             }
@@ -6828,8 +6839,7 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": "69725b9e4b07007b65a7eb2f",
-                      "uuid": "db3aef5b-347d-4772-89f4-0fffb7c5b476"
+                      "value": "69725b9e4b07007b65a7eb2f"
                     }
                   ]
                 }
@@ -8484,19 +8494,9 @@
   ],
   "variable": [
     {
-      "id": "f908133e-9abb-4b9b-89ff-987832b5c056",
-      "key": "baseUrl",
-      "value": "http://localhost:5000/api/v1"
-    },
-    {
-      "id": "43c227f4-3408-4d2c-94c4-2fff490e4177",
+      "id": "711e68aa-fd38-4734-a943-2c5b3b82be82",
       "key": "token",
       "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA3ODU0OCwiZXhwIjoxNzY5MTY0OTQ4fQ.jbePrYXN0xmIbXizuhz8h8i-f8iICKkh1auntRtNBKs"
-    },
-    {
-      "id": "a79382de-0adf-43c9-904f-86ead9cc68f8",
-      "key": "baseUrl",
-      "value": "https://nursery-server-phi.vercel.app/api/v1"
     }
   ]
 }

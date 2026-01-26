@@ -9,7 +9,8 @@ const WishlistSchema = new Schema<TWishlist>(
             unique: true,
         },
         productIds: {
-            type: [String],
+            type: [Schema.Types.ObjectId],
+            ref: "product",
             default: [],
         },
     },

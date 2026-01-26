@@ -8,6 +8,11 @@ import { productValidation } from "./products.validation";
 
 const router = express.Router();
 
+/**
+ * Create a new product
+ * @param req - The request object
+ * @param res - The response object
+ */
 router.post(
     "/",
     upload.fields([
@@ -19,6 +24,11 @@ router.post(
     productController.createProductController
 );
 
+/**
+ * Update a product by ID
+ * @param req - The request object
+ * @param res - The response object
+ */
 router.patch(
     "/:id",
     upload.fields([
@@ -30,22 +40,48 @@ router.patch(
     productController.updateProductController
 );
 
+/**
+ * Delete a product by ID
+ * @param req - The request object
+ * @param res - The response object
+ */
 router.delete(
     "/:id",
     auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     productController.deleteProductController
 );
 
+/**
+ * Get a product by ID
+ * @param req - The request object
+ * @param res - The response object
+ */
 router.get(
     "/:id",
     auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     productController.getProductByIdController
 );
 
+/**
+ * Get all products
+ * @param req - The request object
+ * @param res - The response object
+ */
 router.get(
     "/",
     auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     productController.getAllProductsController
+);
+
+/**
+ * Get all products by category id
+ * @param req - The request object
+ * @param res - The response object
+ */
+router.get(
+    "/category/:categoryId",
+    auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
+    productController.getAllProductsByCategoryIdController
 );
 
 export const productRoutes = router;

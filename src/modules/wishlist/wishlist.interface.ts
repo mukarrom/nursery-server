@@ -1,6 +1,8 @@
+import { Types } from "mongoose";
+
 export type TWishlist = {
     userId: string;
-    productIds: string[];
+    productIds: Types.ObjectId[];
     createdAt: Date;
     updatedAt: Date;
 };
