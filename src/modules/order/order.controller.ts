@@ -2,17 +2,24 @@ import { Request, Response } from "express";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import {
+    cancelOrderService,
     createOrderService,
+    getAllOrdersService,
     getOrderByIdService,
     getOrdersByUserService,
     updateOrderStatusService,
 } from "./order.service";
 
+/**
+ * Create order (By User)
+ * @param req Request
+ * @param res Response
+ */
 export const createOrder = catchAsync(async (req: Request, res: Response) => {
     const userId = req.user?.id;
-    const { shippingAddressId, discountCode, paymentMethod } = req.body;
+    const { shippingAddressId, selectedProductIds, discountCode, paymentMethod, transactionId } = req.body;
 
-    const order = await createOrderService(userId, shippingAddressId, discountCode, paymentMethod);
+    const order = await createOrderService(userId, shippingAddressId, selectedProductIds, discountCode, paymentMethod, transactionId);
 
     sendResponse(res, {
         success: true,
@@ -22,10 +29,17 @@ export const createOrder = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+/**
+ * Get order by ID (By User)
+ * @param req Request
+ * @param res Response
+ */
 export const getOrder = catchAsync(async (req: Request, res: Response) => {
     const { orderId } = req.params as { orderId: string };
+    const role = req.user?.role;
+    const userId = req.user?.id;
 
-    const order = await getOrderByIdService(orderId as string);
+    const order = await getOrderByIdService(orderId as string, role as string, userId as string);
 
     sendResponse(res, {
         success: true,
@@ -35,10 +49,16 @@ export const getOrder = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+/**
+ * Get orders by user (By User)
+ * @param req Request
+ * @param res Response
+ */
 export const getOrders = catchAsync(async (req: Request, res: Response) => {
     const userId = req.user?.id;
+    const query = req.query;
 
-    const orders = await getOrdersByUserService(userId);
+    const orders = await getOrdersByUserService(userId as string, query);
 
     sendResponse(res, {
         success: true,
@@ -48,11 +68,33 @@ export const getOrders = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+/**
+ * Get all orders (By Admin)
+ * @param req Request
+ * @param res Response
+ */
+export const getAllOrders = catchAsync(async (req: Request, res: Response) => {
+    const query = req.query;
+    const orders = await getAllOrdersService(query);
+
+    sendResponse(res, {
+        success: true,
+        statusCode: 200,
+        message: "Orders retrieved successfully",
+        data: orders,
+    });
+});
+
+/**
+ * Update order status (By Admin)
+ * @param req Request
+ * @param res Response
+ */
 export const updateOrderStatus = catchAsync(async (req: Request, res: Response) => {
     const { orderId } = req.params as { orderId: string };
-    const { orderStatus } = req.body;
+    const { status } = req.body;
 
-    const order = await updateOrderStatusService(orderId as string, orderStatus);
+    const order = await updateOrderStatusService(orderId as string, status as string);
 
     sendResponse(res, {
         success: true,
@@ -62,9 +104,30 @@ export const updateOrderStatus = catchAsync(async (req: Request, res: Response) 
     });
 });
 
+/**
+ * Cancel order (By User)
+ * @param req Request
+ * @param res Response
+ */
+export const cancelOrder = catchAsync(async (req: Request, res: Response) => {
+    const { orderId } = req.params as { orderId: string };
+    const userId = req.user?.id;
+
+    const order = await cancelOrderService(orderId as string, userId as string);
+
+    sendResponse(res, {
+        success: true,
+        statusCode: 200,
+        message: "Order cancelled successfully",
+        data: order,
+    });
+});
+
 export const orderController = {
     createOrder,
     getOrder,
     getOrders,
+    getAllOrders,
     updateOrderStatus,
+    cancelOrder,
 };

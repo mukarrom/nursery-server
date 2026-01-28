@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { USER_ROLE } from "../../constants/status.constants";
 import auth from "../../middlewares/auth";
 import validateRequest from "../../middlewares/validateRequest";
 import { orderController } from "./order.controller";
@@ -6,21 +7,42 @@ import { orderValidation } from "./order.validation";
 
 const orderRouter = Router();
 
-// Create order
+/**
+ * Create order (By User)
+ */
 orderRouter.post(
     "/",
-    auth(),
+    auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     validateRequest(orderValidation.createOrderZodSchema),
     orderController.createOrder
 );
 
-// Get user orders
-orderRouter.get("/", auth(), orderController.getOrders);
+/**
+ * Get user orders (By User)
+ */
+orderRouter.get("/my", auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN), orderController.getOrders);
 
-// Get specific order
-orderRouter.get("/:orderId", auth(), orderController.getOrder);
+/**
+ * Get all orders (By Admin)
+ */
+orderRouter.get("/all", auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN), orderController.getAllOrders);
 
-// Update order status
-orderRouter.patch("/:orderId/status", auth(), orderController.updateOrderStatus);
+/**
+ * Get specific order (By User and Admin)
+ */
+orderRouter.get("/:orderId", auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN), orderController.getOrder);
+
+/**
+ * Update order status (By Admin)
+ */
+orderRouter.patch("/:orderId/status", auth(USER_ROLE.ADMIN),
+    validateRequest(orderValidation.updateOrderStatusValidationSchema),
+    orderController.updateOrderStatus);
+
+/**
+ * Cancel order (By User) - Within 6 hours of creation
+ */
+orderRouter.patch("/:orderId/cancel", auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
+    orderController.cancelOrder);
 
 export default orderRouter;

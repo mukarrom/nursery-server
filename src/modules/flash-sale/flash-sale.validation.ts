@@ -10,7 +10,7 @@ const flashSaleBaseSchema = z.object({
     startDate: z.string().datetime({ message: "Start date must be a valid ISO datetime" }),
     endDate: z.string().datetime({ message: "End date must be a valid ISO datetime" }),
     isActive: z.coerce.boolean().default(true),
-    productIds: z.array(z.string().regex(/^[0-9a-f]{24}$/i, "Invalid product ID")).optional(),
+    productIds: z.array(z.string().min(24, "Invalid product ID")).optional(),
     featured: z.coerce.boolean().default(false).optional(),
     order: z.coerce.number().min(0).default(0).optional(),
 });

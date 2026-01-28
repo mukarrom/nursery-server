@@ -6,30 +6,49 @@ import { reviewValidation } from "./review.validation";
 
 const reviewRouter = Router();
 
-// Create review
+/**
+ * Create a review
+ */
 reviewRouter.post(
     "/",
     auth(),
     validateRequest(reviewValidation.createReviewZodSchema),
-    reviewController.createReview
+    reviewController.createReviewController
 );
 
-// Get reviews by product
-reviewRouter.get("/product/:productId", reviewController.getReviewsByProduct);
+/**
+ * Update a review
+ */
+reviewRouter.patch("/update/:reviewId", auth(), validateRequest(reviewValidation.updateReviewZodSchema), reviewController.updateReviewController);
 
-// Get user's reviews
-reviewRouter.get("/", auth(), reviewController.getReviewsByUser);
+/**
+ * Get reviews by product
+ */
+reviewRouter.get("/product/:productId", reviewController.getReviewsByProductController);
 
-// Publish review
-reviewRouter.patch("/:reviewId/publish", auth(), reviewController.publishReview);
+/**
+ * Get my reviews
+ */
+reviewRouter.get("/my", auth(), reviewController.getReviewsByUserController);
 
-// Unpublish review
-reviewRouter.patch("/:reviewId/unpublish", auth(), reviewController.unpublishReview);
+/**
+ * Publish review
+ */
+reviewRouter.patch("/:reviewId/publish", auth(), reviewController.publishReviewController);
 
-// Mark review as helpful
-reviewRouter.patch("/:reviewId/helpful", reviewController.addHelpfulReview);
+/**
+ * Unpublish review
+ */
+reviewRouter.patch("/:reviewId/unpublish", auth(), reviewController.unpublishReviewController);
 
-// Delete review
-reviewRouter.delete("/:reviewId", auth(), reviewController.deleteReview);
+/**
+ * Mark review as helpful
+ */
+reviewRouter.patch("/:reviewId/helpful", reviewController.addHelpfulReviewController);
+
+/** 
+ * Delete review 
+ */
+reviewRouter.delete("/:reviewId", auth(), reviewController.deleteReviewController);
 
 export default reviewRouter;

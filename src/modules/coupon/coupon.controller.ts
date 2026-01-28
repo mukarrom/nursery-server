@@ -75,17 +75,14 @@ export const applyCoupon = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const getAllCoupons = catchAsync(async (req: Request, res: Response) => {
-    const { isActive } = req.query;
-
-    const coupons = await getAllCouponsService(
-        isActive === "true" ? true : isActive === "false" ? false : undefined
-    );
+    const result = await getAllCouponsService(req.query);
 
     sendResponse(res, {
         success: true,
         statusCode: 200,
         message: "Coupons retrieved successfully",
-        data: coupons,
+        data: result.coupons,
+        meta: result.meta,
     });
 });
 

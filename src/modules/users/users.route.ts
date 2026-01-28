@@ -7,10 +7,22 @@ import { Router } from "express";
 import { USER_ROLE } from "../../constants/status.constants";
 import auth from "../../middlewares/auth";
 import validateRequest from "../../middlewares/validateRequest";
+import { upload } from "../../utils/multer";
 import { userController } from "./users.controller";
 import { UserValidation } from "./users.validation";
 
 const router = Router();
+
+/**
+ * @route GET /user/profile
+ * @group User - User profile management
+ * @security JWT
+ */
+router.get(
+  "/profile",
+  auth(USER_ROLE.ADMIN, USER_ROLE.USER, USER_ROLE.SUPER_ADMIN),
+  userController.getProfile
+);
 
 /**
  * @route PATCH /user/update
@@ -24,6 +36,7 @@ const router = Router();
 router.patch(
   "/update",
   auth(USER_ROLE.ADMIN, USER_ROLE.USER, USER_ROLE.SUPER_ADMIN),
+  upload.single("profilePicture"),
   validateRequest(UserValidation.updateProfileZodSchema),
   userController.updateProfile
 );

@@ -15,10 +15,11 @@ export type TUser = {
   status?: TUserStatus;
   isDeleted?: boolean;
   passwordChangedAt?: Date;
-  emailVerificationToken?: string;
-  emailVerificationTokenExpires?: Date;
+  emailVerificationOtp?: string;
+  emailVerificationOtpExpires?: Date;
   passwordResetToken?: string;
   passwordResetTokenExpires?: Date;
   accessToken?: string;
   refreshToken?: string;
+  // isLoggedIn?: boolean;
 };

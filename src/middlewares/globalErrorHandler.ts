@@ -22,44 +22,66 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     },
   ];
 
-  // Check the type of error and handle accordingly
+  // Helper function to check if error is E11000 duplicate key error
+  const isE11000Error = (error: any): boolean => {
+    return (
+      error?.code === 11000 ||
+      error?.message?.includes("E11000") ||
+      error?.name === "MongoServerError"
+    );
+  };
+
+  // Check the type of error and handle accordingly (order matters - more specific first)
   if (err instanceof ZodError) {
+    // Handle Zod validation errors
     const simplifiedError = handleZodError(err);
     statusCode = simplifiedError?.statusCode;
     message = simplifiedError?.message;
     errorSources = simplifiedError?.errorSources;
-  } else if (err?.name === "ValidationError") {
-    const simplifiedError = handleValidationError(err);
-    statusCode = simplifiedError?.statusCode;
-    message = simplifiedError?.message;
-    errorSources = simplifiedError?.errorSources;
-  } else if (err?.name === "CastError") {
-    const simplifiedError = handleCastError(err);
-    statusCode = simplifiedError?.statusCode;
-    message = simplifiedError?.message;
-    errorSources = simplifiedError?.errorSources;
-  } else if (err?.code === 11000) {
+  } else if (isE11000Error(err)) {
+    // Handle MongoDB duplicate key errors (E11000) - MUST be before generic Error!
     const simplifiedError = handleDuplicateError(err);
     statusCode = simplifiedError?.statusCode;
     message = simplifiedError?.message;
     errorSources = simplifiedError?.errorSources;
   } else if (err instanceof AppError) {
-    // Handle custom AppError
-    statusCode = err?.statusCode;
+    // Handle custom application errors
+    statusCode = err.statusCode;
     message = err.message;
     errorSources = [
       {
         path: "",
-        message: err?.message,
+        message: err.message,
       },
     ];
+  } else if (err?.name === "ValidationError") {
+    // Handle Mongoose schema validation errors
+    const simplifiedError = handleValidationError(err);
+    statusCode = simplifiedError?.statusCode;
+    message = simplifiedError?.message;
+    errorSources = simplifiedError?.errorSources;
+  } else if (err?.name === "CastError") {
+    // Handle MongoDB invalid ObjectId errors
+    const simplifiedError = handleCastError(err);
+    statusCode = simplifiedError?.statusCode;
+    message = simplifiedError?.message;
+    errorSources = simplifiedError?.errorSources;
   } else if (err instanceof Error) {
-    // Handle generic Error
-    message = err.message;
+    // Handle generic JavaScript Error objects
+    message = err.message || "Unknown error occurred";
     errorSources = [
       {
         path: "",
-        message: err?.message,
+        message: err.message || "Unknown error",
+      },
+    ];
+  } else {
+    // Handle any other unexpected error types
+    message = "An unexpected error occurred";
+    errorSources = [
+      {
+        path: "",
+        message: typeof err === "string" ? err : "Unknown error",
       },
     ];
   }

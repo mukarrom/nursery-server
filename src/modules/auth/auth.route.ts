@@ -7,12 +7,10 @@ import { Router } from "express";
 import { USER_ROLE } from "../../constants/status.constants";
 import auth from "../../middlewares/auth";
 import validateRequest from "../../middlewares/validateRequest";
+import { upload } from "../../utils/multer";
 import { authController } from "./auth.controller";
 import {
   AuthValidations,
-  emailLinkVerificationValidationSchema,
-  emailVerificationValidationSchema,
-  resendVerificationValidationSchema,
 } from "./auth.validation";
 
 const router = Router();
@@ -27,6 +25,7 @@ const router = Router();
  */
 router.post(
   "/sign-up",
+  upload.single("profilePicture"),
   validateRequest(AuthValidations.signUpZodSchema),
   authController.signUpController
 );
@@ -53,7 +52,7 @@ router.post(
  * @returns {TokenResponse.model} 200 - New access token generated
  * @returns {ErrorResponse.model} 401 - Invalid refresh token
  */
-router.get("/refresh-token/:id", authController.refreshTokenController);
+// router.get("/refresh-token/:id", authController.refreshTokenController);
 
 /**
  * @route DELETE /auth/logout
@@ -62,47 +61,40 @@ router.get("/refresh-token/:id", authController.refreshTokenController);
  * @returns {object} 200 - Logout successful
  * @returns {ErrorResponse.model} 401 - Unauthorized
  */
-router.delete("/logout", authController.signOutController);
+// router.delete("/logout", authController.signOutController);
 
 /**
  * @route GET /auth/verify-email
  * @group Authentication - Email Verification
- * @param {string} token.query.required - Verification token
- * @param {string} email.query.required - User email
- * @returns {object} 200 - Email verified successfully
- * @returns {ErrorResponse.model} 400 - Invalid token or email
+ * COMMENTED OUT: Email verification is no longer required
  */
-router.get(
-  "/verify-email",
-  authController.verifyEmailLinkController
-);
+// router.get(
+//   "/verify-email",
+//   authController.verifyEmailLinkController
+// );
 
 // Email verification routes
 /**
  * @route POST /auth/verify-email
  * @group Authentication - Email Verification
- * @param {EmailVerificationRequest.model} request.body.required - Verification data
- * @returns {object} 200 - Email verified successfully
- * @returns {ErrorResponse.model} 400 - Invalid verification data
+ * COMMENTED OUT: Email verification is no longer required
  */
-router.post(
-  "/verify-email",
-  validateRequest(emailVerificationValidationSchema),
-  authController.verifyEmailController
-);
+// router.post(
+//   "/verify-email",
+//   validateRequest(emailVerificationValidationSchema),
+//   authController.verifyEmailController
+// );
 
 /**
  * @route POST /auth/resend-verification
  * @group Authentication - Email Verification
- * @param {ResendVerificationRequest.model} request.body.required - Email to resend verification
- * @returns {object} 200 - Verification email resent
- * @returns {ErrorResponse.model} 400 - Invalid email or already verified
+ * COMMENTED OUT: Email verification is no longer required
  */
-router.post(
-  "/resend-verification",
-  validateRequest(resendVerificationValidationSchema),
-  authController.resendVerificationController
-);
+// router.post(
+//   "/resend-otp",
+//   validateRequest(resendVerificationValidationSchema),
+//   authController.resendVerificationController
+// );
 
 /**
  * @route POST /auth/change-password

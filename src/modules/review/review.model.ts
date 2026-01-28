@@ -18,10 +18,12 @@ const ReviewSchema = new Schema<TReview>(
             min: 1,
             max: 5,
         },
-        reviewText: String,
+        reviewText: {
+            type: String,
+        },
         isPublished: {
             type: Boolean,
-            default: false,
+            default: true,
         },
         helpfulCount: {
             type: Number,

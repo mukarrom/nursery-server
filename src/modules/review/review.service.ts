@@ -2,6 +2,14 @@ import AppError from "../../errors/AppError";
 import { ProductModel } from "../products/products.model";
 import { ReviewModel } from "./review.model";
 
+/**
+ * Create Review Service
+ * @param userId 
+ * @param productId 
+ * @param rating 
+ * @param reviewText 
+ * @returns 
+ */
 export const createReviewService = async (
     userId: string,
     productId: string,
@@ -29,6 +37,39 @@ export const createReviewService = async (
     return review;
 };
 
+/**
+ * Update Review Service
+ */
+export const updateReviewService = async (
+    reviewId: string,
+    userId: string,
+    updateData: { rating?: number; reviewText?: string }
+) => {
+    const review = await ReviewModel.findById(reviewId);
+    if (!review) {
+        throw new AppError(404, "Review not found");
+    }
+    if (review.userId.toString() !== userId) {
+        throw new AppError(403, "You are not authorized to update this review");
+    }
+    if (updateData.rating !== undefined) {
+        review.rating = updateData.rating;
+    }
+    if (updateData.reviewText !== undefined) {
+        review.reviewText = updateData.reviewText;
+    }
+    await review.save();
+
+    // Update product rating
+    await updateProductRatingService(review.productId.toString());
+    return review;
+}
+
+/**
+ * Publish Review Service
+ * @param reviewId 
+ * @returns 
+ */
 export const publishReviewService = async (reviewId: string) => {
     const review = await ReviewModel.findById(reviewId);
     if (!review) {
@@ -44,6 +85,11 @@ export const publishReviewService = async (reviewId: string) => {
     return review;
 };
 
+/**
+ * Unpublish Review Service
+ * @param reviewId 
+ * @returns
+ */
 export const unpublishReviewService = async (reviewId: string) => {
     const review = await ReviewModel.findById(reviewId);
     if (!review) {
@@ -59,6 +105,9 @@ export const unpublishReviewService = async (reviewId: string) => {
     return review;
 };
 
+/**
+ * Update Product Rating Service
+ */
 export const updateProductRatingService = async (productId: string) => {
     const reviews = await ReviewModel.find({ productId, isPublished: true });
 
@@ -78,6 +127,9 @@ export const updateProductRatingService = async (productId: string) => {
     );
 };
 
+/**
+ * Get Reviews By Product Service
+ */
 export const getReviewsByProductService = async (productId: string) => {
     const reviews = await ReviewModel.find({ productId, isPublished: true })
         .populate("userId", "name email")
@@ -85,6 +137,9 @@ export const getReviewsByProductService = async (productId: string) => {
     return reviews;
 };
 
+/**
+ * Get Reviews By User Service
+ */
 export const getReviewsByUserService = async (userId: string) => {
     const reviews = await ReviewModel.find({ userId })
         .populate("productId", "name")
@@ -92,6 +147,9 @@ export const getReviewsByUserService = async (userId: string) => {
     return reviews;
 };
 
+/**
+ * Add Helpful Review Service
+ */
 export const addHelpfulReviewService = async (reviewId: string) => {
     const review = await ReviewModel.findByIdAndUpdate(
         reviewId,
@@ -106,6 +164,9 @@ export const addHelpfulReviewService = async (reviewId: string) => {
     return review;
 };
 
+/**
+ * Delete Review Service
+ */
 export const deleteReviewService = async (reviewId: string) => {
     const review = await ReviewModel.findByIdAndDelete(reviewId);
     if (!review) {
@@ -120,8 +181,9 @@ export const deleteReviewService = async (reviewId: string) => {
     return review;
 };
 
-export const reviewService = {
+export const reviewServices = {
     createReviewService,
+    updateReviewService,
     publishReviewService,
     unpublishReviewService,
     getReviewsByProductService,

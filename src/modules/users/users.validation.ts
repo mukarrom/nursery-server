@@ -29,6 +29,9 @@ const userValidationSchema = z.object({
       .min(6, "Password must be at least 6 characters")
       .max(255)
       .optional(),
+    profilePicture: z
+      .string()
+      .optional(),
     role: z
       .enum(["USER", "ADMIN", "SUPER_ADMIN"], {
         invalid_type_error: "Role must be a valid role",

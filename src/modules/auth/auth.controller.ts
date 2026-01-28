@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import status from "http-status";
 import AppError from "../../errors/AppError";
 import catchAsync from "../../utils/catchAsync";
+import { uploadImage } from "../../utils/imageUpload";
 import sendResponse from "../../utils/sendResponse";
 import { authServices } from "./auth.service";
 
@@ -12,13 +13,19 @@ import { authServices } from "./auth.service";
  */
 const signUpController = catchAsync(async (req, res) => {
   const body = req.body;
+
+  // Handle profile picture upload
+  if (req.file) {
+    const { url } = await uploadImage(req.file.buffer, "profile-pictures");
+    body.profilePicture = url;
+  }
+
   const result = await authServices.signUpService(body);
 
   sendResponse(res, {
     statusCode: status.CREATED,
     success: true,
-    message:
-      "Signup completed successfully. An OTP has been sent to your email address and will expire in 5 minutes",
+    message: "Signup completed successfully. You can now log in with your credentials.",
     data: result,
   });
 });
@@ -40,119 +47,119 @@ const signInController = catchAsync(async (req, res) => {
   });
 });
 
+
+
+
+
 /**
  * Controller to log out the current logged-in user.
  * @param req - The request object containing user ID and access token.
  * @param res - The response object to send the result.
  */
-const signOutController = catchAsync(async (req, res) => {
-  const userId = req.params.id as string;
-  const accessToken = req.headers.authorization || "";
-  const result = await authServices.signOutService(userId, accessToken);
+// const signOutController = catchAsync(async (req, res) => {
+//   const userId = req.params.id as string;
+//   const accessToken = req.headers.authorization || "";
+//   const result = await authServices.signOutService(userId, accessToken);
 
-  sendResponse(res, {
-    statusCode: status.NO_CONTENT,
-    success: true,
-    message: "Logout successful",
-    data: result,
-  });
-});
+//   sendResponse(res, {
+//     statusCode: status.NO_CONTENT,
+//     success: true,
+//     message: "Logout successful",
+//     data: result,
+//   });
+// });
 
 /**
  * Controller to refresh the token of the current logged-in user.
  * @param req - The request object containing user ID and refresh token.
  * @param res - The response object to send the result.
  */
-const refreshTokenController = catchAsync(async (req, res) => {
-  const userId = req.params.id as string;
-  const refreshToken = req.body.token;
-  const result = await authServices.refreshTokenService(userId, refreshToken);
+// const refreshTokenController = catchAsync(async (req, res) => {
+//   const userId = req.params.id as string;
+//   const refreshToken = req.body.token;
+//   const result = await authServices.refreshTokenService(userId, refreshToken);
 
-  sendResponse(res, {
-    statusCode: status.OK,
-    success: true,
-    message: "Token refreshed successfully",
-    data: result,
-  });
-});
+//   sendResponse(res, {
+//     statusCode: status.OK,
+//     success: true,
+//     message: "Token refreshed successfully",
+//     data: result,
+//   });
+// });
 
 /**
  * Controller to verify the user's email.
- * @param req - The request object containing email and token.
- * @param res - The response object to send the result.
+ * COMMENTED OUT: Email verification is no longer required
  */
-const verifyEmailController = catchAsync(async (req, res) => {
-  const { email, token } = req.body;
+// const verifyEmailController = catchAsync(async (req, res) => {
+//   const { email, otp } = req.body;
 
-  await authServices.verifyEmailService(email, token);
+//   await authServices.verifyEmailService(email, otp);
 
-  sendResponse(res, {
-    statusCode: status.OK,
-    success: true,
-    message: "Email verified successfully",
-    data: null,
-  });
-});
+//   sendResponse(res, {
+//     statusCode: status.OK,
+//     success: true,
+//     message: "Email verified successfully",
+//     data: null,
+//   });
+// });
 
 /**
  * Controller to send an OTP to the user's email.
- * @param req - The request object containing the user's email.
- * @param res - The response object to send the result.
+ * COMMENTED OUT: Email verification is no longer required
  */
-const sendOtpController = catchAsync(async (req, res) => {
-  const email = req.body.email;
-  await authServices.resendOtpService(email);
-  sendResponse(res, {
-    statusCode: status.OK,
-    success: true,
-    message:
-      "An OTP has been sent to your email address and will expire in 5 minutes",
-    data: null,
-  });
-});
+// const resendOtpController = catchAsync(async (req, res) => {
+//   const email = req.body.email;
+//   await authServices.resendOtpService(email);
+//   sendResponse(res, {
+//     statusCode: status.OK,
+//     success: true,
+//     message:
+//       "An OTP has been sent to your email address and will expire in 5 minutes",
+//     data: null,
+//   });
+// });
 
 /**
  * Controller to verify the user's email using a link.
- * @param req - The request object containing email and token.
- * @param res - The response object to redirect to the verification result page.
+ * COMMENTED OUT: Email verification is no longer required
  */
-const verifyEmailLinkController = catchAsync(async (req, res) => {
-  const { token, email } = req.query;
+// const verifyEmailLinkController = catchAsync(async (req, res) => {
+//   const { token, email } = req.query;
 
-  try {
-    const result = await authServices.verifyEmailService(
-      email as string,
-      token as string,
-      true // isLink = true for link verification
-    );
+//   try {
+//     const result = await authServices.verifyEmailService(
+//       email as string,
+//       token as string,
+//       true // isLink = true for link verification
+//     );
 
-    // Redirect to verification page with success
-    res.redirect(
-      `/verify-email?success=true&message=${encodeURIComponent(result.message)}`
-    );
-  } catch (error: any) {
-    // Redirect to verification page with error
-    res.redirect(
-      `/verify-email?success=false&message=${encodeURIComponent(error.message)}`
-    );
-  }
-});
+//     // Redirect to verification page with success
+//     res.redirect(
+//       `/verify-email?success=true&message=${encodeURIComponent(result.message)}`
+//     );
+//   } catch (error: any) {
+//     // Redirect to verification page with error
+//     res.redirect(
+//       `/verify-email?success=false&message=${encodeURIComponent(error.message)}`
+//     );
+//   }
+// });
 
 /**
  * Controller to resend the verification email.
- * @param req - The request object containing the user's email.
- * @param res - The response object to send the result.
+ * COMMENTED OUT: Email verification is no longer required
  */
-const resendVerificationController = catchAsync(async (req, res) => {
-  const { email } = req.body;
-  const result = await authServices.resendOtpService(email);
-  sendResponse(res, {
-    statusCode: status.OK,
-    success: true,
-    message: "Verification email sent successfully",
-    data: result,
-  });
-});
+// const resendVerificationController = catchAsync(async (req, res) => {
+//   const { email } = req.body;
+//   const result = await authServices.resendOtpService(email);
+//   sendResponse(res, {
+//     statusCode: status.OK,
+//     success: true,
+//     message: "Verification email sent successfully",
+//     data: result,
+//   });
+// });
 
 // ----------------------------- Verify JWT -----------------------------
 /**
@@ -252,15 +259,13 @@ const resetPassword = catchAsync(async (req: Request, res: Response) => {
 export const authController = {
   signUpController,
   signInController,
-  signOutController,
-  refreshTokenController,
-  verifyEmailController,
-  verifyEmailLinkController,
-  resendVerificationController,
+  // COMMENTED OUT: Email verification controllers no longer used
+  // verifyEmailController,
+  // resendOtpController,
+  // verifyEmailLinkController,
+  // resendVerificationController,
   verifyAccessTokenController,
   changePasswordController,
-  sendOtpController,
   requestPasswordReset,
   resetPassword,
-  // sendMailController,
 };

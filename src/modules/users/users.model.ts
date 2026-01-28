@@ -11,6 +11,7 @@ export interface IUserModel extends Model<TUser> {
   ): boolean;
 }
 
+
 const UserSchema = new Schema<TUser, IUserModel>(
   {
     name: {
@@ -19,10 +20,10 @@ const UserSchema = new Schema<TUser, IUserModel>(
     },
     phone: {
       type: String,
+      unique: true,
     },
     email: {
       type: String,
-      required: true,
       unique: true,
     },
     password: {
@@ -57,10 +58,10 @@ const UserSchema = new Schema<TUser, IUserModel>(
     passwordChangedAt: {
       type: Date,
     },
-    emailVerificationToken: {
+    emailVerificationOtp: {
       type: String,
     },
-    emailVerificationTokenExpires: {
+    emailVerificationOtpExpires: {
       type: Date,
     },
     passwordResetToken: {
@@ -75,17 +76,21 @@ const UserSchema = new Schema<TUser, IUserModel>(
     refreshToken: {
       type: String,
     },
+    // isLoggedIn: {
+    //   type: Boolean,
+    //   default: false,
+    // },
   },
   { timestamps: true }
 );
 
-// UserSchema.statics.isUserExists = async function (id: string) {
-//   return await this.findById(id).select("+password");
-// };
+UserSchema.statics.isUserExists = async function (id: string) {
+  return await this.findById(id).select("+password");
+};
 
-// UserSchema.statics.isUserByEmail = async function (email: string) {
-//   return await this.findOne({ email }).select("+password");
-// };
+UserSchema.statics.isUserByEmail = async function (email: string) {
+  return await this.findOne({ email }).select("+password");
+};
 
 /// return user data without password and other sensitive information
 UserSchema.methods.toJSON = function () {
@@ -93,8 +98,8 @@ UserSchema.methods.toJSON = function () {
   delete obj.password;
   delete obj.accessToken;
   delete obj.refreshToken;
-  delete obj.emailVerificationToken;
-  delete obj.emailVerificationTokenExpires;
+  delete obj.emailVerificationOtp;
+  delete obj.emailVerificationOtpExpires;
   delete obj.passwordResetToken;
   delete obj.passwordResetTokenExpires;
   delete obj.isDeleted;
@@ -108,5 +113,28 @@ UserSchema.statics.isJWTIssuedBeforePasswordChanged = function (
   const passwordChangedTime = new Date(passwordChangedAt).getTime() / 1000;
   return passwordChangedTime > jwtIssuedAt;
 };
+
+// Post hook to handle E11000 duplicate key errors
+// UserSchema.post("save", function (error: any, doc: any, next: any) {
+//   if (error.name === "MongoServerError" && error.code === 11000) {
+//     // Extract the field name causing the error
+//     const field = Object.keys(error.keyValue)[0];
+//     const value = error.keyValue[field];
+
+//     next(new Error(`A user with the ${field} "${value}" already exists.`));
+//   } else {
+//     next(error);
+//   }
+// });
+
+// Also handle updates (findOneAndUpdate)
+// UserSchema.post("findOneAndUpdate", function (error: any, doc: any, next: any) {
+//   if (error.name === "MongoServerError" && error.code === 11000) {
+//     const field = Object.keys(error.keyValue)[0];
+//     next(new Error(`The ${field} you are trying to use is already taken.`));
+//   } else {
+//     next(error);
+//   }
+// });
 
 export const UserModel = model<TUser, IUserModel>("User", UserSchema);

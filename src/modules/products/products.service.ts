@@ -1,9 +1,21 @@
+import QueryBuilder from "../../builder/QueryBuilder";
 import { FOLDER_NAMES } from "../../constants/folder.constants";
 import { deleteImage, uploadImage } from "../../utils/imageUpload";
 import { TProduct } from "./products.interface";
 import { ProductModel } from "./products.model";
 
+/**
+ * Create a new product
+ * @param productData - The product data to create
+ * @returns The created product
+ */
 const createProductService = async (productData: TProduct) => {
+    // tags normalization to lowercase and coma separation
+    if (productData.tags && !Array.isArray(productData.tags)) {
+        productData.tags = (productData.tags as string)
+            .split(",")
+            .map((tag: string) => tag.trim().toLowerCase());
+    }
     const result = await ProductModel.create(productData);
 
     if (!result && productData.image) {
@@ -18,17 +30,95 @@ const createProductService = async (productData: TProduct) => {
     return result;
 };
 
+/**
+ * Get a product by ID
+ * @param id - The ID of the product to retrieve
+ * @returns The product with the specified ID
+ */
 const getProductByIdService = async (id: string) => {
     return await ProductModel.findById(id);
 };
 
-const getAllProductsService = async () => {
-    return await ProductModel.find({});
+/**
+ * Get all products
+ * @param query - The query parameters to filter, sort, and paginate the results
+ * @queries: {searchTerm: string, brand: string, tags: string, price: string, rating: string, stock: string}
+ * @returns An object containing the products and pagination metadata
+ */
+const getAllProductsService = async (query: Record<string, unknown>) => {
+
+    const productQuery = new QueryBuilder(ProductModel.find({}), query)
+        .search(["name", "description", "brand", "sku", "tags"])
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+    const products = await productQuery.modelQuery;
+    const meta = await productQuery.countTotal();
+    return { products, meta };
 };
 
+/**
+ * Get products by tag name
+ * @param tags - The tag name to filter products by
+ * @param query - The query parameters to filter, sort, and paginate the results
+ * @returns An object containing the products and pagination metadata
+ */
+const getProductsByTagService = async (tags: string, query: Record<string, unknown> = {}) => {
+    // Split tags by comma, trim whitespace, and create case-insensitive regex for each
+    const tagArray = tags.split(',').map(t => t.trim()).filter(t => t.length > 0);
+    const tagsRegexArray = tagArray.map(t => new RegExp(`^${t}$`, 'i'));
+
+    // Create base query with tag filtering
+    const productQuery = new QueryBuilder(
+        ProductModel.find({
+            tags: {
+                $in: tagsRegexArray
+            }
+        }),
+        query
+    )
+        .search(["name", "description", "brand", "sku"])
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+
+    const products = await productQuery.modelQuery;
+    const meta = await productQuery.countTotal();
+
+    return { products, meta };
+};
+
+/**
+ * Get all products by category id
+ * @param categoryId - The ID of the category to retrieve products from
+ * @returns An object containing the products and pagination metadata
+ */
+const getAllProductsByCategoryIdService = async (categoryId: string, query: Record<string, unknown> = {}) => {
+    const productQuery = new QueryBuilder(ProductModel.find({ categoryId }), query)
+        .search(["name", "description", "brand", "sku"])
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+    const products = await productQuery.modelQuery;
+    const meta = await productQuery.countTotal();
+    return { products, meta };
+};
+
+/**
+ * Update a product by ID
+ * @param id - The ID of the product to update
+ * @param productData - The product data to update
+ * @returns The updated product
+ */
 const updateProductService = async (
     id: string,
-    productData: Partial<TProduct> & { file?: Express.Multer.File }
+    productData: Partial<TProduct> & {
+        file?: Express.Multer.File;
+        files?: { [fieldname: string]: Express.Multer.File[] };
+    }
 ) => {
     const session = await ProductModel.startSession();
     session.startTransaction();
@@ -41,27 +131,60 @@ const updateProductService = async (
         }
 
         let imageUrl = existingProduct.image;
+        let imagesUrls = existingProduct.images || [];
 
-        if (productData.file) {
-            if (existingProduct.image) {
-                try {
-                    await deleteImage(existingProduct.image);
-                } catch (error) {
-                    console.error("Failed to delete old product image:", error);
+        // Handle multiple file uploads
+        if (productData.files) {
+            const files = productData.files;
+
+            // Handle main image update
+            if (files.image && files.image[0]) {
+                if (existingProduct.image) {
+                    try {
+                        await deleteImage(existingProduct.image);
+                    } catch (error) {
+                        console.error("Failed to delete old product image:", error);
+                    }
                 }
+
+                const uploadResult = await uploadImage(
+                    files.image[0].buffer,
+                    FOLDER_NAMES.PRODUCT
+                );
+                imageUrl = uploadResult.url;
             }
 
-            const uploadResult = await uploadImage(
-                productData.file.buffer,
-                FOLDER_NAMES.PRODUCT
-            );
-            imageUrl = uploadResult.url;
-            delete productData.file;
+            // Handle additional images
+            if (files.images) {
+                // Delete old additional images if any
+                if (existingProduct.images && existingProduct.images.length > 0) {
+                    for (const oldImage of existingProduct.images) {
+                        try {
+                            await deleteImage(oldImage);
+                        } catch (error) {
+                            console.error("Failed to delete old additional image:", error);
+                        }
+                    }
+                }
+
+                // Upload new additional images
+                const newImagesUrls: string[] = [];
+                for (const file of files.images) {
+                    const uploadResult = await uploadImage(
+                        file.buffer,
+                        FOLDER_NAMES.PRODUCT
+                    );
+                    newImagesUrls.push(uploadResult.url);
+                }
+                imagesUrls = newImagesUrls;
+            }
+
+            delete productData.files;
         }
 
         const updatedProduct = await ProductModel.findByIdAndUpdate(
             id,
-            { ...productData, image: imageUrl },
+            { ...productData, image: imageUrl, images: imagesUrls },
             { new: true, session }
         );
 
@@ -76,6 +199,11 @@ const updateProductService = async (
     }
 };
 
+/**
+ * Delete a product by ID
+ * @param id - The ID of the product to delete
+ * @returns The deleted product
+ */
 const deleteProductService = async (id: string) => {
     const session = await ProductModel.startSession();
     session.startTransaction();
@@ -111,6 +239,8 @@ export const productService = {
     createProductService,
     getProductByIdService,
     getAllProductsService,
+    getProductsByTagService,
+    getAllProductsByCategoryIdService,
     updateProductService,
     deleteProductService,
 };

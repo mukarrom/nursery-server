@@ -7,9 +7,14 @@ import sendResponse from "../../utils/sendResponse";
 import { TCarousel } from "./carousel.interface";
 import { carouselService } from "./carousel.service";
 
+/**
+ * Controller to create a new carousel.
+ * @param req - The request object containing the carousel data.
+ * @param res - The response object to send the result.
+ */
 const createCarouselController = catchAsync(async (req, res) => {
     if (!req.file) {
-        throw new Error("imageFile is required");
+        throw new Error("Image is required");
     }
 
     if (!(req.file.buffer instanceof Buffer)) {

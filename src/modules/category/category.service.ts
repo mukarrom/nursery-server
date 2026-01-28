@@ -1,5 +1,9 @@
+import httpStatus from "http-status";
+import QueryBuilder from "../../builder/QueryBuilder";
 import { FOLDER_NAMES } from "../../constants/folder.constants";
+import AppError from "../../errors/AppError";
 import { deleteImage, uploadImage } from "../../utils/imageUpload";
+import { ProductModel } from "../products/products.model";
 import { TCategory } from "./category.interface";
 import { CategoryModel } from "./category.model";
 
@@ -22,8 +26,16 @@ const getCategoryByIdService = async (id: string) => {
     return await CategoryModel.findById(id);
 };
 
-const getAllCategoriesService = async () => {
-    return await CategoryModel.find({});
+const getAllCategoriesService = async (query: Record<string, unknown>) => {
+    const categoryQuery = new QueryBuilder(CategoryModel.find({}), query)
+        .search(["name", "description"])
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+    const categories = await categoryQuery.modelQuery;
+    const meta = await categoryQuery.countTotal();
+    return { categories, meta };
 };
 
 const updateCategoryService = async (
@@ -84,7 +96,19 @@ const deleteCategoryService = async (id: string) => {
         const category = await CategoryModel.findById(id).session(session);
 
         if (!category) {
-            throw new Error("Category not found");
+            throw new AppError(httpStatus.NOT_FOUND, "Category not found");
+        }
+
+        // Check if any products are using this category
+        const productsWithCategory = await ProductModel.countDocuments({
+            categoryId: id
+        }).session(session);
+
+        if (productsWithCategory > 0) {
+            throw new AppError(
+                httpStatus.BAD_REQUEST,
+                `Cannot delete category. ${productsWithCategory} product(s) are associated with this category. Please reassign or delete the products first.`
+            );
         }
 
         const result = await CategoryModel.findByIdAndDelete(id).session(session);

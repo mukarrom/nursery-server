@@ -9,7 +9,7 @@ import { categoryService } from "./category.service";
 
 const createCategoryController = catchAsync(async (req, res) => {
     if (!req.file) {
-        throw new Error("imageFile is required");
+        throw new Error("image is required");
     }
 
     if (!(req.file.buffer instanceof Buffer)) {
@@ -51,13 +51,14 @@ const getCategoryByIdController = catchAsync(
 
 const getAllCategoriesController = catchAsync(
     async (req: Request, res: Response) => {
-        const result = await categoryService.getAllCategoriesService();
+        const result = await categoryService.getAllCategoriesService(req.query);
 
         sendResponse(res, {
             statusCode: httpStatus.OK,
             success: true,
             message: "Categories retrieved successfully",
-            data: result,
+            data: result.categories,
+            meta: result.meta,
         });
     }
 );

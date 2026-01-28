@@ -1,7 +1,7 @@
 {
-  "name": "nursary-shop-server",
+  "name": "nursery-bazar-bd",
   "version": "1.0.0",
-  "description": "# Express Mongo App",
+  "description": "# Nursery Bazar BD - E-Commerce REST API",
   "main": "dist/server.js",
   "scripts": {
     "start": "node dist/server.js",

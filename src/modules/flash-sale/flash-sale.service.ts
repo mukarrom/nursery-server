@@ -3,6 +3,11 @@ import { deleteImage, uploadImage } from "../../utils/imageUpload";
 import { TFlashSale } from "./flash-sale.interface";
 import { FlashSaleModel } from "./flash-sale.model";
 
+/**
+ * Creates a new flash sale.
+ * @param flashSaleData - The flash sale data to create.
+ * @returns The created flash sale.
+ */
 const createFlashSaleService = async (flashSaleData: TFlashSale) => {
     const result = await FlashSaleModel.create(flashSaleData);
 
@@ -18,14 +23,27 @@ const createFlashSaleService = async (flashSaleData: TFlashSale) => {
     return result;
 };
 
+/**
+ * Gets a flash sale by ID.
+ * @param id - The ID of the flash sale to get.
+ * @returns The flash sale with the specified ID.
+ */
 const getFlashSaleByIdService = async (id: string) => {
     return await FlashSaleModel.findById(id).populate("productIds");
 };
 
+/**
+ * Gets all flash sales.
+ * @returns All flash sales.
+ */
 const getAllFlashSalesService = async () => {
     return await FlashSaleModel.find({}).sort({ order: 1, startDate: -1 }).populate("productIds");
 };
 
+/**
+ * Gets active flash sales.
+ * @returns Active flash sales.
+ */
 const getActiveFlashSalesService = async () => {
     const now = new Date();
     return await FlashSaleModel.find({
@@ -37,6 +55,10 @@ const getActiveFlashSalesService = async () => {
         .populate("productIds");
 };
 
+/**
+ * Gets featured flash sales.
+ * @returns Featured flash sales.
+ */
 const getFeaturedFlashSalesService = async () => {
     const now = new Date();
     return await FlashSaleModel.find({
@@ -49,6 +71,12 @@ const getFeaturedFlashSalesService = async () => {
         .populate("productIds");
 };
 
+/**
+ * Updates a flash sale.
+ * @param id - The ID of the flash sale to update.
+ * @param flashSaleData - The flash sale data to update.
+ * @returns The updated flash sale.
+ */
 const updateFlashSaleService = async (
     id: string,
     flashSaleData: Partial<TFlashSale> & { file?: Express.Multer.File }
@@ -99,6 +127,11 @@ const updateFlashSaleService = async (
     }
 };
 
+/**
+ * Deletes a flash sale.
+ * @param id - The ID of the flash sale to delete.
+ * @returns The deleted flash sale.
+ */
 const deleteFlashSaleService = async (id: string) => {
     const session = await FlashSaleModel.startSession();
     session.startTransaction();

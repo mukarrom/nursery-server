@@ -1,0 +1,15 @@
+{
+  "workspace": {
+    "id": "afe1a55f-d4aa-473e-afb6-7ae98a9243f4"
+  },
+  "entities": {
+    "environments": [],
+    "flows": [],
+    "globals": [],
+    "mocks": [],
+    "specs": [],
+    "collections": [
+      "nursery-bazar-bd.postman_collection.json"
+    ]
+  }
+}

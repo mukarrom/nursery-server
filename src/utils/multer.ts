@@ -24,7 +24,7 @@ export const upload = multer({
   storage,
   limits: {
     fileSize: 1000 * 1024 * 1024, // 1000MB (adjust as needed)
-    files: 1
+    files: 15 // Allow up to 15 files (1 main image + up to 10 additional images + buffer)
   },
   fileFilter: (req: Request, file, cb) => {
     // Check for both image and video types
