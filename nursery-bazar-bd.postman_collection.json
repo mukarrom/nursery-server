@@ -1115,6 +1115,95 @@
                     ]
                 },
                 {
+                    "name": "Get Products by Tag",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{token}}"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/products/tag/:tag?page=1&limit=10&sort=-price",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "products",
+                                "tag",
+                                ":tag"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Page number"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10",
+                                    "description": "Items per page"
+                                },
+                                {
+                                    "key": "sort",
+                                    "value": "-price",
+                                    "description": "Sort by price descending"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "key": "tag",
+                                    "value": "rose,flower",
+                                    "description": "Single tag or comma-separated tags (e.g., rose,flower,apple)"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Success - Multiple Tags",
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\"success\": true, \"statusCode\": 200, \"message\": \"Products retrieved successfully\", \"data\": [{\"_id\": \"507f1f77bcf86cd799439011\", \"name\": \"Rose Plant\", \"price\": 299.99, \"tags\": [\"rose\", \"flower\", \"outdoor\"]}], \"meta\": {\"totalDocuments\": 15, \"totalPages\": 2, \"currentPage\": 1, \"limitPerPage\": 10}}"
+                        },
+                        {
+                            "name": "Success - Single Tag",
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\"success\": true, \"statusCode\": 200, \"message\": \"Products retrieved successfully\", \"data\": [{\"_id\": \"507f1f77bcf86cd799439011\", \"name\": \"Rose Plant\", \"price\": 299.99, \"tags\": [\"rose\", \"flower\"]}], \"meta\": {\"totalDocuments\": 5, \"totalPages\": 1, \"currentPage\": 1, \"limitPerPage\": 10}}"
+                        },
+                        {
+                            "name": "Success - Empty",
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\"success\": true, \"statusCode\": 200, \"message\": \"Products retrieved successfully\", \"data\": [], \"meta\": {\"totalDocuments\": 0, \"totalPages\": 0, \"currentPage\": 1, \"limitPerPage\": 10}}"
+                        }
+                    ]
+                },
+                {
                     "name": "Create Product (Admin)",
                     "request": {
                         "auth": {

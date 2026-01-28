@@ -52,6 +52,17 @@ router.delete(
 );
 
 /**
+ * Get products by tag name
+ * @param req - The request object
+ * @param res - The response object
+ */
+router.get(
+    "/tags/:tags",
+    auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
+    productController.getProductsByTagController
+);
+
+/**
  * Get a product by ID
  * @param req - The request object
  * @param res - The response object

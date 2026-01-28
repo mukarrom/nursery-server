@@ -101,6 +101,26 @@ const getAllProductsController = catchAsync(
 );
 
 /**
+ * Get products by tag name
+ * @param req - The request object
+ * @param res - The response object
+ */
+const getProductsByTagController = catchAsync(
+    async (req: Request, res: Response) => {
+        const { tags } = req.params;
+        const result = await productService.getProductsByTagService(tags as string, req.query);
+
+        sendResponse(res, {
+            statusCode: httpStatus.OK,
+            success: true,
+            message: "Products retrieved successfully",
+            data: result.products,
+            meta: result.meta,
+        });
+    }
+);
+
+/**
  * Get all products by category id
  * @param req - The request object
  * @param res - The response object
@@ -108,7 +128,7 @@ const getAllProductsController = catchAsync(
 const getAllProductsByCategoryIdController = catchAsync(
     async (req: Request, res: Response) => {
         const { categoryId } = req.params;
-        const result = await productService.getAllProductsByCategoryIdService(categoryId as string);
+        const result = await productService.getAllProductsByCategoryIdService(categoryId as string, req.query);
 
         sendResponse(res, {
             statusCode: httpStatus.OK,
@@ -186,6 +206,7 @@ export const productController = {
     createProductController,
     getProductByIdController,
     getAllProductsController,
+    getProductsByTagController,
     getAllProductsByCategoryIdController,
     updateProductController,
     deleteProductController,

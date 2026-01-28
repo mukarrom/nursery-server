@@ -36,11 +36,20 @@ const getProductByIdService = async (id: string) => {
 /**
  * Get all products
  * @param query - The query parameters to filter, sort, and paginate the results
+ * @queries: {searchTerm: string, brand: string, tag: string, price: string, rating: string, stock: string}
  * @returns An object containing the products and pagination metadata
  */
 const getAllProductsService = async (query: Record<string, unknown>) => {
+    // check if tag is present in query
+    // if (query.tag) {
+    //     const tag = query.tag as string;
+    //     console.log(`tag: ${tag}`);
+    //     const products = await ProductModel.find({ tags: { $in: [tag] } });
+    //     console.log(products);
+    //     return { products };
+    // }
     const productQuery = new QueryBuilder(ProductModel.find({}), query)
-        .search(["name", "description", "brand", "sku"])
+        .search(["name", "description", "brand", "sku", "tags"])
         .filter()
         .sort()
         .paginate()
@@ -51,12 +60,44 @@ const getAllProductsService = async (query: Record<string, unknown>) => {
 };
 
 /**
+ * Get products by tag name
+ * @param tags - The tag name to filter products by
+ * @param query - The query parameters to filter, sort, and paginate the results
+ * @returns An object containing the products and pagination metadata
+ */
+const getProductsByTagService = async (tags: string, query: Record<string, unknown> = {}) => {
+    // Split tags by comma, trim whitespace, and create case-insensitive regex for each
+    const tagArray = tags.split(',').map(t => t.trim()).filter(t => t.length > 0);
+    const tagsRegexArray = tagArray.map(t => new RegExp(`^${t}$`, 'i'));
+
+    // Create base query with tag filtering
+    const productQuery = new QueryBuilder(
+        ProductModel.find({
+            tags: {
+                $in: tagsRegexArray
+            }
+        }),
+        query
+    )
+        .search(["name", "description", "brand", "sku"])
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+
+    const products = await productQuery.modelQuery;
+    const meta = await productQuery.countTotal();
+
+    return { products, meta };
+};
+
+/**
  * Get all products by category id
  * @param categoryId - The ID of the category to retrieve products from
  * @returns An object containing the products and pagination metadata
  */
-const getAllProductsByCategoryIdService = async (categoryId: string) => {
-    const productQuery = new QueryBuilder(ProductModel.find({ categoryId }), {})
+const getAllProductsByCategoryIdService = async (categoryId: string, query: Record<string, unknown> = {}) => {
+    const productQuery = new QueryBuilder(ProductModel.find({ categoryId }), query)
         .search(["name", "description", "brand", "sku"])
         .filter()
         .sort()
@@ -199,6 +240,7 @@ export const productService = {
     createProductService,
     getProductByIdService,
     getAllProductsService,
+    getProductsByTagService,
     getAllProductsByCategoryIdService,
     updateProductService,
     deleteProductService,

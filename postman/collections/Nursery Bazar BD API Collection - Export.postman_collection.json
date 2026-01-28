@@ -221,7 +221,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\",\n  \"password\": \"12345678\"\n}",
+              "raw": "// {\n//   \"email\": \"admin-nursery@yopmail.com\",\n//   \"password\": \"12345678\"\n// }\n{\n  \"email\": \"user@yopmail.com\",\n  \"password\": \"12345678\"\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -1825,7 +1825,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/products?page=1&limit=10",
+              "raw": "{{baseUrl}}/products?tags=apple",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -1836,16 +1836,18 @@
                 {
                   "key": "page",
                   "value": "1",
-                  "uuid": "942f3350-2e9d-4613-bc2d-1ebb09660504"
+                  "uuid": "942f3350-2e9d-4613-bc2d-1ebb09660504",
+                  "disabled": true
                 },
                 {
                   "key": "limit",
                   "value": "10",
-                  "uuid": "9b2411f7-df42-4828-b431-1f1d3f72ca05"
+                  "uuid": "9b2411f7-df42-4828-b431-1f1d3f72ca05",
+                  "disabled": true
                 },
                 {
                   "key": "searchTerm",
-                  "value": "rose",
+                  "value": "flower",
                   "uuid": "7050719f-0280-4669-807e-e0287a93a886",
                   "disabled": true
                 },
@@ -1885,6 +1887,11 @@
                   "description": "Sort by price desc. Use 'price' for asc",
                   "uuid": "6b9659f9-6dae-4423-a5a4-08ed9ed1c4d9",
                   "disabled": true
+                },
+                {
+                  "key": "tags",
+                  "value": "apple",
+                  "uuid": "d7a18b74-13d1-40f6-913b-6199c65a9574"
                 }
               ]
             },
@@ -2665,8 +2672,8 @@
           "response": []
         },
         {
-          "name": "Get Products by category",
-          "id": "799ba4a1-53fe-4599-a134-3bbb981e5577",
+          "name": "Get All Products Copy",
+          "id": "450b1529-acbb-42d7-ade8-6a34ca7bcfc9",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -2674,29 +2681,31 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/products/category/:categoryId?page=1&limit=10",
+              "raw": "{{baseUrl}}/products/tags/:tags",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "products",
-                "category",
-                ":categoryId"
+                "tags",
+                ":tags"
               ],
               "query": [
                 {
                   "key": "page",
                   "value": "1",
-                  "uuid": "942f3350-2e9d-4613-bc2d-1ebb09660504"
+                  "uuid": "942f3350-2e9d-4613-bc2d-1ebb09660504",
+                  "disabled": true
                 },
                 {
                   "key": "limit",
                   "value": "10",
-                  "uuid": "9b2411f7-df42-4828-b431-1f1d3f72ca05"
+                  "uuid": "9b2411f7-df42-4828-b431-1f1d3f72ca05",
+                  "disabled": true
                 },
                 {
                   "key": "searchTerm",
-                  "value": "rose",
+                  "value": "flower",
                   "uuid": "7050719f-0280-4669-807e-e0287a93a886",
                   "disabled": true
                 },
@@ -2736,13 +2745,20 @@
                   "description": "Sort by price desc. Use 'price' for asc",
                   "uuid": "6b9659f9-6dae-4423-a5a4-08ed9ed1c4d9",
                   "disabled": true
+                },
+                {
+                  "key": "tags",
+                  "value": "rose",
+                  "type": "text",
+                  "uuid": "d7a18b74-13d1-40f6-913b-6199c65a9574",
+                  "disabled": true
                 }
               ],
               "variable": [
                 {
-                  "key": "categoryId",
-                  "value": "69705784bf9b0106be2286eb",
-                  "uuid": "7396fa6e-af36-4e5b-bb87-b63acce22050"
+                  "key": "tags",
+                  "value": "apple, rose",
+                  "uuid": "83667de4-15f7-4255-9044-18a44e2e0165"
                 }
               ]
             },
@@ -2750,7 +2766,7 @@
           },
           "response": [
             {
-              "id": "f74b9368-42f8-45ca-8a98-8556f698a539",
+              "id": "00614898-45c0-4d50-9d34-91cd5c1584fb",
               "name": "Get All Products",
               "originalRequest": {
                 "method": "GET",
@@ -6330,7 +6346,7 @@
       "name": "Flash Sales",
       "item": [
         {
-          "name": "Get All Flash Sales",
+          "name": "Get All Flash Sales (admin)",
           "id": "23e4a89a-509b-4728-9911-b6be36e75fa5",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
@@ -6418,13 +6434,25 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/flash-sales/active",
+              "raw": "{{baseUrl}}/flash-sales/active?limit=100&page=1",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "flash-sales",
                 "active"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "100",
+                  "uuid": "eede6278-84b7-4eab-aa8b-818b947a81bc"
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "uuid": "61121f81-8708-4f00-8d0d-68425903c24a"
+                }
               ]
             },
             "description": "Get currently active flash sales"
@@ -8679,7 +8707,7 @@
   ],
   "variable": [
     {
-      "id": "8b398252-2f70-4e7e-bc35-8a4d6b42f529",
+      "id": "1d93cbe6-cd9a-4ea0-b9e0-d0541ad4d023",
       "key": "token",
       "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA3ODU0OCwiZXhwIjoxNzY5MTY0OTQ4fQ.jbePrYXN0xmIbXizuhz8h8i-f8iICKkh1auntRtNBKs"
     }

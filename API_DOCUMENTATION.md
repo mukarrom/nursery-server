@@ -294,6 +294,145 @@ Change password for authenticated user
 
 ---
 
+## Products Module (`/products`)
+
+### POST `/products`
+
+Create a new product (Admin)
+
+- **Auth**: Required (Admin/Super Admin)
+- **Content-Type**: `multipart/form-data`
+- **Body**:
+
+  ```json
+  {
+    "name": "Rose Plant",
+    "description": "Beautiful red rose plant",
+    "price": 250,
+    "discount": 10,
+    "quantity": 50,
+    "isAvailable": true,
+    "isFeatured": false,
+    "sku": "ROSE-001",
+    "brand": "Garden Paradise",
+    "categoryId": "category_id",
+    "tags": ["rose", "flower", "outdoor"],
+    "image": "file (required)",
+    "images": ["file1", "file2", "..."] (optional)
+  }
+  ```
+
+- **Response**: Created product object with Cloudinary image URLs
+
+### GET `/products`
+
+Get all products with filtering, sorting, and pagination
+
+- **Auth**: Required (User/Admin/Super Admin)
+- **Query Params**:
+  - `searchTerm`: Search in name, description, brand, sku, tags
+  - `brand`: Filter by brand
+  - `tag`: Filter by specific tag
+  - `price`: Filter by price (e.g., `?price[gte]=100&price[lte]=500`)
+  - `rating`: Filter by rating
+  - `stock`: Filter by stock availability
+  - `page`: Page number (default: 1)
+  - `limit`: Items per page (default: 10)
+  - `sort`: Sort field (e.g., `price`, `-price`, `createdAt`)
+  - `fields`: Select specific fields (e.g., `name,price,image`)
+- **Response**:
+
+  ```json
+  {
+    "products": [...],
+    "meta": {
+      "page": 1,
+      "limit": 10,
+      "total": 100
+    }
+  }
+  ```
+
+### GET `/products/tag/:tag`
+
+Get products by specific tag name(s) - supports multiple tags
+
+- **Auth**: Required (User/Admin/Super Admin)
+- **Params**: `tag` - Single tag or comma-separated tags (e.g., "rose" or "rose,flower,apple")
+- **Query Params**: (All optional)
+  - `searchTerm`: Search in name, description, brand, sku
+  - `page`: Page number (default: 1)
+  - `limit`: Items per page (default: 1000)
+  - `sort`: Sort field (e.g., `price`, `-price`, `createdAt`)
+  - `fields`: Select specific fields (e.g., `name,price,image`)
+- **Examples**:
+  - Single tag: `/products/tag/rose`
+  - Multiple tags: `/products/tag/rose,flower,apple`
+  - With pagination: `/products/tag/rose,flower?page=1&limit=10`
+  - With sorting: `/products/tag/rose?sort=-price`
+- **Response**:
+
+  ```json
+  {
+    "products": [...],
+    "meta": {
+      "totalDocuments": 25,
+      "totalPages": 3,
+      "currentPage": 1,
+      "limitPerPage": 10
+    }
+  }
+  ```
+
+- **Note**: Case-insensitive matching. Returns products containing ANY of the specified tags.
+
+Get a product by ID
+
+- **Auth**: Required (User/Admin/Super Admin)
+- **Params**: `id` - Product ID
+- **Response**: Product object
+
+### GET `/products/category/:categoryId`
+
+Get all products by category ID
+
+- **Auth**: Required (User/Admin/Super Admin)
+- **Params**: `categoryId` - Category ID
+- **Response**:
+
+  ```json
+  {
+    "products": [...],
+    "meta": {
+      "page": 1,
+      "limit": 10,
+      "total": 50
+    }
+  }
+  ```
+
+### PATCH `/products/:id`
+
+Update a product (Admin)
+
+- **Auth**: Required (Admin/Super Admin)
+- **Content-Type**: `multipart/form-data`
+- **Params**: `id` - Product ID
+- **Body**: Partial product fields (same as create, all optional)
+- **Response**: Updated product object
+- **Note**: Automatically handles old image deletion when updating
+
+### DELETE `/products/:id`
+
+Delete a product (Admin)
+
+- **Auth**: Required (Admin/Super Admin)
+- **Params**: `id` - Product ID
+- **Response**: Deleted product object
+- **Side Effect**: Automatically deletes associated images from Cloudinary
+
+---
+
 ## Cart Module (`/carts`)
 
 ### GET `/carts`
