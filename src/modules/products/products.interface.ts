@@ -10,6 +10,8 @@ export type TProduct = {
     brand?: string;
     categoryId?: string;
     tags?: string[];
+    deliveryTime?: string;
+    courierCharge?: number;
     isAvailable: boolean;
     isFeatured?: boolean;
     ratingAverage?: number;

@@ -12,6 +12,8 @@ const productBodySchema = z.object({
     brand: z.string().optional(),
     categoryId: z.string().optional(),
     tags: z.union([z.array(z.string()), z.string()]).optional(),
+    deliveryTime: z.string().optional(),
+    courierCharge: z.coerce.number().min(0, "Courier charge must be a positive number").optional(),
     images: z.union([z.array(z.string().url()), z.string().url()]).optional(),
 });
 

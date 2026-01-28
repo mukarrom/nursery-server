@@ -30,7 +30,7 @@
                 {
                   "key": "email",
                   "value": "user-nursery@yopmail.com",
-                  "description": "Optional, valid email",
+                  "description": "Optional (but either email or phone required), valid email",
                   "type": "text"
                 },
                 {
@@ -42,7 +42,7 @@
                 {
                   "key": "phone",
                   "value": "01501234567",
-                  "description": "Optional, 11 digits",
+                  "description": "Optional (but either email or phone required), 11 digits",
                   "type": "text"
                 },
                 {
@@ -72,7 +72,7 @@
                 "sign-up"
               ]
             },
-            "description": "Register a new user. Role defaults to 'user' if not specified."
+            "description": "Register a new user. Email verification is no longer required. Users can log in immediately. Role defaults to 'user' if not specified."
           },
           "response": [
             {
@@ -174,7 +174,7 @@
               ],
               "cookie": [],
               "responseTime": "2026-01-22T05:03:16.729Z",
-              "body": "{\n    \"success\": true,\n    \"message\": \"Signup completed successfully. An OTP has been sent to your email address and will expire in 5 minutes\",\n    \"data\": {\n        \"name\": \"Admin\",\n        \"phone\": \"01501234567\",\n        \"email\": \"admin@yopmail.com\",\n        \"role\": \"admin\",\n        \"isEmailVerified\": false,\n        \"status\": \"active\",\n        \"isDeleted\": false,\n        \"_id\": \"6971af2abcca1a5dcf215966\",\n        \"createdAt\": \"2026-01-22T05:01:30.111Z\",\n        \"updatedAt\": \"2026-01-22T05:01:30.111Z\"\n    }\n}"
+              "body": "{\n    \"success\": true,\n    \"message\": \"Signup completed successfully. You can now log in with your credentials.\",\n    \"data\": {\n        \"name\": \"Admin\",\n        \"phone\": \"01501234567\",\n        \"email\": \"admin@yopmail.com\",\n        \"role\": \"admin\",\n        \"isEmailVerified\": false,\n        \"status\": \"active\",\n        \"isDeleted\": false,\n        \"_id\": \"6971af2abcca1a5dcf215966\",\n        \"createdAt\": \"2026-01-22T05:01:30.111Z\",\n        \"updatedAt\": \"2026-01-22T05:01:30.111Z\"\n    }\n}"
             }
           ]
         },
@@ -221,11 +221,11 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "// {\n//   \"email\": \"admin-nursery@yopmail.com\",\n//   \"password\": \"12345678\"\n// }\n{\n  \"email\": \"user@yopmail.com\",\n  \"password\": \"12345678\"\n}",
+              "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\",\n  \"password\": \"123456\"\n}\n// Login with phone instead:\n// {\n//   \"phone\": \"01501234567\",\n//   \"password\": \"123456\"\n// }",
               "options": {
                 "raw": {
                   "language": "json",
-                  "description": "Both fields required"
+                  "description": "Either email or phone is required along with password"
                 }
               }
             },
@@ -239,22 +239,22 @@
                 "login"
               ]
             },
-            "description": "Login with email and password. Returns access token."
+            "description": "Login with email or phone number and password. Returns access token. Email verification is no longer required."
           },
           "response": [
             {
               "id": "86c4c098-bc29-4e17-8fc7-267e1cb296e8",
-              "name": "email not verified",
+              "name": "Login with Phone",
               "originalRequest": {
                 "method": "POST",
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"email\": \"admin@yopmail.com\",\n  \"password\": \"12345678\"\n}",
+                  "raw": "{\n  \"phone\": \"01501234567\",\n  \"password\": \"123456\"\n}",
                   "options": {
                     "raw": {
                       "language": "json",
-                      "description": "Both fields required"
+                      "description": "Either email or phone is required"
                     }
                   }
                 },
@@ -269,8 +269,8 @@
                   ]
                 }
               },
-              "status": "Forbidden",
-              "code": 403,
+              "status": "OK",
+              "code": 200,
               "_postman_previewlanguage": "json",
               "header": [
                 {
@@ -287,28 +287,20 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "395"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"18b-va73w4864D4MoWR41CDLFZyTs1I\""
+                  "value": "837"
                 },
                 {
                   "key": "Date",
-                  "value": "Thu, 22 Jan 2026 05:46:39 GMT"
+                  "value": "Thu, 22 Jan 2026 08:11:01 GMT"
                 },
                 {
                   "key": "Connection",
                   "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
                 }
               ],
               "cookie": [],
-              "responseTime": "2026-01-22T05:47:19.663Z",
-              "body": "{\n    \"success\": false,\n    \"message\": \"Your email is not verified\",\n    \"errorSources\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Your email is not verified\"\n        }\n    ],\n    \"err\": {\n        \"statusCode\": 403\n    },\n    \"stack\": \"Error: Your email is not verified\\n    at Object.loginService (D:\\\\Projects\\\\nursary-shop-server\\\\src\\\\modules\\\\auth\\\\auth.service.ts:121:11)\\n    at async D:\\\\Projects\\\\nursary-shop-server\\\\src\\\\modules\\\\auth\\\\auth.controller.ts:41:18\"\n}"
+              "responseTime": "2026-01-22T08:11:12.709Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Signin completed successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"6971da34ef6d881934c75780\",\n            \"name\": \"Admin\",\n            \"phone\": \"01501234567\",\n            \"email\": \"admin-nursery@yopmail.com\",\n            \"role\": \"admin\",\n            \"isEmailVerified\": false,\n            \"status\": \"active\",\n            \"createdAt\": \"2026-01-22T08:05:08.664Z\",\n            \"updatedAt\": \"2026-01-22T08:11:01.566Z\",\n            \"__v\": 0\n        },\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA2OTQ2MSwiZXhwIjoxNzY5MTU1ODYxfQ.DlogOlI04uZ6zOs2C1J5zmHBqUTr8rZVyq-czd42LY8\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA2OTQ2MSwiZXhwIjoxNzY5Njc0MjYxfQ.X-Ulr0FK9tyB4lPQN8hLWMRT52yr9G0xQMw8j0VJYAw\"\n    }\n}"
             },
             {
               "id": "4f4edfa6-8aa5-43ab-ab7d-03c2039465c9",
@@ -381,7 +373,7 @@
           ]
         },
         {
-          "name": "Verify Email",
+          "name": "Verify Email (DEPRECATED - No longer available)",
           "id": "fa66a0af-bc5d-4ed2-a4c5-3ce603edfebf",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
@@ -407,7 +399,8 @@
                 "auth",
                 "verify-email"
               ]
-            }
+            },
+            "description": "DEPRECATED: This endpoint is no longer available. Email verification is no longer required for signup. Users can log in immediately after registration."
           },
           "response": [
             {
@@ -480,7 +473,7 @@
           ]
         },
         {
-          "name": "Resend OTP",
+          "name": "Resend OTP (DEPRECATED - No longer available)",
           "id": "a0fc3a35-3fd2-4614-a044-4122553cc180",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
@@ -506,7 +499,8 @@
                 "auth",
                 "resend-otp"
               ]
-            }
+            },
+            "description": "DEPRECATED: This endpoint is no longer available. Email verification is no longer required for signup."
           },
           "response": [
             {
@@ -1825,7 +1819,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/products?page=1&limit=10",
+              "raw": "{{baseUrl}}/products",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -1836,16 +1830,18 @@
                 {
                   "key": "page",
                   "value": "1",
-                  "uuid": "942f3350-2e9d-4613-bc2d-1ebb09660504"
+                  "uuid": "942f3350-2e9d-4613-bc2d-1ebb09660504",
+                  "disabled": true
                 },
                 {
                   "key": "limit",
                   "value": "10",
-                  "uuid": "9b2411f7-df42-4828-b431-1f1d3f72ca05"
+                  "uuid": "9b2411f7-df42-4828-b431-1f1d3f72ca05",
+                  "disabled": true
                 },
                 {
                   "key": "searchTerm",
-                  "value": "rose",
+                  "value": "banana",
                   "uuid": "7050719f-0280-4669-807e-e0287a93a886",
                   "disabled": true
                 },
@@ -1884,6 +1880,19 @@
                   "value": "-price",
                   "description": "Sort by price desc. Use 'price' for asc",
                   "uuid": "6b9659f9-6dae-4423-a5a4-08ed9ed1c4d9",
+                  "disabled": true
+                },
+                {
+                  "key": "tags",
+                  "value": "apple",
+                  "uuid": "d7a18b74-13d1-40f6-913b-6199c65a9574",
+                  "disabled": true
+                },
+                {
+                  "key": "name",
+                  "value": "Banana",
+                  "type": "text",
+                  "uuid": "747baa2f-e908-4a6f-b86e-f240689748c9",
                   "disabled": true
                 }
               ]
@@ -2120,7 +2129,7 @@
               "formdata": [
                 {
                   "key": "name",
-                  "value": "Red Rose Plant",
+                  "value": "White Rose Plant",
                   "description": "Required",
                   "type": "text"
                 },
@@ -2162,7 +2171,7 @@
                 },
                 {
                   "key": "sku",
-                  "value": "ROSE-RED-001",
+                  "value": "ROSE-WHITE-001",
                   "description": "Optional",
                   "type": "text"
                 },
@@ -2182,6 +2191,18 @@
                   "key": "tags",
                   "value": "rose,flower,outdoor",
                   "description": "Optional, comma-separated values",
+                  "type": "text"
+                },
+                {
+                  "key": "deliveryTime",
+                  "value": "2-3 business days",
+                  "description": "Optional, delivery time estimate",
+                  "type": "text"
+                },
+                {
+                  "key": "courierCharge",
+                  "value": "50",
+                  "description": "Optional, courier charge amount",
                   "type": "text"
                 },
                 {
@@ -2280,6 +2301,18 @@
                       "key": "tags",
                       "value": "rose,flower,outdoor",
                       "description": "Optional, comma-separated values",
+                      "type": "text"
+                    },
+                    {
+                      "key": "deliveryTime",
+                      "value": "2-3 business days",
+                      "description": "Optional, delivery time estimate",
+                      "type": "text"
+                    },
+                    {
+                      "key": "courierCharge",
+                      "value": "50",
+                      "description": "Optional, courier charge amount",
                       "type": "text"
                     },
                     {
@@ -2661,6 +2694,91 @@
                 }
               ]
             }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Products by tags",
+          "id": "450b1529-acbb-42d7-ade8-6a34ca7bcfc9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products/tags/:tags?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "tags",
+                ":tags"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "uuid": "942f3350-2e9d-4613-bc2d-1ebb09660504"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "uuid": "9b2411f7-df42-4828-b431-1f1d3f72ca05"
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "flower",
+                  "uuid": "7050719f-0280-4669-807e-e0287a93a886",
+                  "disabled": true
+                },
+                {
+                  "key": "categoryId",
+                  "value": "cat_id",
+                  "uuid": "e254ef2c-5e8b-4ae3-9b5c-e9902860ba37",
+                  "disabled": true
+                },
+                {
+                  "key": "minPrice",
+                  "value": "10",
+                  "uuid": "b13a0cf7-bdf7-4702-be0e-231b9434fb9b",
+                  "disabled": true
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "100",
+                  "uuid": "9735b852-e6b1-4c74-a6b6-996e74c62006",
+                  "disabled": true
+                },
+                {
+                  "key": "isAvailable",
+                  "value": "true",
+                  "uuid": "c7a42527-a94d-42b0-967b-e344ef3c5cbb",
+                  "disabled": true
+                },
+                {
+                  "key": "isFeatured",
+                  "value": "true",
+                  "uuid": "2cb6852e-f608-409a-86f5-ace0d2e28102",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "-price",
+                  "description": "Sort by price desc. Use 'price' for asc",
+                  "uuid": "6b9659f9-6dae-4423-a5a4-08ed9ed1c4d9",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "tags",
+                  "value": "apple, rose"
+                }
+              ]
+            },
+            "description": "All query params optional. Supports filtering, sorting, pagination."
           },
           "response": []
         }
@@ -3089,11 +3207,11 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"shippingAddressId\": \"6971fdb500e98364ca3a36be\",\n  \"selectedProductIds\": [\"6971e9f7065be8b54b7ff90e\"],\n//   \"billingAddressId\": \"billing_address_id\",\n  \"paymentMethod\": \"cash\",\n//   \"discountCode\": \"SAVE10\",\n  \"notes\": \"Please deliver between 9 AM - 5 PM\"\n}",
+              "raw": "{\n  \"shippingAddressId\": \"6975ed94eccf789491ef7a61\",\n  \"selectedProductIds\": [\"6971e9f7065be8b54b7ff90e\"],\n//   \"paymentMethod\": \"cod\",\n  \"paymentMethod\": \"bkash\",\n  \"transactionId\": \"TXN123456789\",\n//   \"discountCode\": \"SAVE10\",\n  \"notes\": \"Please deliver between 9 AM - 5 PM\"\n}",
               "options": {
                 "raw": {
                   "language": "json",
-                  "description": "Required: shippingAddressId, selectedProductIds (array, min 1)\nOptional: billingAddressId, paymentMethod, discountCode, notes\nNote: Only selected products from cart will be ordered"
+                  "description": "Required: shippingAddressId, selectedProductIds (array, min 1)\nOptional: billingAddressId, paymentMethod, transactionId (required for non-cash payments), discountCode, notes\nPayment Methods: cash, cod, cash on delivery, cash_on_delivery (case-insensitive), or any other payment method\nNote: transactionId is mandatory if paymentMethod is not cash on delivery"
                 }
               }
             },
@@ -3117,11 +3235,11 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"shippingAddressId\": \"6971fdb500e98364ca3a36be\",\n  \"selectedProductIds\": [\"6971e9f7065be8b54b7ff90e\"],\n//   \"billingAddressId\": \"billing_address_id\",\n  \"paymentMethod\": \"cash\",\n//   \"discountCode\": \"SAVE10\",\n  \"notes\": \"Please deliver between 9 AM - 5 PM\"\n}",
+                  "raw": "{\n  \"shippingAddressId\": \"6971fdb500e98364ca3a36be\",\n  \"selectedProductIds\": [\"6971e9f7065be8b54b7ff90e\"],\n//   \"billingAddressId\": \"billing_address_id\",\n  \"paymentMethod\": \"cash\",\n//   \"transactionId\": \"TXN123456789\",\n//   \"discountCode\": \"SAVE10\",\n  \"notes\": \"Please deliver between 9 AM - 5 PM\"\n}",
                   "options": {
                     "raw": {
                       "language": "json",
-                      "description": "Required: shippingAddressId, selectedProductIds (array, min 1)\nOptional: billingAddressId, paymentMethod, discountCode, notes\nNote: Only selected products from cart will be ordered"
+                      "description": "Required: shippingAddressId, selectedProductIds (array, min 1)\nOptional: billingAddressId, paymentMethod, transactionId (required for non-cash payments), discountCode, notes\nPayment Methods: cash, cod, cash on delivery, cash_on_delivery (case-insensitive), or any other payment method\nNote: transactionId is mandatory if paymentMethod is not cash on delivery"
                     }
                   }
                 },
@@ -3175,6 +3293,80 @@
               "cookie": [],
               "responseTime": "2026-01-22T10:40:49.509Z",
               "body": "{\n    \"success\": true,\n    \"message\": \"Order created successfully\",\n    \"data\": {\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"price\": 299.99,\n                \"quantity\": 5,\n                \"total\": 1499.95,\n                \"_id\": \"6971fe9fe3630b4aa40013a0\"\n            }\n        ],\n        \"shippingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"billingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"orderStatus\": \"pending\",\n        \"paymentStatus\": \"pending\",\n        \"paymentMethod\": \"cash\",\n        \"subtotal\": 1499.95,\n        \"tax\": 74.9975,\n        \"shippingCost\": 100,\n        \"total\": 1674.9475,\n        \"discountAmount\": 0,\n        \"_id\": \"6971fe9fe3630b4aa400139f\",\n        \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n        \"updatedAt\": \"2026-01-22T10:40:31.353Z\",\n        \"__v\": 0\n    }\n}"
+            },
+            {
+              "id": "non-cash-payment-example",
+              "name": "Create Order - Non-Cash Payment",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shippingAddressId\": \"6971fdb500e98364ca3a36be\",\n  \"selectedProductIds\": [\"6971e9f7065be8b54b7ff90e\"],\n  \"paymentMethod\": \"bkash\",\n  \"transactionId\": \"BKH123456789\",\n  \"notes\": \"Paid via bKash\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Order created successfully\",\n    \"data\": {\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"price\": 299.99,\n                \"quantity\": 5,\n                \"total\": 1499.95\n            }\n        ],\n        \"shippingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"orderStatus\": \"pending\",\n        \"paymentStatus\": \"completed\",\n        \"paymentMethod\": \"bkash\",\n        \"transactionId\": \"BKH123456789\",\n        \"subtotal\": 1499.95,\n        \"tax\": 74.9975,\n        \"shippingCost\": 100,\n        \"total\": 1674.9475,\n        \"discountAmount\": 0,\n        \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n        \"updatedAt\": \"2026-01-22T10:40:31.353Z\"\n    }\n}"
+            },
+            {
+              "id": "missing-transaction-id-error",
+              "name": "Error - Missing Transaction ID",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shippingAddressId\": \"6971fdb500e98364ca3a36be\",\n  \"selectedProductIds\": [\"6971e9f7065be8b54b7ff90e\"],\n  \"paymentMethod\": \"bkash\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Transaction ID is required for non-cash on delivery payments\",\n    \"errorSources\": [\n        {\n            \"path\": \"transactionId\",\n            \"message\": \"Transaction ID is required for non-cash on delivery payments\"\n        }\n    ],\n    \"stack\": \"...\"\n}"
             }
           ]
         },
@@ -3649,6 +3841,156 @@
               "cookie": [],
               "responseTime": "2026-01-22T11:07:01.958Z",
               "body": "{\n    \"success\": true,\n    \"message\": \"Order status updated successfully\",\n    \"data\": {\n        \"shippingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"billingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"_id\": \"6971fe9fe3630b4aa400139f\",\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"price\": 299.99,\n                \"quantity\": 5,\n                \"total\": 1499.95,\n                \"_id\": \"6971fe9fe3630b4aa40013a0\"\n            }\n        ],\n        \"orderStatus\": \"shipped\",\n        \"paymentStatus\": \"pending\",\n        \"paymentMethod\": \"cash\",\n        \"subtotal\": 1499.95,\n        \"tax\": 74.9975,\n        \"shippingCost\": 100,\n        \"total\": 1674.9475,\n        \"discountAmount\": 0,\n        \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n        \"updatedAt\": \"2026-01-22T11:06:41.258Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Cancel Order (User)",
+          "id": "cancel-order-user",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/:orderId/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                ":orderId",
+                "cancel"
+              ],
+              "variable": [
+                {
+                  "key": "orderId",
+                  "value": "ORD-1769078431339-4a02aulm",
+                  "description": "Order ID to cancel"
+                }
+              ]
+            },
+            "description": "Cancel order within 6 hours of creation. Only the user who created the order can cancel it."
+          },
+          "response": [
+            {
+              "id": "cancel-order-success",
+              "name": "Success - Order Cancelled",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/:orderId/cancel",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "cancel"
+                  ],
+                  "variable": [
+                    {
+                      "key": "orderId",
+                      "value": "ORD-1769078431339-4a02aulm"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Order cancelled successfully\",\n    \"data\": {\n        \"shippingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"_id\": \"6971fe9fe3630b4aa400139f\",\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"price\": 299.99,\n                \"quantity\": 5,\n                \"total\": 1499.95\n            }\n        ],\n        \"orderStatus\": \"cancelled\",\n        \"paymentStatus\": \"pending\",\n        \"paymentMethod\": \"cash\",\n        \"subtotal\": 1499.95,\n        \"tax\": 74.9975,\n        \"shippingCost\": 100,\n        \"total\": 1674.9475,\n        \"discountAmount\": 0,\n        \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n        \"updatedAt\": \"2026-01-22T11:30:15.123Z\"\n    }\n}"
+            },
+            {
+              "id": "cancel-order-time-limit",
+              "name": "Error - Time Limit Exceeded",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/:orderId/cancel",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "cancel"
+                  ],
+                  "variable": [
+                    {
+                      "key": "orderId",
+                      "value": "ORD-OLD-ORDER-ID"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Order can only be cancelled within 6 hours of creation\",\n    \"errorSources\": [],\n    \"stack\": \"...\"\n}"
+            },
+            {
+              "id": "cancel-order-already-cancelled",
+              "name": "Error - Already Cancelled",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/:orderId/cancel",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "cancel"
+                  ],
+                  "variable": [
+                    {
+                      "key": "orderId",
+                      "value": "ORD-CANCELLED-ORDER"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Order is already cancelled\",\n    \"errorSources\": [],\n    \"stack\": \"...\"\n}"
             }
           ]
         }
@@ -8494,7 +8836,7 @@
   ],
   "variable": [
     {
-      "id": "711e68aa-fd38-4734-a943-2c5b3b82be82",
+      "id": "b88dcc83-e906-4c1d-a557-7b8688599e33",
       "key": "token",
       "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA3ODU0OCwiZXhwIjoxNzY5MTY0OTQ4fQ.jbePrYXN0xmIbXizuhz8h8i-f8iICKkh1auntRtNBKs"
     }

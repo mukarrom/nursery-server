@@ -25,8 +25,7 @@ const signUpController = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: status.CREATED,
     success: true,
-    message:
-      "Signup completed successfully. An OTP has been sent to your email address and will expire in 5 minutes",
+    message: "Signup completed successfully. You can now log in with your credentials.",
     data: result,
   });
 });
@@ -90,81 +89,77 @@ const signInController = catchAsync(async (req, res) => {
 
 /**
  * Controller to verify the user's email.
- * @param req - The request object containing email and token.
- * @param res - The response object to send the result.
+ * COMMENTED OUT: Email verification is no longer required
  */
-const verifyEmailController = catchAsync(async (req, res) => {
-  const { email, otp } = req.body;
+// const verifyEmailController = catchAsync(async (req, res) => {
+//   const { email, otp } = req.body;
 
-  await authServices.verifyEmailService(email, otp);
+//   await authServices.verifyEmailService(email, otp);
 
-  sendResponse(res, {
-    statusCode: status.OK,
-    success: true,
-    message: "Email verified successfully",
-    data: null,
-  });
-});
+//   sendResponse(res, {
+//     statusCode: status.OK,
+//     success: true,
+//     message: "Email verified successfully",
+//     data: null,
+//   });
+// });
 
 /**
  * Controller to send an OTP to the user's email.
- * @param req - The request object containing the user's email.
- * @param res - The response object to send the result.
+ * COMMENTED OUT: Email verification is no longer required
  */
-const resendOtpController = catchAsync(async (req, res) => {
-  const email = req.body.email;
-  await authServices.resendOtpService(email);
-  sendResponse(res, {
-    statusCode: status.OK,
-    success: true,
-    message:
-      "An OTP has been sent to your email address and will expire in 5 minutes",
-    data: null,
-  });
-});
+// const resendOtpController = catchAsync(async (req, res) => {
+//   const email = req.body.email;
+//   await authServices.resendOtpService(email);
+//   sendResponse(res, {
+//     statusCode: status.OK,
+//     success: true,
+//     message:
+//       "An OTP has been sent to your email address and will expire in 5 minutes",
+//     data: null,
+//   });
+// });
 
 /**
  * Controller to verify the user's email using a link.
- * @param req - The request object containing email and token.
- * @param res - The response object to redirect to the verification result page.
+ * COMMENTED OUT: Email verification is no longer required
  */
-const verifyEmailLinkController = catchAsync(async (req, res) => {
-  const { token, email } = req.query;
+// const verifyEmailLinkController = catchAsync(async (req, res) => {
+//   const { token, email } = req.query;
 
-  try {
-    const result = await authServices.verifyEmailService(
-      email as string,
-      token as string,
-      true // isLink = true for link verification
-    );
+//   try {
+//     const result = await authServices.verifyEmailService(
+//       email as string,
+//       token as string,
+//       true // isLink = true for link verification
+//     );
 
-    // Redirect to verification page with success
-    res.redirect(
-      `/verify-email?success=true&message=${encodeURIComponent(result.message)}`
-    );
-  } catch (error: any) {
-    // Redirect to verification page with error
-    res.redirect(
-      `/verify-email?success=false&message=${encodeURIComponent(error.message)}`
-    );
-  }
-});
+//     // Redirect to verification page with success
+//     res.redirect(
+//       `/verify-email?success=true&message=${encodeURIComponent(result.message)}`
+//     );
+//   } catch (error: any) {
+//     // Redirect to verification page with error
+//     res.redirect(
+//       `/verify-email?success=false&message=${encodeURIComponent(error.message)}`
+//     );
+//   }
+// });
 
 /**
  * Controller to resend the verification email.
- * @param req - The request object containing the user's email.
- * @param res - The response object to send the result.
+ * COMMENTED OUT: Email verification is no longer required
  */
-const resendVerificationController = catchAsync(async (req, res) => {
-  const { email } = req.body;
-  const result = await authServices.resendOtpService(email);
-  sendResponse(res, {
-    statusCode: status.OK,
-    success: true,
-    message: "Verification email sent successfully",
-    data: result,
-  });
-});
+// const resendVerificationController = catchAsync(async (req, res) => {
+//   const { email } = req.body;
+//   const result = await authServices.resendOtpService(email);
+//   sendResponse(res, {
+//     statusCode: status.OK,
+//     success: true,
+//     message: "Verification email sent successfully",
+//     data: result,
+//   });
+// });
 
 // ----------------------------- Verify JWT -----------------------------
 /**
@@ -264,10 +259,11 @@ const resetPassword = catchAsync(async (req: Request, res: Response) => {
 export const authController = {
   signUpController,
   signInController,
-  verifyEmailController,
-  resendOtpController,
-  verifyEmailLinkController,
-  resendVerificationController,
+  // COMMENTED OUT: Email verification controllers no longer used
+  // verifyEmailController,
+  // resendOtpController,
+  // verifyEmailLinkController,
+  // resendVerificationController,
   verifyAccessTokenController,
   changePasswordController,
   requestPasswordReset,

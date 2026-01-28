@@ -146,11 +146,11 @@ final cartResponse = await http.get(
 
 ### POST `/auth/sign-up`
 
-Register a new user account
+Register a new user account (Email and phone verification no longer required)
 
 - **Auth**: Not required
 - **Content-Type**: `multipart/form-data` (for profile picture upload)
-- **Body**:
+- **Body** (either email or phone is required):
 
   ```json
   {
@@ -161,20 +161,39 @@ Register a new user account
     "profilePicture": "file (optional)"
   }
   ```
+  
+  OR
+  
+  ```json
+  {
+    "name": "John Doe",
+    "phone": "01712345678",
+    "password": "password123"
+  }
+  ```
 
-- **Response**: User object (without password)
-- **Note**: Sends OTP to email for verification (expires in 5 minutes)
+- **Response**: User object (without password, OTP fields no longer sent)
+- **Note**: Email verification is no longer required. Users can log in immediately after signup.
 
 ### POST `/auth/login`
 
-Login with email and password
+Login with email or phone number
 
 - **Auth**: Not required
-- **Body**:
+- **Body** (either email or phone is required):
 
   ```json
   {
     "email": "user@example.com",
+    "password": "password123"
+  }
+  ```
+  
+  OR
+  
+  ```json
+  {
+    "phone": "01712345678",
     "password": "password123"
   }
   ```
@@ -189,49 +208,35 @@ Login with email and password
   }
   ```
 
-- **Note**: Email must be verified to login
+- **Note**: Email verification is not required to login
 
-### POST `/auth/verify-email`
+### POST `/auth/verify-email` (DEPRECATED)
 
-Verify email address using OTP
+**This endpoint is no longer available.** Email verification is no longer required for signup.
 
+<!-- Previously: Verify email address using OTP
 - **Auth**: Not required
-- **Body**:
+- **Body**: `{"email": "user@example.com", "otp": "123456"}`
+- **Response**: Success message -->
 
-  ```json
-  {
-    "email": "user@example.com",
-    "otp": "123456"
-  }
-  ```
+### GET `/auth/verify-email` (DEPRECATED)
 
+**This endpoint is no longer available.** Email verification is no longer required for signup.
+
+<!-- Previously: Verify email via link (sent in email)
+- **Auth**: Not required
+- **Query Params**: `token`, `email`
+- **Response**: Redirects to verification result page -->
+
+### POST `/auth/resend-otp` (DEPRECATED)
+
+**This endpoint is no longer available.** Email verification is no longer required for signup.
+
+<!-- Previously: Resend email verification OTP
+- **Auth**: Not required
+- **Body**: `{"email": "user@example.com"}`
 - **Response**: Success message
-
-### GET `/auth/verify-email`
-
-Verify email via link (sent in email)
-
-- **Auth**: Not required
-- **Query Params**:
-  - `token`: Verification OTP
-  - `email`: User email
-- **Response**: Redirects to verification result page
-
-### POST `/auth/resend-otp`
-
-Resend email verification OTP
-
-- **Auth**: Not required
-- **Body**:
-
-  ```json
-  {
-    "email": "user@example.com"
-  }
-  ```
-
-- **Response**: Success message
-- **Note**: Only works for unverified emails
+- **Note**: Only works for unverified emails -->
 
 ### POST `/auth/request-password-reset`
 
@@ -317,6 +322,8 @@ Create a new product (Admin)
     "brand": "Garden Paradise",
     "categoryId": "category_id",
     "tags": ["rose", "flower", "outdoor"],
+    "deliveryTime": "2-3 business days",
+    "courierCharge": 50,
     "image": "file (required)",
     "images": ["file1", "file2", "..."] (optional)
   }
@@ -515,10 +522,27 @@ Get specific order
 
 Update order status (Admin)
 
-- **Auth**: Required
+- **Auth**: Required (Admin)
 - **Params**: `orderId`
-- **Body**: `{ orderStatus: "pending | processing | shipped | delivered | cancelled" }`
+- **Body**: `{ status: "pending | processing | shipped | delivered | cancelled" }`
 - **Response**: Updated order
+
+### PATCH `/orders/:orderId/cancel`
+
+Cancel order (User) - Within 6 hours of creation
+
+- **Auth**: Required (User/Admin)
+- **Params**: `orderId`
+- **Validations**:
+  - Order must belong to the authenticated user
+  - Order must be created within the last 6 hours
+  - Order status must not be "cancelled" or "delivered"
+- **Response**: Updated order with status "cancelled"
+- **Errors**:
+  - `400` - Order can only be cancelled within 6 hours of creation
+  - `400` - Order is already cancelled
+  - `400` - Cannot cancel a delivered order
+  - `404` - Order not found
 
 ---
 

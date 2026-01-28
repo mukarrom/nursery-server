@@ -7,7 +7,8 @@ export type TSignUp = {
 };
 
 export type TLogin = {
-  email: string;
+  email?: string;
+  phone?: string;
   password: string;
 };
 

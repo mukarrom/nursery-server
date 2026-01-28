@@ -2,26 +2,30 @@
 import mongoose from "mongoose";
 import { IErrorSource, IGenericErrorResponse } from "../interface/error";
 
-// Define a function to handle Mongoose CastErrors and convert them into a generic error response
-const handleCastError = (err: mongoose.Error.CastError): IGenericErrorResponse => {
-  // Create an error source with the path and message from the CastError
-  const errorSources: IErrorSource[] = [
-    {
-      path: err.path, // Extract the path of the error source
-      message: err.message, // Extract the error message
-    },
-  ];
+// Define a function to handle Mongoose ValidationErrors and convert them into a generic error response
+const handleValidationError = (
+  err: mongoose.Error.ValidationError
+): IGenericErrorResponse => {
+  // Map through validation errors to extract relevant information
+  const errorSources: IErrorSource[] = Object.values(err.errors).map(
+    (val: any) => {
+      return {
+        path: val?.path,
+        message: val?.message,
+      };
+    }
+  );
 
-  // Set a default HTTP status code for invalid ID errors
+  // Set HTTP status code for validation errors
   const statusCode = 400;
 
   // Return a generic error response with the extracted information
   return {
     statusCode,
-    message: "Invalid ID",
+    message: "Validation Error",
     errorSources,
   };
 };
 
 // Export the function for use in other modules
-export default handleCastError;
+export default handleValidationError;

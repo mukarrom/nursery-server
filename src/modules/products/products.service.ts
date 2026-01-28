@@ -10,6 +10,12 @@ import { ProductModel } from "./products.model";
  * @returns The created product
  */
 const createProductService = async (productData: TProduct) => {
+    // tags normalization to lowercase and coma separation
+    if (productData.tags && !Array.isArray(productData.tags)) {
+        productData.tags = (productData.tags as string)
+            .split(",")
+            .map((tag: string) => tag.trim().toLowerCase());
+    }
     const result = await ProductModel.create(productData);
 
     if (!result && productData.image) {
@@ -36,18 +42,11 @@ const getProductByIdService = async (id: string) => {
 /**
  * Get all products
  * @param query - The query parameters to filter, sort, and paginate the results
- * @queries: {searchTerm: string, brand: string, tag: string, price: string, rating: string, stock: string}
+ * @queries: {searchTerm: string, brand: string, tags: string, price: string, rating: string, stock: string}
  * @returns An object containing the products and pagination metadata
  */
 const getAllProductsService = async (query: Record<string, unknown>) => {
-    // check if tag is present in query
-    // if (query.tag) {
-    //     const tag = query.tag as string;
-    //     console.log(`tag: ${tag}`);
-    //     const products = await ProductModel.find({ tags: { $in: [tag] } });
-    //     console.log(products);
-    //     return { products };
-    // }
+
     const productQuery = new QueryBuilder(ProductModel.find({}), query)
         .search(["name", "description", "brand", "sku", "tags"])
         .filter()

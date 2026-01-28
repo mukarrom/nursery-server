@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import {
+    cancelOrderService,
     createOrderService,
     getAllOrdersService,
     getOrderByIdService,
@@ -16,9 +17,9 @@ import {
  */
 export const createOrder = catchAsync(async (req: Request, res: Response) => {
     const userId = req.user?.id;
-    const { shippingAddressId, selectedProductIds, discountCode, paymentMethod } = req.body;
+    const { shippingAddressId, selectedProductIds, discountCode, paymentMethod, transactionId } = req.body;
 
-    const order = await createOrderService(userId, shippingAddressId, selectedProductIds, discountCode, paymentMethod);
+    const order = await createOrderService(userId, shippingAddressId, selectedProductIds, discountCode, paymentMethod, transactionId);
 
     sendResponse(res, {
         success: true,
@@ -103,10 +104,30 @@ export const updateOrderStatus = catchAsync(async (req: Request, res: Response) 
     });
 });
 
+/**
+ * Cancel order (By User)
+ * @param req Request
+ * @param res Response
+ */
+export const cancelOrder = catchAsync(async (req: Request, res: Response) => {
+    const { orderId } = req.params as { orderId: string };
+    const userId = req.user?.id;
+
+    const order = await cancelOrderService(orderId as string, userId as string);
+
+    sendResponse(res, {
+        success: true,
+        statusCode: 200,
+        message: "Order cancelled successfully",
+        data: order,
+    });
+});
+
 export const orderController = {
     createOrder,
     getOrder,
     getOrders,
     getAllOrders,
     updateOrderStatus,
+    cancelOrder,
 };

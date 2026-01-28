@@ -39,4 +39,10 @@ orderRouter.patch("/:orderId/status", auth(USER_ROLE.ADMIN),
     validateRequest(orderValidation.updateOrderStatusValidationSchema),
     orderController.updateOrderStatus);
 
+/**
+ * Cancel order (By User) - Within 6 hours of creation
+ */
+orderRouter.patch("/:orderId/cancel", auth(USER_ROLE.USER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
+    orderController.cancelOrder);
+
 export default orderRouter;

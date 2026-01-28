@@ -20,10 +20,10 @@ const UserSchema = new Schema<TUser, IUserModel>(
     },
     phone: {
       type: String,
+      unique: true,
     },
     email: {
       type: String,
-      required: true,
       unique: true,
     },
     password: {
@@ -115,26 +115,26 @@ UserSchema.statics.isJWTIssuedBeforePasswordChanged = function (
 };
 
 // Post hook to handle E11000 duplicate key errors
-UserSchema.post("save", function (error: any, doc: any, next: any) {
-  if (error.name === "MongoServerError" && error.code === 11000) {
-    // Extract the field name causing the error
-    const field = Object.keys(error.keyValue)[0];
-    const value = error.keyValue[field];
+// UserSchema.post("save", function (error: any, doc: any, next: any) {
+//   if (error.name === "MongoServerError" && error.code === 11000) {
+//     // Extract the field name causing the error
+//     const field = Object.keys(error.keyValue)[0];
+//     const value = error.keyValue[field];
 
-    next(new Error(`A user with the ${field} "${value}" already exists.`));
-  } else {
-    next(error);
-  }
-});
+//     next(new Error(`A user with the ${field} "${value}" already exists.`));
+//   } else {
+//     next(error);
+//   }
+// });
 
 // Also handle updates (findOneAndUpdate)
-UserSchema.post("findOneAndUpdate", function (error: any, doc: any, next: any) {
-  if (error.name === "MongoServerError" && error.code === 11000) {
-    const field = Object.keys(error.keyValue)[0];
-    next(new Error(`The ${field} you are trying to use is already taken.`));
-  } else {
-    next(error);
-  }
-});
+// UserSchema.post("findOneAndUpdate", function (error: any, doc: any, next: any) {
+//   if (error.name === "MongoServerError" && error.code === 11000) {
+//     const field = Object.keys(error.keyValue)[0];
+//     next(new Error(`The ${field} you are trying to use is already taken.`));
+//   } else {
+//     next(error);
+//   }
+// });
 
 export const UserModel = model<TUser, IUserModel>("User", UserSchema);

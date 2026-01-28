@@ -61,6 +61,15 @@ const ProductSchema = new Schema<TProduct>(
             type: [String],
             default: [],
         },
+        deliveryTime: {
+            type: String,
+            trim: true,
+        },
+        courierCharge: {
+            type: Number,
+            min: 0,
+            default: 0,
+        },
         ratingAverage: {
             type: Number,
             min: 0,

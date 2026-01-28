@@ -16,46 +16,29 @@ import {
 } from "./auth.utils";
 import { TLogin } from "./auth.validation";
 
-/**
- * ============================================================================
- * ACTIVE AUTHENTICATION SERVICES
- * ============================================================================
- * 
- * Working APIs:
- * 1. signUpService - Register new user with email verification
- * 2. loginService - User login with token generation
- * 3. verifyEmailService - Verify email using OTP
- * 4. resendOtpService - Resend email verification OTP
- * 5. verifyAccessTokenService - Verify JWT access token
- * 6. changePasswordService - Change password for authenticated users
- * 7. requestPasswordResetService - Request password reset link (Forgot Password)
- * 8. resetPasswordService - Reset password using token
- * 
- * Commented out (not currently in use):
- * - signOutService
- * - refreshTokenService
- * - forgotPasswordService (replaced by requestPasswordResetService)
- * ============================================================================
- */
+
 
 // ------------- signup service -------------------
 /**
- * Handles user signup by creating a new user, generating an OTP, and sending a verification email.
+ * Handles user signup by creating a new user.
+ * Email verification OTP and sending has been disabled.
  * @param {TSignUp} payload - The signup payload containing user details (name, phone, email, password).
  * @returns {Promise<Partial<TUser>>} - The created user data.
- * @throws {AppError} - If user creation or email sending fails.
+ * @throws {AppError} - If user creation fails.
  */
 const signUpService = async (payload: TSignUp) => {
   const session = await mongoose.startSession();
   try {
     session.startTransaction();
 
-    // Hash password and generate OTP
+    // Hash password
     const hashedPassword = await hashPassword(payload.password);
 
-    console.log("Processing signup for:", payload.email);
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const otpExpires = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
+    console.log("Processing signup for:", payload.email || payload.phone);
+
+    // COMMENTED OUT: OTP generation and email sending disabled
+    // const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    // const otpExpires = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
 
     const userData: Partial<TUser> = {
       name: payload.name,
@@ -63,8 +46,9 @@ const signUpService = async (payload: TSignUp) => {
       email: payload.email,
       password: hashedPassword,
       role: (payload as any).role || USER_ROLE.USER,
-      emailVerificationOtp: otp,
-      emailVerificationOtpExpires: otpExpires,
+      // COMMENTED OUT: OTP verification fields no longer populated
+      // emailVerificationOtp: otp,
+      // emailVerificationOtpExpires: otpExpires,
     };
 
     // create a new user
@@ -76,14 +60,14 @@ const signUpService = async (payload: TSignUp) => {
       throw new AppError(status.BAD_REQUEST, "Failed to create new user!");
     }
 
-    // Send verification email
-    const verificationLink = `${config.clientUrl}/auth/verify-email?token=${otp}&email=${payload.email}`;
-    await sendEmail({
-      email: payload.email,
-      token: otp,
-      username: payload.name,
-      verificationLink,
-    });
+    // COMMENTED OUT: Email verification no longer sent
+    // const verificationLink = `${config.clientUrl}/auth/verify-email?token=${otp}&email=${payload.email}`;
+    // await sendEmail({
+    //   email: payload.email,
+    //   token: otp,
+    //   username: payload.name,
+    //   verificationLink,
+    // });
 
     await session.commitTransaction();
     await session.endSession();
@@ -112,10 +96,16 @@ const signUpService = async (payload: TSignUp) => {
  * @throws {AppError} - If credentials are invalid or user is blocked/deleted.
  */
 const loginService = async (payload: TLogin) => {
-  console.log("Login attempt for email:", payload.email);
+  const loginIdentifier = payload.email || payload.phone;
+  console.log("Login attempt for:", loginIdentifier);
 
-  // find user by email and include password for comparison
-  const user = await UserModel.findOne({ email: payload.email }).select("+password");
+  // find user by email or phone and include password for comparison
+  const user = await UserModel.findOne({
+    $or: [
+      { email: payload.email },
+      { phone: payload.phone }
+    ]
+  }).select("+password");
 
   if (!user) {
     throw new AppError(status.NOT_FOUND, "This user is not found");
@@ -137,9 +127,10 @@ const loginService = async (payload: TLogin) => {
   }
 
   // check is email verified
-  if (!user.isEmailVerified) {
-    throw new AppError(status.FORBIDDEN, "Your email is not verified");
-  }
+  // Commented out: Email verification is now optional for login
+  // if (!user.isEmailVerified) {
+  //   throw new AppError(status.FORBIDDEN, "Your email is not verified");
+  // }
 
   const jwtPayload = { id: (user as any)._id, email: user.email, role: user.role as string };
   // generate tokens
@@ -254,97 +245,99 @@ const loginService = async (payload: TLogin) => {
 // };
 
 // ------------- verify email service -------------------
-const verifyEmailService = async (
-  email: string,
-  providedOtp: string,
-  isLink: boolean = false
-) => {
-  const trimmedOtp = providedOtp.trim();
-  const user = await UserModel.findOne({ email });
+// COMMENTED OUT: Email verification is no longer required
+// const verifyEmailService = async (
+//   email: string,
+//   providedOtp: string,
+//   isLink: boolean = false
+// ) => {
+//   const trimmedOtp = providedOtp.trim();
+//   const user = await UserModel.findOne({ email });
 
-  if (!user) {
-    throw new AppError(status.NOT_FOUND, "User not found");
-  }
+//   if (!user) {
+//     throw new AppError(status.NOT_FOUND, "User not found");
+//   }
 
-  if (user.isEmailVerified) {
-    throw new AppError(status.BAD_REQUEST, "Email already verified");
-  }
+//   if (user.isEmailVerified) {
+//     throw new AppError(status.BAD_REQUEST, "Email already verified");
+//   }
 
-  if (!user.emailVerificationOtp) {
-    throw new AppError(status.BAD_REQUEST, "No verification OTP found");
-  }
+//   if (!user.emailVerificationOtp) {
+//     throw new AppError(status.BAD_REQUEST, "No verification OTP found");
+//   }
 
-  const isTokenValid = user.emailVerificationOtp === trimmedOtp;
-  const isTokenNotExpired =
-    user.emailVerificationOtpExpires &&
-    user.emailVerificationOtpExpires > new Date();
+//   const isTokenValid = user.emailVerificationOtp === trimmedOtp;
+//   const isTokenNotExpired =
+//     user.emailVerificationOtpExpires &&
+//     user.emailVerificationOtpExpires > new Date();
 
-  if (!isTokenValid) {
-    throw new AppError(status.UNAUTHORIZED, "Invalid verification code");
-  }
+//   if (!isTokenValid) {
+//     throw new AppError(status.UNAUTHORIZED, "Invalid verification code");
+//   }
 
-  if (!isTokenNotExpired) {
-    throw new AppError(status.UNAUTHORIZED, "Verification code has expired");
-  }
+//   if (!isTokenNotExpired) {
+//     throw new AppError(status.UNAUTHORIZED, "Verification code has expired");
+//   }
 
-  user.isEmailVerified = true;
-  user.emailVerificationOtp = undefined;
-  user.emailVerificationOtpExpires = undefined;
+//   user.isEmailVerified = true;
+//   user.emailVerificationOtp = undefined;
+//   user.emailVerificationOtpExpires = undefined;
 
-  if (isLink) {
-    const jwtPayload = { id: (user as any)._id, email: user.email, role: user.role as string };
-    const accessToken = await generateToken(jwtPayload);
-    const refreshToken = await generateToken(jwtPayload, true);
+//   if (isLink) {
+//     const jwtPayload = { id: (user as any)._id, email: user.email, role: user.role as string };
+//     const accessToken = await generateToken(jwtPayload);
+//     const refreshToken = await generateToken(jwtPayload, true);
 
-    user.accessToken = accessToken;
-    user.refreshToken = refreshToken;
-  }
+//     user.accessToken = accessToken;
+//     user.refreshToken = refreshToken;
+//   }
 
-  await user.save();
+//   await user.save();
 
-  return {
-    message: "✅ Email verified successfully",
-    accessToken: user.accessToken,
-    refreshToken: user.refreshToken,
-  };
-};
+//   return {
+//     message: "✅ Email verified successfully",
+//     accessToken: user.accessToken,
+//     refreshToken: user.refreshToken,
+//   };
+// };
 
 /**
  * Resend OTP for unverified email
+ * COMMENTED OUT: Email verification is no longer required
  * @param email 
  * @returns 
  */
-const resendOtpService = async (email: string) => {
-  const user = await UserModel.findOne({ email });
+// const resendOtpService = async (email: string) => {
+//   const user = await UserModel.findOne({ email });
 
-  if (!user) {
-    throw new AppError(status.NOT_FOUND, "User not found");
-  }
+//   if (!user) {
+//     throw new AppError(status.NOT_FOUND, "User not found");
+//   }
 
-  if (user.isEmailVerified) {
-    throw new AppError(status.BAD_REQUEST, "Email already verified");
-  }
+//   if (user.isEmailVerified) {
+//     throw new AppError(status.BAD_REQUEST, "Email already verified");
+//   }
 
-  const otpToken = Math.floor(100000 + Math.random() * 900000).toString();
-  const otpExpiration = new Date(Date.now() + 5 * 60 * 1000);
+//   const otpToken = Math.floor(100000 + Math.random() * 900000).toString();
+//   const otpExpiration = new Date(Date.now() + 5 * 60 * 1000);
 
-  user.emailVerificationOtp = otpToken;
-  user.emailVerificationOtpExpires = otpExpiration;
-  await user.save();
+//   user.emailVerificationOtp = otpToken;
+//   user.emailVerificationOtpExpires = otpExpiration;
+//   await user.save();
 
-  const verificationLink = `${config.clientUrl}/auth/verify-email?token=${otpToken}&email=${email}`;
-  await sendEmail({
-    email,
-    token: otpToken,
-    username: user.name,
-    verificationLink,
-  });
+//   const verificationLink = `${config.clientUrl}/auth/verify-email?token=${otpToken}&email=${email}`;
+//   await sendEmail({
+//     email,
+//     token: otpToken,
+//     username: user.name,
+//     verificationLink,
+//   });
 
-  return {
-    message: "Verification email sent successfully",
-    email: user.email,
-  };
-};
+//   return {
+//     message: "Verification email sent successfully",
+//     email: user.email,
+//   };
+// };
 
 // ============================================================================
 // COMMENTED OUT: Alternative forgot password implementation using OTP
@@ -484,8 +477,9 @@ const resetPasswordService = async (
 export const authServices = {
   signUpService,
   loginService,
-  verifyEmailService,
-  resendOtpService,
+  // COMMENTED OUT: Email verification services no longer used
+  // verifyEmailService,
+  // resendOtpService,
   verifyAccessTokenService,
   changePasswordService,
   requestPasswordResetService,
