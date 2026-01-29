@@ -23,26 +23,20 @@
               "formdata": [
                 {
                   "key": "name",
-                  "value": "User",
+                  "value": "User 2",
                   "description": "Required, min 3 chars",
                   "type": "text"
                 },
                 {
-                  "key": "email",
-                  "value": "user-nursery@yopmail.com",
-                  "description": "Optional (but either email or phone required), valid email",
+                  "key": "emailOrPhone",
+                  "value": "01512345678",
+                  "description": "Required, valid email or 11-digit phone number",
                   "type": "text"
                 },
                 {
                   "key": "password",
-                  "value": "12345678",
-                  "description": "Optional, min 6 chars",
-                  "type": "text"
-                },
-                {
-                  "key": "phone",
-                  "value": "01501234567",
-                  "description": "Optional (but either email or phone required), 11 digits",
+                  "value": "11111111",
+                  "description": "Required, min 6 chars",
                   "type": "text"
                 },
                 {
@@ -76,7 +70,7 @@
           },
           "response": [
             {
-              "id": "c081f248-61d7-43d4-bce1-466e44fbbc45",
+              "id": "1c61a41b-e17e-4dc8-93ac-ab331422d3eb",
               "name": "Sign Up",
               "originalRequest": {
                 "method": "POST",
@@ -86,26 +80,20 @@
                   "formdata": [
                     {
                       "key": "name",
-                      "value": "Admin",
+                      "value": "User 1",
                       "description": "Required, min 3 chars",
                       "type": "text"
                     },
                     {
-                      "key": "email",
-                      "value": "admin@yopmail.com",
-                      "description": "Optional, valid email",
+                      "key": "emailOrPhone",
+                      "value": "user1@gmail.com",
+                      "description": "Required, valid email or 11-digit phone number",
                       "type": "text"
                     },
                     {
                       "key": "password",
-                      "value": "12345678",
-                      "description": "Optional, min 6 chars",
-                      "type": "text"
-                    },
-                    {
-                      "key": "phone",
-                      "value": "01501234567",
-                      "description": "Optional, 11 digits",
+                      "value": "11111111",
+                      "description": "Required, min 6 chars",
                       "type": "text"
                     },
                     {
@@ -114,13 +102,15 @@
                       "type": "file",
                       "src": [
                         "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
-                      ]
+                      ],
+                      "disabled": true
                     },
                     {
                       "key": "role",
                       "value": "admin",
                       "description": "Optional, enum: ['user', 'admin']",
-                      "type": "text"
+                      "type": "text",
+                      "disabled": true
                     }
                   ]
                 },
@@ -153,15 +143,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "391"
+                  "value": "320"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"187-hcKRCtmFcPpV2PIRaXGNbbn6TB4\""
+                  "value": "W/\"140-LGEPiAg4G6xUNfESXY8DymRtvr0\""
                 },
                 {
                   "key": "Date",
-                  "value": "Thu, 22 Jan 2026 05:01:33 GMT"
+                  "value": "Wed, 28 Jan 2026 16:26:38 GMT"
                 },
                 {
                   "key": "Connection",
@@ -173,8 +163,8 @@
                 }
               ],
               "cookie": [],
-              "responseTime": "2026-01-22T05:03:16.729Z",
-              "body": "{\n    \"success\": true,\n    \"message\": \"Signup completed successfully. You can now log in with your credentials.\",\n    \"data\": {\n        \"name\": \"Admin\",\n        \"phone\": \"01501234567\",\n        \"email\": \"admin@yopmail.com\",\n        \"role\": \"admin\",\n        \"isEmailVerified\": false,\n        \"status\": \"active\",\n        \"isDeleted\": false,\n        \"_id\": \"6971af2abcca1a5dcf215966\",\n        \"createdAt\": \"2026-01-22T05:01:30.111Z\",\n        \"updatedAt\": \"2026-01-22T05:01:30.111Z\"\n    }\n}"
+              "responseTime": "2026-01-28T16:30:51.897Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Signup completed successfully. You can now log in with your credentials.\",\n    \"data\": {\n        \"name\": \"User 1\",\n        \"emailOrPhone\": \"user1@gmail.com\",\n        \"role\": \"user\",\n        \"status\": \"active\",\n        \"isDeleted\": false,\n        \"_id\": \"697a38be862b49e1ff6fcdfb\",\n        \"createdAt\": \"2026-01-28T16:26:38.725Z\",\n        \"updatedAt\": \"2026-01-28T16:26:38.725Z\"\n    }\n}"
             }
           ]
         },
@@ -221,7 +211,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\",\n  \"password\": \"123456\"\n}\n// Login with phone instead:\n// {\n//   \"phone\": \"01501234567\",\n//   \"password\": \"123456\"\n// }",
+              "raw": "{\n  \"emailOrPhone\": \"user1@gmail.com\",\n  \"password\": \"12345678\"\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -239,82 +229,22 @@
                 "login"
               ]
             },
-            "description": "Login with email or phone number and password. Returns access token. Email verification is no longer required."
+            "description": "Login with emailOrPhone (email or phone number) and password. Returns access token."
           },
           "response": [
             {
-              "id": "86c4c098-bc29-4e17-8fc7-267e1cb296e8",
-              "name": "Login with Phone",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"phone\": \"01501234567\",\n  \"password\": \"123456\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json",
-                      "description": "Either email or phone is required"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/auth/login",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "auth",
-                    "login"
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Access-Control-Allow-Origin",
-                  "value": "*"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "837"
-                },
-                {
-                  "key": "Date",
-                  "value": "Thu, 22 Jan 2026 08:11:01 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                }
-              ],
-              "cookie": [],
-              "responseTime": "2026-01-22T08:11:12.709Z",
-              "body": "{\n    \"success\": true,\n    \"message\": \"Signin completed successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"6971da34ef6d881934c75780\",\n            \"name\": \"Admin\",\n            \"phone\": \"01501234567\",\n            \"email\": \"admin-nursery@yopmail.com\",\n            \"role\": \"admin\",\n            \"isEmailVerified\": false,\n            \"status\": \"active\",\n            \"createdAt\": \"2026-01-22T08:05:08.664Z\",\n            \"updatedAt\": \"2026-01-22T08:11:01.566Z\",\n            \"__v\": 0\n        },\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA2OTQ2MSwiZXhwIjoxNzY5MTU1ODYxfQ.DlogOlI04uZ6zOs2C1J5zmHBqUTr8rZVyq-czd42LY8\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA2OTQ2MSwiZXhwIjoxNzY5Njc0MjYxfQ.X-Ulr0FK9tyB4lPQN8hLWMRT52yr9G0xQMw8j0VJYAw\"\n    }\n}"
-            },
-            {
-              "id": "4f4edfa6-8aa5-43ab-ab7d-03c2039465c9",
+              "id": "8dd8dc2b-bff4-4e64-b515-aaf5afcf5e1c",
               "name": "Login",
               "originalRequest": {
                 "method": "POST",
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\",\n  \"password\": \"12345678\"\n}",
+                  "raw": "{\n  \"emailOrPhone\": \"user1@gmail.com\",\n  \"password\": \"11111111\"\n}",
                   "options": {
                     "raw": {
                       "language": "json",
-                      "description": "Both fields required"
+                      "description": "Either email or phone is required along with password"
                     }
                   }
                 },
@@ -347,15 +277,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "837"
+                  "value": "777"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"345-q298fTX2iY+tkV2TIn9IjOWmbjE\""
+                  "value": "W/\"309-d/274Z78f+t7Zfa3+/khj6OtcmY\""
                 },
                 {
                   "key": "Date",
-                  "value": "Thu, 22 Jan 2026 08:11:01 GMT"
+                  "value": "Wed, 28 Jan 2026 16:30:20 GMT"
                 },
                 {
                   "key": "Connection",
@@ -367,14 +297,14 @@
                 }
               ],
               "cookie": [],
-              "responseTime": "2026-01-22T08:11:12.709Z",
-              "body": "{\n    \"success\": true,\n    \"message\": \"Signin completed successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"6971da34ef6d881934c75780\",\n            \"name\": \"Admin\",\n            \"phone\": \"01501234567\",\n            \"email\": \"admin-nursery@yopmail.com\",\n            \"role\": \"admin\",\n            \"isEmailVerified\": true,\n            \"status\": \"active\",\n            \"createdAt\": \"2026-01-22T08:05:08.664Z\",\n            \"updatedAt\": \"2026-01-22T08:11:01.566Z\",\n            \"__v\": 0\n        },\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA2OTQ2MSwiZXhwIjoxNzY5MTU1ODYxfQ.DlogOlI04uZ6zOs2C1J5zmHBqUTr8rZVyq-czd42LY8\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA2OTQ2MSwiZXhwIjoxNzY5Njc0MjYxfQ.X-Ulr0FK9tyB4lPQN8hLWMRT52yr9G0xQMw8j0VJYAw\"\n    }\n}"
+              "responseTime": "2026-01-28T16:30:43.409Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Signin completed successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"697a38be862b49e1ff6fcdfb\",\n            \"name\": \"User 1\",\n            \"emailOrPhone\": \"user1@gmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\",\n            \"createdAt\": \"2026-01-28T16:26:38.725Z\",\n            \"updatedAt\": \"2026-01-28T16:30:19.357Z\",\n            \"__v\": 0\n        },\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5N2EzOGJlODYyYjQ5ZTFmZjZmY2RmYiIsImVtYWlsT3JQaG9uZSI6InVzZXIxQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzY5NjE3ODE5LCJleHAiOjE3Njk3MDQyMTl9.x-6qMaa8atw96OkRrXOhE-lrVr11grdKYuUB6DGKtjU\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5N2EzOGJlODYyYjQ5ZTFmZjZmY2RmYiIsImVtYWlsT3JQaG9uZSI6InVzZXIxQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzY5NjE3ODE5LCJleHAiOjE3NzAyMjI2MTl9.iWSR9B3JqkdmgHTMIDfLJQiuYiUNgDIyy0kva8mGSDM\"\n    }\n}"
             }
           ]
         },
         {
-          "name": "Verify Email (DEPRECATED - No longer available)",
-          "id": "fa66a0af-bc5d-4ed2-a4c5-3ce603edfebf",
+          "name": "Forgot Password?",
+          "id": "aa0b8c7b-3ed9-442d-bbee-d0ba5ad7bb42",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -383,7 +313,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\",\n  \"otp\": \"745009\"\n}",
+              "raw": "{\n  \"emailOrPhone\": \"user1@gmail.com\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -391,27 +321,26 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/auth/verify-email",
+              "raw": "{{baseUrl}}/auth/forgot-password",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "auth",
-                "verify-email"
+                "forgot-password"
               ]
-            },
-            "description": "DEPRECATED: This endpoint is no longer available. Email verification is no longer required for signup. Users can log in immediately after registration."
+            }
           },
           "response": [
             {
-              "id": "cb748062-39ef-4f09-b24a-1e6d22df4e41",
-              "name": "Verify Email",
+              "id": "69d9ed68-5562-499b-b289-f834557c8c8d",
+              "name": "Forgot Password?",
               "originalRequest": {
                 "method": "POST",
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\",\n  \"otp\": \"745009\"\n}",
+                  "raw": "{\n  \"emailOrPhone\": \"user1@gmail.com\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -419,13 +348,112 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/auth/verify-email",
+                  "raw": "{{baseUrl}}/auth/forgot-password",
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "path": [
                     "auth",
-                    "verify-email"
+                    "forgot-password"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "271"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"10f-bkX20QBjZpXTMeGaE+4+HFh1j6g\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Jan 2026 16:49:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "responseTime": "2026-01-28T16:49:27.697Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"User found successfully\",\n    \"data\": {\n        \"_id\": \"697a38be862b49e1ff6fcdfb\",\n        \"name\": \"User 1\",\n        \"emailOrPhone\": \"user1@gmail.com\",\n        \"role\": \"user\",\n        \"status\": \"active\",\n        \"isDeleted\": false,\n        \"createdAt\": \"2026-01-28T16:26:38.725Z\",\n        \"updatedAt\": \"2026-01-28T16:30:19.357Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Reset Password",
+          "id": "57cdaadd-6027-4507-b4d1-1db75414da69",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"697a38be862b49e1ff6fcdfb\",\n  \"newPassword\": \"12345678\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/reset-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "reset-password"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2eafe6f4-9114-4062-83b7-3ee73041919d",
+              "name": "Reset Password",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"697a38be862b49e1ff6fcdfb\",\n  \"newPassword\": \"12345678\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/reset-password",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "reset-password"
                   ]
                 }
               },
@@ -451,11 +479,11 @@
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"44-+0PHkNNOXv7Kbk825gVlu4QNlQA\""
+                  "value": "W/\"44-kUSwhfxhPM/5wpVY5srytwqbeSk\""
                 },
                 {
                   "key": "Date",
-                  "value": "Thu, 22 Jan 2026 08:08:03 GMT"
+                  "value": "Wed, 28 Jan 2026 16:50:18 GMT"
                 },
                 {
                   "key": "Connection",
@@ -467,240 +495,10 @@
                 }
               ],
               "cookie": [],
-              "responseTime": "2026-01-22T08:08:06.701Z",
-              "body": "{\n    \"success\": true,\n    \"message\": \"Email verified successfully\",\n    \"data\": null\n}"
+              "responseTime": "2026-01-28T16:50:23.714Z",
+              "body": "{\n    \"success\": true,\n    \"message\": \"Password reset successfully\",\n    \"data\": null\n}"
             }
           ]
-        },
-        {
-          "name": "Resend OTP (DEPRECATED - No longer available)",
-          "id": "a0fc3a35-3fd2-4614-a044-4122553cc180",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/resend-otp",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "resend-otp"
-              ]
-            },
-            "description": "DEPRECATED: This endpoint is no longer available. Email verification is no longer required for signup."
-          },
-          "response": [
-            {
-              "id": "f9060404-1f6c-4134-9a7a-454075a304fe",
-              "name": "Resend OTP",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/auth/resend-otp",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "auth",
-                    "resend-otp"
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Access-Control-Allow-Origin",
-                  "value": "*"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "159"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"9f-mQu29GAW4QDwYQO6ZcFDzEX4yBQ\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Thu, 22 Jan 2026 08:07:34 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "responseTime": "2026-01-22T08:07:50.764Z",
-              "body": "{\n    \"success\": true,\n    \"message\": \"Verification email sent successfully\",\n    \"data\": {\n        \"message\": \"Verification email sent successfully\",\n        \"email\": \"admin-nursery@yopmail.com\"\n    }\n}"
-            }
-          ]
-        },
-        {
-          "name": "Forgot Password?",
-          "id": "aa0b8c7b-3ed9-442d-bbee-d0ba5ad7bb42",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/request-password-reset",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "request-password-reset"
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "f54d7fe5-cbeb-4736-a47a-028d2ece872f",
-              "name": "Forgot Password?",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"admin-nursery@yopmail.com\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/auth/request-password-reset",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "auth",
-                    "request-password-reset"
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Access-Control-Allow-Origin",
-                  "value": "*"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "105"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"69-3jTMN5UTIxEVUUysvGJAYfdty6E\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Thu, 22 Jan 2026 08:46:15 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "responseTime": "2026-01-22T08:50:04.307Z",
-              "body": "{\n    \"success\": true,\n    \"message\": \"If an account exists with this email, a reset link has been sent\",\n    \"data\": null\n}"
-            }
-          ]
-        },
-        {
-          "name": "Reset Password",
-          "id": "57cdaadd-6027-4507-b4d1-1db75414da69",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"token\": \"reset-token-here\",\n  \"newPassword\": \"newPassword123\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/reset-password",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "reset-password"
-              ]
-            }
-          },
-          "response": []
         },
         {
           "name": "Change Password",
@@ -2033,7 +1831,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "6971e9f7065be8b54b7ff90e"
+                  "value": "6979c46e5a2478d429b244d5"
                 }
               ]
             }
@@ -2899,7 +2697,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"productId\": \"6971e9f7065be8b54b7ff90e\",\n  \"quantity\": 2\n}",
+              "raw": "{\n  \"productId\": \"6979c46e5a2478d429b244d5\",\n  \"quantity\": 3\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -3207,7 +3005,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"shippingAddressId\": \"6975ed94eccf789491ef7a61\",\n  \"selectedProductIds\": [\"6971e9f7065be8b54b7ff90e\"],\n//   \"paymentMethod\": \"cod\",\n  \"paymentMethod\": \"bkash\",\n  \"transactionId\": \"TXN123456789\",\n//   \"discountCode\": \"SAVE10\",\n  \"notes\": \"Please deliver between 9 AM - 5 PM\"\n}",
+              "raw": "{\n  \"shippingAddressId\": \"697a0f69dadc88d15fd3a2f4\",\n  \"selectedProductIds\": [\"6979c46e5a2478d429b244d5\"],\n//   \"paymentMethod\": \"cod\",\n  \"paymentMethod\": \"bkash\",\n  \"transactionId\": \"TXN123456789\",\n//   \"discountCode\": \"SAVE10\",\n  \"notes\": \"Please deliver between 9 AM - 5 PM\"\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -3876,7 +3674,7 @@
               "variable": [
                 {
                   "key": "orderId",
-                  "value": "ORD-1769078431339-4a02aulm",
+                  "value": "ORD-1769607044316-ldjfcfx2",
                   "description": "Order ID to cancel"
                 }
               ]
@@ -8836,7 +8634,7 @@
   ],
   "variable": [
     {
-      "id": "b88dcc83-e906-4c1d-a557-7b8688599e33",
+      "id": "f7c4c6be-bbc5-4425-b00f-76ad34c3e270",
       "key": "token",
       "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA3ODU0OCwiZXhwIjoxNzY5MTY0OTQ4fQ.jbePrYXN0xmIbXizuhz8h8i-f8iICKkh1auntRtNBKs"
     }

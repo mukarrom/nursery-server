@@ -1,14 +1,13 @@
 export type TSignUp = {
   name: string;
-  phone?: string;
-  email: string;
+  emailOrPhone: string;
   password: string;
+  profilePicture?: string;
   role?: string;
 };
 
 export type TLogin = {
-  email?: string;
-  phone?: string;
+  emailOrPhone: string;
   password: string;
 };
 

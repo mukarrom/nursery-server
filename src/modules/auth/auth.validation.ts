@@ -2,8 +2,7 @@ import { z } from "zod";
 import { USER_ROLE } from "../../constants/status.constants";
 
 export type TLogin = {
-  email?: string;
-  phone?: string;
+  emailOrPhone: string;
   password: string;
 };
 
@@ -16,24 +15,23 @@ const signUpZodSchema = z.object({
       })
       .min(3, "Name must be at least 3 characters")
       .max(255),
-    phone: z
+    emailOrPhone: z
       .string({
-        invalid_type_error: "Phone number must be a string",
+        required_error: "Email or phone is required",
+        invalid_type_error: "Email or phone must be a string",
       })
-      .min(11, "Phone number must be 11 digits")
-      .max(11, "Phone number must be 11 digits")
-      .optional(),
-    email: z
-      .string({
-        invalid_type_error: "Email must be valid email address",
-      })
-      .email("Invalid email address")
-      .optional(),
+      .refine(
+        (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) || /^\d{11}$/.test(val),
+        { message: "Must be a valid email or 11-digit phone number" }
+      ),
     password: z
-      .string()
+      .string({
+        required_error: "Password is required",
+        invalid_type_error: "Password must be a string",
+      })
       .min(6, "Password must be at least 6 characters")
       .max(255)
-      .optional(),
+      .trim(),
     profilePicture: z
       .string()
       .optional(),
@@ -42,38 +40,22 @@ const signUpZodSchema = z.object({
         invalid_type_error: "Role must be a valid role",
       })
       .optional(),
-  }).refine(
-    (data) => data.email || data.phone,
-    {
-      message: "Either email or phone number is required",
-      path: ["email"],
-    }
-  ),
+  }),
 });
 
 const loginZodSchema = z.object({
   body: z.object({
-    email: z
+    emailOrPhone: z
       .string({
-        invalid_type_error: "Email must be valid registered email address",
+        required_error: "Email or phone is required",
+        invalid_type_error: "Email or phone must be a string",
       })
-      .email("Invalid email address")
-      .optional(),
-    phone: z
-      .string({
-        invalid_type_error: "Phone number must be a string",
-      })
-      .min(11, "Phone number must be 11 digits")
-      .max(11, "Phone number must be 11 digits")
-      .optional(),
-    password: z.string().min(6, "Password must be at least 6 characters"),
-  }).refine(
-    (data) => data.email || data.phone,
-    {
-      message: "Either email or phone number is required",
-      path: ["email"],
-    }
-  ),
+      .refine(
+        (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) || /^\d{11}$/.test(val),
+        { message: "Must be a valid email or 11-digit phone number" }
+      ),
+    password: z.string().min(6, "Password must be at least 6 characters").trim(),
+  }),
 });
 
 // COMMENTED OUT: Email OTP verification is no longer required for signup
@@ -116,28 +98,25 @@ const changePasswordZodSchema = z.object({
   }),
 });
 
-const requestPasswordResetValidationSchema = z.object({
+const forgotPasswordValidationSchema = z.object({
   body: z.object({
-    email: z
+    emailOrPhone: z
       .string({
-        required_error: "Email is required",
-        invalid_type_error: "Email must be valid email address",
+        required_error: "Email or phone is required",
+        invalid_type_error: "Email or phone must be a string",
       })
-      .email("Invalid email address"),
+      .refine(
+        (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) || /^\d{11}$/.test(val),
+        { message: "Must be a valid email or 11-digit phone number" }
+      ),
   }),
 });
 
 const resetPasswordValidationSchema = z.object({
   body: z.object({
-    email: z
-      .string({
-        required_error: "Email is required",
-        invalid_type_error: "Email must be valid email address",
-      })
-      .email("Invalid email address"),
-    token: z.string({
-      required_error: "Token is required",
-      invalid_type_error: "Token must be valid token",
+    userId: z.string({
+      required_error: "User ID is required",
+      invalid_type_error: "User ID must be a string",
     }),
     newPassword: z.string().min(6, "Password must be at least 6 characters"),
   }),
@@ -151,6 +130,6 @@ export const AuthValidations = {
   // emailLinkVerificationValidationSchema,
   // resendVerificationValidationSchema,
   changePasswordZodSchema,
-  requestPasswordResetValidationSchema,
+  forgotPasswordValidationSchema,
   resetPasswordValidationSchema,
 };

@@ -202,49 +202,46 @@ const changePasswordController = catchAsync(async (req, res) => {
   });
 });
 
-// ------------- reset password controllers ----------------------------
+// ------------- forgot password controller ----------------------------
 /**
- * @route POST /auth/request-password-reset
- * @desc Request password reset link
+ * @route POST /auth/forgot-password
+ * @desc Check if user exists by emailOrPhone
  * @access Public
  */
-const requestPasswordReset = catchAsync(async (req: Request, res: Response) => {
-  const { email } = req.body;
+const forgotPasswordController = catchAsync(async (req: Request, res: Response) => {
+  const { emailOrPhone } = req.body;
 
-  if (!email) {
-    throw new AppError(status.BAD_REQUEST, "Email is required");
+  if (!emailOrPhone) {
+    throw new AppError(status.BAD_REQUEST, "Email or phone is required");
   }
 
-  const result = await authServices.requestPasswordResetService(email);
+  const result = await authServices.forgotPasswordService(emailOrPhone);
 
   sendResponse(res, {
     statusCode: status.OK,
     success: true,
-    message: result.message,
-    data: null,
+    message: "User found successfully",
+    data: result,
   });
 });
 
 /**
  * @route POST /auth/reset-password
- * @desc Reset user password using token
+ * @desc Reset user password using userId
  * @access Public
  */
-const resetPassword = catchAsync(async (req: Request, res: Response) => {
-  // get email and token from params
-  // const { email, token } = req.params;
-  const { email, token, newPassword } = req.body;
+const resetPasswordController = catchAsync(async (req: Request, res: Response) => {
+  const { userId, newPassword } = req.body;
 
-  if (!email || !token || !newPassword) {
+  if (!userId || !newPassword) {
     throw new AppError(
       status.BAD_REQUEST,
-      "Email, token and new password are required"
+      "User ID and new password are required"
     );
   }
 
   const result = await authServices.resetPasswordService(
-    email,
-    token,
+    userId,
     newPassword
   );
 
@@ -266,6 +263,6 @@ export const authController = {
   // resendVerificationController,
   verifyAccessTokenController,
   changePasswordController,
-  requestPasswordReset,
-  resetPassword,
+  forgotPasswordController,
+  resetPasswordController,
 };

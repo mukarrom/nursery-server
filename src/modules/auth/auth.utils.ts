@@ -5,7 +5,7 @@ import config from "../../config";
 
 export type TPayload = {
   id: mongoose.ObjectId;
-  email: string;
+  emailOrPhone: string;
   role: string;
 };
 
@@ -36,16 +36,28 @@ export const comparePasswords = async (
   plainTextPassword: string
 ): Promise<boolean> => {
   try {
-    // console.log("Plain text password:", plainTextPassword);
-    // console.log("Hashed password:", hashedPassword);
+    console.log("=== Password Comparison Debug ===");
+    console.log("Hashed password:", hashedPassword);
+    console.log("Hashed password type:", typeof hashedPassword);
+    console.log("Hashed password length:", hashedPassword?.length);
+    console.log("Plain text password:", plainTextPassword);
+    console.log("Plain text password type:", typeof plainTextPassword);
+    console.log("Plain text password length:", plainTextPassword?.length);
+
     if (!hashedPassword || !plainTextPassword) {
+      console.log("Missing password values");
       throw new Error("Password values cannot be empty");
     }
+
+    console.log("Starting argon2.verify...");
     const result = await argon2.verify(hashedPassword, plainTextPassword);
-    console.log("Password comparison result:", result);
+    console.log("Argon2.verify result:", result);
+    console.log("=== End Password Comparison ===");
     return result;
   } catch (err) {
-    console.error("Error comparing passwords:", err);
+    console.error("=== Error in comparePasswords ===");
+    console.error("Error:", err);
+    console.error("=== End Error ===");
     throw new Error("Invalid password");
   }
 };

@@ -112,32 +112,32 @@ router.post(
   authController.changePasswordController
 );
 
-/** Request password reset
- * @route POST /auth/request-password-reset
+/** Forgot password - Check if user exists
+ * @route POST /auth/forgot-password
  * @group Authentication - Password Reset
- * @param {RequestPasswordResetRequest.model} request.body.required - Email to request password reset
- * @returns {object} 200 - Password reset email sent
- * @returns {ErrorResponse.model} 400 - Invalid email
+ * @param {ForgotPasswordRequest.model} request.body.required - Email or phone to check
+ * @returns {object} 200 - User found, returns user data
+ * @returns {ErrorResponse.model} 404 - User not found
  */
 router.post(
-  "/request-password-reset",
-  validateRequest(AuthValidations.requestPasswordResetValidationSchema),
-  authController.requestPasswordReset
+  "/forgot-password",
+  validateRequest(AuthValidations.forgotPasswordValidationSchema),
+  authController.forgotPasswordController
 );
 
-// Redirect /auth/reset-password to reset-password.html
-router.get('/reset-password', (req, res) => {
-  const { token, email } = req.query;
-  res.redirect(`/reset-password.html?token=${token}&email=${email}`);
-});
 
-/** Reset password POST
+
+/** Reset password
  * @route POST /auth/reset-password
  * @group Authentication - Password Reset
- * @param {ResetPasswordRequest.model} request.body.required - Password reset data
+ * @param {ResetPasswordRequest.model} request.body.required - User ID and new password
  * @returns {object} 200 - Password reset successfully
  * @returns {ErrorResponse.model} 400 - Invalid password reset data
  */
-router.post("/reset-password", validateRequest(AuthValidations.resetPasswordValidationSchema), authController.resetPassword);
+router.post(
+  "/reset-password",
+  validateRequest(AuthValidations.resetPasswordValidationSchema),
+  authController.resetPasswordController
+);
 
 export const authRoute = router;

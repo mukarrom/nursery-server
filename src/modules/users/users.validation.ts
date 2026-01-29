@@ -10,19 +10,15 @@ const userValidationSchema = z.object({
       })
       .min(3, "Name must be at least 3 characters")
       .max(255),
-    phone: z
+    emailOrPhone: z
       .string({
-        invalid_type_error: "Phone number must be a string",
+        required_error: "Email or phone is required",
+        invalid_type_error: "Email or phone must be a string",
       })
-      .min(11, "Phone number must be 11 digits")
-      .max(11, "Phone number must be 11 digits")
-      .optional(),
-    email: z
-      .string({
-        required_error: "Email is required",
-        invalid_type_error: "Email must be valid email address",
-      })
-      .email("Invalid email address")
+      .refine(
+        (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) || /^\d{11}$/.test(val),
+        { message: "Must be a valid email or 11-digit phone number" }
+      )
       .optional(),
     password: z
       .string()

@@ -5,12 +5,11 @@ import { UserModel } from "../modules/users/users.model";
 
 const superUser = {
     name: "Super Admin",
-    email: "admin@super.com",
+    emailOrPhone: "admin@super.com",
     needsPasswordChange: true,
     role: USER_ROLE.SUPER_ADMIN,
     status: USER_STATUS.ACTIVE,
     isDeleted: false,
-    isEmailVerified: true,
 };
 
 const seedSuperAdmin = async () => {

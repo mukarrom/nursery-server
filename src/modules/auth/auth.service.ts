@@ -1,10 +1,7 @@
 import status from "http-status";
 import { JwtPayload } from "jsonwebtoken";
-import mongoose from "mongoose";
-import config from "../../config";
 import { USER_ROLE, USER_STATUS } from "../../constants/status.constants";
 import AppError from "../../errors/AppError";
-import { sendEmail } from "../../utils/emailService";
 import { TUser } from "../users/users.interface";
 import { UserModel } from "../users/users.model";
 import { TSignUp } from "./auth.interface";
@@ -21,69 +18,42 @@ import { TLogin } from "./auth.validation";
 // ------------- signup service -------------------
 /**
  * Handles user signup by creating a new user.
- * Email verification OTP and sending has been disabled.
- * @param {TSignUp} payload - The signup payload containing user details (name, phone, email, password).
+ * @param {TSignUp} payload - The signup payload containing user details (name, emailOrPhone, password).
  * @returns {Promise<Partial<TUser>>} - The created user data.
  * @throws {AppError} - If user creation fails.
  */
 const signUpService = async (payload: TSignUp) => {
-  const session = await mongoose.startSession();
+  // Check if user already exists
+  const existingUser = await UserModel.findOne({ emailOrPhone: payload.emailOrPhone });
+
+  if (existingUser) {
+    throw new AppError(status.BAD_REQUEST, "User already exists");
+  }
+
   try {
-    session.startTransaction();
-
-    // Hash password
-    const hashedPassword = await hashPassword(payload.password);
-
-    console.log("Processing signup for:", payload.email || payload.phone);
-
-    // COMMENTED OUT: OTP generation and email sending disabled
-    // const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    // const otpExpires = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
-
     const userData: Partial<TUser> = {
       name: payload.name,
-      phone: payload.phone,
-      email: payload.email,
-      password: hashedPassword,
+      emailOrPhone: payload.emailOrPhone,
+      password: payload.password,
+      profilePicture: payload.profilePicture,
       role: (payload as any).role || USER_ROLE.USER,
-      // COMMENTED OUT: OTP verification fields no longer populated
-      // emailVerificationOtp: otp,
-      // emailVerificationOtpExpires: otpExpires,
     };
 
-    // create a new user
-    console.log("Creating user with data:", JSON.stringify(userData, null, 2));
-    const newUser = await UserModel.create([userData], { session });
-    console.log("User created:", JSON.stringify(newUser[0].toObject(), null, 2));
+    // Create a new user
+    const newUser = await UserModel.create(userData);
 
-    if (!newUser.length) {
+    if (!newUser) {
       throw new AppError(status.BAD_REQUEST, "Failed to create new user!");
     }
 
-    // COMMENTED OUT: Email verification no longer sent
-    // const verificationLink = `${config.clientUrl}/auth/verify-email?token=${otp}&email=${payload.email}`;
-    // await sendEmail({
-    //   email: payload.email,
-    //   token: otp,
-    //   username: payload.name,
-    //   verificationLink,
-    // });
-
-    await session.commitTransaction();
-    await session.endSession();
-
-    return newUser[0].toObject({
+    return newUser.toObject({
       versionKey: false,
       transform: (doc, ret: any) => {
         delete ret.password;
-        delete ret.emailVerificationOtp;
-        delete ret.emailVerificationOtpExpires;
         return ret;
       },
     });
   } catch (error: any) {
-    await session.abortTransaction();
-    await session.endSession();
     throw new AppError(status.BAD_REQUEST, error.message || "Signup failed");
   }
 };
@@ -91,49 +61,35 @@ const signUpService = async (payload: TSignUp) => {
 // ------------- login service -------------------
 /**
  * Handles user login by verifying credentials and generating access/refresh tokens.
- * @param {TLogin} payload - The login payload containing email and password.
- * @returns {Promise<TUser | null>} - The updated user data with tokens.
+ * @param {TLogin} payload - The login payload containing emailOrPhone and password.
+ * @returns {Promise<Object>} - The user data with tokens.
  * @throws {AppError} - If credentials are invalid or user is blocked/deleted.
  */
 const loginService = async (payload: TLogin) => {
-  const loginIdentifier = payload.email || payload.phone;
-  console.log("Login attempt for:", loginIdentifier);
-
-  // find user by email or phone and include password for comparison
-  const user = await UserModel.findOne({
-    $or: [
-      { email: payload.email },
-      { phone: payload.phone }
-    ]
-  }).select("+password");
+  // Find user by emailOrPhone and include password for comparison
+  const user = await UserModel.findOne({ emailOrPhone: payload.emailOrPhone }).select("+password");
 
   if (!user) {
     throw new AppError(status.NOT_FOUND, "This user is not found");
   }
 
-  // check is deleted softly
+  // Check is deleted softly
   if (user.isDeleted || user.status === USER_STATUS.DELETED) {
     throw new AppError(status.FORBIDDEN, "This user has been deleted");
   }
 
-  // check status
+  // Check status
   if (user.status === USER_STATUS.BLOCKED) {
     throw new AppError(status.FORBIDDEN, "This user is blocked");
   }
 
-  // checking if password matched
-  if (!(await comparePasswords(user.password, payload.password))) {
+  // Check if password matched
+  if (payload.password != user.password) {
     throw new AppError(status.FORBIDDEN, "Your password is incorrect");
   }
 
-  // check is email verified
-  // Commented out: Email verification is now optional for login
-  // if (!user.isEmailVerified) {
-  //   throw new AppError(status.FORBIDDEN, "Your email is not verified");
-  // }
-
-  const jwtPayload = { id: (user as any)._id, email: user.email, role: user.role as string };
-  // generate tokens
+  const jwtPayload = { id: (user as any)._id, emailOrPhone: user.emailOrPhone, role: user.role as string };
+  // Generate tokens
   const jwtAccessToken = await generateToken(jwtPayload);
   const jwtRefreshToken = await generateToken(jwtPayload, true);
 
@@ -419,55 +375,68 @@ const changePasswordService = async (
   return { message: "Password changed successfully" };
 };
 
-// ------------- Request reset password service ----------------------------
-const requestPasswordResetService = async (email: string) => {
-  const user = await UserModel.findOne({ email });
+// ------------- Forgot password service ----------------------------
+/**
+ * Check if user exists by emailOrPhone
+ * @param emailOrPhone - Email or phone number
+ * @returns User data if exists
+ */
+const forgotPasswordService = async (emailOrPhone: string) => {
+  const user = await UserModel.findOne({ emailOrPhone });
 
   if (!user) {
-    return {
-      message: "If an account exists with this email, a reset link has been sent",
-    };
+    throw new AppError(status.NOT_FOUND, "User not found with this email or phone");
   }
 
-  const resetToken = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
-  const resetTokenExpires = new Date(Date.now() + 24 * 60 * 60 * 1000);
+  // Check if user is deleted or blocked
+  if (user.isDeleted || user.status === USER_STATUS.DELETED) {
+    throw new AppError(status.FORBIDDEN, "This user has been deleted");
+  }
 
-  user.passwordResetToken = resetToken;
-  user.passwordResetTokenExpires = resetTokenExpires;
-  await user.save();
+  if (user.status === USER_STATUS.BLOCKED) {
+    throw new AppError(status.FORBIDDEN, "This user is blocked");
+  }
 
-  const resetLink = `${config.clientUrl}/auth/reset-password?token=${resetToken}&email=${email}`;
-  await sendEmail({
-    email,
-    token: resetToken,
-    username: user.name,
-    verificationLink: resetLink,
+  // Return user data without sensitive information
+  return user.toObject({
+    versionKey: false,
+    transform: (doc, ret: any) => {
+      delete ret.password;
+      delete ret.accessToken;
+      delete ret.refreshToken;
+      return ret;
+    },
   });
-
-  return {
-    message: "If an account exists with this email, a reset link has been sent",
-  };
 };
 
 // ------------- Reset password service ----------------------------
+/**
+ * Reset user password using userId
+ * @param userId - User ID
+ * @param newPassword - New password
+ * @returns Success message
+ */
 const resetPasswordService = async (
-  email: string,
-  token: string,
+  userId: string,
   newPassword: string
 ) => {
-  const user = await UserModel.findOne({
-    email,
-    passwordResetToken: token,
-    passwordResetTokenExpires: { $gt: new Date() },
-  });
+  const user = await UserModel.findById(userId);
 
   if (!user) {
-    throw new AppError(status.BAD_REQUEST, "Invalid or expired reset token");
+    throw new AppError(status.NOT_FOUND, "User not found");
   }
 
-  user.password = await hashPassword(newPassword);
-  user.passwordResetToken = undefined;
-  user.passwordResetTokenExpires = undefined;
+  // Check if user is deleted or blocked
+  if (user.isDeleted || user.status === USER_STATUS.DELETED) {
+    throw new AppError(status.FORBIDDEN, "This user has been deleted");
+  }
+
+  if (user.status === USER_STATUS.BLOCKED) {
+    throw new AppError(status.FORBIDDEN, "This user is blocked");
+  }
+
+  // Update password
+  user.password = newPassword;
   user.passwordChangedAt = new Date();
   await user.save();
 
@@ -482,6 +451,6 @@ export const authServices = {
   // resendOtpService,
   verifyAccessTokenService,
   changePasswordService,
-  requestPasswordResetService,
+  forgotPasswordService,
   resetPasswordService,
 };

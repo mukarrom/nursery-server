@@ -11,7 +11,7 @@ import { UserModel } from "./users.model";
  */
 const getProfile = async (userId: string) => {
   console.log("Fetching profile for userId:", userId);
-  const user = await UserModel.findById(userId).select("id name email phone role status profilePicture");
+  const user = await UserModel.findById(userId).select("id name emailOrPhone role status profilePicture");
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, "User not found");
   }
@@ -37,10 +37,10 @@ const updateProfile = async (userId: string, payload: any) => {
 /// Get all users list
 const getAllUsers = async (query: Record<string, unknown>) => {
   const userQuery = new QueryBuilder(
-    UserModel.find().select("id name profilePicture email phone role status"),
+    UserModel.find().select("id name profilePicture emailOrPhone role status"),
     query
   )
-    .search(["name", "email", "phone"])
+    .search(["name", "emailOrPhone"])
     .filter()
     .sort()
     .paginate()
