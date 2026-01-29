@@ -1,0 +1,453 @@
+{
+  "info": {
+    "_postman_id": "71bfe14a-89f9-4c73-a33e-ea7aefc88fb3",
+    "name": "Payment Methods API",
+    "description": "Payment method configuration",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Payment Methods",
+      "id": "4e981395-190b-418a-8849-5b29632424da",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/payment-methods",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "payment-methods"
+          ]
+        },
+        "description": "Public endpoint - get all active payment methods"
+      },
+      "response": [
+        {
+          "id": "9e53c44a-3694-4571-b1e0-134293ccf1db",
+          "name": "Get All Payment Methods",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payment-methods",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment-methods"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "916"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"394-lsnxYxC+3LudSYj1jMzlvLeqfM8\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 17:55:48 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T17:57:05.046Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Active payment methods retrieved successfully\",\n    \"data\": [\n        {\n            \"accountType\": \"Personal\",\n            \"_id\": \"6971c5c829b01be81427f214\",\n            \"methodName\": \"bKash\",\n            \"accountNumber\": \"01902313222\",\n            \"isActive\": true,\n            \"displayOrder\": 0,\n            \"createdAt\": \"2026-01-22T06:38:00.957Z\",\n            \"updatedAt\": \"2026-01-22T06:38:00.957Z\",\n            \"__v\": 0\n        },\n        {\n            \"accountType\": \"Personal\",\n            \"_id\": \"6971c9c87c1e2de632a46eb2\",\n            \"methodName\": \"Nogod\",\n            \"accountNumber\": \"01722662422\",\n            \"isActive\": true,\n            \"displayOrder\": 0,\n            \"createdAt\": \"2026-01-22T06:55:04.669Z\",\n            \"updatedAt\": \"2026-01-22T06:55:04.669Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6972647289a956355769f88c\",\n            \"methodName\": \"bKash\",\n            \"description\": \"Mobile payment via bKash\",\n            \"accountNumber\": \"01712345678\",\n            \"accountName\": \"Nursery Bazar BD\",\n            \"accountType\": \"Personal\",\n            \"instructions\": \"Send money to this number and submit transaction ID\",\n            \"isActive\": true,\n            \"displayOrder\": 1,\n            \"createdAt\": \"2026-01-22T17:54:58.229Z\",\n            \"updatedAt\": \"2026-01-22T17:54:58.229Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Payment Method by ID",
+      "id": "892c6c3b-5748-4ea1-8106-e319e7889245",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/payment-methods/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "payment-methods",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6972647289a956355769f88c"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "9536421b-7224-4718-b2a3-b846c327e888",
+          "name": "Get Payment Method by ID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payment-methods/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment-methods",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6972647289a956355769f88c"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "446"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1be-LxUmvvrmjF533dcD+5C9jmW+8ho\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 17:57:35 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T17:57:37.364Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Payment method retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6972647289a956355769f88c\",\n        \"methodName\": \"bKash\",\n        \"description\": \"Mobile payment via bKash\",\n        \"accountNumber\": \"01712345678\",\n        \"accountName\": \"Nursery Bazar BD\",\n        \"accountType\": \"Personal\",\n        \"instructions\": \"Send money to this number and submit transaction ID\",\n        \"isActive\": true,\n        \"displayOrder\": 1,\n        \"createdAt\": \"2026-01-22T17:54:58.229Z\",\n        \"updatedAt\": \"2026-01-22T17:54:58.229Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Payment Method (Admin)",
+      "id": "83ff7b4a-9ddf-4d95-a9a7-e222cb78e2cb",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"methodName\": \"bKash\",\n  \"description\": \"Mobile payment via bKash\",\n  \"accountNumber\": \"01712345678\",\n  \"accountName\": \"Nursery Bazar BD\",\n  \"accountType\": \"Personal\", // Personal, Agent, Business, etc.\n  \"instructions\": \"Send money to this number and submit transaction ID\",\n  \"displayOrder\": 1,\n  \"isActive\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "Required: methodName, accountNumber\nOptional: description, accountName, instructions, displayOrder (default 0), isActive (default true)"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/payment-methods",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "payment-methods"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "e38c2e47-9d97-4fbc-9a92-c2138b1ac17c",
+          "name": "Create Payment Method (Admin)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"methodName\": \"bKash\",\n  \"description\": \"Mobile payment via bKash\",\n  \"accountNumber\": \"01712345678\",\n  \"accountName\": \"Nursery Bazar BD\",\n  \"accountType\": \"Personal\", // Personal, Agent, Business, etc.\n  \"instructions\": \"Send money to this number and submit transaction ID\",\n  \"displayOrder\": 1,\n  \"isActive\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: methodName, accountNumber\nOptional: description, accountName, instructions, displayOrder (default 0), isActive (default true)"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payment-methods",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment-methods"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "444"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1bc-yfW9TW9iJYy+vFGRq5gMyQVGrB8\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 17:54:58 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T17:55:34.617Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Payment method created successfully\",\n    \"data\": {\n        \"methodName\": \"bKash\",\n        \"description\": \"Mobile payment via bKash\",\n        \"accountNumber\": \"01712345678\",\n        \"accountName\": \"Nursery Bazar BD\",\n        \"accountType\": \"Personal\",\n        \"instructions\": \"Send money to this number and submit transaction ID\",\n        \"isActive\": true,\n        \"displayOrder\": 1,\n        \"_id\": \"6972647289a956355769f88c\",\n        \"createdAt\": \"2026-01-22T17:54:58.229Z\",\n        \"updatedAt\": \"2026-01-22T17:54:58.229Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Payment Method (Admin)",
+      "id": "d78b0450-904c-423f-a157-cf0e25cab123",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"methodName\": \"bKash\",\n  \"description\": \"Mobile payment via bKash\",\n  \"accountNumber\": \"01712345678\",\n  \"accountName\": \"Nursery Bazar BD\",\n  \"accountType\": \"Personal\", // Personal, Agent, Business, etc.\n  \"instructions\": \"Send money to this number and submit transaction ID\",\n  \"displayOrder\": 0,\n  \"isActive\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "All fields optional"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/payment-methods/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "payment-methods",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6972647289a956355769f88c"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "f5aa1513-77e4-4207-a097-3f8c9421f65c",
+          "name": "Update Payment Method (Admin)",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"methodName\": \"bKash\",\n  \"description\": \"Mobile payment via bKash\",\n  \"accountNumber\": \"01712345678\",\n  \"accountName\": \"Nursery Bazar BD\",\n  \"accountType\": \"Personal\", // Personal, Agent, Business, etc.\n  \"instructions\": \"Send money to this number and submit transaction ID\",\n  \"displayOrder\": 0,\n  \"isActive\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields optional"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payment-methods/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment-methods",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6972647289a956355769f88c"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "444"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1bc-DGFaLo4XO7eF3izT85M5ULXI0LY\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 17:58:36 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T17:58:46.926Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Payment method updated successfully\",\n    \"data\": {\n        \"_id\": \"6972647289a956355769f88c\",\n        \"methodName\": \"bKash\",\n        \"description\": \"Mobile payment via bKash\",\n        \"accountNumber\": \"01712345678\",\n        \"accountName\": \"Nursery Bazar BD\",\n        \"accountType\": \"Personal\",\n        \"instructions\": \"Send money to this number and submit transaction ID\",\n        \"isActive\": true,\n        \"displayOrder\": 0,\n        \"createdAt\": \"2026-01-22T17:54:58.229Z\",\n        \"updatedAt\": \"2026-01-22T17:58:36.253Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Payment Method (Admin)",
+      "id": "9babde13-62bc-439e-bf52-209f5f83bbeb",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/payment-methods/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "payment-methods",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "payment_method_id"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

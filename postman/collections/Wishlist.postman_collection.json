@@ -1,0 +1,402 @@
+{
+  "info": {
+    "_postman_id": "5f00dbcb-c2c7-4cbc-86e8-f28e52f9ba7a",
+    "name": "Wishlist API",
+    "description": "User wishlist management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get My Wishlist",
+      "id": "d86828ab-323e-4ddc-a4e8-c52734adf7e6",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/wishlists/my",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "wishlists",
+            "my"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "63188b80-b4c0-4503-bf30-eec2ee63f3d7",
+          "name": "Get My Wishlist",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/wishlists/my",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wishlists",
+                "my"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "266"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"10a-+TXohfl6rs+kRsS3TBSeNqPBZ1Q\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 16:09:16 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T16:09:22.613Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Wishlist retrieved successfully\",\n    \"data\": {\n        \"_id\": \"69724b989b4d56b79f3053f3\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productIds\": [\n            \"6971e9f7065be8b54b7ff90e\"\n        ],\n        \"createdAt\": \"2026-01-22T16:08:56.834Z\",\n        \"updatedAt\": \"2026-01-22T16:08:56.834Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Add to Wishlist",
+      "id": "d7bd09da-24c2-45d8-83d1-92561a4cbe3c",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"productId\": \"6970f3d9a4e644714427b3c9\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/wishlists/add",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "wishlists",
+            "add"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "3df07bde-7d4b-4e22-b425-f568b396e667",
+          "name": "Add to Wishlist",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"6971e9f7065be8b54b7ff90e\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/wishlists/add",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wishlists",
+                "add"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "273"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"111-uO0CGseu0VbdaHC8oOS17V7Egd4\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 16:08:56 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T16:09:03.024Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Product added to wishlist successfully\",\n    \"data\": {\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productIds\": [\n            \"6971e9f7065be8b54b7ff90e\"\n        ],\n        \"_id\": \"69724b989b4d56b79f3053f3\",\n        \"createdAt\": \"2026-01-22T16:08:56.834Z\",\n        \"updatedAt\": \"2026-01-22T16:08:56.834Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Remove from Wishlist",
+      "id": "fc75e135-beee-4d1d-b0f5-83a89379be0d",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/wishlists/:productId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "wishlists",
+            ":productId"
+          ],
+          "variable": [
+            {
+              "key": "productId",
+              "value": "6970f3d9a4e644714427b3c9"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "c446767d-2cc8-40d2-a773-2582d838aa61",
+          "name": "Remove from Wishlist",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/wishlists/:productId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wishlists",
+                ":productId"
+              ],
+              "variable": [
+                {
+                  "key": "productId",
+                  "value": "6970f3d9a4e644714427b3c9"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "277"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"115-U5Gf0v0D7gfZnMrreKx1aMjfMIA\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 16:14:52 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T16:14:56.408Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Product removed from wishlist successfully\",\n    \"data\": {\n        \"_id\": \"69724b989b4d56b79f3053f3\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productIds\": [\n            \"6971e9f7065be8b54b7ff90e\"\n        ],\n        \"createdAt\": \"2026-01-22T16:08:56.834Z\",\n        \"updatedAt\": \"2026-01-22T16:14:52.807Z\",\n        \"__v\": 2\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Clear WishList",
+      "id": "162732b5-7bd8-447c-850b-3727e911641f",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/wishlists",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "wishlists"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "de0723ae-4cfa-449d-b105-0ce044f6606e",
+          "name": "Clear wishlist",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/wishlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wishlists"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "238"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"ee-rHaXOuWTwsywx9/5mF2v7iKCa5c\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 16:16:18 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T16:16:25.997Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Wishlist cleared successfully\",\n    \"data\": {\n        \"_id\": \"69724b989b4d56b79f3053f3\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productIds\": [],\n        \"createdAt\": \"2026-01-22T16:08:56.834Z\",\n        \"updatedAt\": \"2026-01-22T16:16:18.540Z\",\n        \"__v\": 4\n    }\n}"
+        }
+      ]
+    }
+  ]
+}

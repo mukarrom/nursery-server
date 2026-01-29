@@ -1,0 +1,32 @@
+{
+  "info": {
+    "_postman_id": "c3dfcba5-da9a-40ac-96e9-c70d055154fc",
+    "name": "Tests API",
+    "description": "API health check and testing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "id": "a4c16156-cc0b-4bf6-8c98-57b089e5ca15",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/tests",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "tests"
+          ]
+        },
+        "description": "Check if API is running"
+      },
+      "response": []
+    }
+  ]
+}

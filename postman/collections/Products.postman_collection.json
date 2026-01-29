@@ -1,0 +1,983 @@
+{
+  "info": {
+    "_postman_id": "04855561-e918-465b-a403-5569b7cfd3c0",
+    "name": "Products API",
+    "description": "Product catalog management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Products",
+      "id": "95d792da-9d5c-4911-8f87-a0059b75db7b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/products",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "products"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "uuid": "942f3350-2e9d-4613-bc2d-1ebb09660504",
+              "disabled": true
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "uuid": "9b2411f7-df42-4828-b431-1f1d3f72ca05",
+              "disabled": true
+            },
+            {
+              "key": "searchTerm",
+              "value": "banana",
+              "uuid": "7050719f-0280-4669-807e-e0287a93a886",
+              "disabled": true
+            },
+            {
+              "key": "categoryId",
+              "value": "cat_id",
+              "uuid": "e254ef2c-5e8b-4ae3-9b5c-e9902860ba37",
+              "disabled": true
+            },
+            {
+              "key": "minPrice",
+              "value": "10",
+              "uuid": "b13a0cf7-bdf7-4702-be0e-231b9434fb9b",
+              "disabled": true
+            },
+            {
+              "key": "maxPrice",
+              "value": "100",
+              "uuid": "9735b852-e6b1-4c74-a6b6-996e74c62006",
+              "disabled": true
+            },
+            {
+              "key": "isAvailable",
+              "value": "true",
+              "uuid": "c7a42527-a94d-42b0-967b-e344ef3c5cbb",
+              "disabled": true
+            },
+            {
+              "key": "isFeatured",
+              "value": "true",
+              "uuid": "2cb6852e-f608-409a-86f5-ace0d2e28102",
+              "disabled": true
+            },
+            {
+              "key": "sort",
+              "value": "-price",
+              "description": "Sort by price desc. Use 'price' for asc",
+              "uuid": "6b9659f9-6dae-4423-a5a4-08ed9ed1c4d9",
+              "disabled": true
+            },
+            {
+              "key": "tags",
+              "value": "apple",
+              "uuid": "d7a18b74-13d1-40f6-913b-6199c65a9574",
+              "disabled": true
+            },
+            {
+              "key": "name",
+              "value": "Banana",
+              "type": "text",
+              "uuid": "747baa2f-e908-4a6f-b86e-f240689748c9",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "All query params optional. Supports filtering, sorting, pagination."
+      },
+      "response": [
+        {
+          "id": "baa4e830-90f6-4f23-80b3-6d03c4c84876",
+          "name": "Get All Products",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "rose",
+                  "uuid": "7050719f-0280-4669-807e-e0287a93a886",
+                  "disabled": true
+                },
+                {
+                  "key": "categoryId",
+                  "value": "cat_id",
+                  "uuid": "e254ef2c-5e8b-4ae3-9b5c-e9902860ba37",
+                  "disabled": true
+                },
+                {
+                  "key": "minPrice",
+                  "value": "10",
+                  "uuid": "b13a0cf7-bdf7-4702-be0e-231b9434fb9b",
+                  "disabled": true
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "100",
+                  "uuid": "9735b852-e6b1-4c74-a6b6-996e74c62006",
+                  "disabled": true
+                },
+                {
+                  "key": "isAvailable",
+                  "value": "true",
+                  "uuid": "c7a42527-a94d-42b0-967b-e344ef3c5cbb",
+                  "disabled": true
+                },
+                {
+                  "key": "isFeatured",
+                  "value": "true",
+                  "uuid": "2cb6852e-f608-409a-86f5-ace0d2e28102",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "-price",
+                  "description": "Sort by price desc. Use 'price' for asc",
+                  "uuid": "6b9659f9-6dae-4423-a5a4-08ed9ed1c4d9",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "2900"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"b54-K+hH6/RzZ+dE48pjw7kbnuU64S4\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 10:01:13 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T10:01:18.075Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Products retrieved successfully\",\n    \"meta\": {\n        \"totalDocuments\": 5,\n        \"totalPages\": 1,\n        \"currentPage\": \"1\",\n        \"limitPerPage\": \"10\"\n    },\n    \"data\": [\n        {\n            \"_id\": \"6971e9f7065be8b54b7ff90e\",\n            \"name\": \"Red Rose Plant\",\n            \"sku\": \"ROSE-RED-001\",\n            \"description\": \"Beautiful red rose plant for your garden\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n            \"images\": [\n                \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n                \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n            ],\n            \"price\": 299.99,\n            \"discount\": 10,\n            \"quantity\": 50,\n            \"isAvailable\": true,\n            \"isFeatured\": true,\n            \"brand\": \"Garden Pro\",\n            \"categoryId\": \"6971e657884d772cac55fac1\",\n            \"tags\": [\n                \"rose,flower,outdoor\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n            \"updatedAt\": \"2026-01-22T09:12:23.149Z\"\n        },\n        {\n            \"_id\": \"6970f3d9a4e644714427b3c9\",\n            \"name\": \"text 2\",\n            \"sku\": \"TEX-6087\",\n            \"description\": \"dfghjkl;\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769010137/nursery-app/products/dcb8fyiccdku4ux0znfg.jpg\",\n            \"images\": [],\n            \"price\": 700,\n            \"discount\": 0,\n            \"quantity\": 7,\n            \"isAvailable\": true,\n            \"isFeatured\": false,\n            \"brand\": \"\",\n            \"categoryId\": \"69705784bf9b0106be2286eb\",\n            \"tags\": [\n                \"dfg\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-21T15:42:17.516Z\",\n            \"updatedAt\": \"2026-01-21T15:45:32.655Z\"\n        },\n        {\n            \"_id\": \"697089436e04221e6a2cd70c\",\n            \"name\": \"new titles\",\n            \"sku\": \"NEW-8803\",\n            \"description\": \"dfghj\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768982864/nursery-app/products/w8hjzivi0rgamf7t65nc.png\",\n            \"images\": [],\n            \"price\": 200,\n            \"discount\": 0,\n            \"quantity\": 5,\n            \"isAvailable\": true,\n            \"isFeatured\": false,\n            \"brand\": \"\",\n            \"categoryId\": \"696f87843e6403a201a81f48\",\n            \"tags\": [\n                \"iklo;\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-21T08:07:31.344Z\",\n            \"updatedAt\": \"2026-01-21T08:07:44.972Z\"\n        },\n        {\n            \"_id\": \"6970560ebf9b0106be2286e6\",\n            \"name\": \"Banana\",\n            \"sku\": \"APL-002\",\n            \"description\": \"Fresh red apple\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768969742/nursery-app/products/g9amt5ssce7rdcr9kwmd.jpg\",\n            \"images\": [],\n            \"price\": 1.99,\n            \"discount\": 10,\n            \"quantity\": 100,\n            \"isAvailable\": true,\n            \"isFeatured\": false,\n            \"brand\": \"NatureFresh\",\n            \"categoryId\": \"696f047f45b3d13ba9a13bc7\",\n            \"tags\": [\n                \"fruit,apple,fresh\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-21T04:29:02.759Z\",\n            \"updatedAt\": \"2026-01-21T04:29:02.759Z\"\n        },\n        {\n            \"_id\": \"696f09a3780f29a590c11184\",\n            \"name\": \"Apple\",\n            \"sku\": \"APL-001\",\n            \"description\": \"Fresh red apple\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768884654/nitto-vojon/products/pxeehrvh4zeqtz2cdkfw.jpg\",\n            \"images\": [],\n            \"price\": 1.99,\n            \"discount\": 10,\n            \"quantity\": 100,\n            \"isAvailable\": true,\n            \"isFeatured\": false,\n            \"brand\": \"NatureFresh\",\n            \"categoryId\": \"696f047f45b3d13ba9a13bc7\",\n            \"tags\": [\n                \"fruit,apple,fresh\"\n            ],\n            \"ratingAverage\": 0,\n            \"ratingCount\": 0,\n            \"createdAt\": \"2026-01-20T04:50:43.841Z\",\n            \"updatedAt\": \"2026-01-20T04:50:43.841Z\"\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Product by ID",
+      "id": "a3e558df-934c-498e-9c0d-e4af929085c4",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/products/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "products",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6979c46e5a2478d429b244d5"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "6d9c2fcd-6d8c-488c-b154-78bb0440623c",
+          "name": "Get Product by ID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6971e9f7065be8b54b7ff90e"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "844"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"34c-VhUqsJJDdFpdBmFvs+t+NJLkbKw\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 10:13:43 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T10:13:46.267Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Product retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6971e9f7065be8b54b7ff90e\",\n        \"name\": \"Red Rose Plant\",\n        \"sku\": \"ROSE-RED-001\",\n        \"description\": \"Beautiful red rose plant for your garden\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n        \"images\": [\n            \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n            \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n        ],\n        \"price\": 299.99,\n        \"discount\": 10,\n        \"quantity\": 50,\n        \"isAvailable\": true,\n        \"isFeatured\": true,\n        \"brand\": \"Garden Pro\",\n        \"categoryId\": \"6971e657884d772cac55fac1\",\n        \"tags\": [\n            \"rose,flower,outdoor\"\n        ],\n        \"ratingAverage\": 0,\n        \"ratingCount\": 0,\n        \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n        \"updatedAt\": \"2026-01-22T09:12:23.149Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Product (Admin)",
+      "id": "ddca568f-36e8-4627-a545-253f90468cfa",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "White Rose Plant",
+              "description": "Required",
+              "type": "text"
+            },
+            {
+              "key": "description",
+              "value": "Beautiful red rose plant for your garden",
+              "description": "Optional",
+              "type": "text"
+            },
+            {
+              "key": "price",
+              "value": "299.99",
+              "description": "Required",
+              "type": "text"
+            },
+            {
+              "key": "discount",
+              "value": "10",
+              "description": "Optional, 0-100",
+              "type": "text"
+            },
+            {
+              "key": "quantity",
+              "value": "50",
+              "description": "Optional",
+              "type": "text"
+            },
+            {
+              "key": "isAvailable",
+              "value": "true",
+              "description": "Optional, default true",
+              "type": "text"
+            },
+            {
+              "key": "isFeatured",
+              "value": "true",
+              "description": "Optional",
+              "type": "text"
+            },
+            {
+              "key": "sku",
+              "value": "ROSE-WHITE-001",
+              "description": "Optional",
+              "type": "text"
+            },
+            {
+              "key": "brand",
+              "value": "Garden Pro",
+              "description": "Optional",
+              "type": "text"
+            },
+            {
+              "key": "categoryId",
+              "value": "6971e657884d772cac55fac1",
+              "description": "Optional",
+              "type": "text"
+            },
+            {
+              "key": "tags",
+              "value": "rose,flower,outdoor",
+              "description": "Optional, comma-separated values",
+              "type": "text"
+            },
+            {
+              "key": "deliveryTime",
+              "value": "2-3 business days",
+              "description": "Optional, delivery time estimate",
+              "type": "text"
+            },
+            {
+              "key": "courierCharge",
+              "value": "50",
+              "description": "Optional, courier charge amount",
+              "type": "text"
+            },
+            {
+              "key": "images",
+              "description": "Optional, multiple image files",
+              "type": "file",
+              "src": [
+                "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg",
+                "/C:/Users/mukar/OneDrive/Pictures/134079918977529516.jpg",
+                "/C:/Users/mukar/OneDrive/Pictures/134091964169590556.jpg"
+              ]
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/products",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "products"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "9403d8fe-3939-477c-87c0-27e504804e4b",
+          "name": "Create Product (Admin)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Red Rose Plant",
+                  "description": "Required",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Beautiful red rose plant for your garden",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "299.99",
+                  "description": "Required",
+                  "type": "text"
+                },
+                {
+                  "key": "discount",
+                  "value": "10",
+                  "description": "Optional, 0-100",
+                  "type": "text"
+                },
+                {
+                  "key": "quantity",
+                  "value": "50",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "isAvailable",
+                  "value": "true",
+                  "description": "Optional, default true",
+                  "type": "text"
+                },
+                {
+                  "key": "isFeatured",
+                  "value": "true",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "sku",
+                  "value": "ROSE-RED-001",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "brand",
+                  "value": "Garden Pro",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "categoryId",
+                  "value": "6971e657884d772cac55fac1",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "tags",
+                  "value": "rose,flower,outdoor",
+                  "description": "Optional, comma-separated values",
+                  "type": "text"
+                },
+                {
+                  "key": "deliveryTime",
+                  "value": "2-3 business days",
+                  "description": "Optional, delivery time estimate",
+                  "type": "text"
+                },
+                {
+                  "key": "courierCharge",
+                  "value": "50",
+                  "description": "Optional, courier charge amount",
+                  "type": "text"
+                },
+                {
+                  "key": "images",
+                  "description": "Optional, multiple image files",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg",
+                    "/C:/Users/mukar/OneDrive/Pictures/134079918977529516.jpg",
+                    "/C:/Users/mukar/OneDrive/Pictures/134091964169590556.jpg"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "842"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"34a-6vAQIX6zO3F1dtsXmE+gF549L5Q\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 09:12:23 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T09:12:46.746Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Product created successfully\",\n    \"data\": {\n        \"name\": \"Red Rose Plant\",\n        \"sku\": \"ROSE-RED-001\",\n        \"description\": \"Beautiful red rose plant for your garden\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n        \"images\": [\n            \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n            \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n        ],\n        \"price\": 299.99,\n        \"discount\": 10,\n        \"quantity\": 50,\n        \"isAvailable\": true,\n        \"isFeatured\": true,\n        \"brand\": \"Garden Pro\",\n        \"categoryId\": \"6971e657884d772cac55fac1\",\n        \"tags\": [\n            \"rose,flower,outdoor\"\n        ],\n        \"ratingAverage\": 0,\n        \"ratingCount\": 0,\n        \"_id\": \"6971e9f7065be8b54b7ff90e\",\n        \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n        \"updatedAt\": \"2026-01-22T09:12:23.149Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Product (Admin)",
+      "id": "20f1e5de-0df1-4601-b6c6-1f52c8ea9136",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "description",
+              "value": "",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "price",
+              "value": "249.99",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "discount",
+              "value": "",
+              "description": "Optional, 0-100",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "quantity",
+              "value": "200",
+              "description": "Optional",
+              "type": "text"
+            },
+            {
+              "key": "isAvailable",
+              "value": "false",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "isFeatured",
+              "value": "",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "sku",
+              "value": "",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "brand",
+              "value": "",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "categoryId",
+              "value": "",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "tags",
+              "value": "",
+              "description": "Optional, comma-separated",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "images",
+              "description": "Optional, multiple image files",
+              "type": "file",
+              "src": [],
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/products/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "products",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6971e9f7065be8b54b7ff90e"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "efbeaa32-75ac-40f6-82b5-7cbd45a36d21",
+          "name": "Update Product (Admin)",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "description",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "price",
+                  "value": "249.99",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "discount",
+                  "value": "",
+                  "description": "Optional, 0-100",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "quantity",
+                  "value": "200",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "isAvailable",
+                  "value": "false",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "isFeatured",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "sku",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "brand",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "categoryId",
+                  "value": "",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "tags",
+                  "value": "",
+                  "description": "Optional, comma-separated",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "images",
+                  "description": "Optional, multiple image files",
+                  "type": "file",
+                  "src": [],
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/products/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6971e9f7065be8b54b7ff90e"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "843"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"34b-cqlYpr40reonlM3XuJLqGtwwn58\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 10:14:33 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T10:14:39.245Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Product updated successfully\",\n    \"data\": {\n        \"_id\": \"6971e9f7065be8b54b7ff90e\",\n        \"name\": \"Red Rose Plant\",\n        \"sku\": \"ROSE-RED-001\",\n        \"description\": \"Beautiful red rose plant for your garden\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n        \"images\": [\n            \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n            \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n        ],\n        \"price\": 299.99,\n        \"discount\": 10,\n        \"quantity\": 200,\n        \"isAvailable\": true,\n        \"isFeatured\": true,\n        \"brand\": \"Garden Pro\",\n        \"categoryId\": \"6971e657884d772cac55fac1\",\n        \"tags\": [\n            \"rose,flower,outdoor\"\n        ],\n        \"ratingAverage\": 0,\n        \"ratingCount\": 0,\n        \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n        \"updatedAt\": \"2026-01-22T10:14:33.158Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Product (Admin)",
+      "id": "009624c9-3e8f-4a00-b0ad-e8baee6a2b34",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/products/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "products",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "product_id"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Products by tags",
+      "id": "450b1529-acbb-42d7-ade8-6a34ca7bcfc9",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/products/tags/:tags?page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "products",
+            "tags",
+            ":tags"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "uuid": "942f3350-2e9d-4613-bc2d-1ebb09660504"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "uuid": "9b2411f7-df42-4828-b431-1f1d3f72ca05"
+            },
+            {
+              "key": "searchTerm",
+              "value": "flower",
+              "uuid": "7050719f-0280-4669-807e-e0287a93a886",
+              "disabled": true
+            },
+            {
+              "key": "categoryId",
+              "value": "cat_id",
+              "uuid": "e254ef2c-5e8b-4ae3-9b5c-e9902860ba37",
+              "disabled": true
+            },
+            {
+              "key": "minPrice",
+              "value": "10",
+              "uuid": "b13a0cf7-bdf7-4702-be0e-231b9434fb9b",
+              "disabled": true
+            },
+            {
+              "key": "maxPrice",
+              "value": "100",
+              "uuid": "9735b852-e6b1-4c74-a6b6-996e74c62006",
+              "disabled": true
+            },
+            {
+              "key": "isAvailable",
+              "value": "true",
+              "uuid": "c7a42527-a94d-42b0-967b-e344ef3c5cbb",
+              "disabled": true
+            },
+            {
+              "key": "isFeatured",
+              "value": "true",
+              "uuid": "2cb6852e-f608-409a-86f5-ace0d2e28102",
+              "disabled": true
+            },
+            {
+              "key": "sort",
+              "value": "-price",
+              "description": "Sort by price desc. Use 'price' for asc",
+              "uuid": "6b9659f9-6dae-4423-a5a4-08ed9ed1c4d9",
+              "disabled": true
+            }
+          ],
+          "variable": [
+            {
+              "key": "tags",
+              "value": "apple, rose"
+            }
+          ]
+        },
+        "description": "All query params optional. Supports filtering, sorting, pagination."
+      },
+      "response": []
+    }
+  ]
+}

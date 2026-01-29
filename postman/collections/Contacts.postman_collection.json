@@ -1,0 +1,556 @@
+{
+  "info": {
+    "_postman_id": "fce5faf2-290c-4a00-af01-fd7a4c8ee0b7",
+    "name": "Contacts API",
+    "description": "Admin contact information management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Active Contacts (Public)",
+      "id": "29d42c10-c8cd-43c0-bf29-a5a5e54d14d4",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/contacts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts"
+          ]
+        },
+        "description": "Get all active contact methods for users to contact admin"
+      },
+      "response": [
+        {
+          "id": "b2b7eb99-a9bb-4cd3-8f06-98da6e765764",
+          "name": "Get Active Contacts (Public)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/contacts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "301"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"12d-iLSNmv6OJRyWb1xPC4PdvSyigYc\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 17:27:52 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T17:27:56.000Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Contact methods retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6971e32fc9f705eed9db1061\",\n            \"label\": \"Souppt\",\n            \"contactType\": \"WhatsApp\",\n            \"contactValue\": \"01902313222\",\n            \"isActive\": true,\n            \"displayOrder\": 0,\n            \"createdAt\": \"2026-01-22T08:43:27.352Z\",\n            \"updatedAt\": \"2026-01-22T08:43:27.352Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get All Contacts (Admin)",
+      "id": "928e304c-c8c9-4dd6-9a8d-ff9b2e3faa5b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/admin/all",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            "admin",
+            "all"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "831eebdc-e458-4548-80e7-e8432bf77631",
+          "name": "Get All Contacts (Admin)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/contacts/admin/all",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts",
+                "admin",
+                "all"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "524"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"20c-FZkXdCCjrOKwsggVcrJ9TxgWfzI\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 17:28:13 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T17:28:38.219Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Contacts retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6971dff6c63e42c305e16835\",\n            \"label\": \"Support\",\n            \"contactType\": \"WhatsApp\",\n            \"contactValue\": \"+8801712345678\",\n            \"isActive\": false,\n            \"displayOrder\": 0,\n            \"createdAt\": \"2026-01-22T08:29:42.363Z\",\n            \"updatedAt\": \"2026-01-22T08:42:32.786Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971e32fc9f705eed9db1061\",\n            \"label\": \"Souppt\",\n            \"contactType\": \"WhatsApp\",\n            \"contactValue\": \"01902313222\",\n            \"isActive\": true,\n            \"displayOrder\": 0,\n            \"createdAt\": \"2026-01-22T08:43:27.352Z\",\n            \"updatedAt\": \"2026-01-22T08:43:27.352Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Contact by ID",
+      "id": "3edeba69-624c-44ee-8f63-e09c7cbda7c8",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6971dff6c63e42c305e16835"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "bf7ad72f-6377-45bc-8a59-29471441a9f8",
+          "name": "Get Contact by ID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/contacts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6971dff6c63e42c305e16835"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "296"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"128-XkwbLZzpZvoZ5yw4GdlelmPf+BA\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 17:30:03 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T17:30:09.821Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Contact retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6971dff6c63e42c305e16835\",\n        \"label\": \"Support\",\n        \"contactType\": \"WhatsApp\",\n        \"contactValue\": \"+8801712345678\",\n        \"isActive\": false,\n        \"displayOrder\": 0,\n        \"createdAt\": \"2026-01-22T08:29:42.363Z\",\n        \"updatedAt\": \"2026-01-22T08:42:32.786Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Contact (Admin)",
+      "id": "4f688120-e04e-4bd1-b94d-781a2332cbf4",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"label\": \"Customer Support WhatsApp\",\n  \"contactType\": \"WhatsApp\",\n  \"contactValue\": \"+8801712345678\",\n  \"isActive\": true,\n  \"displayOrder\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "Required: label, contactType (enum: ['WhatsApp', 'Imo', 'Viber', 'Telegram', 'Phone', 'Email']), contactValue\nOptional: isActive (default true), displayOrder (default 0)"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/contacts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "c6f0e320-9267-4520-aa2c-a665e5eea2a7",
+          "name": "Create Contact (Admin)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"Customer Support WhatsApp\",\n  \"contactType\": \"WhatsApp\",\n  \"contactValue\": \"+8801712345678\",\n  \"isActive\": true,\n  \"displayOrder\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: label, contactType (enum: ['WhatsApp', 'Imo', 'Viber', 'Telegram', 'Phone', 'Email']), contactValue\nOptional: isActive (default true), displayOrder (default 0)"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contacts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "311"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"137-l/9t3yDRp64qeB089mGgIbIPk5s\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 17:32:57 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T17:33:03.591Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Contact created successfully\",\n    \"data\": {\n        \"label\": \"Customer Support WhatsApp\",\n        \"contactType\": \"WhatsApp\",\n        \"contactValue\": \"+8801712345678\",\n        \"isActive\": true,\n        \"displayOrder\": 1,\n        \"_id\": \"69725f49f056c3ca6466cbfd\",\n        \"createdAt\": \"2026-01-22T17:32:57.298Z\",\n        \"updatedAt\": \"2026-01-22T17:32:57.298Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Contact (Admin)",
+      "id": "bc6a4523-23ab-436a-ae12-a59784f52f5c",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"label\": \"Customer Support Telegram\",\n  \"contactType\": \"Telegram\"\n//   \"contactValue\": \"+8801712345678\",\n//   \"isActive\": true,\n//   \"displayOrder\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "All fields optional"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/contacts/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6971e32fc9f705eed9db1061"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "da12cfed-6a53-4b37-b426-45e1b4a6e535",
+          "name": "Update Contact (Admin)",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"Customer Support Telegram\",\n  \"contactType\": \"Telegram\"\n//   \"contactValue\": \"+8801712345678\",\n//   \"isActive\": true,\n//   \"displayOrder\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields optional"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/contacts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6971e32fc9f705eed9db1061"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "308"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"134-h8+BG6M5Po8h1PRpF1lNnxwgZa8\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 17:34:45 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T17:34:57.056Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Contact updated successfully\",\n    \"data\": {\n        \"_id\": \"6971e32fc9f705eed9db1061\",\n        \"label\": \"Customer Support Telegram\",\n        \"contactType\": \"Telegram\",\n        \"contactValue\": \"01902313222\",\n        \"isActive\": true,\n        \"displayOrder\": 0,\n        \"createdAt\": \"2026-01-22T08:43:27.352Z\",\n        \"updatedAt\": \"2026-01-22T17:34:45.244Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Contact (Admin)",
+      "id": "47e824c8-4092-4a92-8963-5714f3f97fd3",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/contacts/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "contacts",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "contact_id"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

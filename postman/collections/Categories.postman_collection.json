@@ -1,0 +1,639 @@
+{
+  "info": {
+    "_postman_id": "cac1f005-4eae-4a5e-beaf-a9e923d21d77",
+    "name": "Categories API",
+    "description": "Product category management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Categories",
+      "id": "372fc813-0c2e-49c6-928f-cb223419ca9d",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/categories?page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "categories"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "uuid": "fb6270c2-b592-4dd2-bf56-04ba24a0c60b"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "uuid": "5593fcca-378f-4997-9ae6-fdfddbcdf355"
+            },
+            {
+              "key": "searchTerm",
+              "value": "plant",
+              "uuid": "34969d48-4cf0-4240-98e7-17e0d5256582",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "6c318182-7356-462f-b8f4-a5bfaf6084e4",
+          "name": "Get All Categories",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "uuid": "fb6270c2-b592-4dd2-bf56-04ba24a0c60b"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "uuid": "5593fcca-378f-4997-9ae6-fdfddbcdf355"
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "plant",
+                  "uuid": "34969d48-4cf0-4240-98e7-17e0d5256582",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1916"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"77c-lxwnhUqWkGdst+IddyFsym0mTjA\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 08:57:53 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T08:58:02.070Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Categories retrieved successfully\",\n    \"meta\": {\n        \"totalDocuments\": 6,\n        \"totalPages\": 1,\n        \"currentPage\": \"1\",\n        \"limitPerPage\": \"10\"\n    },\n    \"data\": [\n        {\n            \"_id\": \"6971e657884d772cac55fac1\",\n            \"title\": \"Indoor Plants\",\n            \"description\": \"Plants suitable for indoor environments\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769072215/nursery-app/categories/xfstnapvhtwqfologtt9.jpg\",\n            \"createdAt\": \"2026-01-22T08:56:55.920Z\",\n            \"updatedAt\": \"2026-01-22T08:56:55.920Z\"\n        },\n        {\n            \"_id\": \"6970f40fa4e644714427b3cd\",\n            \"title\": \"category 3\",\n            \"description\": \"asdfghjklwerftgyh\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769010190/nursery-app/categories/fbgf1gji8ceozhjhi6dv.jpg\",\n            \"createdAt\": \"2026-01-21T15:43:11.361Z\",\n            \"updatedAt\": \"2026-01-21T15:43:11.361Z\"\n        },\n        {\n            \"_id\": \"69705377fa01a82e7c77ec82\",\n            \"title\": \"test categories\",\n            \"description\": \"Fresh seasonal fruits 1\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768969078/nursery-app/categories/qzzo73jqq4yjat7xbg2j.png\",\n            \"createdAt\": \"2026-01-21T04:17:59.040Z\",\n            \"updatedAt\": \"2026-01-21T04:17:59.040Z\"\n        },\n        {\n            \"_id\": \"697050d3c27af38d6fb5ca11\",\n            \"title\": \"Tests 3\",\n            \"description\": \"Fresh seasonal fruits\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768968402/nursery-app/categories/ibva82ekahmskdgirsri.jpg\",\n            \"createdAt\": \"2026-01-21T04:06:43.982Z\",\n            \"updatedAt\": \"2026-01-21T04:06:43.982Z\"\n        },\n        {\n            \"_id\": \"696f87843e6403a201a81f48\",\n            \"title\": \"Tests\",\n            \"description\": \"Fresh seasonal fruits\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768916866/nursery-app/categories/klgwfhsb7rzgt0qptvu8.jpg\",\n            \"createdAt\": \"2026-01-20T13:47:48.995Z\",\n            \"updatedAt\": \"2026-01-20T13:47:48.995Z\"\n        },\n        {\n            \"_id\": \"696f047f45b3d13ba9a13bc7\",\n            \"title\": \"Fruits\",\n            \"description\": \"Fresh seasonal fruits\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768883337/nitto-vojon/categories/zogfjv3zmlpvby4xhtgj.jpg\",\n            \"createdAt\": \"2026-01-20T04:28:47.335Z\",\n            \"updatedAt\": \"2026-01-20T04:28:47.335Z\"\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Category by ID",
+      "id": "96483251-412f-4ba1-a8ea-2f78b4af4180",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/categories/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "categories",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6971e657884d772cac55fac1"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "d369ddf9-ca5f-4f22-a675-0c5c052e4d75",
+          "name": "Get Category by ID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6971e657884d772cac55fac1"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "388"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"184-vpcKcoFtBFkNe/3slh/8f2uMMgs\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 08:59:21 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T08:59:24.710Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Category retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6971e657884d772cac55fac1\",\n        \"title\": \"Indoor Plants\",\n        \"description\": \"Plants suitable for indoor environments\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769072215/nursery-app/categories/xfstnapvhtwqfologtt9.jpg\",\n        \"createdAt\": \"2026-01-22T08:56:55.920Z\",\n        \"updatedAt\": \"2026-01-22T08:56:55.920Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Category (Admin)",
+      "id": "327d1310-6a71-4e80-b44a-1389238ed008",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "title",
+              "value": "Indoor Plants",
+              "description": "Required",
+              "type": "text"
+            },
+            {
+              "key": "description",
+              "value": "Plants suitable for indoor environments",
+              "description": "Optional",
+              "type": "text"
+            },
+            {
+              "key": "image",
+              "description": "Optional, image file",
+              "type": "file",
+              "src": [
+                "/C:/Users/mukar/OneDrive/Pictures/134064739131616693.jpg"
+              ]
+            },
+            {
+              "key": "isActive",
+              "value": "true",
+              "description": "Optional, default true",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/categories",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "categories"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "2678a705-3a26-4703-9d20-6505a8c0579c",
+          "name": "Create Category (Admin)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Indoor Plants",
+                  "description": "Required",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Plants suitable for indoor environments",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "description": "Optional, image file",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134064739131616693.jpg"
+                  ]
+                },
+                {
+                  "key": "isActive",
+                  "value": "true",
+                  "description": "Optional, default true",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "386"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"182-PxIkiN0Qynb9Sfy3zQA8lTSuog0\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 08:56:56 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T08:57:04.465Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Category created successfully\",\n    \"data\": {\n        \"title\": \"Indoor Plants\",\n        \"description\": \"Plants suitable for indoor environments\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769072215/nursery-app/categories/xfstnapvhtwqfologtt9.jpg\",\n        \"_id\": \"6971e657884d772cac55fac1\",\n        \"createdAt\": \"2026-01-22T08:56:55.920Z\",\n        \"updatedAt\": \"2026-01-22T08:56:55.920Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Category (Admin)",
+      "id": "bf4264c2-a853-4af4-8458-1dd9db95460b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "Updated Category Name",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "description",
+              "value": "Updated description",
+              "description": "Optional",
+              "type": "text"
+            },
+            {
+              "key": "image",
+              "description": "Optional, image file",
+              "type": "file",
+              "src": [],
+              "disabled": true
+            },
+            {
+              "key": "isActive",
+              "value": "false",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/categories/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "categories",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6971e657884d772cac55fac1"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "fac21b11-634b-4f18-b812-d7a895d97ff2",
+          "name": "Update Category (Admin)",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Updated Category Name",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "description",
+                  "value": "Updated description",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "description": "Optional, image file",
+                  "type": "file",
+                  "src": [],
+                  "disabled": true
+                },
+                {
+                  "key": "isActive",
+                  "value": "false",
+                  "description": "Optional",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/categories/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6971e657884d772cac55fac1"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "366"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"16e-S4Erw+I+nwE/kE8TE3K7Xdehb1c\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 09:03:17 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T09:03:24.051Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Category updated successfully\",\n    \"data\": {\n        \"_id\": \"6971e657884d772cac55fac1\",\n        \"title\": \"Indoor Plants\",\n        \"description\": \"Updated description\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769072215/nursery-app/categories/xfstnapvhtwqfologtt9.jpg\",\n        \"createdAt\": \"2026-01-22T08:56:55.920Z\",\n        \"updatedAt\": \"2026-01-22T09:03:17.030Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Category (Admin)",
+      "id": "4efcb50b-4e04-4a25-baf2-c7552b0986b2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/categories/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "categories",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6971e657884d772cac55fac1"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "b629b49d-97f0-4e99-adbf-f59728323063",
+          "name": "Delete Category (Admin)",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6971e657884d772cac55fac1"
+                }
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "769"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"301-7xS91gY18AsOcMqdaIIzFCZ5Y8E\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 09:13:04 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T09:13:13.407Z",
+          "body": "{\n    \"success\": false,\n    \"message\": \"Cannot delete category. 1 product(s) are associated with this category. Please reassign or delete the products first.\",\n    \"errorSources\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Cannot delete category. 1 product(s) are associated with this category. Please reassign or delete the products first.\"\n        }\n    ],\n    \"err\": {\n        \"statusCode\": 400\n    },\n    \"stack\": \"Error: Cannot delete category. 1 product(s) are associated with this category. Please reassign or delete the products first.\\n    at Object.deleteCategoryService (D:\\\\Projects\\\\nursary-shop-server\\\\src\\\\modules\\\\category\\\\category.service.ts:108:19)\\n    at processTicksAndRejections (node:internal/process/task_queues:103:5)\\n    at async D:\\\\Projects\\\\nursary-shop-server\\\\src\\\\modules\\\\category\\\\category.controller.ts:94:24\"\n}"
+        }
+      ]
+    }
+  ]
+}

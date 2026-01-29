@@ -1,0 +1,433 @@
+{
+  "info": {
+    "_postman_id": "4039833e-c697-4d43-9d9f-fd1ce4f0a600",
+    "name": "Users API",
+    "description": "User profile management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Profile",
+      "id": "c803d06d-4980-4f62-9dc7-8f7267b4c265",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/users/profile",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "profile"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "4dca2c0e-11de-4f84-8694-7b7f50a55d9d",
+          "name": "Get Profile",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "profile"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "210"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"d2-8Rf0UpOk/A10qnfiZHPXQ/grF6w\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 09:30:16 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T09:30:37.932Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"User profile fetched successfully\",\n    \"data\": {\n        \"_id\": \"6971da34ef6d881934c75780\",\n        \"name\": \"Admin\",\n        \"phone\": \"01501234567\",\n        \"email\": \"admin-nursery@yopmail.com\",\n        \"role\": \"admin\",\n        \"status\": \"active\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Profile",
+      "id": "376dd2c0-18ea-4560-8789-5f4c344dbc09",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "John Updated",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "phone",
+              "value": "01712345678",
+              "description": "Optional, 11 digits",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "profilePicture",
+              "description": "Optional, image file",
+              "type": "file",
+              "src": [
+                "/C:/Users/mukar/OneDrive/Pictures/134079918977529516.jpg"
+              ],
+              "disabled": true
+            },
+            {
+              "key": "avatarId",
+              "value": "697acd6c19f82910a5af1aef",
+              "type": "text",
+              "uuid": "288958cf-8604-4c80-810c-60c25fc6c526"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/users/update",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "update"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "24644633-b597-4778-808c-31b11f494b00",
+          "name": "Update Profile",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "John Updated",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "01712345678",
+                  "description": "Optional, 11 digits",
+                  "type": "text"
+                },
+                {
+                  "key": "profilePicture",
+                  "description": "Optional, image file",
+                  "type": "file",
+                  "src": [],
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/update",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "update"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "368"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"170-iiaPhD00yEYrpNPVTNnAx5DenkQ\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 09:53:52 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T09:54:30.868Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Profile updated successfully\",\n    \"data\": {\n        \"_id\": \"6971da34ef6d881934c75780\",\n        \"name\": \"John Updated\",\n        \"phone\": \"01712345678\",\n        \"email\": \"admin-nursery@yopmail.com\",\n        \"role\": \"admin\",\n        \"isEmailVerified\": true,\n        \"status\": \"active\",\n        \"createdAt\": \"2026-01-22T08:05:08.664Z\",\n        \"updatedAt\": \"2026-01-22T09:53:51.994Z\",\n        \"__v\": 0,\n        \"passwordChangedAt\": \"2026-01-22T08:47:45.753Z\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get All Users (Admin)",
+      "id": "fcd0f53c-b14f-4b2c-a1a8-a7d227b1687e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/users/all-users?page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "all-users"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "description": "Page number",
+              "uuid": "fb88ad3a-11aa-4d78-b8dc-b1e20dec05ea"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "description": "Items per page",
+              "uuid": "92620bc6-1c75-40ec-a2a6-1dda36c02549"
+            },
+            {
+              "key": "searchTerm",
+              "value": "john",
+              "description": "Search by name or email",
+              "uuid": "aca53c49-f03a-4281-8326-30752f8634db",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Admin only. Get all users with pagination and search."
+      },
+      "response": [
+        {
+          "id": "c6163569-ef9d-4f7b-b29b-8509f4877f0f",
+          "name": "Get All Users (Admin)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/all-users?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "all-users"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number",
+                  "uuid": "fb88ad3a-11aa-4d78-b8dc-b1e20dec05ea"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Items per page",
+                  "uuid": "92620bc6-1c75-40ec-a2a6-1dda36c02549"
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "john",
+                  "description": "Search by name or email",
+                  "uuid": "aca53c49-f03a-4281-8326-30752f8634db",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "882"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"372-MhdHIwAfnGbR8NcnyKPdPlOvhzU\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 09:52:08 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T09:52:58.299Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Users list fetched successfully\",\n    \"meta\": {\n        \"totalDocuments\": 6,\n        \"totalPages\": 1,\n        \"currentPage\": \"1\",\n        \"limitPerPage\": \"10\"\n    },\n    \"data\": [\n        {\n            \"_id\": \"6971e531e18110807ed5410e\",\n            \"name\": \"Admin\",\n            \"phone\": \"01501234567\",\n            \"email\": \"user-nursery@yopmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\"\n        },\n        {\n            \"_id\": \"6971a42966af5fb86378a698\",\n            \"name\": \"jakir\",\n            \"email\": \"jakir@gmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\"\n        },\n        {\n            \"_id\": \"696f963ddde1caf722889d75\",\n            \"name\": \"MD Jakir Hossain\",\n            \"email\": \"jakirhossain03222@gmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\"\n        },\n        {\n            \"_id\": \"696f9483c694bf092355b8ba\",\n            \"name\": \"New User 6\",\n            \"email\": \"newuser6@yopmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\"\n        },\n        {\n            \"_id\": \"696f86283e6403a201a81f41\",\n            \"name\": \"New User 2\",\n            \"email\": \"newuser2@yopmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\"\n        },\n        {\n            \"_id\": \"696eff120e62cbc1dcc083dd\",\n            \"name\": \"New User 1\",\n            \"email\": \"newuser1@yopmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\"\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update User Role (Admin)",
+      "id": "c932b662-3256-4108-846a-7234b84ee255",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"role\": \"admin\"\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "role: enum ['user', 'admin']"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/users/:userId/role",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            ":userId",
+            "role"
+          ],
+          "variable": [
+            {
+              "key": "userId",
+              "value": "user_id_here"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

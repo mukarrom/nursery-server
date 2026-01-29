@@ -1,0 +1,371 @@
+{
+  "info": {
+    "_postman_id": "c3a0ab01-d62d-405c-a7c1-500dc10e0798",
+    "name": "Carousels API",
+    "description": "Homepage carousel/banner management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Carousels",
+      "id": "4dd938c6-6307-4d13-b9d2-65deca3959ac",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/carousels",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carousels"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "0674581f-f128-4b49-8ac6-7c67476eb9df",
+          "name": "Get All Carousels",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carousels",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carousels"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1415"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"587-wh9nFkGikIWNc+X0cvzbewg8Whk\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 16:17:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T16:18:02.688Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Carousels retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"696f1a0e194242b12d48da79\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768888846/nitto-vojon/carousels/n7bqhpxlvu1vatix5adk.jpg\",\n            \"title\": \"Summer Collection\",\n            \"description\": \"Fresh products for summer\",\n            \"isActive\": true,\n            \"order\": 1,\n            \"createdAt\": \"2026-01-20T06:00:46.974Z\",\n            \"updatedAt\": \"2026-01-20T06:00:46.974Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6970cc2c642f3d5d77d4899b\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768999979/nursery-app/carousels/op5s1g7xrgpljxavqejo.png\",\n            \"title\": \"Summer Collection\",\n            \"description\": \"Fresh products for summer\",\n            \"isActive\": false,\n            \"order\": 2,\n            \"createdAt\": \"2026-01-21T12:53:00.166Z\",\n            \"updatedAt\": \"2026-01-22T03:23:02.558Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971aae5a83859021b294361\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769056996/nursery-app/carousels/thsiywdapxpag749mxnl.png\",\n            \"title\": \"Summer Collection\",\n            \"description\": \"Fresh products for summer\",\n            \"isActive\": true,\n            \"order\": 2,\n            \"createdAt\": \"2026-01-22T04:43:17.238Z\",\n            \"updatedAt\": \"2026-01-22T04:43:17.238Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971ac6fa83859021b294364\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769057391/nursery-app/carousels/ioh8xhnq7kqxieio72vi.png\",\n            \"title\": \"Summer Collection\",\n            \"description\": \"Fresh products for summer\",\n            \"isActive\": true,\n            \"order\": 3,\n            \"createdAt\": \"2026-01-22T04:49:51.952Z\",\n            \"updatedAt\": \"2026-01-22T04:49:51.952Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Carousel (Admin)",
+      "id": "8128ed61-a5ad-4a1a-920b-b69a780c3314",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "title",
+              "value": "Flash Sale Offer",
+              "description": "Required",
+              "type": "text"
+            },
+            {
+              "key": "description",
+              "value": "Get up to 70% off on Flash Sales",
+              "description": "Optional",
+              "type": "text"
+            },
+            {
+              "key": "image",
+              "description": "Required, image file",
+              "type": "file",
+              "src": [
+                "/C:/Users/mukar/OneDrive/Pictures/134091964169590556.jpg"
+              ]
+            },
+            {
+              "key": "order",
+              "value": "1",
+              "description": "Optional, default 0",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "isActive",
+              "value": "true",
+              "description": "Optional, default true",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/carousels",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carousels"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "a7783b0b-95f1-47a4-ada1-63e5b5091f1b",
+          "name": "Create Carousel (Admin)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Flash Sale Offer",
+                  "description": "Required",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Get up to 70% off on Flash Sales",
+                  "description": "Optional",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "description": "Required, image file",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134091964169590556.jpg"
+                  ]
+                },
+                {
+                  "key": "order",
+                  "value": "1",
+                  "description": "Optional, default 0",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "isActive",
+                  "value": "true",
+                  "description": "Optional, default true",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carousels",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carousels"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "407"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"197-CoDlbaVgVST1BdDZBGGCFz3dXww\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 16:38:44 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T16:38:53.060Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Carousel created successfully\",\n    \"data\": {\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769099924/nursery-app/carousels/f6lo7ti2cvv3uanbupjn.jpg\",\n        \"title\": \"Flash Sale Offer\",\n        \"description\": \"Get up to 70% off on Flash Sales\",\n        \"isActive\": true,\n        \"order\": 0,\n        \"_id\": \"69725294e16c7ec3c5e426f7\",\n        \"createdAt\": \"2026-01-22T16:38:44.370Z\",\n        \"updatedAt\": \"2026-01-22T16:38:44.370Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Carousel (Admin)",
+      "id": "b92d9c95-a623-4d68-bd64-97963e46f2b0",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "title",
+              "value": "",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "description",
+              "value": "",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image",
+              "description": "Optional, image file",
+              "type": "file",
+              "src": [],
+              "disabled": true
+            },
+            {
+              "key": "order",
+              "value": "",
+              "description": "Optional",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "isActive",
+              "value": "false",
+              "description": "Optional",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/carousels/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carousels",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "carousel_id"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Carousel (Admin)",
+      "id": "92f5c9e3-33fd-4447-94a0-3f85a5519e41",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/carousels/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carousels",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "carousel_id"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

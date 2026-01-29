@@ -1,0 +1,369 @@
+{
+  "info": {
+    "_postman_id": "5717a585-7526-4c62-8acf-238b46bdb708",
+    "name": "Addresses API",
+    "description": "Delivery address management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get My Addresses",
+      "id": "5d64a202-58fb-44ba-8d0f-32813f99a70e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/addresses",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "addresses"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "6b3d8ed7-2e43-4e93-8314-140fc9fd76b7",
+          "name": "Get My Addresses",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/addresses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "addresses"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "381"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"17d-d+4hP40+yz2q2spnj2aO3db4xRs\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 10:36:50 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T10:36:52.098Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Addresses retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6971fdb500e98364ca3a36be\",\n            \"userId\": \"6971da34ef6d881934c75780\",\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\",\n            \"phoneNumber\": \"01712345678\",\n            \"label\": \"other\",\n            \"isDefault\": true,\n            \"createdAt\": \"2026-01-22T10:36:37.017Z\",\n            \"updatedAt\": \"2026-01-22T10:36:37.017Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Address",
+      "id": "aebf87dd-98fc-4214-9337-4c9707e14381",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"street\": \"123 Main Street, Apt 4B\",\n  \"city\": \"Dhaka\",\n  \"postalCode\": \"1212\",\n  \"country\": \"Bangladesh\",\n  \"phoneNumber\": \"01712345678\",\n  \"isDefault\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "Required: street, city, postalCode, country\nOptional: phoneNumber, isDefault (default false)"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/addresses",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "addresses"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "3892dc62-ef4a-4079-9f7c-c21f327a3b3c",
+          "name": "Create Address",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"street\": \"123 Main Street, Apt 4B\",\n  \"city\": \"Dhaka\",\n  \"postalCode\": \"1212\",\n  \"country\": \"Bangladesh\",\n  \"phoneNumber\": \"01712345678\",\n  \"isDefault\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: street, city, postalCode, country\nOptional: phoneNumber, isDefault (default false)"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/addresses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "addresses"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "375"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"177-R/RSGCyi2WQVGhyhGBZs7thVzkM\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 10:36:37 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T10:36:38.772Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Address created successfully\",\n    \"data\": {\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"street\": \"123 Main Street, Apt 4B\",\n        \"city\": \"Dhaka\",\n        \"postalCode\": \"1212\",\n        \"country\": \"Bangladesh\",\n        \"phoneNumber\": \"01712345678\",\n        \"label\": \"other\",\n        \"isDefault\": true,\n        \"_id\": \"6971fdb500e98364ca3a36be\",\n        \"createdAt\": \"2026-01-22T10:36:37.017Z\",\n        \"updatedAt\": \"2026-01-22T10:36:37.017Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Address",
+      "id": "fd6aab82-4744-4c23-a91b-916e36118153",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"street\": \"456 New Street\",\n  \"isDefault\": false\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "All fields optional"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/addresses/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "addresses",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6971fdb500e98364ca3a36be"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "43f5b5ee-a8db-4342-a0db-c67363073fbf",
+          "name": "Update Address",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"street\": \"456 New Street\",\n  \"isDefault\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields optional"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/addresses/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "addresses",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6971fdb500e98364ca3a36be"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "367"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"16f-8Shg7fyUhd8QxnYE9BfuFUxEpDI\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 11:09:03 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T11:09:08.381Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Address updated successfully\",\n    \"data\": {\n        \"_id\": \"6971fdb500e98364ca3a36be\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"street\": \"456 New Street\",\n        \"city\": \"Dhaka\",\n        \"postalCode\": \"1212\",\n        \"country\": \"Bangladesh\",\n        \"phoneNumber\": \"01712345678\",\n        \"label\": \"other\",\n        \"isDefault\": false,\n        \"createdAt\": \"2026-01-22T10:36:37.017Z\",\n        \"updatedAt\": \"2026-01-22T11:09:02.911Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Address",
+      "id": "16821f11-148e-42fc-8050-12509c87a6f4",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/addresses/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "addresses",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "address_id"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

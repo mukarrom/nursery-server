@@ -1,0 +1,400 @@
+{
+  "info": {
+    "_postman_id": "7f7d3ce3-811f-4e11-9f6b-a42979b23ff3",
+    "name": "Cart API",
+    "description": "Shopping cart management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get My Cart",
+      "id": "ef91356b-8241-49f9-8718-3cf7d6abb75a",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/carts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carts"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "6b1bf22d-2ac3-4dde-99a5-11bb9af9d90c",
+          "name": "Get My Cart",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1132"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"46c-OnfllJt6XdpefjxKPy2DXJ8KtpM\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 10:18:51 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T10:19:10.822Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Cart retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6971ea6b065be8b54b7ff917\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": {\n                    \"_id\": \"6971e9f7065be8b54b7ff90e\",\n                    \"name\": \"Red Rose Plant\",\n                    \"sku\": \"ROSE-RED-001\",\n                    \"description\": \"Beautiful red rose plant for your garden\",\n                    \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n                    \"images\": [\n                        \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n                        \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n                    ],\n                    \"price\": 299.99,\n                    \"discount\": 10,\n                    \"quantity\": 200,\n                    \"isAvailable\": true,\n                    \"isFeatured\": true,\n                    \"brand\": \"Garden Pro\",\n                    \"categoryId\": \"6971e657884d772cac55fac1\",\n                    \"tags\": [\n                        \"rose,flower,outdoor\"\n                    ],\n                    \"ratingAverage\": 0,\n                    \"ratingCount\": 0,\n                    \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n                    \"updatedAt\": \"2026-01-22T10:14:33.158Z\",\n                    \"__v\": 0\n                },\n                \"quantity\": 2,\n                \"price\": 299.99,\n                \"total\": 599.98,\n                \"_id\": \"6971ea6b065be8b54b7ff919\"\n            }\n        ],\n        \"subtotal\": 599.98,\n        \"total\": 599.98,\n        \"createdAt\": \"2026-01-22T09:14:19.635Z\",\n        \"updatedAt\": \"2026-01-22T09:14:19.733Z\",\n        \"__v\": 1\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Add to Cart",
+      "id": "705238ea-3e18-469b-9c22-6a25216f4af2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"productId\": \"6979c46e5a2478d429b244d5\",\n  \"quantity\": 3\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "Both fields required"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/carts/add",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carts",
+            "add"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "278a2b09-7c1e-4c49-8610-58646fe30fcb",
+          "name": "Add to Cart",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"6971e9f7065be8b54b7ff90e\",\n  \"quantity\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Both fields required"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carts/add",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts",
+                "add"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1135"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"46f-Oz2NrWtwcmixtRExkc+H8nc9cWY\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 09:14:19 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T09:21:14.859Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Item added to cart successfully\",\n    \"data\": {\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": {\n                    \"_id\": \"6971e9f7065be8b54b7ff90e\",\n                    \"name\": \"Red Rose Plant\",\n                    \"sku\": \"ROSE-RED-001\",\n                    \"description\": \"Beautiful red rose plant for your garden\",\n                    \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n                    \"images\": [\n                        \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n                        \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n                    ],\n                    \"price\": 299.99,\n                    \"discount\": 10,\n                    \"quantity\": 50,\n                    \"isAvailable\": true,\n                    \"isFeatured\": true,\n                    \"brand\": \"Garden Pro\",\n                    \"categoryId\": \"6971e657884d772cac55fac1\",\n                    \"tags\": [\n                        \"rose,flower,outdoor\"\n                    ],\n                    \"ratingAverage\": 0,\n                    \"ratingCount\": 0,\n                    \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n                    \"updatedAt\": \"2026-01-22T09:12:23.149Z\",\n                    \"__v\": 0\n                },\n                \"quantity\": 2,\n                \"price\": 299.99,\n                \"total\": 599.98,\n                \"_id\": \"6971ea6b065be8b54b7ff919\"\n            }\n        ],\n        \"subtotal\": 599.98,\n        \"total\": 599.98,\n        \"_id\": \"6971ea6b065be8b54b7ff917\",\n        \"createdAt\": \"2026-01-22T09:14:19.635Z\",\n        \"updatedAt\": \"2026-01-22T09:14:19.733Z\",\n        \"__v\": 1\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Cart Item Quantity",
+      "id": "80cdc3dd-ba4b-4538-b011-4accde367b37",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"quantity\": 5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/carts/:productId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carts",
+            ":productId"
+          ],
+          "variable": [
+            {
+              "key": "productId",
+              "value": "6971e9f7065be8b54b7ff90e"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "4d11ce73-0d2d-44f5-95bf-db126c0dac09",
+          "name": "Update Cart Item Quantity",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carts/:productId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts",
+                ":productId"
+              ],
+              "variable": [
+                {
+                  "key": "productId",
+                  "value": "6971e9f7065be8b54b7ff90e"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1133"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"46d-yseQlpaxf06AdCRGqrhxPBdp7MA\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 10:34:42 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T10:34:44.503Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Cart updated successfully\",\n    \"data\": {\n        \"_id\": \"6971ea6b065be8b54b7ff917\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": {\n                    \"_id\": \"6971e9f7065be8b54b7ff90e\",\n                    \"name\": \"Red Rose Plant\",\n                    \"sku\": \"ROSE-RED-001\",\n                    \"description\": \"Beautiful red rose plant for your garden\",\n                    \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n                    \"images\": [\n                        \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n                        \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n                    ],\n                    \"price\": 299.99,\n                    \"discount\": 10,\n                    \"quantity\": 200,\n                    \"isAvailable\": true,\n                    \"isFeatured\": true,\n                    \"brand\": \"Garden Pro\",\n                    \"categoryId\": \"6971e657884d772cac55fac1\",\n                    \"tags\": [\n                        \"rose,flower,outdoor\"\n                    ],\n                    \"ratingAverage\": 0,\n                    \"ratingCount\": 0,\n                    \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n                    \"updatedAt\": \"2026-01-22T10:14:33.158Z\",\n                    \"__v\": 0\n                },\n                \"quantity\": 5,\n                \"price\": 299.99,\n                \"total\": 1499.95,\n                \"_id\": \"6971ea6b065be8b54b7ff919\"\n            }\n        ],\n        \"subtotal\": 1499.95,\n        \"total\": 1499.95,\n        \"createdAt\": \"2026-01-22T09:14:19.635Z\",\n        \"updatedAt\": \"2026-01-22T10:34:42.076Z\",\n        \"__v\": 1\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Remove from Cart",
+      "id": "6bf78b34-5407-4490-b110-d9cf138bd3c0",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/carts/:productId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carts",
+            ":productId"
+          ],
+          "variable": [
+            {
+              "key": "productId",
+              "value": "product_id"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Clear Cart",
+      "id": "b335b8f3-c424-4608-881d-d77186cb1ce8",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/carts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carts"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

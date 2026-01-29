@@ -1,0 +1,803 @@
+{
+  "info": {
+    "_postman_id": "ebd258e6-4590-43d2-b0f7-35e980ad70ae",
+    "name": "Flash Sales API",
+    "description": "Limited-time flash sale management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Flash Sales (admin)",
+      "id": "23e4a89a-509b-4728-9911-b6be36e75fa5",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/flash-sales",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "flash-sales"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "425f2aeb-c3e1-4eb5-a04c-f6f3067617d2",
+          "name": "Get All Flash Sales",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/flash-sales",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flash-sales"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1585"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"631-MxUJ/rlMHxgydRLWi7DE+xucBkk\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 16:40:13 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T16:40:16.558Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Flash sales retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6970738712a82c9a12b1164e\",\n            \"title\": \"Summer Clearance\",\n            \"description\": \"Get up to 50% off on summer products\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768977287/nursery-app/flash-sales/kfpvq6u3t4xejgm5ynyg.png\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 50,\n            \"startDate\": \"2026-01-20T00:00:00.000Z\",\n            \"endDate\": \"2026-01-31T23:59:59.000Z\",\n            \"isActive\": true,\n            \"productIds\": [],\n            \"featured\": true,\n            \"order\": 1,\n            \"createdAt\": \"2026-01-21T06:34:47.993Z\",\n            \"updatedAt\": \"2026-01-21T06:34:47.993Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971b4ad89323e4b68555ec6\",\n            \"title\": \"Summer Clearance 2\",\n            \"description\": \"Get up to 50% off on summer products\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769059500/nursery-app/flash-sales/fbswarmi3dqqch8nryos.png\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 50,\n            \"startDate\": \"2026-01-20T00:00:00.000Z\",\n            \"endDate\": \"2026-01-31T23:59:59.000Z\",\n            \"isActive\": true,\n            \"productIds\": [],\n            \"featured\": true,\n            \"order\": 2,\n            \"createdAt\": \"2026-01-22T05:25:01.458Z\",\n            \"updatedAt\": \"2026-01-22T05:25:01.458Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971b4bc89323e4b68555ec8\",\n            \"title\": \"Summer Clearance 3\",\n            \"description\": \"Get up to 50% off on summer products\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769059515/nursery-app/flash-sales/hs8ahzl5tw3sddlwfjdy.png\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 50,\n            \"startDate\": \"2026-01-20T00:00:00.000Z\",\n            \"endDate\": \"2026-01-31T23:59:59.000Z\",\n            \"isActive\": true,\n            \"productIds\": [],\n            \"featured\": true,\n            \"order\": 3,\n            \"createdAt\": \"2026-01-22T05:25:16.018Z\",\n            \"updatedAt\": \"2026-01-22T05:25:16.018Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Active Flash Sales",
+      "id": "c01ca7ca-2851-4229-94b4-a78e9c2e5f54",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/flash-sales/active?limit=100&page=1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "flash-sales",
+            "active"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": "100",
+              "uuid": "eede6278-84b7-4eab-aa8b-818b947a81bc"
+            },
+            {
+              "key": "page",
+              "value": "1",
+              "uuid": "61121f81-8708-4f00-8d0d-68425903c24a"
+            }
+          ]
+        },
+        "description": "Get currently active flash sales"
+      },
+      "response": [
+        {
+          "id": "82c9e638-f0f1-4ee4-9a1e-52dfdff94a6e",
+          "name": "Get Active Flash Sales",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/flash-sales/active",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flash-sales",
+                "active"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1592"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"638-k/TVtC/A/PFyRkthBvng0n2Ql3E\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 16:40:35 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T16:40:41.899Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Active flash sales retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6970738712a82c9a12b1164e\",\n            \"title\": \"Summer Clearance\",\n            \"description\": \"Get up to 50% off on summer products\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768977287/nursery-app/flash-sales/kfpvq6u3t4xejgm5ynyg.png\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 50,\n            \"startDate\": \"2026-01-20T00:00:00.000Z\",\n            \"endDate\": \"2026-01-31T23:59:59.000Z\",\n            \"isActive\": true,\n            \"productIds\": [],\n            \"featured\": true,\n            \"order\": 1,\n            \"createdAt\": \"2026-01-21T06:34:47.993Z\",\n            \"updatedAt\": \"2026-01-21T06:34:47.993Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971b4ad89323e4b68555ec6\",\n            \"title\": \"Summer Clearance 2\",\n            \"description\": \"Get up to 50% off on summer products\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769059500/nursery-app/flash-sales/fbswarmi3dqqch8nryos.png\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 50,\n            \"startDate\": \"2026-01-20T00:00:00.000Z\",\n            \"endDate\": \"2026-01-31T23:59:59.000Z\",\n            \"isActive\": true,\n            \"productIds\": [],\n            \"featured\": true,\n            \"order\": 2,\n            \"createdAt\": \"2026-01-22T05:25:01.458Z\",\n            \"updatedAt\": \"2026-01-22T05:25:01.458Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6971b4bc89323e4b68555ec8\",\n            \"title\": \"Summer Clearance 3\",\n            \"description\": \"Get up to 50% off on summer products\",\n            \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769059515/nursery-app/flash-sales/hs8ahzl5tw3sddlwfjdy.png\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 50,\n            \"startDate\": \"2026-01-20T00:00:00.000Z\",\n            \"endDate\": \"2026-01-31T23:59:59.000Z\",\n            \"isActive\": true,\n            \"productIds\": [],\n            \"featured\": true,\n            \"order\": 3,\n            \"createdAt\": \"2026-01-22T05:25:16.018Z\",\n            \"updatedAt\": \"2026-01-22T05:25:16.018Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Flash Sale (Admin)",
+      "id": "78b7e375-745a-434b-963e-ac9a3539153b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image",
+              "type": "file",
+              "uuid": "21dd2703-51a1-4016-9015-bb731843349b",
+              "src": [
+                "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
+              ]
+            },
+            {
+              "key": "data",
+              "value": "{\n  \"title\": \"Weekend Flash Sale\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-01-26T23:59:59.000Z\",\n  \"isActive\": true,\n  \"productIds\": [\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"],\n  \"featured\": true,\n  \"order\": 1\n}",
+              "type": "text",
+              "uuid": "73fb3b20-9ab2-4a3c-b6fe-de169d9326f5"
+            },
+            {
+              "key": "discountType",
+              "value": "percentage",
+              "description": "Either 'percentage' or 'fixed'",
+              "type": "text",
+              "uuid": "7031572d-3356-423b-b364-5a21dce09f9d",
+              "disabled": true
+            },
+            {
+              "key": "title",
+              "value": "Weekend Flash Sale",
+              "type": "text",
+              "uuid": "9bda9df6-fbc7-48c1-88a2-6c5590d4f6dc",
+              "disabled": true
+            },
+            {
+              "key": "description",
+              "value": "Limited time offer on selected items",
+              "type": "text",
+              "uuid": "d9680f24-063e-43a3-9a5f-fa7c60309d4c",
+              "disabled": true
+            },
+            {
+              "key": "discountValue",
+              "value": "30",
+              "type": "text",
+              "uuid": "04f7dd20-e0ff-419d-ad1e-532acc182b14",
+              "disabled": true
+            },
+            {
+              "key": "startDate",
+              "value": "2026-01-25T00:00:00.000Z",
+              "type": "text",
+              "uuid": "cf80b204-4b02-4970-823a-45f90a9de67c",
+              "disabled": true
+            },
+            {
+              "key": "endDate",
+              "value": "2026-01-31T23:59:59.000Z",
+              "type": "text",
+              "uuid": "7a271f41-e269-40fb-83e3-56097b8d704e",
+              "disabled": true
+            },
+            {
+              "key": "isActive",
+              "value": "true",
+              "description": "default true",
+              "type": "text",
+              "uuid": "fed40b6b-7231-467e-9d77-8437019bec6b",
+              "disabled": true
+            },
+            {
+              "key": "productIds",
+              "value": "[\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"]",
+              "type": "text",
+              "uuid": "c6b6c026-be02-4186-a02e-2eb3e3422e80",
+              "disabled": true
+            },
+            {
+              "key": "featured",
+              "value": "true",
+              "type": "text",
+              "uuid": "ce7d99a3-d802-477a-9250-34e65dadd54f",
+              "disabled": true
+            },
+            {
+              "key": "order",
+              "value": "1",
+              "type": "text",
+              "uuid": "84278cf1-6f0b-4d4f-9ff0-9e90afe465b6",
+              "disabled": true
+            }
+          ],
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "Required: name, discount, startDate (ISO), endDate (ISO)\nOptional: description, productIds (array), isActive (default true)"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/flash-sales",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "flash-sales"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "5edf3c3f-63b6-4693-a1b1-443158af4fd9",
+          "name": "Create Flash Sale (Admin)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "21dd2703-51a1-4016-9015-bb731843349b",
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
+                  ]
+                },
+                {
+                  "key": "title",
+                  "value": "Weekend Flash Sale",
+                  "type": "text",
+                  "uuid": "9bda9df6-fbc7-48c1-88a2-6c5590d4f6dc",
+                  "disabled": true
+                },
+                {
+                  "key": "description",
+                  "value": "Limited time offer on selected items",
+                  "type": "text",
+                  "uuid": "d9680f24-063e-43a3-9a5f-fa7c60309d4c",
+                  "disabled": true
+                },
+                {
+                  "key": "discountType",
+                  "value": "percentage",
+                  "description": "Either 'percentage' or 'fixed'",
+                  "type": "text",
+                  "uuid": "7031572d-3356-423b-b364-5a21dce09f9d",
+                  "disabled": true
+                },
+                {
+                  "key": "discountValue",
+                  "value": "30",
+                  "type": "text",
+                  "uuid": "04f7dd20-e0ff-419d-ad1e-532acc182b14",
+                  "disabled": true
+                },
+                {
+                  "key": "startDate",
+                  "value": "2026-01-25T00:00:00.000Z",
+                  "type": "text",
+                  "uuid": "cf80b204-4b02-4970-823a-45f90a9de67c",
+                  "disabled": true
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-01-31T23:59:59.000Z",
+                  "type": "text",
+                  "uuid": "7a271f41-e269-40fb-83e3-56097b8d704e",
+                  "disabled": true
+                },
+                {
+                  "key": "isActive",
+                  "value": "true",
+                  "description": "default true",
+                  "type": "text",
+                  "uuid": "fed40b6b-7231-467e-9d77-8437019bec6b",
+                  "disabled": true
+                },
+                {
+                  "key": "productIds",
+                  "value": "[\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"]",
+                  "type": "text",
+                  "uuid": "c6b6c026-be02-4186-a02e-2eb3e3422e80",
+                  "disabled": true
+                },
+                {
+                  "key": "featured",
+                  "value": "true",
+                  "type": "text",
+                  "uuid": "ce7d99a3-d802-477a-9250-34e65dadd54f",
+                  "disabled": true
+                },
+                {
+                  "key": "order",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "84278cf1-6f0b-4d4f-9ff0-9e90afe465b6",
+                  "disabled": true
+                },
+                {
+                  "key": "data",
+                  "value": "{\n  \"title\": \"Weekend Flash Sale\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-01-26T23:59:59.000Z\",\n  \"isActive\": true,\n  \"productIds\": [\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"],\n  \"featured\": true,\n  \"order\": 1\n}",
+                  "type": "text",
+                  "uuid": "73fb3b20-9ab2-4a3c-b6fe-de169d9326f5"
+                }
+              ],
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: name, discount, startDate (ISO), endDate (ISO)\nOptional: description, productIds (array), isActive (default true)"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/flash-sales",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flash-sales"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "652"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"28c-5QbGAok0rqjlQ25dL0gDdWGU9/A\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 17:17:18 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T17:17:30.323Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Flash sale created successfully\",\n    \"data\": {\n        \"title\": \"Weekend Flash Sale\",\n        \"description\": \"Limited time offer on selected items\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769102238/nursery-app/flash-sales/gkb6gppgwon6x8gr82th.jpg\",\n        \"discountType\": \"percentage\",\n        \"discountValue\": 30,\n        \"startDate\": \"2026-01-25T00:00:00.000Z\",\n        \"endDate\": \"2026-01-26T23:59:59.000Z\",\n        \"isActive\": true,\n        \"productIds\": [\n            \"6971e9f7065be8b54b7ff90e\",\n            \"6970f3d9a4e644714427b3c9\",\n            \"697089436e04221e6a2cd70c\"\n        ],\n        \"featured\": true,\n        \"order\": 1,\n        \"_id\": \"69725b9e4b07007b65a7eb2f\",\n        \"createdAt\": \"2026-01-22T17:17:18.413Z\",\n        \"updatedAt\": \"2026-01-22T17:17:18.413Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Flash Sale (Admin)",
+      "id": "843c48bc-5c9b-451d-9b3c-78d1b122293e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image",
+              "type": "file",
+              "uuid": "21dd2703-51a1-4016-9015-bb731843349b",
+              "src": [
+                "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
+              ],
+              "disabled": true
+            },
+            {
+              "key": "data",
+              "value": "{\n  \"title\": \"Weekend Flash Sale Updated\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-01-26T23:59:59.000Z\",\n  \"isActive\": true,\n  \"productIds\": [\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"],\n  \"featured\": true,\n  \"order\": 1\n}",
+              "type": "text",
+              "uuid": "73fb3b20-9ab2-4a3c-b6fe-de169d9326f5"
+            },
+            {
+              "key": "discountType",
+              "value": "percentage",
+              "description": "Either 'percentage' or 'fixed'",
+              "type": "text",
+              "uuid": "7031572d-3356-423b-b364-5a21dce09f9d",
+              "disabled": true
+            },
+            {
+              "key": "title",
+              "value": "Weekend Flash Sale",
+              "type": "text",
+              "uuid": "9bda9df6-fbc7-48c1-88a2-6c5590d4f6dc",
+              "disabled": true
+            },
+            {
+              "key": "description",
+              "value": "Limited time offer on selected items",
+              "type": "text",
+              "uuid": "d9680f24-063e-43a3-9a5f-fa7c60309d4c",
+              "disabled": true
+            },
+            {
+              "key": "discountValue",
+              "value": "30",
+              "type": "text",
+              "uuid": "04f7dd20-e0ff-419d-ad1e-532acc182b14",
+              "disabled": true
+            },
+            {
+              "key": "startDate",
+              "value": "2026-01-25T00:00:00.000Z",
+              "type": "text",
+              "uuid": "cf80b204-4b02-4970-823a-45f90a9de67c",
+              "disabled": true
+            },
+            {
+              "key": "endDate",
+              "value": "2026-01-31T23:59:59.000Z",
+              "type": "text",
+              "uuid": "7a271f41-e269-40fb-83e3-56097b8d704e",
+              "disabled": true
+            },
+            {
+              "key": "isActive",
+              "value": "true",
+              "description": "default true",
+              "type": "text",
+              "uuid": "fed40b6b-7231-467e-9d77-8437019bec6b",
+              "disabled": true
+            },
+            {
+              "key": "productIds",
+              "value": "[\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"]",
+              "type": "text",
+              "uuid": "c6b6c026-be02-4186-a02e-2eb3e3422e80",
+              "disabled": true
+            },
+            {
+              "key": "featured",
+              "value": "true",
+              "type": "text",
+              "uuid": "ce7d99a3-d802-477a-9250-34e65dadd54f",
+              "disabled": true
+            },
+            {
+              "key": "order",
+              "value": "1",
+              "type": "text",
+              "uuid": "84278cf1-6f0b-4d4f-9ff0-9e90afe465b6",
+              "disabled": true
+            }
+          ],
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "Required: name, discount, startDate (ISO), endDate (ISO)\nOptional: description, productIds (array), isActive (default true)"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/flash-sales/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "flash-sales",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "69725b9e4b07007b65a7eb2f"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "19dd9f51-71c8-43e2-afa1-6adac726dbf8",
+          "name": "Update Flash Sale (Admin)",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "21dd2703-51a1-4016-9015-bb731843349b",
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
+                  ],
+                  "disabled": true
+                },
+                {
+                  "key": "data",
+                  "value": "{\n  \"title\": \"Weekend Flash Sale Updated\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-01-26T23:59:59.000Z\",\n  \"isActive\": true,\n  \"productIds\": [\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"],\n  \"featured\": true,\n  \"order\": 1\n}",
+                  "type": "text",
+                  "uuid": "73fb3b20-9ab2-4a3c-b6fe-de169d9326f5"
+                },
+                {
+                  "key": "discountType",
+                  "value": "percentage",
+                  "description": "Either 'percentage' or 'fixed'",
+                  "type": "text",
+                  "uuid": "7031572d-3356-423b-b364-5a21dce09f9d",
+                  "disabled": true
+                },
+                {
+                  "key": "title",
+                  "value": "Weekend Flash Sale",
+                  "type": "text",
+                  "uuid": "9bda9df6-fbc7-48c1-88a2-6c5590d4f6dc",
+                  "disabled": true
+                },
+                {
+                  "key": "description",
+                  "value": "Limited time offer on selected items",
+                  "type": "text",
+                  "uuid": "d9680f24-063e-43a3-9a5f-fa7c60309d4c",
+                  "disabled": true
+                },
+                {
+                  "key": "discountValue",
+                  "value": "30",
+                  "type": "text",
+                  "uuid": "04f7dd20-e0ff-419d-ad1e-532acc182b14",
+                  "disabled": true
+                },
+                {
+                  "key": "startDate",
+                  "value": "2026-01-25T00:00:00.000Z",
+                  "type": "text",
+                  "uuid": "cf80b204-4b02-4970-823a-45f90a9de67c",
+                  "disabled": true
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-01-31T23:59:59.000Z",
+                  "type": "text",
+                  "uuid": "7a271f41-e269-40fb-83e3-56097b8d704e",
+                  "disabled": true
+                },
+                {
+                  "key": "isActive",
+                  "value": "true",
+                  "description": "default true",
+                  "type": "text",
+                  "uuid": "fed40b6b-7231-467e-9d77-8437019bec6b",
+                  "disabled": true
+                },
+                {
+                  "key": "productIds",
+                  "value": "[\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"]",
+                  "type": "text",
+                  "uuid": "c6b6c026-be02-4186-a02e-2eb3e3422e80",
+                  "disabled": true
+                },
+                {
+                  "key": "featured",
+                  "value": "true",
+                  "type": "text",
+                  "uuid": "ce7d99a3-d802-477a-9250-34e65dadd54f",
+                  "disabled": true
+                },
+                {
+                  "key": "order",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "84278cf1-6f0b-4d4f-9ff0-9e90afe465b6",
+                  "disabled": true
+                }
+              ],
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: name, discount, startDate (ISO), endDate (ISO)\nOptional: description, productIds (array), isActive (default true)"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/flash-sales/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flash-sales",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "69725b9e4b07007b65a7eb2f"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "2331"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"91b-HYMGhvcShQkpmkvzOB9ehlc8i0Y\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 17:25:23 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T17:25:39.665Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Flash sale updated successfully\",\n    \"data\": {\n        \"_id\": \"69725b9e4b07007b65a7eb2f\",\n        \"title\": \"Weekend Flash Sale Updated\",\n        \"description\": \"Limited time offer on selected items\",\n        \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769102238/nursery-app/flash-sales/gkb6gppgwon6x8gr82th.jpg\",\n        \"discountType\": \"percentage\",\n        \"discountValue\": 30,\n        \"startDate\": \"2026-01-25T00:00:00.000Z\",\n        \"endDate\": \"2026-01-26T23:59:59.000Z\",\n        \"isActive\": true,\n        \"productIds\": [\n            {\n                \"_id\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"sku\": \"ROSE-RED-001\",\n                \"description\": \"Beautiful red rose plant for your garden\",\n                \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073140/nursery-app/products/b2wch8c8kdiveveyvcla.jpg\",\n                \"images\": [\n                    \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073141/nursery-app/products/ozarhlfiea3f9tpcs0zw.jpg\",\n                    \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769073142/nursery-app/products/kvg7yevkg8mxseg16pea.jpg\"\n                ],\n                \"price\": 299.99,\n                \"discount\": 10,\n                \"quantity\": 200,\n                \"isAvailable\": true,\n                \"isFeatured\": true,\n                \"brand\": \"Garden Pro\",\n                \"categoryId\": \"6971e657884d772cac55fac1\",\n                \"tags\": [\n                    \"rose,flower,outdoor\"\n                ],\n                \"ratingAverage\": 4,\n                \"ratingCount\": 1,\n                \"createdAt\": \"2026-01-22T09:12:23.149Z\",\n                \"updatedAt\": \"2026-01-22T12:57:43.473Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"6970f3d9a4e644714427b3c9\",\n                \"name\": \"text 2\",\n                \"sku\": \"TEX-6087\",\n                \"description\": \"dfghjkl;\",\n                \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1769010137/nursery-app/products/dcb8fyiccdku4ux0znfg.jpg\",\n                \"images\": [],\n                \"price\": 700,\n                \"discount\": 0,\n                \"quantity\": 7,\n                \"isAvailable\": true,\n                \"isFeatured\": false,\n                \"brand\": \"\",\n                \"categoryId\": \"69705784bf9b0106be2286eb\",\n                \"tags\": [\n                    \"dfg\"\n                ],\n                \"ratingAverage\": 5,\n                \"ratingCount\": 1,\n                \"createdAt\": \"2026-01-21T15:42:17.516Z\",\n                \"updatedAt\": \"2026-01-22T12:35:04.866Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"697089436e04221e6a2cd70c\",\n                \"name\": \"new titles\",\n                \"sku\": \"NEW-8803\",\n                \"description\": \"dfghj\",\n                \"image\": \"https://res.cloudinary.com/djpa1spjx/image/upload/v1768982864/nursery-app/products/w8hjzivi0rgamf7t65nc.png\",\n                \"images\": [],\n                \"price\": 200,\n                \"discount\": 0,\n                \"quantity\": 5,\n                \"isAvailable\": true,\n                \"isFeatured\": false,\n                \"brand\": \"\",\n                \"categoryId\": \"696f87843e6403a201a81f48\",\n                \"tags\": [\n                    \"iklo;\"\n                ],\n                \"ratingAverage\": 0,\n                \"ratingCount\": 0,\n                \"createdAt\": \"2026-01-21T08:07:31.344Z\",\n                \"updatedAt\": \"2026-01-21T08:07:44.972Z\",\n                \"__v\": 0\n            }\n        ],\n        \"featured\": true,\n        \"order\": 1,\n        \"createdAt\": \"2026-01-22T17:17:18.413Z\",\n        \"updatedAt\": \"2026-01-22T17:25:23.445Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Flash Sale (Admin)",
+      "id": "5dd9f0c2-2aa9-4bb3-badc-26b9f129f2cc",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/flash-sales/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "flash-sales",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "flash_sale_id"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

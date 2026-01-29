@@ -1,0 +1,542 @@
+{
+  "info": {
+    "_postman_id": "f8907022-77ac-42b9-83b2-47adeea51259",
+    "name": "Authentication API",
+    "description": "User authentication and registration endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Sign Up",
+      "id": "6025417a-ee90-4721-9d5b-045e2847243c",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "Admin",
+              "description": "Required, min 3 chars",
+              "type": "text"
+            },
+            {
+              "key": "emailOrPhone",
+              "value": "01555555555",
+              "description": "Required, valid email or 11-digit phone number",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "12345678",
+              "description": "Required, min 6 chars",
+              "type": "text"
+            },
+            {
+              "key": "profilePicture",
+              "description": "Optional, image file",
+              "type": "file",
+              "src": [],
+              "disabled": true
+            },
+            {
+              "key": "role",
+              "value": "admin",
+              "description": "Optional, enum: ['user', 'admin']",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/sign-up",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "sign-up"
+          ]
+        },
+        "description": "Register a new user. Email verification is no longer required. Users can log in immediately. Role defaults to 'user' if not specified."
+      },
+      "response": [
+        {
+          "id": "1c61a41b-e17e-4dc8-93ac-ab331422d3eb",
+          "name": "Sign Up",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "User 1",
+                  "description": "Required, min 3 chars",
+                  "type": "text"
+                },
+                {
+                  "key": "emailOrPhone",
+                  "value": "user1@gmail.com",
+                  "description": "Required, valid email or 11-digit phone number",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "11111111",
+                  "description": "Required, min 6 chars",
+                  "type": "text"
+                },
+                {
+                  "key": "profilePicture",
+                  "description": "Optional, image file",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
+                  ],
+                  "disabled": true
+                },
+                {
+                  "key": "role",
+                  "value": "admin",
+                  "description": "Optional, enum: ['user', 'admin']",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/sign-up",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "sign-up"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "320"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"140-LGEPiAg4G6xUNfESXY8DymRtvr0\""
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 28 Jan 2026 16:26:38 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-28T16:30:51.897Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Signup completed successfully. You can now log in with your credentials.\",\n    \"data\": {\n        \"name\": \"User 1\",\n        \"emailOrPhone\": \"user1@gmail.com\",\n        \"role\": \"user\",\n        \"status\": \"active\",\n        \"isDeleted\": false,\n        \"_id\": \"697a38be862b49e1ff6fcdfb\",\n        \"createdAt\": \"2026-01-28T16:26:38.725Z\",\n        \"updatedAt\": \"2026-01-28T16:26:38.725Z\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "f4af4deb-f92d-4160-bca1-7b2b7bc143c6",
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    var jsonData = pm.response.json();",
+              "    if (jsonData.data && jsonData.data.accessToken) {",
+              "        pm.collectionVariables.set('token', jsonData.data.accessToken);",
+              "        console.log('Token saved to environment');",
+              "        pm.environment.set('token', jsonData.data.accessToken);",
+              "    }",
+              "}"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "83c3ca09-ea24-45e0-9228-e3ef13d5f717",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "7b71d86c-ed09-46ed-bbe0-e5601d43e8b5",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "// {\n//   \"emailOrPhone\": \"user1@gmail.com\",\n//   \"password\": \"12345678\"\n// }\n\n// admin\n{\n    \"emailOrPhone\": \"01555555555\",\n    \"password\": \"12345678\"\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "Either email or phone is required along with password"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        },
+        "description": "Login with emailOrPhone (email or phone number) and password. Returns access token."
+      },
+      "response": [
+        {
+          "id": "8dd8dc2b-bff4-4e64-b515-aaf5afcf5e1c",
+          "name": "Login",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailOrPhone\": \"user1@gmail.com\",\n  \"password\": \"11111111\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Either email or phone is required along with password"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "777"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"309-d/274Z78f+t7Zfa3+/khj6OtcmY\""
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 28 Jan 2026 16:30:20 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-28T16:30:43.409Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Signin completed successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"697a38be862b49e1ff6fcdfb\",\n            \"name\": \"User 1\",\n            \"emailOrPhone\": \"user1@gmail.com\",\n            \"role\": \"user\",\n            \"status\": \"active\",\n            \"createdAt\": \"2026-01-28T16:26:38.725Z\",\n            \"updatedAt\": \"2026-01-28T16:30:19.357Z\",\n            \"__v\": 0\n        },\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5N2EzOGJlODYyYjQ5ZTFmZjZmY2RmYiIsImVtYWlsT3JQaG9uZSI6InVzZXIxQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzY5NjE3ODE5LCJleHAiOjE3Njk3MDQyMTl9.x-6qMaa8atw96OkRrXOhE-lrVr11grdKYuUB6DGKtjU\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5N2EzOGJlODYyYjQ5ZTFmZjZmY2RmYiIsImVtYWlsT3JQaG9uZSI6InVzZXIxQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzY5NjE3ODE5LCJleHAiOjE3NzAyMjI2MTl9.iWSR9B3JqkdmgHTMIDfLJQiuYiUNgDIyy0kva8mGSDM\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Forgot Password?",
+      "id": "aa0b8c7b-3ed9-442d-bbee-d0ba5ad7bb42",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"emailOrPhone\": \"user1@gmail.com\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/forgot-password",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "forgot-password"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "69d9ed68-5562-499b-b289-f834557c8c8d",
+          "name": "Forgot Password?",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailOrPhone\": \"user1@gmail.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/forgot-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "forgot-password"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "271"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"10f-bkX20QBjZpXTMeGaE+4+HFh1j6g\""
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 28 Jan 2026 16:49:10 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-28T16:49:27.697Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"User found successfully\",\n    \"data\": {\n        \"_id\": \"697a38be862b49e1ff6fcdfb\",\n        \"name\": \"User 1\",\n        \"emailOrPhone\": \"user1@gmail.com\",\n        \"role\": \"user\",\n        \"status\": \"active\",\n        \"isDeleted\": false,\n        \"createdAt\": \"2026-01-28T16:26:38.725Z\",\n        \"updatedAt\": \"2026-01-28T16:30:19.357Z\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Reset Password",
+      "id": "57cdaadd-6027-4507-b4d1-1db75414da69",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"697a38be862b49e1ff6fcdfb\",\n  \"newPassword\": \"12345678\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/reset-password",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "reset-password"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "2eafe6f4-9114-4062-83b7-3ee73041919d",
+          "name": "Reset Password",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"697a38be862b49e1ff6fcdfb\",\n  \"newPassword\": \"12345678\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/reset-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "reset-password"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "68"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"44-kUSwhfxhPM/5wpVY5srytwqbeSk\""
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 28 Jan 2026 16:50:18 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-28T16:50:23.714Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Password reset successfully\",\n    \"data\": null\n}"
+        }
+      ]
+    },
+    {
+      "name": "Change Password",
+      "id": "12da70d5-b67a-4592-9e9c-ccb6297c7d52",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newPassword456\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/change-password",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "change-password"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

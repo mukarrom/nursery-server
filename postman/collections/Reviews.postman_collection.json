@@ -1,0 +1,780 @@
+{
+  "info": {
+    "_postman_id": "35bc2977-649c-481f-814f-c25db59557a0",
+    "name": "Reviews API",
+    "description": "Product review management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get My Reviews",
+      "id": "cf0c9da3-0abe-4d74-8da1-366fbf6daa23",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/reviews/my?page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "reviews",
+            "my"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "uuid": "c082e3ec-1d2c-46ce-8113-aafe7a9d9a83"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "uuid": "0d58eeed-28fa-4e28-b853-ba6e29434c43"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "ed3a9c0e-0a79-465f-8eed-372d4f88c24e",
+          "name": "Get My Reviews",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/my?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "my"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "664"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"298-+5+i/PwJ4xPD6Jn9UFffL78On8A\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 12:38:56 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T12:39:04.640Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Reviews retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"697213eff49b9a93a51c32d7\",\n            \"userId\": \"6971da34ef6d881934c75780\",\n            \"productId\": {\n                \"_id\": \"6970f3d9a4e644714427b3c9\",\n                \"name\": \"text 2\"\n            },\n            \"rating\": 5,\n            \"reviewText\": \"Excellent product! Highly recommended.\",\n            \"isPublished\": true,\n            \"helpfulCount\": 0,\n            \"createdAt\": \"2026-01-22T12:11:27.550Z\",\n            \"updatedAt\": \"2026-01-22T12:35:04.696Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"69720889efec12ecce1dd09c\",\n            \"userId\": \"6971da34ef6d881934c75780\",\n            \"productId\": {\n                \"_id\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\"\n            },\n            \"rating\": 5,\n            \"isPublished\": true,\n            \"helpfulCount\": 0,\n            \"createdAt\": \"2026-01-22T11:22:49.109Z\",\n            \"updatedAt\": \"2026-01-22T11:22:49.109Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Reviews by productId",
+      "id": "bdb59dad-f572-43c9-a138-da071efe7558",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/reviews/product/:productId?page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "reviews",
+            "product",
+            ":productId"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "uuid": "c082e3ec-1d2c-46ce-8113-aafe7a9d9a83"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "uuid": "0d58eeed-28fa-4e28-b853-ba6e29434c43"
+            }
+          ],
+          "variable": [
+            {
+              "key": "productId",
+              "value": "6971e9f7065be8b54b7ff90e"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "25f2fb59-427c-42cd-85b0-b0e940217df4",
+          "name": "Get Reviews by productId",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/product/:productId?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "product",
+                ":productId"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "uuid": "c082e3ec-1d2c-46ce-8113-aafe7a9d9a83"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "uuid": "0d58eeed-28fa-4e28-b853-ba6e29434c43"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "productId",
+                  "value": "6971e9f7065be8b54b7ff90e"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "311"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"137-F40Rrs2kwXT6WWHsyl4RC9+OIQk\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 12:37:32 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T12:37:33.886Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Reviews retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"69720889efec12ecce1dd09c\",\n            \"userId\": \"6971da34ef6d881934c75780\",\n            \"productId\": \"6971e9f7065be8b54b7ff90e\",\n            \"rating\": 5,\n            \"isPublished\": true,\n            \"helpfulCount\": 0,\n            \"createdAt\": \"2026-01-22T11:22:49.109Z\",\n            \"updatedAt\": \"2026-01-22T11:22:49.109Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Review",
+      "id": "62d1f2f4-e092-477e-9077-81a8395c9cb1",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"productId\": \"6970f3d9a4e644714427b3c9\",\n  \"rating\": 5,\n  \"reviewText\": \"Excellent product! Highly recommended.\"\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "Required: productId, rating (1-5)\nOptional: comment"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/reviews",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "reviews"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "c94402c0-f24f-4ddb-8390-f4fc6b61c762",
+          "name": "Create Review",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"6971e9f7065be8b54b7ff90e\",\n  \"rating\": 5,\n  \"comment\": \"Excellent product! Highly recommended.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: productId, rating (1-5)\nOptional: comment"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "307"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"133-p0OT7HLHjPbwzKSkJc+mqx1MFbw\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 11:22:49 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T11:22:52.616Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Review created successfully\",\n    \"data\": {\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productId\": \"6971e9f7065be8b54b7ff90e\",\n        \"rating\": 5,\n        \"isPublished\": false,\n        \"helpfulCount\": 0,\n        \"_id\": \"69720889efec12ecce1dd09c\",\n        \"createdAt\": \"2026-01-22T11:22:49.109Z\",\n        \"updatedAt\": \"2026-01-22T11:22:49.109Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "publish",
+      "id": "67650b67-f176-4a67-9678-61f8567ef113",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/reviews/:reviewId/publish",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "reviews",
+            ":reviewId",
+            "publish"
+          ],
+          "variable": [
+            {
+              "key": "reviewId",
+              "value": "697213eff49b9a93a51c32d7"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "b96dfbc1-fd09-464d-af75-f5e8a2f13b25",
+          "name": "publish",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/:reviewId/publish",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                ":reviewId",
+                "publish"
+              ],
+              "variable": [
+                {
+                  "key": "reviewId",
+                  "value": "697213eff49b9a93a51c32d7"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "362"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"16a-skTwJ+Xa6B+X2A7CKY6HvZBineg\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 12:35:04 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T12:35:22.701Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Review published successfully\",\n    \"data\": {\n        \"_id\": \"697213eff49b9a93a51c32d7\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productId\": \"6970f3d9a4e644714427b3c9\",\n        \"rating\": 5,\n        \"reviewText\": \"Excellent product! Highly recommended.\",\n        \"isPublished\": true,\n        \"helpfulCount\": 0,\n        \"createdAt\": \"2026-01-22T12:11:27.550Z\",\n        \"updatedAt\": \"2026-01-22T12:35:04.696Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Unpublish",
+      "id": "5bea74d0-81c0-442e-b84b-a97bb8b2fdb9",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/reviews/:reviewId/unpublish",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "reviews",
+            ":reviewId",
+            "unpublish"
+          ],
+          "variable": [
+            {
+              "key": "reviewId",
+              "value": "697213eff49b9a93a51c32d7"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "738ab60e-53ba-4880-b33f-54282e02bc6c",
+          "name": "publish",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/:reviewId/publish",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                ":reviewId",
+                "publish"
+              ],
+              "variable": [
+                {
+                  "key": "reviewId",
+                  "value": "697213eff49b9a93a51c32d7"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "362"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"16a-skTwJ+Xa6B+X2A7CKY6HvZBineg\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 12:35:04 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T12:35:22.701Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Review published successfully\",\n    \"data\": {\n        \"_id\": \"697213eff49b9a93a51c32d7\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productId\": \"6970f3d9a4e644714427b3c9\",\n        \"rating\": 5,\n        \"reviewText\": \"Excellent product! Highly recommended.\",\n        \"isPublished\": true,\n        \"helpfulCount\": 0,\n        \"createdAt\": \"2026-01-22T12:11:27.550Z\",\n        \"updatedAt\": \"2026-01-22T12:35:04.696Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Review",
+      "id": "b7b20489-a60c-407d-be2c-3960555dda35",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rating\": 4,\n  \"reviewText\": \"Good product but delivery was slow\"\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "All fields optional"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/reviews/update/:reviewId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "reviews",
+            "update",
+            ":reviewId"
+          ],
+          "variable": [
+            {
+              "key": "reviewId",
+              "value": "69720889efec12ecce1dd09c"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "51988bf5-4fd8-46f5-9b31-352c8ffc1ecb",
+          "name": "Update Review",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 4,\n  \"reviewText\": \"Good product but delivery was slow\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields optional"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reviews/update/:reviewId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "update",
+                ":reviewId"
+              ],
+              "variable": [
+                {
+                  "key": "reviewId",
+                  "value": "69720889efec12ecce1dd09c"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "356"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"164-NFEXxF9WTlK6VVJJTExLqLMpBKI\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 12:57:43 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T12:57:52.179Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Review updated successfully\",\n    \"data\": {\n        \"_id\": \"69720889efec12ecce1dd09c\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productId\": \"6971e9f7065be8b54b7ff90e\",\n        \"rating\": 4,\n        \"isPublished\": true,\n        \"helpfulCount\": 0,\n        \"createdAt\": \"2026-01-22T11:22:49.109Z\",\n        \"updatedAt\": \"2026-01-22T12:57:43.254Z\",\n        \"__v\": 0,\n        \"reviewText\": \"Good product but delivery was slow\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "mark helpful",
+      "id": "5b0e61b2-dc9e-4d42-88e8-e03850560947",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/reviews/:reviewId/helpful",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "reviews",
+            ":reviewId",
+            "helpful"
+          ],
+          "variable": [
+            {
+              "key": "reviewId",
+              "value": "697213eff49b9a93a51c32d7"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "092884b5-8b72-4304-825c-50e0e78fed56",
+          "name": "add helpful",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/:reviewId/helpful",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                ":reviewId",
+                "helpful"
+              ],
+              "variable": [
+                {
+                  "key": "reviewId",
+                  "value": "697213eff49b9a93a51c32d7"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "357"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"165-r6t47wvI+7yX3BMjkslwSp7jj6g\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 12:40:49 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T12:40:52.263Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Review marked as helpful\",\n    \"data\": {\n        \"_id\": \"697213eff49b9a93a51c32d7\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"productId\": \"6970f3d9a4e644714427b3c9\",\n        \"rating\": 5,\n        \"reviewText\": \"Excellent product! Highly recommended.\",\n        \"isPublished\": true,\n        \"helpfulCount\": 1,\n        \"createdAt\": \"2026-01-22T12:11:27.550Z\",\n        \"updatedAt\": \"2026-01-22T12:40:49.527Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Review",
+      "id": "6cf164eb-c229-4b96-80b6-5fed50574eb1",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/reviews/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "reviews",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "review_id"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

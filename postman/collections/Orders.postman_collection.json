@@ -1,0 +1,818 @@
+{
+  "info": {
+    "_postman_id": "c02b5f2e-3d91-46cd-b34d-77de055632ca",
+    "name": "Orders API",
+    "description": "Order management and checkout",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Order",
+      "id": "d39c88e1-f792-42ad-9903-ba82558dcfbb",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"shippingAddressId\": \"697a0f69dadc88d15fd3a2f4\",\n  \"selectedProductIds\": [\"6979c46e5a2478d429b244d5\"],\n//   \"paymentMethod\": \"cod\",\n  \"paymentMethod\": \"bkash\",\n  \"transactionId\": \"TXN123456789\",\n//   \"discountCode\": \"SAVE10\",\n  \"notes\": \"Please deliver between 9 AM - 5 PM\"\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "Required: shippingAddressId, selectedProductIds (array, min 1)\nOptional: billingAddressId, paymentMethod, transactionId (required for non-cash payments), discountCode, notes\nPayment Methods: cash, cod, cash on delivery, cash_on_delivery (case-insensitive), or any other payment method\nNote: transactionId is mandatory if paymentMethod is not cash on delivery"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/orders",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        },
+        "description": "Create order with selected products from cart. Unselected products remain in cart."
+      },
+      "response": [
+        {
+          "id": "d3c7371f-de35-4726-9aa7-d8311c68d0ac",
+          "name": "Create Order",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shippingAddressId\": \"6971fdb500e98364ca3a36be\",\n  \"selectedProductIds\": [\"6971e9f7065be8b54b7ff90e\"],\n//   \"billingAddressId\": \"billing_address_id\",\n  \"paymentMethod\": \"cash\",\n//   \"transactionId\": \"TXN123456789\",\n//   \"discountCode\": \"SAVE10\",\n  \"notes\": \"Please deliver between 9 AM - 5 PM\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: shippingAddressId, selectedProductIds (array, min 1)\nOptional: billingAddressId, paymentMethod, transactionId (required for non-cash payments), discountCode, notes\nPayment Methods: cash, cod, cash on delivery, cash_on_delivery (case-insensitive), or any other payment method\nNote: transactionId is mandatory if paymentMethod is not cash on delivery"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "797"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"31d-Jbkjhs8bl98S1nr+LjCQ9IAqw2Y\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 10:40:31 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T10:40:49.509Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Order created successfully\",\n    \"data\": {\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"price\": 299.99,\n                \"quantity\": 5,\n                \"total\": 1499.95,\n                \"_id\": \"6971fe9fe3630b4aa40013a0\"\n            }\n        ],\n        \"shippingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"billingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"orderStatus\": \"pending\",\n        \"paymentStatus\": \"pending\",\n        \"paymentMethod\": \"cash\",\n        \"subtotal\": 1499.95,\n        \"tax\": 74.9975,\n        \"shippingCost\": 100,\n        \"total\": 1674.9475,\n        \"discountAmount\": 0,\n        \"_id\": \"6971fe9fe3630b4aa400139f\",\n        \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n        \"updatedAt\": \"2026-01-22T10:40:31.353Z\",\n        \"__v\": 0\n    }\n}"
+        },
+        {
+          "id": "non-cash-payment-example",
+          "name": "Create Order - Non-Cash Payment",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shippingAddressId\": \"6971fdb500e98364ca3a36be\",\n  \"selectedProductIds\": [\"6971e9f7065be8b54b7ff90e\"],\n  \"paymentMethod\": \"bkash\",\n  \"transactionId\": \"BKH123456789\",\n  \"notes\": \"Paid via bKash\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Order created successfully\",\n    \"data\": {\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"price\": 299.99,\n                \"quantity\": 5,\n                \"total\": 1499.95\n            }\n        ],\n        \"shippingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"orderStatus\": \"pending\",\n        \"paymentStatus\": \"completed\",\n        \"paymentMethod\": \"bkash\",\n        \"transactionId\": \"BKH123456789\",\n        \"subtotal\": 1499.95,\n        \"tax\": 74.9975,\n        \"shippingCost\": 100,\n        \"total\": 1674.9475,\n        \"discountAmount\": 0,\n        \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n        \"updatedAt\": \"2026-01-22T10:40:31.353Z\"\n    }\n}"
+        },
+        {
+          "id": "missing-transaction-id-error",
+          "name": "Error - Missing Transaction ID",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shippingAddressId\": \"6971fdb500e98364ca3a36be\",\n  \"selectedProductIds\": [\"6971e9f7065be8b54b7ff90e\"],\n  \"paymentMethod\": \"bkash\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": false,\n    \"message\": \"Transaction ID is required for non-cash on delivery payments\",\n    \"errorSources\": [\n        {\n            \"path\": \"transactionId\",\n            \"message\": \"Transaction ID is required for non-cash on delivery payments\"\n        }\n    ],\n    \"stack\": \"...\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get My Orders",
+      "id": "ce973bc5-924a-4951-8a7b-1a5e922310cb",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders/my?page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders",
+            "my"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "uuid": "b16ddd58-3035-4b73-96e5-dad6823a0e0d"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "uuid": "09e8efdf-19aa-4024-ad36-c5d81ecc74be"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "d451076f-bcd7-4ac4-889b-0aae07937338",
+          "name": "Get My Orders",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/my-orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "my-orders"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "uuid": "b16ddd58-3035-4b73-96e5-dad6823a0e0d",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "uuid": "09e8efdf-19aa-4024-ad36-c5d81ecc74be",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "884"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"374-hPPxpXxsWP49RFZxXvokAxsUI44\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 10:52:31 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T10:52:50.949Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Orders retrieved successfully\",\n    \"data\": {\n        \"orders\": [\n            {\n                \"shippingAddress\": {\n                    \"street\": \"123 Main Street, Apt 4B\",\n                    \"city\": \"Dhaka\",\n                    \"postalCode\": \"1212\",\n                    \"country\": \"Bangladesh\"\n                },\n                \"billingAddress\": {\n                    \"street\": \"123 Main Street, Apt 4B\",\n                    \"city\": \"Dhaka\",\n                    \"postalCode\": \"1212\",\n                    \"country\": \"Bangladesh\"\n                },\n                \"_id\": \"6971fe9fe3630b4aa400139f\",\n                \"orderId\": \"ORD-1769078431339-4a02aulm\",\n                \"userId\": \"6971da34ef6d881934c75780\",\n                \"items\": [\n                    {\n                        \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                        \"name\": \"Red Rose Plant\",\n                        \"price\": 299.99,\n                        \"quantity\": 5,\n                        \"total\": 1499.95,\n                        \"_id\": \"6971fe9fe3630b4aa40013a0\"\n                    }\n                ],\n                \"orderStatus\": \"pending\",\n                \"paymentStatus\": \"pending\",\n                \"paymentMethod\": \"cash\",\n                \"subtotal\": 1499.95,\n                \"tax\": 74.9975,\n                \"shippingCost\": 100,\n                \"total\": 1674.9475,\n                \"discountAmount\": 0,\n                \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n                \"updatedAt\": \"2026-01-22T10:40:31.353Z\"\n            }\n        ],\n        \"meta\": {\n            \"totalDocuments\": 1,\n            \"totalPages\": 1,\n            \"currentPage\": 1,\n            \"limitPerPage\": 1000\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Order by ID",
+      "id": "4ab35a04-9906-4f73-9463-e0672c122f5f",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders/:orderId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders",
+            ":orderId"
+          ],
+          "variable": [
+            {
+              "key": "orderId",
+              "value": "ORD-1769078431339-4a02aulm"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "ded7103b-dc14-4ff4-b3c1-4167b3ef90ac",
+          "name": "Get Order by ID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/:orderId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "variable": [
+                {
+                  "key": "orderId",
+                  "value": "ORD-1769078431339-4a02aulm"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "799"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"31f-OPlcnD3KDyAQtwP+Zap1hP3hcaE\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 10:55:35 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T10:55:41.926Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Order retrieved successfully\",\n    \"data\": {\n        \"shippingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"billingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"_id\": \"6971fe9fe3630b4aa400139f\",\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"price\": 299.99,\n                \"quantity\": 5,\n                \"total\": 1499.95,\n                \"_id\": \"6971fe9fe3630b4aa40013a0\"\n            }\n        ],\n        \"orderStatus\": \"pending\",\n        \"paymentStatus\": \"pending\",\n        \"paymentMethod\": \"cash\",\n        \"subtotal\": 1499.95,\n        \"tax\": 74.9975,\n        \"shippingCost\": 100,\n        \"total\": 1674.9475,\n        \"discountAmount\": 0,\n        \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n        \"updatedAt\": \"2026-01-22T10:40:31.353Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get All Orders (Admin)",
+      "id": "76c22594-3460-4686-8ccc-d717b3312530",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders/all?page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders",
+            "all"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "uuid": "b5565f34-635f-4d7c-9ba5-e2d757acdd26"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "uuid": "5bd80a0c-dfcd-45e8-b0c0-aced24895538"
+            },
+            {
+              "key": "orderStatus",
+              "value": "pending",
+              "description": "Filter by status: pending, processing, shipped, delivered, cancelled",
+              "uuid": "0c5990fc-53e1-46ba-8f2b-e2a5976c49d5",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "8b0cb8ea-b94b-4909-b288-9d674ec42577",
+          "name": "Get All Orders (Admin)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/all?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "all"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "uuid": "b5565f34-635f-4d7c-9ba5-e2d757acdd26"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "uuid": "5bd80a0c-dfcd-45e8-b0c0-aced24895538"
+                },
+                {
+                  "key": "orderStatus",
+                  "value": "pending",
+                  "description": "Filter by status: pending, processing, shipped, delivered, cancelled",
+                  "uuid": "0c5990fc-53e1-46ba-8f2b-e2a5976c49d5",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "2257"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"8d1-GJd7XJemZ4dgY4iFe9Q7HCbb8wU\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 10:48:38 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T10:48:45.187Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Orders retrieved successfully\",\n    \"data\": {\n        \"orders\": [\n            {\n                \"shippingAddress\": {\n                    \"street\": \"123 Main Street, Apt 4B\",\n                    \"city\": \"Dhaka\",\n                    \"postalCode\": \"1212\",\n                    \"country\": \"Bangladesh\"\n                },\n                \"billingAddress\": {\n                    \"street\": \"123 Main Street, Apt 4B\",\n                    \"city\": \"Dhaka\",\n                    \"postalCode\": \"1212\",\n                    \"country\": \"Bangladesh\"\n                },\n                \"_id\": \"6971fe9fe3630b4aa400139f\",\n                \"orderId\": \"ORD-1769078431339-4a02aulm\",\n                \"userId\": \"6971da34ef6d881934c75780\",\n                \"items\": [\n                    {\n                        \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                        \"name\": \"Red Rose Plant\",\n                        \"price\": 299.99,\n                        \"quantity\": 5,\n                        \"total\": 1499.95,\n                        \"_id\": \"6971fe9fe3630b4aa40013a0\"\n                    }\n                ],\n                \"orderStatus\": \"pending\",\n                \"paymentStatus\": \"pending\",\n                \"paymentMethod\": \"cash\",\n                \"subtotal\": 1499.95,\n                \"tax\": 74.9975,\n                \"shippingCost\": 100,\n                \"total\": 1674.9475,\n                \"discountAmount\": 0,\n                \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n                \"updatedAt\": \"2026-01-22T10:40:31.353Z\"\n            },\n            {\n                \"shippingAddress\": {\n                    \"street\": \"123 Main Street\",\n                    \"city\": \"New York\",\n                    \"postalCode\": \"10001\",\n                    \"country\": \"USA\"\n                },\n                \"billingAddress\": {\n                    \"street\": \"123 Main Street\",\n                    \"city\": \"New York\",\n                    \"postalCode\": \"10001\",\n                    \"country\": \"USA\"\n                },\n                \"_id\": \"6970cfcda4facc491f6d3622\",\n                \"orderId\": \"ORD-1769000909468-38a6tsko\",\n                \"userId\": \"696f963ddde1caf722889d75\",\n                \"items\": [\n                    {\n                        \"productId\": \"696f09a3780f29a590c11184\",\n                        \"name\": \"Apple\",\n                        \"price\": 1.99,\n                        \"quantity\": 4,\n                        \"total\": 7.96,\n                        \"_id\": \"6970cfcda4facc491f6d3623\"\n                    }\n                ],\n                \"orderStatus\": \"pending\",\n                \"paymentStatus\": \"pending\",\n                \"paymentMethod\": \"cash\",\n                \"subtotal\": 7.96,\n                \"tax\": 0.398,\n                \"shippingCost\": 100,\n                \"total\": 108.358,\n                \"discountAmount\": 0,\n                \"createdAt\": \"2026-01-21T13:08:29.478Z\",\n                \"updatedAt\": \"2026-01-21T13:08:29.478Z\"\n            },\n            {\n                \"shippingAddress\": {\n                    \"street\": \"123 Main Street\",\n                    \"city\": \"New York\",\n                    \"postalCode\": \"10001\",\n                    \"country\": \"USA\"\n                },\n                \"billingAddress\": {\n                    \"street\": \"123 Main Street\",\n                    \"city\": \"New York\",\n                    \"postalCode\": \"10001\",\n                    \"country\": \"USA\"\n                },\n                \"_id\": \"697096d7158f71f05c39c648\",\n                \"orderId\": \"ORD-1768986327814-funzn3sf\",\n                \"userId\": \"696eff120e62cbc1dcc083dd\",\n                \"items\": [\n                    {\n                        \"productId\": \"696f09a3780f29a590c11184\",\n                        \"name\": \"Apple\",\n                        \"price\": 1.99,\n                        \"quantity\": 2,\n                        \"total\": 3.98,\n                        \"_id\": \"697096d7158f71f05c39c649\"\n                    }\n                ],\n                \"orderStatus\": \"processing\",\n                \"paymentStatus\": \"pending\",\n                \"paymentMethod\": \"cash\",\n                \"subtotal\": 3.98,\n                \"tax\": 0.199,\n                \"shippingCost\": 100,\n                \"total\": 104.179,\n                \"discountAmount\": 0,\n                \"createdAt\": \"2026-01-21T09:05:27.820Z\",\n                \"updatedAt\": \"2026-01-22T03:13:07.357Z\"\n            }\n        ],\n        \"meta\": {\n            \"totalDocuments\": 3,\n            \"totalPages\": 1,\n            \"currentPage\": \"1\",\n            \"limitPerPage\": \"10\"\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Order Status (Admin)",
+      "id": "5ccd8122-9dd5-44db-bbd0-33fbe51f87eb",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"shipped\"\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "status: enum ['pending', 'processing', 'shipped', 'delivered', 'cancelled']"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/orders/:orderId/status",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders",
+            ":orderId",
+            "status"
+          ],
+          "variable": [
+            {
+              "key": "orderId",
+              "value": "ORD-1769078431339-4a02aulm"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "bd722446-e7d3-49f7-8569-c1b265f61e13",
+          "name": "Update Order Status (Admin)",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"shipped\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "status: enum ['pending', 'processing', 'shipped', 'delivered', 'cancelled']"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders/:orderId/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                ":orderId",
+                "status"
+              ],
+              "variable": [
+                {
+                  "key": "orderId",
+                  "value": "ORD-1769078431339-4a02aulm"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "804"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"324-/OmMsNK9bvHQTuLo/HwJwYEIJpM\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 11:06:41 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T11:07:01.958Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Order status updated successfully\",\n    \"data\": {\n        \"shippingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"billingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"_id\": \"6971fe9fe3630b4aa400139f\",\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"price\": 299.99,\n                \"quantity\": 5,\n                \"total\": 1499.95,\n                \"_id\": \"6971fe9fe3630b4aa40013a0\"\n            }\n        ],\n        \"orderStatus\": \"shipped\",\n        \"paymentStatus\": \"pending\",\n        \"paymentMethod\": \"cash\",\n        \"subtotal\": 1499.95,\n        \"tax\": 74.9975,\n        \"shippingCost\": 100,\n        \"total\": 1674.9475,\n        \"discountAmount\": 0,\n        \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n        \"updatedAt\": \"2026-01-22T11:06:41.258Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Cancel Order (User)",
+      "id": "cancel-order-user",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/orders/:orderId/cancel",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "orders",
+            ":orderId",
+            "cancel"
+          ],
+          "variable": [
+            {
+              "key": "orderId",
+              "value": "ORD-1769607044316-ldjfcfx2",
+              "description": "Order ID to cancel"
+            }
+          ]
+        },
+        "description": "Cancel order within 6 hours of creation. Only the user who created the order can cancel it."
+      },
+      "response": [
+        {
+          "id": "cancel-order-success",
+          "name": "Success - Order Cancelled",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/:orderId/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                ":orderId",
+                "cancel"
+              ],
+              "variable": [
+                {
+                  "key": "orderId",
+                  "value": "ORD-1769078431339-4a02aulm"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": true,\n    \"message\": \"Order cancelled successfully\",\n    \"data\": {\n        \"shippingAddress\": {\n            \"street\": \"123 Main Street, Apt 4B\",\n            \"city\": \"Dhaka\",\n            \"postalCode\": \"1212\",\n            \"country\": \"Bangladesh\"\n        },\n        \"_id\": \"6971fe9fe3630b4aa400139f\",\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"items\": [\n            {\n                \"productId\": \"6971e9f7065be8b54b7ff90e\",\n                \"name\": \"Red Rose Plant\",\n                \"price\": 299.99,\n                \"quantity\": 5,\n                \"total\": 1499.95\n            }\n        ],\n        \"orderStatus\": \"cancelled\",\n        \"paymentStatus\": \"pending\",\n        \"paymentMethod\": \"cash\",\n        \"subtotal\": 1499.95,\n        \"tax\": 74.9975,\n        \"shippingCost\": 100,\n        \"total\": 1674.9475,\n        \"discountAmount\": 0,\n        \"createdAt\": \"2026-01-22T10:40:31.353Z\",\n        \"updatedAt\": \"2026-01-22T11:30:15.123Z\"\n    }\n}"
+        },
+        {
+          "id": "cancel-order-time-limit",
+          "name": "Error - Time Limit Exceeded",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/:orderId/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                ":orderId",
+                "cancel"
+              ],
+              "variable": [
+                {
+                  "key": "orderId",
+                  "value": "ORD-OLD-ORDER-ID"
+                }
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": false,\n    \"message\": \"Order can only be cancelled within 6 hours of creation\",\n    \"errorSources\": [],\n    \"stack\": \"...\"\n}"
+        },
+        {
+          "id": "cancel-order-already-cancelled",
+          "name": "Error - Already Cancelled",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/:orderId/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                ":orderId",
+                "cancel"
+              ],
+              "variable": [
+                {
+                  "key": "orderId",
+                  "value": "ORD-CANCELLED-ORDER"
+                }
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": false,\n    \"message\": \"Order is already cancelled\",\n    \"errorSources\": [],\n    \"stack\": \"...\"\n}"
+        }
+      ]
+    }
+  ]
+}

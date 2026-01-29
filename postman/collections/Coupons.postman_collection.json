@@ -1,0 +1,566 @@
+{
+  "info": {
+    "_postman_id": "f6f7ec8c-209d-4175-93c9-c21842b774ce",
+    "name": "Coupons API",
+    "description": "Discount coupon management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Coupons (Admin)",
+      "id": "a6409c70-10db-480d-a8a4-1e1fd5223d6b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/coupons?page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "coupons"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "uuid": "c5e238e5-3768-4457-91a4-cccb5198bfc4"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "uuid": "467b4bbc-2358-422d-9eed-600e679d2588"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "b504497e-deb7-4499-b26c-844afdfbe24c",
+          "name": "Get All Coupons (Admin)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/coupons?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coupons"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1166"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"48e-dI+Ae43kLpW1bUETrVaWSgA/I5g\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 11:09:53 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T11:10:00.549Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Coupons retrieved successfully\",\n    \"meta\": {\n        \"totalDocuments\": 3,\n        \"totalPages\": 1,\n        \"currentPage\": \"1\",\n        \"limitPerPage\": \"10\"\n    },\n    \"data\": [\n        {\n            \"_id\": \"6971edc3e4fa9c59410f8ddd\",\n            \"code\": \"SAVE2010\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 20,\n            \"validFrom\": \"2026-01-01T00:00:00.000Z\",\n            \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n            \"currentUses\": 0,\n            \"isActive\": true,\n            \"createdAt\": \"2026-01-22T09:28:35.049Z\",\n            \"updatedAt\": \"2026-01-22T09:28:35.049Z\"\n        },\n        {\n            \"_id\": \"6970d419949656d26f552f2f\",\n            \"code\": \"SAVE2026\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 20,\n            \"validFrom\": \"2024-01-21T00:00:00.000Z\",\n            \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n            \"maxUses\": 100,\n            \"currentUses\": 0,\n            \"minOrderAmount\": 5000,\n            \"isActive\": true,\n            \"description\": \"20% off on all products\",\n            \"createdAt\": \"2026-01-21T13:26:49.626Z\",\n            \"updatedAt\": \"2026-01-21T13:26:49.626Z\"\n        },\n        {\n            \"_id\": \"6970918d631f39728423209a\",\n            \"code\": \"SAVE20\",\n            \"discountType\": \"percentage\",\n            \"discountValue\": 20,\n            \"validFrom\": \"2024-01-20T00:00:00.000Z\",\n            \"validUntil\": \"2024-12-31T23:59:59.000Z\",\n            \"maxUses\": 100,\n            \"currentUses\": 0,\n            \"minOrderAmount\": 5000,\n            \"isActive\": true,\n            \"description\": \"20% off on all products\",\n            \"createdAt\": \"2026-01-21T08:42:53.719Z\",\n            \"updatedAt\": \"2026-01-21T08:42:53.719Z\"\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Coupon (Admin)",
+      "id": "fb9cc266-a5c0-42d7-8d95-f2704e598c13",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"code\": \"EID2026\",\n  \"discountType\": \"fixed\", // \"percentage\" | \"fixed\"\n  \"discountValue\": 20,\n  \"validFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n  \"maxUses\": 100,\n  \"minOrderAmount\": 500,\n  \"isActive\": true,\n  \"description\": \"Save 20% on all orders above 500 BDT\"\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "Required: code, discountType (enum: ['percentage', 'fixed']), discountValue, validFrom (ISO datetime), validUntil (ISO datetime)\nOptional: maxUses, minOrderAmount, isActive (default true), description"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/coupons",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "coupons"
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "cc6b909f-ccbc-4ea1-aff5-a940b08c5a68",
+          "name": "Create Coupon (Admin)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"EID2026\",\n  \"discountType\": \"fixed\", // \"percentage\" | \"fixed\"\n  \"discountValue\": 20,\n  \"validFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n  \"maxUses\": 100,\n  \"minOrderAmount\": 500,\n  \"isActive\": true,\n  \"description\": \"Save 20% on all orders above 500 BDT\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: code, discountType (enum: ['percentage', 'fixed']), discountValue, validFrom (ISO datetime), validUntil (ISO datetime)\nOptional: maxUses, minOrderAmount, isActive (default true), description"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/coupons",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coupons"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "442"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1ba-K7ANwc6GaxjgtO8WTjK96exKJgA\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 11:12:16 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T11:12:21.377Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Coupon created successfully\",\n    \"data\": {\n        \"code\": \"EID2026\",\n        \"discountType\": \"fixed\",\n        \"discountValue\": 20,\n        \"validFrom\": \"2026-01-01T00:00:00.000Z\",\n        \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n        \"maxUses\": 100,\n        \"currentUses\": 0,\n        \"minOrderAmount\": 500,\n        \"isActive\": true,\n        \"description\": \"Save 20% on all orders above 500 BDT\",\n        \"_id\": \"6972060fefec12ecce1dd08b\",\n        \"createdAt\": \"2026-01-22T11:12:15.989Z\",\n        \"updatedAt\": \"2026-01-22T11:12:15.989Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Coupon (Admin)",
+      "id": "3744d009-42d8-41af-a039-eef8dac9fd71",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"isActive\": false,\n  \"maxUses\": 50\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "All fields optional"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/coupons/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "coupons",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6970d419949656d26f552f2f"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "08bd0d67-6922-431e-8265-df9c86f0bed4",
+          "name": "Update Coupon (Admin)",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isActive\": false,\n  \"maxUses\": 50\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields optional"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/coupons/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coupons",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6970d419949656d26f552f2f"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "436"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1b4-Ox1ujnEwZ9zNkCzQKqQ2Ob/TDkE\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 11:21:13 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T11:21:17.022Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Coupon updated successfully\",\n    \"data\": {\n        \"_id\": \"6970d419949656d26f552f2f\",\n        \"code\": \"SAVE2026\",\n        \"discountType\": \"percentage\",\n        \"discountValue\": 20,\n        \"validFrom\": \"2024-01-21T00:00:00.000Z\",\n        \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n        \"maxUses\": 50,\n        \"currentUses\": 0,\n        \"minOrderAmount\": 5000,\n        \"isActive\": false,\n        \"description\": \"20% off on all products\",\n        \"createdAt\": \"2026-01-21T13:26:49.626Z\",\n        \"updatedAt\": \"2026-01-22T11:21:13.390Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Coupon (Admin)",
+      "id": "412fe4fc-d14d-4d58-b6c9-b09f4455a01d",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/coupons/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "coupons",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6970918d631f39728423209a"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "4ea28ffc-79f2-48d2-805d-ed1588393b6f",
+          "name": "Delete Coupon (Admin)",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/coupons/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coupons",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6970918d631f39728423209a"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "434"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1b2-BhAtu4S1CDN3aZSdKFOa7UHD/b0\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 11:19:29 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T11:19:33.282Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Coupon deleted successfully\",\n    \"data\": {\n        \"_id\": \"6970918d631f39728423209a\",\n        \"code\": \"SAVE20\",\n        \"discountType\": \"percentage\",\n        \"discountValue\": 20,\n        \"validFrom\": \"2024-01-20T00:00:00.000Z\",\n        \"validUntil\": \"2024-12-31T23:59:59.000Z\",\n        \"maxUses\": 100,\n        \"currentUses\": 0,\n        \"minOrderAmount\": 5000,\n        \"isActive\": true,\n        \"description\": \"20% off on all products\",\n        \"createdAt\": \"2026-01-21T08:42:53.719Z\",\n        \"updatedAt\": \"2026-01-21T08:42:53.719Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Apply Coupon",
+      "id": "569f3693-b9a5-4cfb-8dbf-534fd6d7c970",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"code\": \"EID2026\",\n  \"orderTotal\": 1000\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/coupons/apply",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "coupons",
+            "apply"
+          ]
+        },
+        "description": "Validate and calculate discount for a coupon code"
+      },
+      "response": [
+        {
+          "id": "7b33bb76-4f52-40db-8c5d-bd1402f70378",
+          "name": "Apply Coupon",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"EID2026\",\n  \"orderTotal\": 1000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/coupons/apply",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "coupons",
+                "apply"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "442"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1ba-XVz2+6BvH4piu/5gmKoBLS3Whn0\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 11:13:06 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T11:13:40.102Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Coupon applied successfully\",\n    \"data\": {\n        \"_id\": \"6972060fefec12ecce1dd08b\",\n        \"code\": \"EID2026\",\n        \"discountType\": \"fixed\",\n        \"discountValue\": 20,\n        \"validFrom\": \"2026-01-01T00:00:00.000Z\",\n        \"validUntil\": \"2026-12-31T23:59:59.000Z\",\n        \"maxUses\": 100,\n        \"currentUses\": 1,\n        \"minOrderAmount\": 500,\n        \"isActive\": true,\n        \"description\": \"Save 20% on all orders above 500 BDT\",\n        \"createdAt\": \"2026-01-22T11:12:15.989Z\",\n        \"updatedAt\": \"2026-01-22T11:13:06.055Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    }
+  ]
+}

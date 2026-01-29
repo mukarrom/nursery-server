@@ -1,0 +1,490 @@
+{
+  "info": {
+    "_postman_id": "4f5acfad-a6fa-4b52-91a4-19e41d826d55",
+    "name": "Transactions API",
+    "description": "Payment transaction management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Transaction (User)",
+      "id": "1737cad9-c8d9-47c2-9816-5df98c9a2967",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"orderId\": \"ORD-1769078431339-4a02aulm\",\n  \"paymentMethodId\": \"6972647289a956355769f88c\",\n  \"userProvidedTransactionId\": \"TXN123456789\"\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "All fields required. Submit after manual payment."
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transactions",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transactions"
+          ]
+        },
+        "description": "User submits transaction after completing manual payment"
+      },
+      "response": [
+        {
+          "id": "9d9f846b-a164-43a7-86ac-827a5312bc54",
+          "name": "Create Transaction (User)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"ORD-1769078431339-4a02aulm\",\n  \"paymentMethodId\": \"6972647289a956355769f88c\",\n  \"userProvidedTransactionId\": \"TXN123456789\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "All fields required. Submit after manual payment."
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "476"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1dc-TaxM6I8d4LpTEXMCDGGviNoFL+4\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 18:10:28 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T18:11:13.977Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Transaction created successfully. Waiting for admin verification.\",\n    \"data\": {\n        \"transactionId\": \"TXN-1769105428336-2QYTL\",\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"paymentMethodId\": \"6972647289a956355769f88c\",\n        \"amount\": 1674.9475,\n        \"transactionStatus\": \"pending\",\n        \"userProvidedTransactionId\": \"TXN123456789\",\n        \"_id\": \"697268145290d19b13891466\",\n        \"createdAt\": \"2026-01-22T18:10:28.336Z\",\n        \"updatedAt\": \"2026-01-22T18:10:28.336Z\",\n        \"__v\": 0\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get My Transactions",
+      "id": "4f2be2b5-1e68-4e94-9e62-d363b75fd458",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/transactions/history/my?page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transactions",
+            "history",
+            "my"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "uuid": "29f8c93a-a4a6-4dcc-98f4-9b9a9be89df0"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "uuid": "f998e89a-5d37-48bd-983e-cfd3fc8d3d89"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "cea184e1-6713-4d17-b98b-813225253f9e",
+          "name": "Get My Transactions",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/transactions/history/my?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions",
+                "history",
+                "my"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "804"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"324-yio6XHqPAqeWHgyiBXYs/AdaEF0\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 18:32:21 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T18:32:39.193Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"User transaction history retrieved successfully\",\n    \"data\": {\n        \"data\": [\n            {\n                \"_id\": \"697268145290d19b13891466\",\n                \"transactionId\": \"TXN-1769105428336-2QYTL\",\n                \"orderId\": \"ORD-1769078431339-4a02aulm\",\n                \"userId\": \"6971da34ef6d881934c75780\",\n                \"paymentMethodId\": {\n                    \"_id\": \"6972647289a956355769f88c\",\n                    \"methodName\": \"bKash\",\n                    \"description\": \"Mobile payment via bKash\",\n                    \"accountNumber\": \"01712345678\"\n                },\n                \"amount\": 1674.9475,\n                \"transactionStatus\": \"pending\",\n                \"userProvidedTransactionId\": \"TXN123456789\",\n                \"createdAt\": \"2026-01-22T18:10:28.336Z\",\n                \"updatedAt\": \"2026-01-22T18:10:28.336Z\",\n                \"order\": {\n                    \"_id\": \"6971fe9fe3630b4aa400139f\",\n                    \"orderId\": \"ORD-1769078431339-4a02aulm\",\n                    \"orderStatus\": \"shipped\",\n                    \"total\": 1674.9475\n                },\n                \"id\": \"697268145290d19b13891466\"\n            }\n        ],\n        \"pagination\": {\n            \"totalDocuments\": 1,\n            \"totalPages\": 1,\n            \"currentPage\": \"1\",\n            \"limitPerPage\": \"10\"\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get All Transactions (Admin)",
+      "id": "c58c81c5-c03b-4817-a16b-c83c7d5bd374",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/transactions/history/all?page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transactions",
+            "history",
+            "all"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "uuid": "d44efab4-5c18-4141-8e21-99bdf807987e"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "uuid": "3111c9bc-37bc-4972-b97b-9af722101020"
+            },
+            {
+              "key": "transactionStatus",
+              "value": "pending",
+              "description": "Filter: pending, completed, failed, cancelled",
+              "uuid": "edcc5ae8-aa08-4a35-9688-95f2e37c16df",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "0f083669-eae5-4c58-94e8-3d5b1173c88a",
+          "name": "Get All Transactions (Admin)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/transactions/history/all?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions",
+                "history",
+                "all"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "transactionStatus",
+                  "value": "pending",
+                  "description": "Filter: pending, completed, failed, cancelled",
+                  "uuid": "edcc5ae8-aa08-4a35-9688-95f2e37c16df",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "828"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"33c-eOTpxOU8kW1SWJNB4CKY/xokOSE\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 18:39:25 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T18:39:44.924Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"All transaction history retrieved successfully\",\n    \"data\": {\n        \"data\": [\n            {\n                \"_id\": \"697268145290d19b13891466\",\n                \"transactionId\": \"TXN-1769105428336-2QYTL\",\n                \"orderId\": \"ORD-1769078431339-4a02aulm\",\n                \"userId\": {\n                    \"_id\": \"6971da34ef6d881934c75780\",\n                    \"name\": \"John Updated\",\n                    \"email\": \"admin-nursery@yopmail.com\"\n                },\n                \"paymentMethodId\": {\n                    \"_id\": \"6972647289a956355769f88c\",\n                    \"methodName\": \"bKash\",\n                    \"accountNumber\": \"01712345678\"\n                },\n                \"amount\": 1674.9475,\n                \"transactionStatus\": \"pending\",\n                \"userProvidedTransactionId\": \"TXN123456789\",\n                \"createdAt\": \"2026-01-22T18:10:28.336Z\",\n                \"updatedAt\": \"2026-01-22T18:10:28.336Z\",\n                \"order\": {\n                    \"_id\": \"6971fe9fe3630b4aa400139f\",\n                    \"orderId\": \"ORD-1769078431339-4a02aulm\",\n                    \"orderStatus\": \"shipped\",\n                    \"total\": 1674.9475\n                },\n                \"id\": \"697268145290d19b13891466\"\n            }\n        ],\n        \"pagination\": {\n            \"totalDocuments\": 1,\n            \"totalPages\": 1,\n            \"currentPage\": \"1\",\n            \"limitPerPage\": \"10\"\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Transaction Status (Admin)",
+      "id": "9e1276f8-5e8e-4c11-b6c4-25a51f35f26e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"transactionStatus\": \"completed\",\n  \"adminNotes\": \"Payment verified and confirmed\"\n}",
+          "options": {
+            "raw": {
+              "language": "json",
+              "description": "Required: transactionStatus (enum: ['pending', 'completed', 'failed', 'cancelled'])\nOptional: adminNotes"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/transactions/:id/status",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "transactions",
+            ":id",
+            "status"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "697268145290d19b13891466"
+            }
+          ]
+        },
+        "description": "Admin verifies and updates transaction status. This also updates order payment status."
+      },
+      "response": [
+        {
+          "id": "aaefaa1d-79de-4a6b-8ee7-84162a315412",
+          "name": "Update Transaction Status (Admin)",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionStatus\": \"completed\",\n  \"adminNotes\": \"Payment verified and confirmed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json",
+                  "description": "Required: transactionStatus (enum: ['pending', 'completed', 'failed', 'cancelled'])\nOptional: adminNotes"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transactions/:id/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions",
+                ":id",
+                "status"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "697268145290d19b13891466"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "530"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"212-EJWEMp+GLXQ397DO7FdiAyAHWL0\""
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 22 Jan 2026 18:40:53 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "2026-01-22T18:41:00.838Z",
+          "body": "{\n    \"success\": true,\n    \"message\": \"Transaction status updated successfully\",\n    \"data\": {\n        \"_id\": \"697268145290d19b13891466\",\n        \"transactionId\": \"TXN-1769105428336-2QYTL\",\n        \"orderId\": \"ORD-1769078431339-4a02aulm\",\n        \"userId\": \"6971da34ef6d881934c75780\",\n        \"paymentMethodId\": \"6972647289a956355769f88c\",\n        \"amount\": 1674.9475,\n        \"transactionStatus\": \"completed\",\n        \"userProvidedTransactionId\": \"TXN123456789\",\n        \"createdAt\": \"2026-01-22T18:10:28.336Z\",\n        \"updatedAt\": \"2026-01-22T18:40:53.365Z\",\n        \"__v\": 0,\n        \"adminNotes\": \"Payment verified and confirmed\",\n        \"id\": \"697268145290d19b13891466\"\n    }\n}"
+        }
+      ]
+    }
+  ]
+}
