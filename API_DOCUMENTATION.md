@@ -945,6 +945,105 @@ Get transaction by order ID
 
 ---
 
+## Avatar Module (`/avatars`)
+
+### POST `/avatars/create`
+
+Create a new avatar (Admin only)
+
+- **Auth**: Required (Admin/Super Admin)
+- **Body (multipart/form-data)**:
+
+  ```json
+  {
+    "name": "Avatar Name",
+    "image": "<file upload>"
+  }
+  ```
+
+- **Response**: Created avatar object with imageUrl
+
+### GET `/avatars`
+
+Get all active avatars
+
+- **Auth**: Not required
+- **Query**:
+  - `page` - Page number (default: 1)
+  - `limit` - Items per page (default: 10)
+  - `search` - Search by avatar name
+  - `sort` - Sort field and order (e.g., `-createdAt`)
+- **Response**: Paginated array of avatars
+
+### GET `/avatars/:id`
+
+Get specific avatar by ID
+
+- **Auth**: Not required
+- **Params**: `id` - Avatar ID
+- **Response**: Avatar details
+
+### PATCH `/avatars/:id`
+
+Update avatar (Admin only)
+
+- **Auth**: Required (Admin/Super Admin)
+- **Params**: `id` - Avatar ID
+- **Body (multipart/form-data)**:
+
+  ```json
+  {
+    "name": "Updated Avatar Name (optional)",
+    "image": "<file upload (optional)>",
+    "isActive": true
+  }
+  ```
+
+- **Response**: Updated avatar object
+
+### DELETE `/avatars/:id`
+
+Delete avatar (soft delete) (Admin only)
+
+- **Auth**: Required (Admin/Super Admin)
+- **Params**: `id` - Avatar ID
+- **Response**: Deleted avatar (sets isActive to false)
+
+---
+
+## User Profile with Avatar
+
+### PATCH `/users/update`
+
+Update user profile (supports both image upload and avatar selection)
+
+- **Auth**: Required (User/Admin/Super Admin)
+- **Body (multipart/form-data)**:
+
+  ```json
+  {
+    "name": "Updated Name (optional)",
+    "profilePicture": "<file upload (optional)>",
+    "avatarId": "avatar_id (optional)"
+  }
+  ```
+
+- **Note**:
+  - If `profilePicture` is uploaded, `avatarId` will be cleared
+  - If `avatarId` is provided, `profilePicture` will be cleared
+  - Only one can be used at a time
+
+- **Response**: Updated user profile with avatar details populated
+
+### GET `/users/profile`
+
+Get user profile
+
+- **Auth**: Required (User/Admin/Super Admin)
+- **Response**: User profile with avatar details populated if avatarId is set
+
+---
+
 ## Data Models Summary
 
 ### Cart
@@ -1089,6 +1188,38 @@ Get transaction by order ID
   transactionStatus: "pending" | "completed" | "failed" | "cancelled"
   userProvidedTransactionId: string
   adminNotes: string (optional)
+  createdAt: Date
+  updatedAt: Date
+}
+```
+
+### Avatar
+
+```typescript
+{
+  _id: ObjectId
+  name: string (unique)
+  imageUrl: string
+  isActive: boolean
+  createdAt: Date
+  updatedAt: Date
+}
+```
+
+### User
+
+```typescript
+{
+  _id: ObjectId
+  name: string
+  emailOrPhone: string (unique)
+  password: string (hashed)
+  profilePicture: string (optional)
+  avatarId: ObjectId (optional, ref: "Avatar")
+  role: "USER" | "ADMIN" | "SUPER_ADMIN"
+  status: "ACTIVE" | "BLOCKED"
+  isDeleted: boolean
+  passwordChangedAt: Date
   createdAt: Date
   updatedAt: Date
 }
@@ -1307,6 +1438,18 @@ src/modules/users/
 └── users.route.ts              - User routes (/users)
 ```
 
+#### Avatar Module
+
+```
+src/modules/avatar/
+├── avatar.interface.ts         - Avatar types
+├── avatar.model.ts             - Avatar schema
+├── avatar.validation.ts        - Zod validation schemas
+├── avatar.service.ts           - CRUD operations
+├── avatar.controller.ts        - Avatar endpoints
+└── avatar.route.ts             - Avatar routes (/avatars)
+```
+
 ### Core Configuration Files
 
 ```
@@ -1349,10 +1492,10 @@ src/
 
 ### File Statistics
 
-- **Total Modules**: 14 (12 existing + 2 new)
-- **Total Module Files**: 84 (6 files per module)
+- **Total Modules**: 15 (includes Avatar module)
+- **Total Module Files**: 90 (6 files per module)
 - **Core Files**: 20+ configuration and utility files
-- **Lines of Code**: ~3,500+ (with comments and formatting)
+- **Lines of Code**: ~3,600+ (with comments and formatting)
 - **Test Coverage**: Configured for unit and integration tests
 
 ---

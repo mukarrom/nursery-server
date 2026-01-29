@@ -11,14 +11,14 @@ import { UserModel } from "./users.model";
  */
 const getProfile = async (userId: string) => {
   console.log("Fetching profile for userId:", userId);
-  const user = await UserModel.findById(userId).select("id name emailOrPhone role status profilePicture");
+  const user = await UserModel.findById(userId)
+    .select("id name emailOrPhone role status profilePicture avatarId")
+    .populate("avatarId", "name imageUrl");
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, "User not found");
   }
   return user;
 }
-
-
 
 /**
  * update profile by user id
@@ -34,10 +34,14 @@ const updateProfile = async (userId: string, payload: any) => {
   return user;
 };
 
-/// Get all users list
+/**
+ * Get all users with by admin
+ * @param query 
+ * @returns List of users and meta data
+ */
 const getAllUsers = async (query: Record<string, unknown>) => {
   const userQuery = new QueryBuilder(
-    UserModel.find().select("id name profilePicture emailOrPhone role status"),
+    UserModel.find().select("id name profilePicture avatarId emailOrPhone role status").populate("avatarId", "name imageUrl"),
     query
   )
     .search(["name", "emailOrPhone"])
@@ -53,7 +57,12 @@ const getAllUsers = async (query: Record<string, unknown>) => {
   return { users, meta };
 };
 
-/// Update user status
+/**
+ * Update user status by admin
+ * @param userId 
+ * @param status 
+ * @returns updated user
+ */
 const updateStatus = async (userId: string, status: string) => {
   const user = await UserModel.findByIdAndUpdate(userId, { status }, { new: true });
   if (!user) {
@@ -61,6 +70,8 @@ const updateStatus = async (userId: string, status: string) => {
   }
   return user;
 };
+
+
 
 export const userService = {
   getProfile,

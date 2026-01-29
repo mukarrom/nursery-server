@@ -23,19 +23,19 @@
               "formdata": [
                 {
                   "key": "name",
-                  "value": "User 2",
+                  "value": "Admin",
                   "description": "Required, min 3 chars",
                   "type": "text"
                 },
                 {
                   "key": "emailOrPhone",
-                  "value": "01512345678",
+                  "value": "01555555555",
                   "description": "Required, valid email or 11-digit phone number",
                   "type": "text"
                 },
                 {
                   "key": "password",
-                  "value": "11111111",
+                  "value": "12345678",
                   "description": "Required, min 6 chars",
                   "type": "text"
                 },
@@ -43,9 +43,8 @@
                   "key": "profilePicture",
                   "description": "Optional, image file",
                   "type": "file",
-                  "src": [
-                    "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
-                  ]
+                  "src": [],
+                  "disabled": true
                 },
                 {
                   "key": "role",
@@ -181,6 +180,7 @@
                   "    if (jsonData.data && jsonData.data.accessToken) {",
                   "        pm.collectionVariables.set('token', jsonData.data.accessToken);",
                   "        console.log('Token saved to environment');",
+                  "        pm.environment.set('token', jsonData.data.accessToken);",
                   "    }",
                   "}"
                 ],
@@ -211,7 +211,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"emailOrPhone\": \"user1@gmail.com\",\n  \"password\": \"12345678\"\n}",
+              "raw": "// {\n//   \"emailOrPhone\": \"user1@gmail.com\",\n//   \"password\": \"12345678\"\n// }\n\n// admin\n{\n    \"emailOrPhone\": \"01555555555\",\n    \"password\": \"12345678\"\n}",
               "options": {
                 "raw": {
                   "language": "json",
@@ -681,7 +681,14 @@
                   "type": "file",
                   "src": [
                     "/C:/Users/mukar/OneDrive/Pictures/134079918977529516.jpg"
-                  ]
+                  ],
+                  "disabled": true
+                },
+                {
+                  "key": "avatarId",
+                  "value": "697acd6c19f82910a5af1aef",
+                  "type": "text",
+                  "uuid": "288958cf-8604-4c80-810c-60c25fc6c526"
                 }
               ]
             },
@@ -8634,7 +8641,7 @@
   ],
   "variable": [
     {
-      "id": "f7c4c6be-bbc5-4425-b00f-76ad34c3e270",
+      "id": "2886283e-0c73-46b4-bb24-e74561001359",
       "key": "token",
       "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA3ODU0OCwiZXhwIjoxNzY5MTY0OTQ4fQ.jbePrYXN0xmIbXizuhz8h8i-f8iICKkh1auntRtNBKs"
     }

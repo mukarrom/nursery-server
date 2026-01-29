@@ -5,6 +5,7 @@ Professional REST API server for Nursery Bazar BD e-commerce platform, built wit
 ## 🚀 Features
 
 - **User Management**: Authentication, registration, email verification, password reset
+- **Avatar Management**: Admin-managed avatar library for user profiles
 - **Product Catalog**: Browse, search, filter plants and gardening products
 - **Shopping Cart**: Add/remove items with quantity management
 - **Orders & Checkout**: Complete order processing with multiple payment options
@@ -44,6 +45,7 @@ nursery-bazar-bd/
 │   ├── modules/                        # Feature modules
 │   │   ├── address/                    # Address management
 │   │   ├── auth/                       # Authentication
+│   │   ├── avatar/                     # Avatar management
 │   │   ├── carousel/                   # Carousel management
 │   │   ├── cart/                       # Shopping cart
 │   │   ├── category/                   # Product categories
@@ -151,6 +153,7 @@ Header: Authorization: Bearer <jwt_token>
 #### Main Endpoints
 
 - **Users**: `/users` - Profile, registration, email verification
+- **Avatars**: `/avatars` - Avatar management for user profiles
 - **Products**: `/products` - Browse and search products
 - **Cart**: `/carts` - Shopping cart operations
 - **Orders**: `/orders` - Order creation and management

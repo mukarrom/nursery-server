@@ -1,0 +1,238 @@
+{
+  "info": {
+    "_postman_id": "45d8ebc9-23bd-47e5-8b33-6b8f4dc10665",
+    "name": "Avatar (nursery Bazar BD)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Avatar (Admin)",
+      "id": "8893e647-d2c3-4004-a7f5-63d4a776267f",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "Cool Avatar 1",
+              "description": "Required, unique avatar name",
+              "type": "text"
+            },
+            {
+              "key": "image",
+              "description": "Required, avatar image file",
+              "type": "file",
+              "src": [
+                "/C:/Users/mukar/OneDrive/Pictures/134119338666342223.jpg"
+              ]
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/avatars/create",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "avatars",
+            "create"
+          ]
+        },
+        "description": "Create a new avatar (Admin/Super Admin only). Upload an avatar image that users can select for their profile."
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Avatars",
+      "id": "378c4461-4814-4d37-b0f6-77eabaaa3d07",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/avatars?page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "avatars"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "description": "Optional, page number"
+            },
+            {
+              "key": "limit",
+              "value": "10",
+              "description": "Optional, items per page"
+            },
+            {
+              "key": "search",
+              "value": "",
+              "description": "Optional, search by avatar name",
+              "disabled": true
+            },
+            {
+              "key": "sort",
+              "value": "-createdAt",
+              "description": "Optional, sort field (e.g., -createdAt for newest first)",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Get all active avatars. No authentication required. Returns paginated list of avatars."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Avatar by ID",
+      "id": "768f597d-e42e-4c47-b1d6-838b8167fcf4",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/avatars/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "avatars",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "",
+              "description": "Avatar ID"
+            }
+          ]
+        },
+        "description": "Get a specific avatar by ID. No authentication required."
+      },
+      "response": []
+    },
+    {
+      "name": "Update Avatar (Admin)",
+      "id": "593b0817-3ac7-4960-b69a-43bafbdf29f4",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "Updated Avatar Name",
+              "description": "Optional, new avatar name",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "image",
+              "description": "Optional, new avatar image",
+              "type": "file",
+              "src": [],
+              "disabled": true
+            },
+            {
+              "key": "isActive",
+              "value": "true",
+              "description": "Optional, activate/deactivate avatar",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/avatars/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "avatars",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "",
+              "description": "Avatar ID"
+            }
+          ]
+        },
+        "description": "Update an existing avatar (Admin/Super Admin only). Can update name, image, or active status."
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Avatar (Admin)",
+      "id": "22a106ef-428c-4f2a-8753-9da579c96648",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/avatars/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "avatars",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "",
+              "description": "Avatar ID"
+            }
+          ]
+        },
+        "description": "Delete an avatar (Admin/Super Admin only). This is a soft delete - sets isActive to false."
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  }
+}

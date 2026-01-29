@@ -31,6 +31,10 @@ const UserSchema = new Schema<TUser, IUserModel>(
     profilePicture: {
       type: String,
     },
+    avatarId: {
+      type: Schema.Types.ObjectId,
+      ref: "Avatar",
+    },
     role: {
       type: String,
       enum: Object.values(USER_ROLE),

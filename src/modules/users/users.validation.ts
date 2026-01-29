@@ -28,6 +28,9 @@ const userValidationSchema = z.object({
     profilePicture: z
       .string()
       .optional(),
+    avatarId: z
+      .string()
+      .optional(),
     role: z
       .enum(["USER", "ADMIN", "SUPER_ADMIN"], {
         invalid_type_error: "Role must be a valid role",

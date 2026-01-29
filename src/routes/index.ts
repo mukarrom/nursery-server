@@ -1,6 +1,7 @@
 import { Router } from "express";
 import addressRouter from "../modules/address/address.route";
 import { authRoute } from "../modules/auth/auth.route";
+import { avatarRoutes } from "../modules/avatar/avatar.route";
 import { carouselRoutes } from "../modules/carousel/carousel.route";
 import cartRouter from "../modules/cart/cart.route";
 import { categoryRoutes } from "../modules/category/category.route";
@@ -31,6 +32,10 @@ const moduleRoutes: IModuleRoutes[] = [
   {
     path: "/users",
     route: userRoute,
+  },
+  {
+    path: "/avatars",
+    route: avatarRoutes,
   },
   {
     path: "/categories",

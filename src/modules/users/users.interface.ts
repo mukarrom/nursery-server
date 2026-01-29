@@ -8,6 +8,7 @@ export type TUser = {
   emailOrPhone: string;
   password: string;
   profilePicture?: string;
+  avatarId?: string;
   role?: TUserRole;
   status?: TUserStatus;
   isDeleted?: boolean;
