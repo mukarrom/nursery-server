@@ -521,7 +521,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newPassword456\"\n}",
+              "raw": "{\n  \"oldPassword\": \"123456\",\n  \"newPassword\": \"12345678\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -8641,7 +8641,7 @@
   ],
   "variable": [
     {
-      "id": "2886283e-0c73-46b4-bb24-e74561001359",
+      "id": "bbd70002-f163-4cb6-acab-ee486756d8ac",
       "key": "token",
       "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA3ODU0OCwiZXhwIjoxNzY5MTY0OTQ4fQ.jbePrYXN0xmIbXizuhz8h8i-f8iICKkh1auntRtNBKs"
     }

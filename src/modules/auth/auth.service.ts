@@ -6,9 +6,7 @@ import { TUser } from "../users/users.interface";
 import { UserModel } from "../users/users.model";
 import { TSignUp } from "./auth.interface";
 import {
-  comparePasswords,
   generateToken,
-  hashPassword,
   verifyAccessToken
 } from "./auth.utils";
 import { TLogin } from "./auth.validation";
@@ -364,11 +362,16 @@ const changePasswordService = async (
     throw new AppError(status.NOT_FOUND, "User not found");
   }
 
-  if (!(await comparePasswords(user.password, oldPass))) {
+  // if (!(await comparePasswords(user.password, oldPass))) {
+  //   throw new AppError(status.FORBIDDEN, "Incorrect old password");
+  // }
+
+  if (oldPass !== user.password) {
     throw new AppError(status.FORBIDDEN, "Incorrect old password");
   }
 
-  user.password = await hashPassword(newPass);
+  // user.password = await hashPassword(newPass);
+  user.password = newPass;
   user.passwordChangedAt = new Date();
   await user.save();
 

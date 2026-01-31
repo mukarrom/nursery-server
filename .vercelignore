@@ -1,7 +1,13 @@
-node_modules
-.env
 .env.local
+.gemini
 .github
+.postman
+erd
+markdown
+node_modules
+postman
+
+
 documentations
 coverage
 .DS_Store

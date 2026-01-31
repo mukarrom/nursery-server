@@ -1,3 +1,12 @@
+.env.local
+.gemini
+.github
+.postman
+erd
+markdown
+node_modules
+postman
+
 node_modules
 .env
 .env.local
