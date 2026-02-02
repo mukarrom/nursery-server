@@ -538,5 +538,12 @@
       },
       "response": []
     }
+  ],
+  "variable": [
+    {
+      "id": "aedc07ca-40d0-4198-bee1-caad5cf34c99",
+      "key": "token",
+      "value": ""
+    }
   ]
 }

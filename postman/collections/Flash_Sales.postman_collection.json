@@ -13,6 +13,16 @@
         "disableBodyPruning": true
       },
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{adminToken}}",
+              "type": "string"
+            }
+          ]
+        },
         "method": "GET",
         "header": [],
         "url": {
@@ -206,12 +216,12 @@
               "type": "file",
               "uuid": "21dd2703-51a1-4016-9015-bb731843349b",
               "src": [
-                "/C:/Users/mukar/OneDrive/Pictures/134070957472109060.jpg"
+                "/C:/Users/mukar/OneDrive/Pictures/134097765996597823.jpg"
               ]
             },
             {
               "key": "data",
-              "value": "{\n  \"title\": \"Weekend Flash Sale\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-01-26T23:59:59.000Z\",\n  \"isActive\": true,\n  \"productIds\": [\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"],\n  \"featured\": true,\n  \"order\": 1\n}",
+              "value": "{\n  \"title\": \"MMH Test\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-12-26T23:59:59.000Z\",\n  \"isActive\": true,\n  \"productIds\": [\"698038e9fc8515c1a20b2f17\"],\n  \"featured\": true,\n  \"order\": 1\n}",
               "type": "text",
               "uuid": "73fb3b20-9ab2-4a3c-b6fe-de169d9326f5"
             },
@@ -799,5 +809,15 @@
       },
       "response": []
     }
-  ]
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  }
 }

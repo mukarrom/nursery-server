@@ -119,7 +119,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "{{baseUrl}}/reviews/product/:productId?page=1&limit=10",
+          "raw": "{{baseUrl}}/reviews/product/:productId",
           "host": [
             "{{baseUrl}}"
           ],
@@ -127,18 +127,6 @@
             "reviews",
             "product",
             ":productId"
-          ],
-          "query": [
-            {
-              "key": "page",
-              "value": "1",
-              "uuid": "c082e3ec-1d2c-46ce-8113-aafe7a9d9a83"
-            },
-            {
-              "key": "limit",
-              "value": "10",
-              "uuid": "0d58eeed-28fa-4e28-b853-ba6e29434c43"
-            }
           ],
           "variable": [
             {

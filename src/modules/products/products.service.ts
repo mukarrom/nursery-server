@@ -230,6 +230,7 @@ const deleteProductService = async (id: string) => {
                     { new: true, session }
                 );
 
+
                 // If cart is empty, remove it
                 if (updatedCart && updatedCart.items.length === 0) {
                     await CartModel.findByIdAndDelete(cartItem._id).session(session);
@@ -272,7 +273,8 @@ const deleteProductService = async (id: string) => {
         }
 
         // Remove all reviews for this product
-        await ReviewModel.deleteMany({ productId: id }).session(session);
+        const deleteResult = await ReviewModel.deleteMany({ productId: id }).session(session);
+
 
         // Remove product from all flash sales
         const flashSales = await FlashSaleModel.find({ productIds: { $in: [id] } }).session(session);
@@ -283,6 +285,7 @@ const deleteProductService = async (id: string) => {
                     { $pull: { productIds: id } },
                     { session }
                 );
+
             }
         }
 
