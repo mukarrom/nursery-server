@@ -31,7 +31,6 @@ export const createReviewService = async (
         productId,
         rating,
         reviewText,
-        isPublished: false,
     });
 
     return review;
@@ -132,7 +131,8 @@ export const updateProductRatingService = async (productId: string) => {
  */
 export const getReviewsByProductService = async (productId: string) => {
     const reviews = await ReviewModel.find({ productId, isPublished: true })
-        .populate("userId", "name email")
+        .populate("userId", "name emailOrPhone profilePicture")
+        .populate("productId")
         .sort({ createdAt: -1 });
     return reviews;
 };

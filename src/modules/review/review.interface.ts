@@ -1,6 +1,8 @@
+import { Types } from "mongoose";
+
 export type TReview = {
-    userId: string;
-    productId: string;
+    userId: Types.ObjectId;
+    productId: Types.ObjectId;
     rating: number;
     reviewText?: string;
     isPublished: boolean;

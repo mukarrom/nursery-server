@@ -1,6 +1,11 @@
 import QueryBuilder from "../../builder/QueryBuilder";
 import { FOLDER_NAMES } from "../../constants/folder.constants";
 import { deleteImage, uploadImage } from "../../utils/imageUpload";
+import { CartModel } from "../cart/cart.model";
+import { FlashSaleModel } from "../flash-sale/flash-sale.model";
+import { OrderModel } from "../order/order.model";
+import { ReviewModel } from "../review/review.model";
+import { WishlistModel } from "../wishlist/wishlist.model";
 import { TProduct } from "./products.interface";
 import { ProductModel } from "./products.model";
 
@@ -215,16 +220,104 @@ const deleteProductService = async (id: string) => {
             throw new Error("Product not found");
         }
 
-        const result = await ProductModel.findByIdAndDelete(id).session(session);
+        // Remove product from all carts
+        const carts = await CartModel.find({ 'items.productId': id }).session(session);
+        if (carts.length > 0) {
+            for (const cartItem of carts) {
+                const updatedCart = await CartModel.findByIdAndUpdate(
+                    cartItem._id,
+                    { $pull: { items: { productId: id } } },
+                    { new: true, session }
+                );
 
-        if (result && product.image) {
-            const deleteResult = await deleteImage(product.image);
-            if (!deleteResult || deleteResult.result !== "ok") {
-                throw new Error("Failed to verify image deletion from Cloudinary");
+                // If cart is empty, remove it
+                if (updatedCart && updatedCart.items.length === 0) {
+                    await CartModel.findByIdAndDelete(cartItem._id).session(session);
+                }
             }
         }
 
+        // Remove product from all orders
+        const orders = await OrderModel.find({ 'items.productId': id }).session(session);
+        if (orders.length > 0) {
+            for (const orderItem of orders) {
+                const updatedOrder = await OrderModel.findByIdAndUpdate(
+                    orderItem._id,
+                    { $pull: { items: { productId: id } } },
+                    { new: true, session }
+                );
+
+                // If order is empty, remove it
+                if (updatedOrder && updatedOrder.items.length === 0) {
+                    await OrderModel.findByIdAndDelete(orderItem._id).session(session);
+                }
+            }
+        }
+
+        // Remove product from all wishlists
+        const wishlists = await WishlistModel.find({ productIds: { $in: [id] } }).session(session);
+        if (wishlists.length > 0) {
+            for (const wishlistItem of wishlists) {
+                const updatedWishlist = await WishlistModel.findByIdAndUpdate(
+                    wishlistItem._id,
+                    { $pull: { productIds: id } },
+                    { new: true, session }
+                );
+
+                // If wishlist is empty, remove it
+                if (updatedWishlist && updatedWishlist.productIds.length === 0) {
+                    await WishlistModel.findByIdAndDelete(wishlistItem._id).session(session);
+                }
+            }
+        }
+
+        // Remove all reviews for this product
+        await ReviewModel.deleteMany({ productId: id }).session(session);
+
+        // Remove product from all flash sales
+        const flashSales = await FlashSaleModel.find({ productIds: { $in: [id] } }).session(session);
+        if (flashSales.length > 0) {
+            for (const flashSaleItem of flashSales) {
+                await FlashSaleModel.findByIdAndUpdate(
+                    flashSaleItem._id,
+                    { $pull: { productIds: id } },
+                    { session }
+                );
+            }
+        }
+
+        // Delete the product
+        const result = await ProductModel.findByIdAndDelete(id).session(session);
+
+        // Commit transaction before deleting images (external operation)
         await session.commitTransaction();
+
+        // Delete images from Cloudinary (after transaction commit)
+        if (result) {
+            // Delete main image
+            if (product.image) {
+                try {
+                    const deleteResult = await deleteImage(product.image);
+                    if (!deleteResult || deleteResult.result !== "ok") {
+                        console.error("Failed to delete main product image from Cloudinary");
+                    }
+                } catch (error) {
+                    console.error("Failed to delete main product image:", error);
+                }
+            }
+
+            // Delete additional images
+            if (product.images && product.images.length > 0) {
+                for (const imageUrl of product.images) {
+                    try {
+                        await deleteImage(imageUrl);
+                    } catch (error) {
+                        console.error("Failed to delete additional product image:", error);
+                    }
+                }
+            }
+        }
+
         return result;
     } catch (error) {
         await session.abortTransaction();

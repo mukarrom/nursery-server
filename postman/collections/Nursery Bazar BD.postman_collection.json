@@ -211,7 +211,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "// {\n//   \"emailOrPhone\": \"user1@gmail.com\",\n//   \"password\": \"12345678\"\n// }\n\n// admin\n{\n    \"emailOrPhone\": \"01555555555\",\n    \"password\": \"12345678\"\n}",
+              "raw": "{\n  \"emailOrPhone\": \"jakir@gmail.com\",\n  \"password\": \"123456\"\n}\n\n// admin\n// {\n//     \"emailOrPhone\": \"01555555555\",\n//     \"password\": \"12345678\"\n// }",
               "options": {
                 "raw": {
                   "language": "json",
@@ -1198,7 +1198,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{token}}",
+                  "value": "{{adminToken}}",
                   "type": "string"
                 }
               ]
@@ -1210,13 +1210,13 @@
               "formdata": [
                 {
                   "key": "title",
-                  "value": "Indoor Plants",
+                  "value": "MMH Category 1",
                   "description": "Required",
                   "type": "text"
                 },
                 {
                   "key": "description",
-                  "value": "Plants suitable for indoor environments",
+                  "value": "Test Category Description",
                   "description": "Optional",
                   "type": "text"
                 },
@@ -1225,7 +1225,7 @@
                   "description": "Optional, image file",
                   "type": "file",
                   "src": [
-                    "/C:/Users/mukar/OneDrive/Pictures/134064739131616693.jpg"
+                    "/C:/Users/mukar/OneDrive/Pictures/134135317531541490.jpg"
                   ]
                 },
                 {
@@ -1516,7 +1516,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{token}}",
+                  "value": "{{adminToken}}",
                   "type": "string"
                 }
               ]
@@ -1524,18 +1524,19 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/categories/:id",
+              "raw": "{{baseUrl}}/categories/:categoryId",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "categories",
-                ":id"
+                ":categoryId"
               ],
               "variable": [
                 {
-                  "key": "id",
-                  "value": "6971e657884d772cac55fac1"
+                  "key": "categoryId",
+                  "value": "697ed04024eeb19fb8b38f4e",
+                  "uuid": "ad60e535-e2fd-4fc7-ad0b-e1513eb59f40"
                 }
               ]
             }
@@ -1621,6 +1622,16 @@
             "disableBodyPruning": true
           },
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [],
             "url": {
@@ -1824,6 +1835,16 @@
             "disableBodyPruning": true
           },
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [],
             "url": {
@@ -1838,7 +1859,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "6979c46e5a2478d429b244d5"
+                  "value": "697eaa60260baaa7d0c0df13"
                 }
               ]
             }
@@ -6484,7 +6505,7 @@
                 },
                 {
                   "key": "data",
-                  "value": "{\n  \"title\": \"Weekend Flash Sale\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 30,\n  \"startDate\": \"2026-01-25T00:00:00.000Z\",\n  \"endDate\": \"2026-01-26T23:59:59.000Z\",\n  \"isActive\": true,\n  \"productIds\": [\"6971e9f7065be8b54b7ff90e\", \"6970f3d9a4e644714427b3c9\", \"697089436e04221e6a2cd70c\"],\n  \"featured\": true,\n  \"order\": 1\n}",
+                  "value": "{\n  \"title\": \"Weekend Flash Sale\",\n  \"description\": \"Limited time offer on selected items\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 30,\n  \"startDate\": \"2026-01-01T00:00:00.000Z\",\n  \"endDate\": \"2026-10-01T23:59:59.000Z\",\n  \"isActive\": true,\n  \"productIds\": [\"697eaa60260baaa7d0c0df13\", \"697e2eca92bba1d0ecc89108\"],\n  \"featured\": true,\n  \"order\": 1\n}",
                   "type": "text",
                   "uuid": "73fb3b20-9ab2-4a3c-b6fe-de169d9326f5"
                 },
@@ -8641,7 +8662,7 @@
   ],
   "variable": [
     {
-      "id": "bbd70002-f163-4cb6-acab-ee486756d8ac",
+      "id": "fd819a82-b10a-4938-8690-6321c460d4ed",
       "key": "token",
       "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzFkYTM0ZWY2ZDg4MTkzNGM3NTc4MCIsImVtYWlsIjoiYWRtaW4tbnVyc2VyeUB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2OTA3ODU0OCwiZXhwIjoxNzY5MTY0OTQ4fQ.jbePrYXN0xmIbXizuhz8h8i-f8iICKkh1auntRtNBKs"
     }

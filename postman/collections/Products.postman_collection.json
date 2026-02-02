@@ -13,6 +13,16 @@
         "disableBodyPruning": true
       },
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
         "method": "GET",
         "header": [],
         "url": {
@@ -216,6 +226,16 @@
         "disableBodyPruning": true
       },
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
         "method": "GET",
         "header": [],
         "url": {
@@ -230,7 +250,7 @@
           "variable": [
             {
               "key": "id",
-              "value": "6979c46e5a2478d429b244d5"
+              "value": "697eaa60260baaa7d0c0df13"
             }
           ]
         }
@@ -326,19 +346,19 @@
           "formdata": [
             {
               "key": "name",
-              "value": "White Rose Plant",
+              "value": "MMH 1",
               "description": "Required",
               "type": "text"
             },
             {
               "key": "description",
-              "value": "Beautiful red rose plant for your garden",
+              "value": "MMH 1 description",
               "description": "Optional",
               "type": "text"
             },
             {
               "key": "price",
-              "value": "299.99",
+              "value": "10",
               "description": "Required",
               "type": "text"
             },
@@ -368,19 +388,19 @@
             },
             {
               "key": "sku",
-              "value": "ROSE-WHITE-001",
+              "value": "MMH-WHITE-001",
               "description": "Optional",
               "type": "text"
             },
             {
               "key": "brand",
-              "value": "Garden Pro",
+              "value": "mmh",
               "description": "Optional",
               "type": "text"
             },
             {
               "key": "categoryId",
-              "value": "6971e657884d772cac55fac1",
+              "value": "697e448b178b872d0c74eb51",
               "description": "Optional",
               "type": "text"
             },
@@ -979,5 +999,15 @@
       },
       "response": []
     }
-  ]
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  }
 }
